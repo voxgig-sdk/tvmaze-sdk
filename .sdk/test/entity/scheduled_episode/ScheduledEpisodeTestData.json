@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "scheduled_episode": {
+      "SCHEDULED_EPISODE00": {
+        "airdate": "s96",
+        "airstamp": "s97",
+        "airtime": "s98",
+        "id": "SCHEDULED_EPISODE00",
+        "image": {},
+        "link": {},
+        "name": "s9c",
+        "number": "s9d",
+        "rating": {},
+        "runtime": "s9f",
+        "season": "sa0",
+        "show": {},
+        "summary": "sa2",
+        "type": "sa3",
+        "url": "sa4"
+      },
+      "SCHEDULED_EPISODE01": {
+        "airdate": "s12c",
+        "airstamp": "s12d",
+        "airtime": "s12e",
+        "id": "SCHEDULED_EPISODE01",
+        "image": {},
+        "link": {},
+        "name": "s132",
+        "number": "s133",
+        "rating": {},
+        "runtime": "s135",
+        "season": "s136",
+        "show": {},
+        "summary": "s138",
+        "type": "s139",
+        "url": "s13a"
+      },
+      "SCHEDULED_EPISODE02": {
+        "airdate": "s1c2",
+        "airstamp": "s1c3",
+        "airtime": "s1c4",
+        "id": "SCHEDULED_EPISODE02",
+        "image": {},
+        "link": {},
+        "name": "s1c8",
+        "number": "s1c9",
+        "rating": {},
+        "runtime": "s1cb",
+        "season": "s1cc",
+        "show": {},
+        "summary": "s1ce",
+        "type": "s1cf",
+        "url": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "scheduled_episode": {
+      "scheduled_episode_ref01": {
+        "airdate": "s258",
+        "airstamp": "s259",
+        "airtime": "s25a",
+        "image": {},
+        "link": {},
+        "name": "s25e",
+        "number": "s25f",
+        "rating": {},
+        "runtime": "s261",
+        "season": "s262",
+        "show": {},
+        "summary": "s264",
+        "type": "s265",
+        "url": "s266"
+      }
+    }
+  }
+}

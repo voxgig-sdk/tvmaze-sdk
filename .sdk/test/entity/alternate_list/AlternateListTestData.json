@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "alternate_list": {
+      "ALTERNATE_LIST00": {
+        "id": "ALTERNATE_LIST00",
+        "link": {},
+        "name": "s2a",
+        "url": "s2b",
+        "show_id": "SHOW01"
+      },
+      "ALTERNATE_LIST01": {
+        "id": "ALTERNATE_LIST01",
+        "link": {},
+        "name": "s52",
+        "url": "s53",
+        "show_id": "SHOW01"
+      },
+      "ALTERNATE_LIST02": {
+        "id": "ALTERNATE_LIST02",
+        "link": {},
+        "name": "s7a",
+        "url": "s7b",
+        "show_id": "SHOW01"
+      }
+    }
+  },
+  "new": {
+    "alternate_list": {
+      "alternate_list_ref01": {
+        "link": {},
+        "name": "sa2",
+        "url": "sa3"
+      }
+    }
+  }
+}

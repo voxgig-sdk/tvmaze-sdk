@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "cast_member": {
+      "CAST_MEMBER00": {
+        "character": {},
+        "person": {},
+        "self": true,
+        "voice": false,
+        "episode_id": "EPISODE01"
+      },
+      "CAST_MEMBER01": {
+        "character": {},
+        "person": {},
+        "self": true,
+        "voice": false,
+        "episode_id": "EPISODE01"
+      },
+      "CAST_MEMBER02": {
+        "character": {},
+        "person": {},
+        "self": true,
+        "voice": false,
+        "episode_id": "EPISODE01"
+      }
+    }
+  },
+  "new": {
+    "cast_member": {
+      "cast_member_ref01": {
+        "character": {},
+        "person": {},
+        "self": true,
+        "voice": false
+      }
+    }
+  }
+}

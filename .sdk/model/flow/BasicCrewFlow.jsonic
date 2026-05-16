@@ -1,0 +1,26 @@
+# BasicCrewFlow
+
+main: kit: flow: BasicCrewFlow:
+{
+  entity: "crew",
+  kind: "basic",
+  name: "BasicCrewFlow",
+  step: [
+    {
+      match: {
+        show_id: "show01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "crew_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCrewFlow"
+}

@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "person": {
+      "PERSON00": {
+        "birthday": "s78",
+        "country": {},
+        "deathday": "s7a",
+        "gender": "s7b",
+        "id": "PERSON00",
+        "image": {},
+        "link": {},
+        "name": "s7f",
+        "person": {},
+        "score": 129,
+        "updated": "s82",
+        "url": "s83"
+      },
+      "PERSON01": {
+        "birthday": "sf0",
+        "country": {},
+        "deathday": "sf2",
+        "gender": "sf3",
+        "id": "PERSON01",
+        "image": {},
+        "link": {},
+        "name": "sf7",
+        "person": {},
+        "score": 249,
+        "updated": "sfa",
+        "url": "sfb"
+      },
+      "PERSON02": {
+        "birthday": "s168",
+        "country": {},
+        "deathday": "s16a",
+        "gender": "s16b",
+        "id": "PERSON02",
+        "image": {},
+        "link": {},
+        "name": "s16f",
+        "person": {},
+        "score": 369,
+        "updated": "s172",
+        "url": "s173"
+      }
+    }
+  },
+  "new": {
+    "person": {
+      "person_ref01": {
+        "birthday": "s1e0",
+        "country": {},
+        "deathday": "s1e2",
+        "gender": "s1e3",
+        "image": {},
+        "link": {},
+        "name": "s1e7",
+        "person": {},
+        "score": 489,
+        "updated": "s1ea",
+        "url": "s1eb"
+      }
+    }
+  }
+}

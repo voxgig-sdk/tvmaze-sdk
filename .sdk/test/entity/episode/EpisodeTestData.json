@@ -1,0 +1,79 @@
+{
+  "existing": {
+    "episode": {
+      "EPISODE00": {
+        "airdate": "s8c",
+        "airstamp": "s8d",
+        "airtime": "s8e",
+        "id": "EPISODE00",
+        "image": {},
+        "link": {},
+        "name": "s92",
+        "number": "s93",
+        "rating": {},
+        "runtime": "s95",
+        "season": "s96",
+        "summary": "s97",
+        "type": "s98",
+        "url": "s99",
+        "show_id": "SHOW01",
+        "season_id": "SEASON01"
+      },
+      "EPISODE01": {
+        "airdate": "s118",
+        "airstamp": "s119",
+        "airtime": "s11a",
+        "id": "EPISODE01",
+        "image": {},
+        "link": {},
+        "name": "s11e",
+        "number": "s11f",
+        "rating": {},
+        "runtime": "s121",
+        "season": "s122",
+        "summary": "s123",
+        "type": "s124",
+        "url": "s125",
+        "show_id": "SHOW01",
+        "season_id": "SEASON01"
+      },
+      "EPISODE02": {
+        "airdate": "s1a4",
+        "airstamp": "s1a5",
+        "airtime": "s1a6",
+        "id": "EPISODE02",
+        "image": {},
+        "link": {},
+        "name": "s1aa",
+        "number": "s1ab",
+        "rating": {},
+        "runtime": "s1ad",
+        "season": "s1ae",
+        "summary": "s1af",
+        "type": "s1b0",
+        "url": "s1b1",
+        "show_id": "SHOW01",
+        "season_id": "SEASON01"
+      }
+    }
+  },
+  "new": {
+    "episode": {
+      "episode_ref01": {
+        "airdate": "s230",
+        "airstamp": "s231",
+        "airtime": "s232",
+        "image": {},
+        "link": {},
+        "name": "s236",
+        "number": "s237",
+        "rating": {},
+        "runtime": "s239",
+        "season": "s23a",
+        "summary": "s23b",
+        "type": "s23c",
+        "url": "s23d"
+      }
+    }
+  }
+}

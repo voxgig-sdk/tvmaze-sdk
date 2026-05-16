@@ -1,0 +1,68 @@
+{
+  "existing": {
+    "season": {
+      "SEASON00": {
+        "end_date": "s78",
+        "episode_order": "s79",
+        "id": "SEASON00",
+        "image": {},
+        "link": {},
+        "name": "s7d",
+        "network": {},
+        "number": "s7f",
+        "premiere_date": "s80",
+        "summary": "s81",
+        "url": "s82",
+        "web_channel": {},
+        "show_id": "SHOW01"
+      },
+      "SEASON01": {
+        "end_date": "sf0",
+        "episode_order": "sf1",
+        "id": "SEASON01",
+        "image": {},
+        "link": {},
+        "name": "sf5",
+        "network": {},
+        "number": "sf7",
+        "premiere_date": "sf8",
+        "summary": "sf9",
+        "url": "sfa",
+        "web_channel": {},
+        "show_id": "SHOW01"
+      },
+      "SEASON02": {
+        "end_date": "s168",
+        "episode_order": "s169",
+        "id": "SEASON02",
+        "image": {},
+        "link": {},
+        "name": "s16d",
+        "network": {},
+        "number": "s16f",
+        "premiere_date": "s170",
+        "summary": "s171",
+        "url": "s172",
+        "web_channel": {},
+        "show_id": "SHOW01"
+      }
+    }
+  },
+  "new": {
+    "season": {
+      "season_ref01": {
+        "end_date": "s1e0",
+        "episode_order": "s1e1",
+        "image": {},
+        "link": {},
+        "name": "s1e5",
+        "network": {},
+        "number": "s1e7",
+        "premiere_date": "s1e8",
+        "summary": "s1e9",
+        "url": "s1ea",
+        "web_channel": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+# Entity: cast_member
+
+main: kit: entity: cast_member: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "character"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "person"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "self"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "voice"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "cast_member"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "episode_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/episodes/{id}/guestcast"
+          parts: [
+            "episodes"
+            "{episode_id}"
+            "guestcast"
+          ]
+          rename: {
+            param: {
+              id: "episode_id"
+            }
+          }
+          select: {
+            exist: [
+              "episode_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "episode"
+      ]
+    ]
+  }
+
+
+
+}

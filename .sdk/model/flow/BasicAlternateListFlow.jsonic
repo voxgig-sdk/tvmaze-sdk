@@ -1,0 +1,48 @@
+# BasicAlternateListFlow
+
+main: kit: flow: BasicAlternateListFlow:
+{
+  entity: "alternate_list",
+  kind: "basic",
+  name: "BasicAlternateListFlow",
+  step: [
+    {
+      match: {
+        show_id: "show01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "alternate_list_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "alternate_list_ref01",
+        srcdatavar: "alternate_list_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "alternate_list01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-alternate_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAlternateListFlow"
+}

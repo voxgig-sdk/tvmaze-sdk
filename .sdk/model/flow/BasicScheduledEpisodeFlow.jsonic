@@ -1,0 +1,22 @@
+# BasicScheduledEpisodeFlow
+
+main: kit: flow: BasicScheduledEpisodeFlow:
+{
+  entity: "scheduled_episode",
+  kind: "basic",
+  name: "BasicScheduledEpisodeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "scheduled_episode_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicScheduledEpisodeFlow"
+}

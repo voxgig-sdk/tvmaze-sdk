@@ -1,0 +1,26 @@
+# BasicCrewCreditFlow
+
+main: kit: flow: BasicCrewCreditFlow:
+{
+  entity: "crew_credit",
+  kind: "basic",
+  name: "BasicCrewCreditFlow",
+  step: [
+    {
+      match: {
+        person_id: "person01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "crew_credit_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCrewCreditFlow"
+}

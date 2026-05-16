@@ -1,0 +1,26 @@
+# BasicCrewMemberFlow
+
+main: kit: flow: BasicCrewMemberFlow:
+{
+  entity: "crew_member",
+  kind: "basic",
+  name: "BasicCrewMemberFlow",
+  step: [
+    {
+      match: {
+        episode_id: "episode01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "crew_member_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCrewMemberFlow"
+}

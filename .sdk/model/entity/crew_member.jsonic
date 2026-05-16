@@ -1,0 +1,73 @@
+# Entity: crew_member
+
+main: kit: entity: crew_member: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "person"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "crew_member"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "episode_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/episodes/{id}/guestcrew"
+          parts: [
+            "episodes"
+            "{episode_id}"
+            "guestcrew"
+          ]
+          rename: {
+            param: {
+              id: "episode_id"
+            }
+          }
+          select: {
+            exist: [
+              "episode_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "episode"
+      ]
+    ]
+  }
+
+
+
+}

@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "crew_member": {
+      "CREW_MEMBER00": {
+        "person": {},
+        "type": "s15",
+        "episode_id": "EPISODE01"
+      },
+      "CREW_MEMBER01": {
+        "person": {},
+        "type": "s29",
+        "episode_id": "EPISODE01"
+      },
+      "CREW_MEMBER02": {
+        "person": {},
+        "type": "s3d",
+        "episode_id": "EPISODE01"
+      }
+    }
+  },
+  "new": {
+    "crew_member": {
+      "crew_member_ref01": {
+        "person": {},
+        "type": "s51"
+      }
+    }
+  }
+}

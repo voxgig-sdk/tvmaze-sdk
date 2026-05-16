@@ -1,0 +1,334 @@
+# Entity: episode
+
+main: kit: entity: episode: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "airdate"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "airstamp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "airtime"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "image"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "link"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "number"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "rating"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "runtime"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "season"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "summary"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "episode"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "show_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shows/{id}/episodesbydate"
+          parts: [
+            "shows"
+            "{show_id}"
+            "episodesbydate"
+          ]
+          rename: {
+            param: {
+              id: "show_id"
+            }
+          }
+          select: {
+            exist: [
+              "date"
+              "show_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "season_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "embed"
+                orig: "embed"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/seasons/{id}/episodes"
+          parts: [
+            "seasons"
+            "{season_id}"
+            "episodes"
+          ]
+          rename: {
+            param: {
+              id: "season_id"
+            }
+          }
+          select: {
+            exist: [
+              "embed"
+              "season_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "show_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "special"
+                orig: "special"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shows/{id}/episodes"
+          parts: [
+            "shows"
+            "{show_id}"
+            "episodes"
+          ]
+          rename: {
+            param: {
+              id: "show_id"
+            }
+          }
+          select: {
+            exist: [
+              "show_id"
+              "special"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "show_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "number"
+                orig: "number"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "season"
+                orig: "season"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shows/{id}/episodebynumber"
+          parts: [
+            "shows"
+            "{show_id}"
+            "episodebynumber"
+          ]
+          rename: {
+            param: {
+              id: "show_id"
+            }
+          }
+          select: {
+            exist: [
+              "number"
+              "season"
+              "show_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "embed"
+                orig: "embed"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/episodes/{id}"
+          parts: [
+            "episodes"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "embed"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "season"
+      ]
+      [
+        "show"
+      ]
+    ]
+  }
+
+
+
+}

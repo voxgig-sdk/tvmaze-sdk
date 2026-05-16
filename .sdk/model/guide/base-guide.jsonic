@@ -1,0 +1,173 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 18
+  metrics: count: path: 31
+  metrics: count: method: 31
+
+  entity: aka: {
+    path: "/shows/{id}/akas": {
+      rename: param: "id": *"show_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: alternate_list: {
+    path: "/alternatelists/{id}": {
+      op: load: method: *GET
+    }
+    path: "/shows/{id}/alternatelists": {
+      rename: param: "id": *"show_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: cast: {
+    path: "/shows/{id}/cast": {
+      rename: param: "id": *"show_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: cast_credit: {
+    path: "/people/{id}/castcredits": {
+      rename: param: "id": *"person_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: cast_member: {
+    path: "/episodes/{id}/guestcast": {
+      rename: param: "id": *"episode_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: crew: {
+    path: "/shows/{id}/crew": {
+      rename: param: "id": *"show_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: crew_credit: {
+    path: "/people/{id}/crewcredits": {
+      rename: param: "id": *"person_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: crew_member: {
+    path: "/episodes/{id}/guestcrew": {
+      rename: param: "id": *"episode_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: episode: {
+    path: "/episodes/{id}": {
+      op: load: method: *GET
+    }
+    path: "/seasons/{id}/episodes": {
+      rename: param: "id": *"season_id"
+      op: list: method: *GET
+    }
+    path: "/shows/{id}/episodebynumber": {
+      rename: param: "id": *"show_id"
+      op: load: method: *GET
+    }
+    path: "/shows/{id}/episodes": {
+      rename: param: "id": *"show_id"
+      op: list: method: *GET
+    }
+    path: "/shows/{id}/episodesbydate": {
+      rename: param: "id": *"show_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: guest_cast_credit: {
+    path: "/people/{id}/guestcastcredits": {
+      rename: param: "id": *"person_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: image: {
+    path: "/shows/{id}/images": {
+      rename: param: "id": *"show_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: person: {
+    path: "/people": {
+      op: list: method: *GET
+    }
+    path: "/people/{id}": {
+      op: load: method: *GET
+    }
+    path: "/search/people": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: schedule: {
+    path: "/schedule": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: scheduled_episode: {
+    path: "/schedule/full": {
+      op: list: method: *GET
+    }
+    path: "/schedule/web": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: search: {
+    path: "/lookup/shows": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: season: {
+    path: "/shows/{id}/seasons": {
+      rename: param: "id": *"show_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: show: {
+    path: "/alternatelists/{id}/alternateepisodes": {
+      rename: param: "id": *"alternatelist_id"
+      op: list: method: *GET
+    }
+    path: "/search/shows": {
+      op: list: method: *GET
+    }
+    path: "/shows": {
+      op: list: method: *GET
+    }
+    path: "/shows/{id}": {
+      op: load: method: *GET
+    }
+    path: "/singlesearch/shows": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: update: {
+    path: "/updates/people": {
+      action: "person": {}
+      op: load: method: *GET
+    }
+    path: "/updates/shows": {
+      action: "show": {}
+      op: load: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,73 @@
+# Entity: aka
+
+main: kit: entity: aka: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "country"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "aka"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "show_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shows/{id}/akas"
+          parts: [
+            "shows"
+            "{show_id}"
+            "akas"
+          ]
+          rename: {
+            param: {
+              id: "show_id"
+            }
+          }
+          select: {
+            exist: [
+              "show_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "show"
+      ]
+    ]
+  }
+
+
+
+}

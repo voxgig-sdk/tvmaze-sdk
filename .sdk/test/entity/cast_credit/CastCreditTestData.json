@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "cast_credit": {
+      "CAST_CREDIT00": {
+        "link": {},
+        "person_id": "PERSON01"
+      },
+      "CAST_CREDIT01": {
+        "link": {},
+        "person_id": "PERSON01"
+      },
+      "CAST_CREDIT02": {
+        "link": {},
+        "person_id": "PERSON01"
+      }
+    }
+  },
+  "new": {
+    "cast_credit": {
+      "cast_credit_ref01": {
+        "link": {}
+      }
+    }
+  }
+}

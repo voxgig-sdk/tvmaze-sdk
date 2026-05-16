@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "update": {
+      "UPDATE00": {},
+      "UPDATE01": {},
+      "UPDATE02": {}
+    }
+  },
+  "new": {
+    "update": {
+      "update_ref01": {}
+    }
+  }
+}

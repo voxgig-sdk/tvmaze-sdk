@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "crew_credit": {
+      "CREW_CREDIT00": {
+        "link": {},
+        "type": "s15",
+        "person_id": "PERSON01"
+      },
+      "CREW_CREDIT01": {
+        "link": {},
+        "type": "s29",
+        "person_id": "PERSON01"
+      },
+      "CREW_CREDIT02": {
+        "link": {},
+        "type": "s3d",
+        "person_id": "PERSON01"
+      }
+    }
+  },
+  "new": {
+    "crew_credit": {
+      "crew_credit_ref01": {
+        "link": {},
+        "type": "s51"
+      }
+    }
+  }
+}

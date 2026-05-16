@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://www.tvmaze.com/api"
+      }
+      description: "Add television information to your own website or app with a fast and clean TV API. Add schedules, show, episode, cast information, and more. This is a free, fast and clean REST API that returns JSON and conforms to the HATEOAS and HAL principles."
+      license: {
+        name: "See TVmaze Licensing"
+        url: "https://www.tvmaze.com/api"
+      }
+      servers: [
+        {
+          description: "TVmaze API Server"
+          url: "https://api.tvmaze.com"
+        }
+      ]
+      title: "TVmaze API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "cast": {
+      "CAST00": {
+        "character": {},
+        "person": {},
+        "self": true,
+        "voice": false,
+        "show_id": "SHOW01"
+      },
+      "CAST01": {
+        "character": {},
+        "person": {},
+        "self": true,
+        "voice": false,
+        "show_id": "SHOW01"
+      },
+      "CAST02": {
+        "character": {},
+        "person": {},
+        "self": true,
+        "voice": false,
+        "show_id": "SHOW01"
+      }
+    }
+  },
+  "new": {
+    "cast": {
+      "cast_ref01": {
+        "character": {},
+        "person": {},
+        "self": true,
+        "voice": false
+      }
+    }
+  }
+}

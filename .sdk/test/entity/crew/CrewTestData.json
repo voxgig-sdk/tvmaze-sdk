@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "crew": {
+      "CREW00": {
+        "person": {},
+        "type": "s15",
+        "show_id": "SHOW01"
+      },
+      "CREW01": {
+        "person": {},
+        "type": "s29",
+        "show_id": "SHOW01"
+      },
+      "CREW02": {
+        "person": {},
+        "type": "s3d",
+        "show_id": "SHOW01"
+      }
+    }
+  },
+  "new": {
+    "crew": {
+      "crew_ref01": {
+        "person": {},
+        "type": "s51"
+      }
+    }
+  }
+}

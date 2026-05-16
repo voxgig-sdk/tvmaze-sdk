@@ -1,0 +1,78 @@
+# Entity: cast_credit
+
+main: kit: entity: cast_credit: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "link"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "cast_credit"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "person_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "embed"
+                orig: "embed"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/people/{id}/castcredits"
+          parts: [
+            "people"
+            "{person_id}"
+            "castcredits"
+          ]
+          rename: {
+            param: {
+              id: "person_id"
+            }
+          }
+          select: {
+            exist: [
+              "embed"
+              "person_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "person"
+      ]
+    ]
+  }
+
+
+
+}

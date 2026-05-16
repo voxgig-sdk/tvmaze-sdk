@@ -1,0 +1,44 @@
+# BasicShowFlow
+
+main: kit: flow: BasicShowFlow:
+{
+  entity: "show",
+  kind: "basic",
+  name: "BasicShowFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "show_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "show_ref01",
+        srcdatavar: "show_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "show01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-show_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicShowFlow"
+}

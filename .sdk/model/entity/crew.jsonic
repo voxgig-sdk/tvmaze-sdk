@@ -1,0 +1,73 @@
+# Entity: crew
+
+main: kit: entity: crew: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "person"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "crew"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "show_id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shows/{id}/crew"
+          parts: [
+            "shows"
+            "{show_id}"
+            "crew"
+          ]
+          rename: {
+            param: {
+              id: "show_id"
+            }
+          }
+          select: {
+            exist: [
+              "show_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "show"
+      ]
+    ]
+  }
+
+
+
+}

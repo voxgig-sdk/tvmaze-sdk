@@ -1,0 +1,26 @@
+# BasicCastMemberFlow
+
+main: kit: flow: BasicCastMemberFlow:
+{
+  entity: "cast_member",
+  kind: "basic",
+  name: "BasicCastMemberFlow",
+  step: [
+    {
+      match: {
+        episode_id: "episode01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "cast_member_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCastMemberFlow"
+}

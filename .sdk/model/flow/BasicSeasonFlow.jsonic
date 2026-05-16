@@ -1,0 +1,26 @@
+# BasicSeasonFlow
+
+main: kit: flow: BasicSeasonFlow:
+{
+  entity: "season",
+  kind: "basic",
+  name: "BasicSeasonFlow",
+  step: [
+    {
+      match: {
+        show_id: "show01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "season_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSeasonFlow"
+}

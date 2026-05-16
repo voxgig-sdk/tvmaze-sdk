@@ -1,0 +1,44 @@
+# BasicPersonFlow
+
+main: kit: flow: BasicPersonFlow:
+{
+  entity: "person",
+  kind: "basic",
+  name: "BasicPersonFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "person_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "person_ref01",
+        srcdatavar: "person_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "person01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-person_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPersonFlow"
+}

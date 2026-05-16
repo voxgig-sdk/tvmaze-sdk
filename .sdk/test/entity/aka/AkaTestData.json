@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "aka": {
+      "AKA00": {
+        "country": {},
+        "name": "s15",
+        "show_id": "SHOW01"
+      },
+      "AKA01": {
+        "country": {},
+        "name": "s29",
+        "show_id": "SHOW01"
+      },
+      "AKA02": {
+        "country": {},
+        "name": "s3d",
+        "show_id": "SHOW01"
+      }
+    }
+  },
+  "new": {
+    "aka": {
+      "aka_ref01": {
+        "country": {},
+        "name": "s51"
+      }
+    }
+  }
+}

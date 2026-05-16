@@ -1,0 +1,26 @@
+# BasicCastCreditFlow
+
+main: kit: flow: BasicCastCreditFlow:
+{
+  entity: "cast_credit",
+  kind: "basic",
+  name: "BasicCastCreditFlow",
+  step: [
+    {
+      match: {
+        person_id: "person01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "cast_credit_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCastCreditFlow"
+}
