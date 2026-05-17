@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/tvmaze-sdk/core"
+	"github.com/voxgig-sdk/tvmaze-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/tvmaze-sdk/go/utility/struct"
 )
 
 type ShowEntity struct {

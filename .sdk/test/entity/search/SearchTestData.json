@@ -1,9 +1,15 @@
 {
   "existing": {
     "search": {
-      "SEARCH00": {},
-      "SEARCH01": {},
-      "SEARCH02": {}
+      "SEARCH00": {
+        "id": "SEARCH00"
+      },
+      "SEARCH01": {
+        "id": "SEARCH01"
+      },
+      "SEARCH02": {
+        "id": "SEARCH02"
+      }
     }
   },
   "new": {

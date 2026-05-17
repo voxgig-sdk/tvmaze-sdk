@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/tvmaze-sdk"
-	"github.com/voxgig-sdk/tvmaze-sdk/core"
+	sdk "github.com/voxgig-sdk/tvmaze-sdk/go"
+	"github.com/voxgig-sdk/tvmaze-sdk/go/core"
 )
 
 func TestCastDirect(t *testing.T) {

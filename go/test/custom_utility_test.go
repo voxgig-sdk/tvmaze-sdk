@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/tvmaze-sdk"
+	sdk "github.com/voxgig-sdk/tvmaze-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/tvmaze-sdk/core"
+	"github.com/voxgig-sdk/tvmaze-sdk/go/core"
 )
 
 type LogFeature struct {

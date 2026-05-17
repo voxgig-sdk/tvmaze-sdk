@@ -1,10 +1,10 @@
 package voxgigtvmazesdk
 
 import (
-	"github.com/voxgig-sdk/tvmaze-sdk/core"
-	"github.com/voxgig-sdk/tvmaze-sdk/entity"
-	"github.com/voxgig-sdk/tvmaze-sdk/feature"
-	_ "github.com/voxgig-sdk/tvmaze-sdk/utility"
+	"github.com/voxgig-sdk/tvmaze-sdk/go/core"
+	"github.com/voxgig-sdk/tvmaze-sdk/go/entity"
+	"github.com/voxgig-sdk/tvmaze-sdk/go/feature"
+	_ "github.com/voxgig-sdk/tvmaze-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

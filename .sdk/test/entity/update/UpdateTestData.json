@@ -1,9 +1,15 @@
 {
   "existing": {
     "update": {
-      "UPDATE00": {},
-      "UPDATE01": {},
-      "UPDATE02": {}
+      "UPDATE00": {
+        "id": "UPDATE00"
+      },
+      "UPDATE01": {
+        "id": "UPDATE01"
+      },
+      "UPDATE02": {
+        "id": "UPDATE02"
+      }
     }
   },
   "new": {
