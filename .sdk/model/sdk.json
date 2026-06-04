@@ -20,7 +20,34 @@
           }
         ],
         "title": "TVmaze API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Free REST API for TV shows, episodes, cast, crew and schedules, with JSON responses and HAL-style links",
+        "homepage": "https://www.tvmaze.com/api",
+        "docs_url": "https://www.tvmaze.com/api",
+        "license_short": "CC BY-SA — attribute TVmaze and share derivatives under the same terms.",
+        "license_md": "- Data is licensed under Creative Commons Attribution-ShareAlike (CC BY-SA).\n- Attribution to [TVmaze](https://www.tvmaze.com/) is required.\n- Derivative works must be shared under the same ShareAlike terms.\n- See the [TVmaze API page](https://www.tvmaze.com/api) for the authoritative licensing statement.",
+        "about_md": "[TVmaze](https://www.tvmaze.com/) runs a free, public REST API for television metadata. Responses are JSON and follow HATEOAS / HAL conventions, so related resources are reachable via embedded links.\n\nWhat you get from the API:\n\n- Shows: details, seasons, episodes, cast, crew, AKAs, images, and alternate episode lists.\n- People: cast and crew profiles with cast credits, crew credits and guest-cast credits.\n- Schedules: per-country daily TV schedule, web/streaming schedule, and a full schedule dump.\n- Search and lookup: search shows or people by name, single-result search, or lookup by TVRage / TheTVDB / IMDb ID.\n- Updates: timestamps for changed shows or people, optionally filtered to the last day, week or month.\n\nThe public endpoints require no API key and have CORS enabled, so they can be called directly from a browser. The API is rate limited to at least 20 calls per 10 seconds per IP address; exceeding the limit returns HTTP 429. Responses are cached by the load balancer for around 60 minutes; the separate user-level API requires a Premium TVmaze account.",
+        "entity_desc": {
+          "aka": "Alternative titles a show is known by in other regions, served from `/shows/:id/akas`.",
+          "alternate_list": "A named alternate ordering of a show's episodes, available at `/shows/:id/alternatelists` and `/alternatelists/:id`.",
+          "cast": "The cast of a show — a list of person/character pairs returned from `/shows/:id/cast`.",
+          "cast_credit": "A single acting credit for a person on a show, served from `/people/:id/castcredits`.",
+          "cast_member": "An individual entry in a show's cast pairing a person with the character they play.",
+          "crew": "The crew of a show — production roles paired with people, returned from `/shows/:id/crew`.",
+          "crew_credit": "A single crew credit for a person on a show, served from `/people/:id/crewcredits`.",
+          "crew_member": "An individual entry in a show's crew pairing a person with their production role.",
+          "episode": "A single episode of a show, addressable at `/episodes/:id` and listed under `/shows/:id/episodes` and `/seasons/:id/episodes`.",
+          "guest_cast_credit": "A guest-starring acting credit for a person, served from `/people/:id/guestcastcredits` and `/episodes/:id/guestcast`.",
+          "image": "Artwork associated with a show (posters, banners, backgrounds), returned from `/shows/:id/images`.",
+          "person": "A cast or crew member profile, available at `/people/:id`, with paginated listing at `/people?page=:num` and search via `/search/people?q=:query`.",
+          "schedule": "The TV schedule for a given country and date, served from `/schedule`, `/schedule/web`, and `/schedule/full`.",
+          "scheduled_episode": "An entry in a schedule response — an episode airing at a specific time on a specific network.",
+          "search": "Free-text search across shows or people, via `/search/shows`, `/singlesearch/shows`, `/lookup/shows`, and `/search/people`.",
+          "season": "A season of a show, with episodes listed at `/seasons/:id/episodes` and per-show seasons at `/shows/:id/seasons`.",
+          "show": "A television show, addressable at `/shows/:id`, with paginated listing at `/shows?page=:num`.",
+          "update": "A map of show or person IDs to last-updated timestamps, served from `/updates/shows` and `/updates/people` with an optional `?since=day|week|month` filter."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -28,7 +55,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "aka": {

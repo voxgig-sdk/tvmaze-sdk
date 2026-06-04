@@ -15,9 +15,6 @@ module TvmazeConfig
       },
       "options" => {
         "base" => "https://api.tvmaze.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

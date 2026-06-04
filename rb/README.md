@@ -31,9 +31,7 @@ loading a specific record.
 ```ruby
 require_relative "Tvmaze_sdk"
 
-client = TvmazeSDK.new({
-  "apikey" => ENV["TVMAZE_APIKEY"],
-})
+client = TvmazeSDK.new({})
 ```
 
 ### 2. List akas
@@ -127,7 +125,6 @@ Create a `.env.local` file at the project root:
 
 ```
 TVMAZE_TEST_LIVE=TRUE
-TVMAZE_APIKEY=<your-key>
 ```
 
 Then run:
@@ -150,7 +147,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

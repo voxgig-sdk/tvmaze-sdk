@@ -130,14 +130,12 @@ def episode_direct_setup(mockres)
   env = Runner.env_override({
     "TVMAZE_TEST_EPISODE_ENTID" => {},
     "TVMAZE_TEST_LIVE" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   live = env["TVMAZE_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["TVMAZE_APIKEY"],
     }
     client = TvmazeSDK.new(merged_opts)
     return {

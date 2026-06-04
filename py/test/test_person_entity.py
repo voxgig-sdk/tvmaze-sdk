@@ -102,7 +102,6 @@ def _person_basic_setup(extra):
         "TVMAZE_TEST_PERSON_ENTID": idmap,
         "TVMAZE_TEST_LIVE": "FALSE",
         "TVMAZE_TEST_EXPLAIN": "FALSE",
-        "TVMAZE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +112,6 @@ def _person_basic_setup(extra):
     if env.get("TVMAZE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TVMAZE_APIKEY"),
             },
             extra or {},
         ])
