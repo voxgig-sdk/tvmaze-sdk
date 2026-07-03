@@ -1,22 +1,8 @@
 # Tvmaze SDK
 
-Free REST API for TV shows, episodes, cast, crew and schedules, with JSON responses and HAL-style links
+TVmaze API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About TVmaze API
-
-[TVmaze](https://www.tvmaze.com/) runs a free, public REST API for television metadata. Responses are JSON and follow HATEOAS / HAL conventions, so related resources are reachable via embedded links.
-
-What you get from the API:
-
-- Shows: details, seasons, episodes, cast, crew, AKAs, images, and alternate episode lists.
-- People: cast and crew profiles with cast credits, crew credits and guest-cast credits.
-- Schedules: per-country daily TV schedule, web/streaming schedule, and a full schedule dump.
-- Search and lookup: search shows or people by name, single-result search, or lookup by TVRage / TheTVDB / IMDb ID.
-- Updates: timestamps for changed shows or people, optionally filtered to the last day, week or month.
-
-The public endpoints require no API key and have CORS enabled, so they can be called directly from a browser. The API is rate limited to at least 20 calls per 10 seconds per IP address; exceeding the limit returns HTTP 429. Responses are cached by the load balancer for around 60 minutes; the separate user-level API requires a Premium TVmaze account.
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install tvmaze-sdk
 luarocks install tvmaze-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { TvmazeSDK } from 'tvmaze'
 
-const client = new TvmazeSDK({})
+const client = new TvmazeSDK({
+  apikey: process.env.TVMAZE_APIKEY,
+})
 
 // List all akas
 const akas = await client.Aka().list()
+console.log(akas.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,24 +90,24 @@ The API exposes 18 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Aka** | Alternative titles a show is known by in other regions, served from `/shows/:id/akas`. | `/shows/{id}/akas` |
-| **AlternateList** | A named alternate ordering of a show's episodes, available at `/shows/:id/alternatelists` and `/alternatelists/:id`. | `/shows/{id}/alternatelists` |
-| **Cast** | The cast of a show — a list of person/character pairs returned from `/shows/:id/cast`. | `/shows/{id}/cast` |
-| **CastCredit** | A single acting credit for a person on a show, served from `/people/:id/castcredits`. | `/people/{id}/castcredits` |
-| **CastMember** | An individual entry in a show's cast pairing a person with the character they play. | `/episodes/{id}/guestcast` |
-| **Crew** | The crew of a show — production roles paired with people, returned from `/shows/:id/crew`. | `/shows/{id}/crew` |
-| **CrewCredit** | A single crew credit for a person on a show, served from `/people/:id/crewcredits`. | `/people/{id}/crewcredits` |
-| **CrewMember** | An individual entry in a show's crew pairing a person with their production role. | `/episodes/{id}/guestcrew` |
-| **Episode** | A single episode of a show, addressable at `/episodes/:id` and listed under `/shows/:id/episodes` and `/seasons/:id/episodes`. | `/shows/{id}/episodesbydate` |
-| **GuestCastCredit** | A guest-starring acting credit for a person, served from `/people/:id/guestcastcredits` and `/episodes/:id/guestcast`. | `/people/{id}/guestcastcredits` |
-| **Image** | Artwork associated with a show (posters, banners, backgrounds), returned from `/shows/:id/images`. | `/shows/{id}/images` |
-| **Person** | A cast or crew member profile, available at `/people/:id`, with paginated listing at `/people?page=:num` and search via `/search/people?q=:query`. | `/people` |
-| **Schedule** | The TV schedule for a given country and date, served from `/schedule`, `/schedule/web`, and `/schedule/full`. | `/schedule` |
-| **ScheduledEpisode** | An entry in a schedule response — an episode airing at a specific time on a specific network. | `/schedule/web` |
-| **Search** | Free-text search across shows or people, via `/search/shows`, `/singlesearch/shows`, `/lookup/shows`, and `/search/people`. | `/lookup/shows` |
-| **Season** | A season of a show, with episodes listed at `/seasons/:id/episodes` and per-show seasons at `/shows/:id/seasons`. | `/shows/{id}/seasons` |
-| **Show** | A television show, addressable at `/shows/:id`, with paginated listing at `/shows?page=:num`. | `/alternatelists/{id}/alternateepisodes` |
-| **Update** | A map of show or person IDs to last-updated timestamps, served from `/updates/shows` and `/updates/people` with an optional `?since=day|week|month` filter. | `/updates/people` |
+| **Aka** |  | `/shows/{id}/akas` |
+| **AlternateList** |  | `/shows/{id}/alternatelists` |
+| **Cast** |  | `/shows/{id}/cast` |
+| **CastCredit** |  | `/people/{id}/castcredits` |
+| **CastMember** |  | `/episodes/{id}/guestcast` |
+| **Crew** |  | `/shows/{id}/crew` |
+| **CrewCredit** |  | `/people/{id}/crewcredits` |
+| **CrewMember** |  | `/episodes/{id}/guestcrew` |
+| **Episode** |  | `/shows/{id}/episodesbydate` |
+| **GuestCastCredit** |  | `/people/{id}/guestcastcredits` |
+| **Image** |  | `/shows/{id}/images` |
+| **Person** |  | `/people` |
+| **Schedule** |  | `/schedule` |
+| **ScheduledEpisode** |  | `/schedule/web` |
+| **Search** |  | `/lookup/shows` |
+| **Season** |  | `/shows/{id}/seasons` |
+| **Show** |  | `/alternatelists/{id}/alternateepisodes` |
+| **Update** |  | `/updates/people` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -129,12 +117,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from tvmaze_sdk import TvmazeSDK
 
-client = TvmazeSDK({})
+client = TvmazeSDK({
+    "apikey": os.environ.get("TVMAZE_APIKEY"),
+})
 
 # List all akas
-akas, err = client.Aka(None).list(None, None)
+akas, err = client.Aka().list()
+print(akas)
 ```
 
 ### PHP
@@ -143,10 +135,13 @@ akas, err = client.Aka(None).list(None, None)
 <?php
 require_once 'tvmaze_sdk.php';
 
-$client = new TvmazeSDK([]);
+$client = new TvmazeSDK([
+    "apikey" => getenv("TVMAZE_APIKEY"),
+]);
 
 // List all akas
-[$akas, $err] = $client->Aka(null)->list(null, null);
+[$akas, $err] = $client->Aka()->list();
+print_r($akas);
 ```
 
 ### Golang
@@ -154,10 +149,13 @@ $client = new TvmazeSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/tvmaze-sdk/go"
 
-client := sdk.NewTvmazeSDK(map[string]any{})
+client := sdk.NewTvmazeSDK(map[string]any{
+    "apikey": os.Getenv("TVMAZE_APIKEY"),
+})
 
 // List all akas
 akas, err := client.Aka(nil).List(nil, nil)
+fmt.Println(akas)
 ```
 
 ### Ruby
@@ -165,10 +163,13 @@ akas, err := client.Aka(nil).List(nil, nil)
 ```ruby
 require_relative "Tvmaze_sdk"
 
-client = TvmazeSDK.new({})
+client = TvmazeSDK.new({
+  "apikey" => ENV["TVMAZE_APIKEY"],
+})
 
 # List all akas
-akas, err = client.Aka(nil).list(nil, nil)
+akas, err = client.Aka().list
+puts akas
 ```
 
 ### Lua
@@ -176,10 +177,13 @@ akas, err = client.Aka(nil).list(nil, nil)
 ```lua
 local sdk = require("tvmaze_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("TVMAZE_APIKEY"),
+})
 
 -- List all akas
-local akas, err = client:Aka(nil):list(nil, nil)
+local akas, err = client:Aka():list()
+print(akas)
 ```
 
 ## Unit testing in offline mode
@@ -198,25 +202,21 @@ const result = await client.Aka().load({ id: 'test01' })
 ### Python
 
 ```python
-client = TvmazeSDK.test(None, None)
-result, err = client.Aka(None).load(
-    {"id": "test01"}, None
-)
+client = TvmazeSDK.test()
+result, err = client.Aka().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = TvmazeSDK::test(null, null);
-[$result, $err] = $client->Aka(null)->load(
-    ["id" => "test01"], null
-);
+$client = TvmazeSDK::test();
+[$result, $err] = $client->Aka()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Aka(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -225,19 +225,15 @@ result, err := client.Aka(nil).Load(
 ### Ruby
 
 ```ruby
-client = TvmazeSDK.test(nil, nil)
-result, err = client.Aka(nil).load(
-  { "id" => "test01" }, nil
-)
+client = TvmazeSDK.test
+result, err = client.Aka().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Aka(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Aka():load({ id = "test01" })
 ```
 
 ## How it works
@@ -341,15 +337,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the TVmaze API
-
-- Upstream: [https://www.tvmaze.com/api](https://www.tvmaze.com/api)
-
-- Data is licensed under Creative Commons Attribution-ShareAlike (CC BY-SA).
-- Attribution to [TVmaze](https://www.tvmaze.com/) is required.
-- Derivative works must be shared under the same ShareAlike terms.
-- See the [TVmaze API page](https://www.tvmaze.com/api) for the authoritative licensing statement.
 
 ---
 

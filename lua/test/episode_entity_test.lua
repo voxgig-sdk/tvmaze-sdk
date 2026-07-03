@@ -104,6 +104,7 @@ function episode_basic_setup(extra)
     ["TVMAZE_TEST_EPISODE_ENTID"] = idmap,
     ["TVMAZE_TEST_LIVE"] = "FALSE",
     ["TVMAZE_TEST_EXPLAIN"] = "FALSE",
+    ["TVMAZE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -115,6 +116,7 @@ function episode_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["TVMAZE_APIKEY"],
       },
       extra or {},
     })

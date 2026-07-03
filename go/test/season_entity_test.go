@@ -121,6 +121,7 @@ func seasonBasicSetup(extra map[string]any) *entityTestSetup {
 		"TVMAZE_TEST_SEASON_ENTID": idmap,
 		"TVMAZE_TEST_LIVE":      "FALSE",
 		"TVMAZE_TEST_EXPLAIN":   "FALSE",
+		"TVMAZE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["TVMAZE_TEST_SEASON_ENTID"])
@@ -131,6 +132,7 @@ func seasonBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["TVMAZE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["TVMAZE_APIKEY"],
 			},
 			extra,
 		})

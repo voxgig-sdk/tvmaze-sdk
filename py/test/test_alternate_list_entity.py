@@ -104,6 +104,7 @@ def _alternate_list_basic_setup(extra):
         "TVMAZE_TEST_ALTERNATE_LIST_ENTID": idmap,
         "TVMAZE_TEST_LIVE": "FALSE",
         "TVMAZE_TEST_EXPLAIN": "FALSE",
+        "TVMAZE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -114,6 +115,7 @@ def _alternate_list_basic_setup(extra):
     if env.get("TVMAZE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("TVMAZE_APIKEY"),
             },
             extra or {},
         ])

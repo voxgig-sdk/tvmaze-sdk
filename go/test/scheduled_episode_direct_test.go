@@ -93,12 +93,14 @@ func scheduled_episodeDirectSetup(mockres any) *scheduled_episodeDirectSetupResu
 	env := envOverride(map[string]any{
 		"TVMAZE_TEST_SCHEDULED_EPISODE_ENTID": map[string]any{},
 		"TVMAZE_TEST_LIVE":    "FALSE",
+		"TVMAZE_APIKEY":       "NONE",
 	})
 
 	live := env["TVMAZE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["TVMAZE_APIKEY"],
 		}
 		client := sdk.NewTvmazeSDK(mergedOpts)
 

@@ -59,12 +59,14 @@ def _update_direct_setup(mockres):
     env = runner.env_override({
         "TVMAZE_TEST_UPDATE_ENTID": {},
         "TVMAZE_TEST_LIVE": "FALSE",
+        "TVMAZE_APIKEY": "NONE",
     })
 
     live = env.get("TVMAZE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("TVMAZE_APIKEY"),
         }
         client = TvmazeSDK(merged_opts)
         return {

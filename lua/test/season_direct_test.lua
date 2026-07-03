@@ -77,12 +77,14 @@ function season_direct_setup(mockres)
   local env = runner.env_override({
     ["TVMAZE_TEST_SEASON_ENTID"] = {},
     ["TVMAZE_TEST_LIVE"] = "FALSE",
+    ["TVMAZE_APIKEY"] = "NONE",
   })
 
   local live = env["TVMAZE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["TVMAZE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
