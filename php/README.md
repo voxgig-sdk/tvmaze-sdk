@@ -10,7 +10,7 @@ The PHP SDK for the Tvmaze API — an entity-oriented client using PHP conventio
 
 ## Install
 ```bash
-composer require voxgig/tvmaze-sdk
+composer require voxgig-sdk/tvmaze
 ```
 
 

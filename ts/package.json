@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/tvmaze",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the TVmaze public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "tvmaze"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/tvmaze-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/tvmaze-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/tvmaze-sdk/issues"
+  },
   "main": "dist/TvmazeSDK.js",
   "type": "commonjs",
   "types": "dist/TvmazeSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "Tvmaze",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

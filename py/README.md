@@ -10,7 +10,7 @@ The Python SDK for the Tvmaze API — an entity-oriented client following Python
 
 ## Install
 ```bash
-pip install tvmaze-sdk
+pip install voxgig-sdk-tvmaze
 ```
 
 Or install from source:

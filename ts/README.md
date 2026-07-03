@@ -10,7 +10,7 @@ The TypeScript SDK for the Tvmaze API — a type-safe, entity-oriented client wi
 
 ## Install
 ```bash
-npm install tvmaze
+npm install @voxgig-sdk/tvmaze
 ```
 ## Tutorial: your first API call
 

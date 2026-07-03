@@ -10,7 +10,7 @@ The Lua SDK for the Tvmaze API — an entity-oriented client using Lua conventio
 
 ## Install
 ```bash
-luarocks install tvmaze-sdk
+luarocks install voxgig-sdk-tvmaze
 ```
 
 If the module is not yet published, add the source directory to

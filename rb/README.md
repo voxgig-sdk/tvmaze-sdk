@@ -10,13 +10,13 @@ The Ruby SDK for the Tvmaze API — an entity-oriented client using idiomatic Ru
 
 ## Install
 ```bash
-gem install tvmaze-sdk
+gem install voxgig-sdk-tvmaze
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "tvmaze-sdk"
+gem "voxgig-sdk-tvmaze"
 ```
 
 Then run:
