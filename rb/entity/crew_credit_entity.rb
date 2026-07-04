@@ -45,6 +45,7 @@ class CrewCreditEntity
     end
   end
 
+  # @return [CrewCredit, Hash] the current CrewCredit data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CrewCreditEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of CrewCredit fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CrewCreditEntity
   
 
   
+  # List CrewCredit items matching the given filter.
+  #
+  # @param reqmatch [CrewCreditListMatch, Hash, nil] match filter (any subset of CrewCredit fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<CrewCredit>, Array] the matching CrewCredit items; raises TvmazeError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

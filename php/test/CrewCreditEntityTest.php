@@ -52,8 +52,7 @@ class CrewCreditEntityTest extends TestCase
             "person_id" => $setup["idmap"]["person01"],
         ];
 
-        [$crew_credit_ref01_list_result, $err] = $crew_credit_ref01_ent->list($crew_credit_ref01_match, null);
-        $this->assertNull($err);
+        $crew_credit_ref01_list_result = $crew_credit_ref01_ent->list($crew_credit_ref01_match, null);
         $this->assertIsArray($crew_credit_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function crew_credit_basic_setup($extra)
         "TVMAZE_TEST_CREW_CREDIT_ENTID" => $idmap,
         "TVMAZE_TEST_LIVE" => "FALSE",
         "TVMAZE_TEST_EXPLAIN" => "FALSE",
-        "TVMAZE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function crew_credit_basic_setup($extra)
     if ($env["TVMAZE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TVMAZE_APIKEY"],
             ],
             $extra ?? [],
         ]);

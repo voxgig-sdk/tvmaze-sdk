@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Crew,
+  CrewListMatch,
+} from '../TvmazeTypes'
 
 // TODO: needs Entity superclass
-class CrewEntity extends TvmazeEntityBase {
+class CrewEntity extends TvmazeEntityBase<Crew> {
 
   constructor(client: TvmazeSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CrewEntity extends TvmazeEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CrewListMatch, ctrl?: Control): Promise<Crew[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CrewEntity extends TvmazeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Crew[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

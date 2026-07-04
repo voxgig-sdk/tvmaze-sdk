@@ -45,6 +45,7 @@ class PersonEntity
     end
   end
 
+  # @return [Person, Hash] the current Person data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PersonEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Person fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Person.
+  #
+  # @param reqmatch [PersonLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Person, Hash] the loaded Person; raises TvmazeError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class PersonEntity
 
 
   
+  # List Person items matching the given filter.
+  #
+  # @param reqmatch [PersonListMatch, Hash, nil] match filter (any subset of Person fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Person>, Array] the matching Person items; raises TvmazeError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

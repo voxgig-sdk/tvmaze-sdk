@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CastMember,
+  CastMemberListMatch,
+} from '../TvmazeTypes'
 
 // TODO: needs Entity superclass
-class CastMemberEntity extends TvmazeEntityBase {
+class CastMemberEntity extends TvmazeEntityBase<CastMember> {
 
   constructor(client: TvmazeSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CastMemberEntity extends TvmazeEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CastMemberListMatch, ctrl?: Control): Promise<CastMember[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CastMemberEntity extends TvmazeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CastMember[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

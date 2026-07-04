@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Image,
+  ImageListMatch,
+} from '../TvmazeTypes'
 
 // TODO: needs Entity superclass
-class ImageEntity extends TvmazeEntityBase {
+class ImageEntity extends TvmazeEntityBase<Image> {
 
   constructor(client: TvmazeSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class ImageEntity extends TvmazeEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ImageListMatch, ctrl?: Control): Promise<Image[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class ImageEntity extends TvmazeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Image[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

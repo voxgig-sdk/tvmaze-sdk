@@ -50,8 +50,7 @@ class TestScheduledEpisodeEntity:
         scheduled_episode_ref01_ent = client.ScheduledEpisode(None)
         scheduled_episode_ref01_match = {}
 
-        scheduled_episode_ref01_list_result, err = scheduled_episode_ref01_ent.list(scheduled_episode_ref01_match, None)
-        assert err is None
+        scheduled_episode_ref01_list_result = scheduled_episode_ref01_ent.list(scheduled_episode_ref01_match, None)
         assert isinstance(scheduled_episode_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _scheduled_episode_basic_setup(extra):
         "TVMAZE_TEST_SCHEDULED_EPISODE_ENTID": idmap,
         "TVMAZE_TEST_LIVE": "FALSE",
         "TVMAZE_TEST_EXPLAIN": "FALSE",
-        "TVMAZE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _scheduled_episode_basic_setup(extra):
     if env.get("TVMAZE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TVMAZE_APIKEY"),
             },
             extra or {},
         ])

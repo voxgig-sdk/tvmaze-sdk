@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch SeasonListMatch
+---@param ctrl? table
+---@return Season[]
+---@return string? err
 function SeasonEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -49,8 +49,7 @@ class TestUpdateEntity:
         # LOAD
         update_ref01_ent = client.Update(None)
         update_ref01_match_dt0 = {}
-        update_ref01_data_dt0_loaded, err = update_ref01_ent.load(update_ref01_match_dt0, None)
-        assert err is None
+        update_ref01_data_dt0_loaded = update_ref01_ent.load(update_ref01_match_dt0, None)
         assert update_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _update_basic_setup(extra):
         "TVMAZE_TEST_UPDATE_ENTID": idmap,
         "TVMAZE_TEST_LIVE": "FALSE",
         "TVMAZE_TEST_EXPLAIN": "FALSE",
-        "TVMAZE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _update_basic_setup(extra):
     if env.get("TVMAZE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TVMAZE_APIKEY"),
             },
             extra or {},
         ])

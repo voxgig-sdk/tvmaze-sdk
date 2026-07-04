@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Update,
+  UpdateLoadMatch,
+} from '../TvmazeTypes'
 
 // TODO: needs Entity superclass
-class UpdateEntity extends TvmazeEntityBase {
+class UpdateEntity extends TvmazeEntityBase<Update> {
 
   constructor(client: TvmazeSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class UpdateEntity extends TvmazeEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: UpdateLoadMatch, ctrl?: Control): Promise<Update> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class UpdateEntity extends TvmazeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Update> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

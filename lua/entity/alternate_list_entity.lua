@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch AlternateListLoadMatch
+---@param ctrl? table
+---@return AlternateList
+---@return string? err
 function AlternateListEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch AlternateListListMatch
+---@param ctrl? table
+---@return AlternateList[]
+---@return string? err
 function AlternateListEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

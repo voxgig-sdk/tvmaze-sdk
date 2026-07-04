@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Schedule,
+  ScheduleListMatch,
+} from '../TvmazeTypes'
 
 // TODO: needs Entity superclass
-class ScheduleEntity extends TvmazeEntityBase {
+class ScheduleEntity extends TvmazeEntityBase<Schedule> {
 
   constructor(client: TvmazeSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class ScheduleEntity extends TvmazeEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ScheduleListMatch, ctrl?: Control): Promise<Schedule[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class ScheduleEntity extends TvmazeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Schedule[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

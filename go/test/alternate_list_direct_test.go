@@ -228,14 +228,12 @@ func alternate_listDirectSetup(mockres any) *alternate_listDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TVMAZE_TEST_ALTERNATE_LIST_ENTID": map[string]any{},
 		"TVMAZE_TEST_LIVE":    "FALSE",
-		"TVMAZE_APIKEY":       "NONE",
 	})
 
 	live := env["TVMAZE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["TVMAZE_APIKEY"],
 		}
 		client := sdk.NewTvmazeSDK(mergedOpts)
 

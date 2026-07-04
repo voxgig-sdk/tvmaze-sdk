@@ -45,6 +45,7 @@ class CastEntity
     end
   end
 
+  # @return [Cast, Hash] the current Cast data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CastEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Cast fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CastEntity
   
 
   
+  # List Cast items matching the given filter.
+  #
+  # @param reqmatch [CastListMatch, Hash, nil] match filter (any subset of Cast fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Cast>, Array] the matching Cast items; raises TvmazeError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -19,6 +19,8 @@ import { SeasonEntity } from './entity/SeasonEntity'
 import { ShowEntity } from './entity/ShowEntity'
 import { UpdateEntity } from './entity/UpdateEntity'
 
+export type * from './TvmazeTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -219,108 +221,252 @@ class TvmazeSDK {
 
 
 
+  _aka?: AkaEntity
+
+  // Idiomatic facade: `client.aka.list()` / `client.aka.load({ id })`.
+  get aka(): AkaEntity {
+    return (this._aka ??= new AkaEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.aka` instead. */
   Aka(data?: any) {
     const self = this
     return new AkaEntity(self,data)
   }
 
 
+  _alternate_list?: AlternateListEntity
+
+  // Idiomatic facade: `client.alternate_list.list()` / `client.alternate_list.load({ id })`.
+  get alternate_list(): AlternateListEntity {
+    return (this._alternate_list ??= new AlternateListEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.alternate_list` instead. */
   AlternateList(data?: any) {
     const self = this
     return new AlternateListEntity(self,data)
   }
 
 
+  _cast?: CastEntity
+
+  // Idiomatic facade: `client.cast.list()` / `client.cast.load({ id })`.
+  get cast(): CastEntity {
+    return (this._cast ??= new CastEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.cast` instead. */
   Cast(data?: any) {
     const self = this
     return new CastEntity(self,data)
   }
 
 
+  _cast_credit?: CastCreditEntity
+
+  // Idiomatic facade: `client.cast_credit.list()` / `client.cast_credit.load({ id })`.
+  get cast_credit(): CastCreditEntity {
+    return (this._cast_credit ??= new CastCreditEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.cast_credit` instead. */
   CastCredit(data?: any) {
     const self = this
     return new CastCreditEntity(self,data)
   }
 
 
+  _cast_member?: CastMemberEntity
+
+  // Idiomatic facade: `client.cast_member.list()` / `client.cast_member.load({ id })`.
+  get cast_member(): CastMemberEntity {
+    return (this._cast_member ??= new CastMemberEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.cast_member` instead. */
   CastMember(data?: any) {
     const self = this
     return new CastMemberEntity(self,data)
   }
 
 
+  _crew?: CrewEntity
+
+  // Idiomatic facade: `client.crew.list()` / `client.crew.load({ id })`.
+  get crew(): CrewEntity {
+    return (this._crew ??= new CrewEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.crew` instead. */
   Crew(data?: any) {
     const self = this
     return new CrewEntity(self,data)
   }
 
 
+  _crew_credit?: CrewCreditEntity
+
+  // Idiomatic facade: `client.crew_credit.list()` / `client.crew_credit.load({ id })`.
+  get crew_credit(): CrewCreditEntity {
+    return (this._crew_credit ??= new CrewCreditEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.crew_credit` instead. */
   CrewCredit(data?: any) {
     const self = this
     return new CrewCreditEntity(self,data)
   }
 
 
+  _crew_member?: CrewMemberEntity
+
+  // Idiomatic facade: `client.crew_member.list()` / `client.crew_member.load({ id })`.
+  get crew_member(): CrewMemberEntity {
+    return (this._crew_member ??= new CrewMemberEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.crew_member` instead. */
   CrewMember(data?: any) {
     const self = this
     return new CrewMemberEntity(self,data)
   }
 
 
+  _episode?: EpisodeEntity
+
+  // Idiomatic facade: `client.episode.list()` / `client.episode.load({ id })`.
+  get episode(): EpisodeEntity {
+    return (this._episode ??= new EpisodeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.episode` instead. */
   Episode(data?: any) {
     const self = this
     return new EpisodeEntity(self,data)
   }
 
 
+  _guest_cast_credit?: GuestCastCreditEntity
+
+  // Idiomatic facade: `client.guest_cast_credit.list()` / `client.guest_cast_credit.load({ id })`.
+  get guest_cast_credit(): GuestCastCreditEntity {
+    return (this._guest_cast_credit ??= new GuestCastCreditEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.guest_cast_credit` instead. */
   GuestCastCredit(data?: any) {
     const self = this
     return new GuestCastCreditEntity(self,data)
   }
 
 
+  _image?: ImageEntity
+
+  // Idiomatic facade: `client.image.list()` / `client.image.load({ id })`.
+  get image(): ImageEntity {
+    return (this._image ??= new ImageEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.image` instead. */
   Image(data?: any) {
     const self = this
     return new ImageEntity(self,data)
   }
 
 
+  _person?: PersonEntity
+
+  // Idiomatic facade: `client.person.list()` / `client.person.load({ id })`.
+  get person(): PersonEntity {
+    return (this._person ??= new PersonEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.person` instead. */
   Person(data?: any) {
     const self = this
     return new PersonEntity(self,data)
   }
 
 
+  _schedule?: ScheduleEntity
+
+  // Idiomatic facade: `client.schedule.list()` / `client.schedule.load({ id })`.
+  get schedule(): ScheduleEntity {
+    return (this._schedule ??= new ScheduleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.schedule` instead. */
   Schedule(data?: any) {
     const self = this
     return new ScheduleEntity(self,data)
   }
 
 
+  _scheduled_episode?: ScheduledEpisodeEntity
+
+  // Idiomatic facade: `client.scheduled_episode.list()` / `client.scheduled_episode.load({ id })`.
+  get scheduled_episode(): ScheduledEpisodeEntity {
+    return (this._scheduled_episode ??= new ScheduledEpisodeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.scheduled_episode` instead. */
   ScheduledEpisode(data?: any) {
     const self = this
     return new ScheduledEpisodeEntity(self,data)
   }
 
 
+  _search?: SearchEntity
+
+  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
+  get search(): SearchEntity {
+    return (this._search ??= new SearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.search` instead. */
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)
   }
 
 
+  _season?: SeasonEntity
+
+  // Idiomatic facade: `client.season.list()` / `client.season.load({ id })`.
+  get season(): SeasonEntity {
+    return (this._season ??= new SeasonEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.season` instead. */
   Season(data?: any) {
     const self = this
     return new SeasonEntity(self,data)
   }
 
 
+  _show?: ShowEntity
+
+  // Idiomatic facade: `client.show.list()` / `client.show.load({ id })`.
+  get show(): ShowEntity {
+    return (this._show ??= new ShowEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.show` instead. */
   Show(data?: any) {
     const self = this
     return new ShowEntity(self,data)
   }
 
 
+  _update?: UpdateEntity
+
+  // Idiomatic facade: `client.update.list()` / `client.update.load({ id })`.
+  get update(): UpdateEntity {
+    return (this._update ??= new UpdateEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.update` instead. */
   Update(data?: any) {
     const self = this
     return new UpdateEntity(self,data)

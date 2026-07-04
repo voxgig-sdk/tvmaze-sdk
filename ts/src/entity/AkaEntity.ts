@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Aka,
+  AkaListMatch,
+} from '../TvmazeTypes'
 
 // TODO: needs Entity superclass
-class AkaEntity extends TvmazeEntityBase {
+class AkaEntity extends TvmazeEntityBase<Aka> {
 
   constructor(client: TvmazeSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class AkaEntity extends TvmazeEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: AkaListMatch, ctrl?: Control): Promise<Aka[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class AkaEntity extends TvmazeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Aka[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

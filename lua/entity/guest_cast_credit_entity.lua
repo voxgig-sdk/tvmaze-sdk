@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch GuestCastCreditListMatch
+---@param ctrl? table
+---@return GuestCastCredit[]
+---@return string? err
 function GuestCastCreditEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

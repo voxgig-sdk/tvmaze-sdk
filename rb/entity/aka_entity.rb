@@ -45,6 +45,7 @@ class AkaEntity
     end
   end
 
+  # @return [Aka, Hash] the current Aka data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class AkaEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Aka fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class AkaEntity
   
 
   
+  # List Aka items matching the given filter.
+  #
+  # @param reqmatch [AkaListMatch, Hash, nil] match filter (any subset of Aka fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Aka>, Array] the matching Aka items; raises TvmazeError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

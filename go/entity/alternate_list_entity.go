@@ -85,6 +85,27 @@ func (e *AlternateListEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an AlternateList; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *AlternateListEntity) DataTyped(data ...AlternateList) AlternateList {
+	if len(data) > 0 {
+		return typedFrom[AlternateList](e.Data(asMap(data[0])))
+	}
+	return typedFrom[AlternateList](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through AlternateList (all fields
+// optional at the wire level).
+func (e *AlternateListEntity) MatchTyped(match ...AlternateList) AlternateList {
+	if len(match) > 0 {
+		return typedFrom[AlternateList](e.Match(asMap(match[0])))
+	}
+	return typedFrom[AlternateList](e.Match())
+}
+
 
 func (e *AlternateListEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *AlternateListEntity) Load(reqmatch map[string]any, ctrl map[string]any)
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// AlternateListLoadMatch and returns an AlternateList. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *AlternateListEntity) LoadTyped(reqmatch AlternateListLoadMatch, ctrl map[string]any) (AlternateList, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return AlternateList{}, err
+	}
+	return typedFrom[AlternateList](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *AlternateListEntity) List(reqmatch map[string]any, ctrl map[string]any)
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// AlternateListListMatch and returns []AlternateList. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *AlternateListEntity) ListTyped(reqmatch AlternateListListMatch, ctrl map[string]any) ([]AlternateList, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[AlternateList](res), nil
 }
 
 

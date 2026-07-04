@@ -45,6 +45,7 @@ class GuestCastCreditEntity
     end
   end
 
+  # @return [GuestCastCredit, Hash] the current GuestCastCredit data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class GuestCastCreditEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of GuestCastCredit fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class GuestCastCreditEntity
   
 
   
+  # List GuestCastCredit items matching the given filter.
+  #
+  # @param reqmatch [GuestCastCreditListMatch, Hash, nil] match filter (any subset of GuestCastCredit fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<GuestCastCredit>, Array] the matching GuestCastCredit items; raises TvmazeError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

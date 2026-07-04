@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  AlternateList,
+  AlternateListLoadMatch,
+  AlternateListListMatch,
+} from '../TvmazeTypes'
 
 // TODO: needs Entity superclass
-class AlternateListEntity extends TvmazeEntityBase {
+class AlternateListEntity extends TvmazeEntityBase<AlternateList> {
 
   constructor(client: TvmazeSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class AlternateListEntity extends TvmazeEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: AlternateListLoadMatch, ctrl?: Control): Promise<AlternateList> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class AlternateListEntity extends TvmazeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<AlternateList> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: AlternateListListMatch, ctrl?: Control): Promise<AlternateList[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class AlternateListEntity extends TvmazeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<AlternateList[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

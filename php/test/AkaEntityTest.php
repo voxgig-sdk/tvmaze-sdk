@@ -52,8 +52,7 @@ class AkaEntityTest extends TestCase
             "show_id" => $setup["idmap"]["show01"],
         ];
 
-        [$aka_ref01_list_result, $err] = $aka_ref01_ent->list($aka_ref01_match, null);
-        $this->assertNull($err);
+        $aka_ref01_list_result = $aka_ref01_ent->list($aka_ref01_match, null);
         $this->assertIsArray($aka_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function aka_basic_setup($extra)
         "TVMAZE_TEST_AKA_ENTID" => $idmap,
         "TVMAZE_TEST_LIVE" => "FALSE",
         "TVMAZE_TEST_EXPLAIN" => "FALSE",
-        "TVMAZE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function aka_basic_setup($extra)
     if ($env["TVMAZE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TVMAZE_APIKEY"],
             ],
             $extra ?? [],
         ]);

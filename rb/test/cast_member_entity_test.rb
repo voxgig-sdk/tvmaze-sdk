@@ -45,8 +45,7 @@ class CastMemberEntityTest < Minitest::Test
       "episode_id" => setup[:idmap]["episode01"],
     }
 
-    cast_member_ref01_list_result, err = cast_member_ref01_ent.list(cast_member_ref01_match, nil)
-    assert_nil err
+    cast_member_ref01_list_result = cast_member_ref01_ent.list(cast_member_ref01_match, nil)
     assert cast_member_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def cast_member_basic_setup(extra)
     "TVMAZE_TEST_CAST_MEMBER_ENTID" => idmap,
     "TVMAZE_TEST_LIVE" => "FALSE",
     "TVMAZE_TEST_EXPLAIN" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def cast_member_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TVMAZE_APIKEY"],
       },
       extra || {},
     ])

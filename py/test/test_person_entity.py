@@ -50,16 +50,14 @@ class TestPersonEntity:
         person_ref01_ent = client.Person(None)
         person_ref01_match = {}
 
-        person_ref01_list_result, err = person_ref01_ent.list(person_ref01_match, None)
-        assert err is None
+        person_ref01_list_result = person_ref01_ent.list(person_ref01_match, None)
         assert isinstance(person_ref01_list_result, list)
 
         # LOAD
         person_ref01_match_dt0 = {
             "id": person_ref01_data["id"],
         }
-        person_ref01_data_dt0_loaded, err = person_ref01_ent.load(person_ref01_match_dt0, None)
-        assert err is None
+        person_ref01_data_dt0_loaded = person_ref01_ent.load(person_ref01_match_dt0, None)
         person_ref01_data_dt0_load_result = helpers.to_map(person_ref01_data_dt0_loaded)
         assert person_ref01_data_dt0_load_result is not None
         assert person_ref01_data_dt0_load_result["id"] == person_ref01_data["id"]
@@ -102,7 +100,6 @@ def _person_basic_setup(extra):
         "TVMAZE_TEST_PERSON_ENTID": idmap,
         "TVMAZE_TEST_LIVE": "FALSE",
         "TVMAZE_TEST_EXPLAIN": "FALSE",
-        "TVMAZE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _person_basic_setup(extra):
     if env.get("TVMAZE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TVMAZE_APIKEY"),
             },
             extra or {},
         ])

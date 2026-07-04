@@ -45,6 +45,7 @@ class AlternateListEntity
     end
   end
 
+  # @return [AlternateList, Hash] the current AlternateList data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class AlternateListEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of AlternateList fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single AlternateList.
+  #
+  # @param reqmatch [AlternateListLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [AlternateList, Hash] the loaded AlternateList; raises TvmazeError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class AlternateListEntity
 
 
   
+  # List AlternateList items matching the given filter.
+  #
+  # @param reqmatch [AlternateListListMatch, Hash, nil] match filter (any subset of AlternateList fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<AlternateList>, Array] the matching AlternateList items; raises TvmazeError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

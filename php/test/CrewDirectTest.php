@@ -38,7 +38,7 @@ class CrewDirectTest extends TestCase
             $params["show_id"] = "direct01";
         }
 
-        [$result, $err] = $client->direct([
+        $result = $client->direct([
             "path" => "shows/{show_id}/crew",
             "method" => "GET",
             "params" => $params,
@@ -47,8 +47,8 @@ class CrewDirectTest extends TestCase
             // Live mode is lenient: synthetic IDs frequently 4xx and the
             // list-response shape varies wildly across public APIs. Skip
             // rather than fail when the call doesn't return a usable list.
-            if ($err !== null) {
-                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$err);
+            if (!empty($result["err"])) {
+                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$result["err"]);
                 return;
             }
             if (empty($result["ok"])) {
@@ -61,7 +61,7 @@ class CrewDirectTest extends TestCase
                 return;
             }
         } else {
-            $this->assertNull($err);
+            $this->assertArrayNotHasKey("err", $result);
             $this->assertTrue($result["ok"]);
             $this->assertEquals(200, Helpers::to_int($result["status"]));
             $this->assertIsArray($result["data"]);
@@ -82,14 +82,12 @@ function crew_direct_setup($mockres)
     $env = Runner::env_override([
         "TVMAZE_TEST_CREW_ENTID" => [],
         "TVMAZE_TEST_LIVE" => "FALSE",
-        "TVMAZE_APIKEY" => "NONE",
     ]);
 
     $live = $env["TVMAZE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["TVMAZE_APIKEY"],
         ];
         $client = new TvmazeSDK($merged_opts);
         return [

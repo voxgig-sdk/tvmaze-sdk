@@ -45,6 +45,7 @@ class ShowEntity
     end
   end
 
+  # @return [Show, Hash] the current Show data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ShowEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Show fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Show.
+  #
+  # @param reqmatch [ShowLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Show, Hash] the loaded Show; raises TvmazeError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class ShowEntity
 
 
   
+  # List Show items matching the given filter.
+  #
+  # @param reqmatch [ShowListMatch, Hash, nil] match filter (any subset of Show fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Show>, Array] the matching Show items; raises TvmazeError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

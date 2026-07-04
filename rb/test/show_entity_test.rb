@@ -43,16 +43,14 @@ class ShowEntityTest < Minitest::Test
     show_ref01_ent = client.Show(nil)
     show_ref01_match = {}
 
-    show_ref01_list_result, err = show_ref01_ent.list(show_ref01_match, nil)
-    assert_nil err
+    show_ref01_list_result = show_ref01_ent.list(show_ref01_match, nil)
     assert show_ref01_list_result.is_a?(Array)
 
     # LOAD
     show_ref01_match_dt0 = {
       "id" => show_ref01_data["id"],
     }
-    show_ref01_data_dt0_loaded, err = show_ref01_ent.load(show_ref01_match_dt0, nil)
-    assert_nil err
+    show_ref01_data_dt0_loaded = show_ref01_ent.load(show_ref01_match_dt0, nil)
     show_ref01_data_dt0_load_result = Helpers.to_map(show_ref01_data_dt0_loaded)
     assert !show_ref01_data_dt0_load_result.nil?
     assert_equal show_ref01_data_dt0_load_result["id"], show_ref01_data["id"]
@@ -93,7 +91,6 @@ def show_basic_setup(extra)
     "TVMAZE_TEST_SHOW_ENTID" => idmap,
     "TVMAZE_TEST_LIVE" => "FALSE",
     "TVMAZE_TEST_EXPLAIN" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def show_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TVMAZE_APIKEY"],
       },
       extra || {},
     ])

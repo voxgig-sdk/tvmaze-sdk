@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ShowLoadMatch
+---@param ctrl? table
+---@return Show
+---@return string? err
 function ShowEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ShowListMatch
+---@param ctrl? table
+---@return Show[]
+---@return string? err
 function ShowEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

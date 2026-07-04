@@ -144,16 +144,23 @@ class TvmazeSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class TvmazeSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,100 +212,298 @@ class TvmazeSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def aka(self):
+        """Idiomatic facade: client.aka.list() / client.aka.load({"id": ...})."""
+        from entity.aka_entity import AkaEntity
+        cached = getattr(self, "_aka", None)
+        if cached is None:
+            cached = AkaEntity(self, None)
+            self._aka = cached
+        return cached
 
     def Aka(self, data=None):
+        # Deprecated: use client.aka instead.
         from entity.aka_entity import AkaEntity
         return AkaEntity(self, data)
 
 
+    @property
+    def alternate_list(self):
+        """Idiomatic facade: client.alternate_list.list() / client.alternate_list.load({"id": ...})."""
+        from entity.alternate_list_entity import AlternateListEntity
+        cached = getattr(self, "_alternate_list", None)
+        if cached is None:
+            cached = AlternateListEntity(self, None)
+            self._alternate_list = cached
+        return cached
+
     def AlternateList(self, data=None):
+        # Deprecated: use client.alternate_list instead.
         from entity.alternate_list_entity import AlternateListEntity
         return AlternateListEntity(self, data)
 
 
+    @property
+    def cast(self):
+        """Idiomatic facade: client.cast.list() / client.cast.load({"id": ...})."""
+        from entity.cast_entity import CastEntity
+        cached = getattr(self, "_cast", None)
+        if cached is None:
+            cached = CastEntity(self, None)
+            self._cast = cached
+        return cached
+
     def Cast(self, data=None):
+        # Deprecated: use client.cast instead.
         from entity.cast_entity import CastEntity
         return CastEntity(self, data)
 
 
+    @property
+    def cast_credit(self):
+        """Idiomatic facade: client.cast_credit.list() / client.cast_credit.load({"id": ...})."""
+        from entity.cast_credit_entity import CastCreditEntity
+        cached = getattr(self, "_cast_credit", None)
+        if cached is None:
+            cached = CastCreditEntity(self, None)
+            self._cast_credit = cached
+        return cached
+
     def CastCredit(self, data=None):
+        # Deprecated: use client.cast_credit instead.
         from entity.cast_credit_entity import CastCreditEntity
         return CastCreditEntity(self, data)
 
 
+    @property
+    def cast_member(self):
+        """Idiomatic facade: client.cast_member.list() / client.cast_member.load({"id": ...})."""
+        from entity.cast_member_entity import CastMemberEntity
+        cached = getattr(self, "_cast_member", None)
+        if cached is None:
+            cached = CastMemberEntity(self, None)
+            self._cast_member = cached
+        return cached
+
     def CastMember(self, data=None):
+        # Deprecated: use client.cast_member instead.
         from entity.cast_member_entity import CastMemberEntity
         return CastMemberEntity(self, data)
 
 
+    @property
+    def crew(self):
+        """Idiomatic facade: client.crew.list() / client.crew.load({"id": ...})."""
+        from entity.crew_entity import CrewEntity
+        cached = getattr(self, "_crew", None)
+        if cached is None:
+            cached = CrewEntity(self, None)
+            self._crew = cached
+        return cached
+
     def Crew(self, data=None):
+        # Deprecated: use client.crew instead.
         from entity.crew_entity import CrewEntity
         return CrewEntity(self, data)
 
 
+    @property
+    def crew_credit(self):
+        """Idiomatic facade: client.crew_credit.list() / client.crew_credit.load({"id": ...})."""
+        from entity.crew_credit_entity import CrewCreditEntity
+        cached = getattr(self, "_crew_credit", None)
+        if cached is None:
+            cached = CrewCreditEntity(self, None)
+            self._crew_credit = cached
+        return cached
+
     def CrewCredit(self, data=None):
+        # Deprecated: use client.crew_credit instead.
         from entity.crew_credit_entity import CrewCreditEntity
         return CrewCreditEntity(self, data)
 
 
+    @property
+    def crew_member(self):
+        """Idiomatic facade: client.crew_member.list() / client.crew_member.load({"id": ...})."""
+        from entity.crew_member_entity import CrewMemberEntity
+        cached = getattr(self, "_crew_member", None)
+        if cached is None:
+            cached = CrewMemberEntity(self, None)
+            self._crew_member = cached
+        return cached
+
     def CrewMember(self, data=None):
+        # Deprecated: use client.crew_member instead.
         from entity.crew_member_entity import CrewMemberEntity
         return CrewMemberEntity(self, data)
 
 
+    @property
+    def episode(self):
+        """Idiomatic facade: client.episode.list() / client.episode.load({"id": ...})."""
+        from entity.episode_entity import EpisodeEntity
+        cached = getattr(self, "_episode", None)
+        if cached is None:
+            cached = EpisodeEntity(self, None)
+            self._episode = cached
+        return cached
+
     def Episode(self, data=None):
+        # Deprecated: use client.episode instead.
         from entity.episode_entity import EpisodeEntity
         return EpisodeEntity(self, data)
 
 
+    @property
+    def guest_cast_credit(self):
+        """Idiomatic facade: client.guest_cast_credit.list() / client.guest_cast_credit.load({"id": ...})."""
+        from entity.guest_cast_credit_entity import GuestCastCreditEntity
+        cached = getattr(self, "_guest_cast_credit", None)
+        if cached is None:
+            cached = GuestCastCreditEntity(self, None)
+            self._guest_cast_credit = cached
+        return cached
+
     def GuestCastCredit(self, data=None):
+        # Deprecated: use client.guest_cast_credit instead.
         from entity.guest_cast_credit_entity import GuestCastCreditEntity
         return GuestCastCreditEntity(self, data)
 
 
+    @property
+    def image(self):
+        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
+        from entity.image_entity import ImageEntity
+        cached = getattr(self, "_image", None)
+        if cached is None:
+            cached = ImageEntity(self, None)
+            self._image = cached
+        return cached
+
     def Image(self, data=None):
+        # Deprecated: use client.image instead.
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
+    @property
+    def person(self):
+        """Idiomatic facade: client.person.list() / client.person.load({"id": ...})."""
+        from entity.person_entity import PersonEntity
+        cached = getattr(self, "_person", None)
+        if cached is None:
+            cached = PersonEntity(self, None)
+            self._person = cached
+        return cached
+
     def Person(self, data=None):
+        # Deprecated: use client.person instead.
         from entity.person_entity import PersonEntity
         return PersonEntity(self, data)
 
 
+    @property
+    def schedule(self):
+        """Idiomatic facade: client.schedule.list() / client.schedule.load({"id": ...})."""
+        from entity.schedule_entity import ScheduleEntity
+        cached = getattr(self, "_schedule", None)
+        if cached is None:
+            cached = ScheduleEntity(self, None)
+            self._schedule = cached
+        return cached
+
     def Schedule(self, data=None):
+        # Deprecated: use client.schedule instead.
         from entity.schedule_entity import ScheduleEntity
         return ScheduleEntity(self, data)
 
 
+    @property
+    def scheduled_episode(self):
+        """Idiomatic facade: client.scheduled_episode.list() / client.scheduled_episode.load({"id": ...})."""
+        from entity.scheduled_episode_entity import ScheduledEpisodeEntity
+        cached = getattr(self, "_scheduled_episode", None)
+        if cached is None:
+            cached = ScheduledEpisodeEntity(self, None)
+            self._scheduled_episode = cached
+        return cached
+
     def ScheduledEpisode(self, data=None):
+        # Deprecated: use client.scheduled_episode instead.
         from entity.scheduled_episode_entity import ScheduledEpisodeEntity
         return ScheduledEpisodeEntity(self, data)
 
 
+    @property
+    def search(self):
+        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
+        from entity.search_entity import SearchEntity
+        cached = getattr(self, "_search", None)
+        if cached is None:
+            cached = SearchEntity(self, None)
+            self._search = cached
+        return cached
+
     def Search(self, data=None):
+        # Deprecated: use client.search instead.
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
+    @property
+    def season(self):
+        """Idiomatic facade: client.season.list() / client.season.load({"id": ...})."""
+        from entity.season_entity import SeasonEntity
+        cached = getattr(self, "_season", None)
+        if cached is None:
+            cached = SeasonEntity(self, None)
+            self._season = cached
+        return cached
+
     def Season(self, data=None):
+        # Deprecated: use client.season instead.
         from entity.season_entity import SeasonEntity
         return SeasonEntity(self, data)
 
 
+    @property
+    def show(self):
+        """Idiomatic facade: client.show.list() / client.show.load({"id": ...})."""
+        from entity.show_entity import ShowEntity
+        cached = getattr(self, "_show", None)
+        if cached is None:
+            cached = ShowEntity(self, None)
+            self._show = cached
+        return cached
+
     def Show(self, data=None):
+        # Deprecated: use client.show instead.
         from entity.show_entity import ShowEntity
         return ShowEntity(self, data)
 
 
+    @property
+    def update(self):
+        """Idiomatic facade: client.update.list() / client.update.load({"id": ...})."""
+        from entity.update_entity import UpdateEntity
+        cached = getattr(self, "_update", None)
+        if cached is None:
+            cached = UpdateEntity(self, None)
+            self._update = cached
+        return cached
+
     def Update(self, data=None):
+        # Deprecated: use client.update instead.
         from entity.update_entity import UpdateEntity
         return UpdateEntity(self, data)
 

@@ -143,14 +143,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'TVMAZE_TEST_SHOW_ENTID': {},
     'TVMAZE_TEST_LIVE': 'FALSE',
-    'TVMAZE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.TVMAZE_TEST_LIVE
 
   if (live) {
     const client = new TvmazeSDK({
-      apikey: env.TVMAZE_APIKEY,
     })
 
     let idmap: any = env['TVMAZE_TEST_SHOW_ENTID']

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch AkaListMatch
+---@param ctrl? table
+---@return Aka[]
+---@return string? err
 function AkaEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

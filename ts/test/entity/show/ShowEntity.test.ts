@@ -120,7 +120,6 @@ function basicSetup(extra?: any) {
     'TVMAZE_TEST_SHOW_ENTID': idmap,
     'TVMAZE_TEST_LIVE': 'FALSE',
     'TVMAZE_TEST_EXPLAIN': 'FALSE',
-    'TVMAZE_APIKEY': 'NONE',
   })
 
   idmap = env['TVMAZE_TEST_SHOW_ENTID']
@@ -130,7 +129,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new TvmazeSDK(merge([
       {
-        apikey: env.TVMAZE_APIKEY,
       },
       extra
     ]))

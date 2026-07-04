@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CastMemberListMatch
+---@param ctrl? table
+---@return CastMember[]
+---@return string? err
 function CastMemberEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

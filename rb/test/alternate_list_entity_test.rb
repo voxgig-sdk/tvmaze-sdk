@@ -45,16 +45,14 @@ class AlternateListEntityTest < Minitest::Test
       "show_id" => setup[:idmap]["show01"],
     }
 
-    alternate_list_ref01_list_result, err = alternate_list_ref01_ent.list(alternate_list_ref01_match, nil)
-    assert_nil err
+    alternate_list_ref01_list_result = alternate_list_ref01_ent.list(alternate_list_ref01_match, nil)
     assert alternate_list_ref01_list_result.is_a?(Array)
 
     # LOAD
     alternate_list_ref01_match_dt0 = {
       "id" => alternate_list_ref01_data["id"],
     }
-    alternate_list_ref01_data_dt0_loaded, err = alternate_list_ref01_ent.load(alternate_list_ref01_match_dt0, nil)
-    assert_nil err
+    alternate_list_ref01_data_dt0_loaded = alternate_list_ref01_ent.load(alternate_list_ref01_match_dt0, nil)
     alternate_list_ref01_data_dt0_load_result = Helpers.to_map(alternate_list_ref01_data_dt0_loaded)
     assert !alternate_list_ref01_data_dt0_load_result.nil?
     assert_equal alternate_list_ref01_data_dt0_load_result["id"], alternate_list_ref01_data["id"]
@@ -95,7 +93,6 @@ def alternate_list_basic_setup(extra)
     "TVMAZE_TEST_ALTERNATE_LIST_ENTID" => idmap,
     "TVMAZE_TEST_LIVE" => "FALSE",
     "TVMAZE_TEST_EXPLAIN" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -107,7 +104,6 @@ def alternate_list_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TVMAZE_APIKEY"],
       },
       extra || {},
     ])

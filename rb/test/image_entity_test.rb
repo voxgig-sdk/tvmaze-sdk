@@ -45,8 +45,7 @@ class ImageEntityTest < Minitest::Test
       "show_id" => setup[:idmap]["show01"],
     }
 
-    image_ref01_list_result, err = image_ref01_ent.list(image_ref01_match, nil)
-    assert_nil err
+    image_ref01_list_result = image_ref01_ent.list(image_ref01_match, nil)
     assert image_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def image_basic_setup(extra)
     "TVMAZE_TEST_IMAGE_ENTID" => idmap,
     "TVMAZE_TEST_LIVE" => "FALSE",
     "TVMAZE_TEST_EXPLAIN" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def image_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TVMAZE_APIKEY"],
       },
       extra || {},
     ])

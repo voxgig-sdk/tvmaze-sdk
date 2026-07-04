@@ -245,91 +245,145 @@ func (sdk *TvmazeSDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// Aka returns a Aka entity bound to this client.
+// Idiomatic usage: client.Aka(nil).List(nil, nil) or
+// client.Aka(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Aka(data map[string]any) TvmazeEntity {
 	return NewAkaEntityFunc(sdk, data)
 }
 
 
+// AlternateList returns a AlternateList entity bound to this client.
+// Idiomatic usage: client.AlternateList(nil).List(nil, nil) or
+// client.AlternateList(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) AlternateList(data map[string]any) TvmazeEntity {
 	return NewAlternateListEntityFunc(sdk, data)
 }
 
 
+// Cast returns a Cast entity bound to this client.
+// Idiomatic usage: client.Cast(nil).List(nil, nil) or
+// client.Cast(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Cast(data map[string]any) TvmazeEntity {
 	return NewCastEntityFunc(sdk, data)
 }
 
 
+// CastCredit returns a CastCredit entity bound to this client.
+// Idiomatic usage: client.CastCredit(nil).List(nil, nil) or
+// client.CastCredit(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) CastCredit(data map[string]any) TvmazeEntity {
 	return NewCastCreditEntityFunc(sdk, data)
 }
 
 
+// CastMember returns a CastMember entity bound to this client.
+// Idiomatic usage: client.CastMember(nil).List(nil, nil) or
+// client.CastMember(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) CastMember(data map[string]any) TvmazeEntity {
 	return NewCastMemberEntityFunc(sdk, data)
 }
 
 
+// Crew returns a Crew entity bound to this client.
+// Idiomatic usage: client.Crew(nil).List(nil, nil) or
+// client.Crew(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Crew(data map[string]any) TvmazeEntity {
 	return NewCrewEntityFunc(sdk, data)
 }
 
 
+// CrewCredit returns a CrewCredit entity bound to this client.
+// Idiomatic usage: client.CrewCredit(nil).List(nil, nil) or
+// client.CrewCredit(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) CrewCredit(data map[string]any) TvmazeEntity {
 	return NewCrewCreditEntityFunc(sdk, data)
 }
 
 
+// CrewMember returns a CrewMember entity bound to this client.
+// Idiomatic usage: client.CrewMember(nil).List(nil, nil) or
+// client.CrewMember(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) CrewMember(data map[string]any) TvmazeEntity {
 	return NewCrewMemberEntityFunc(sdk, data)
 }
 
 
+// Episode returns a Episode entity bound to this client.
+// Idiomatic usage: client.Episode(nil).List(nil, nil) or
+// client.Episode(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Episode(data map[string]any) TvmazeEntity {
 	return NewEpisodeEntityFunc(sdk, data)
 }
 
 
+// GuestCastCredit returns a GuestCastCredit entity bound to this client.
+// Idiomatic usage: client.GuestCastCredit(nil).List(nil, nil) or
+// client.GuestCastCredit(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) GuestCastCredit(data map[string]any) TvmazeEntity {
 	return NewGuestCastCreditEntityFunc(sdk, data)
 }
 
 
+// Image returns a Image entity bound to this client.
+// Idiomatic usage: client.Image(nil).List(nil, nil) or
+// client.Image(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Image(data map[string]any) TvmazeEntity {
 	return NewImageEntityFunc(sdk, data)
 }
 
 
+// Person returns a Person entity bound to this client.
+// Idiomatic usage: client.Person(nil).List(nil, nil) or
+// client.Person(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Person(data map[string]any) TvmazeEntity {
 	return NewPersonEntityFunc(sdk, data)
 }
 
 
+// Schedule returns a Schedule entity bound to this client.
+// Idiomatic usage: client.Schedule(nil).List(nil, nil) or
+// client.Schedule(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Schedule(data map[string]any) TvmazeEntity {
 	return NewScheduleEntityFunc(sdk, data)
 }
 
 
+// ScheduledEpisode returns a ScheduledEpisode entity bound to this client.
+// Idiomatic usage: client.ScheduledEpisode(nil).List(nil, nil) or
+// client.ScheduledEpisode(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) ScheduledEpisode(data map[string]any) TvmazeEntity {
 	return NewScheduledEpisodeEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Search(data map[string]any) TvmazeEntity {
 	return NewSearchEntityFunc(sdk, data)
 }
 
 
+// Season returns a Season entity bound to this client.
+// Idiomatic usage: client.Season(nil).List(nil, nil) or
+// client.Season(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Season(data map[string]any) TvmazeEntity {
 	return NewSeasonEntityFunc(sdk, data)
 }
 
 
+// Show returns a Show entity bound to this client.
+// Idiomatic usage: client.Show(nil).List(nil, nil) or
+// client.Show(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Show(data map[string]any) TvmazeEntity {
 	return NewShowEntityFunc(sdk, data)
 }
 
 
+// Update returns a Update entity bound to this client.
+// Idiomatic usage: client.Update(nil).List(nil, nil) or
+// client.Update(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TvmazeSDK) Update(data map[string]any) TvmazeEntity {
 	return NewUpdateEntityFunc(sdk, data)
 }

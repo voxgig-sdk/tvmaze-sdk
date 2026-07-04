@@ -103,7 +103,7 @@ class TvmazeSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class TvmazeSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class TvmazeSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,143 +216,341 @@ class TvmazeSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Aka($data = null)
+    private $_aka = null;
+
+    // Idiomatic facade: $client->aka()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Aka() (PHP method
+    // names are case-insensitive).
+    public function aka($data = null)
     {
         require_once __DIR__ . '/entity/aka_entity.php';
+        if ($data === null) {
+            if ($this->_aka === null) {
+                $this->_aka = new AkaEntity($this, null);
+            }
+            return $this->_aka;
+        }
         return new AkaEntity($this, $data);
     }
 
 
-    public function AlternateList($data = null)
+    private $_alternate_list = null;
+
+    // Idiomatic facade: $client->alternate_list()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias AlternateList() (PHP method
+    // names are case-insensitive).
+    public function alternate_list($data = null)
     {
         require_once __DIR__ . '/entity/alternate_list_entity.php';
+        if ($data === null) {
+            if ($this->_alternate_list === null) {
+                $this->_alternate_list = new AlternateListEntity($this, null);
+            }
+            return $this->_alternate_list;
+        }
         return new AlternateListEntity($this, $data);
     }
 
 
-    public function Cast($data = null)
+    private $_cast = null;
+
+    // Idiomatic facade: $client->cast()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Cast() (PHP method
+    // names are case-insensitive).
+    public function cast($data = null)
     {
         require_once __DIR__ . '/entity/cast_entity.php';
+        if ($data === null) {
+            if ($this->_cast === null) {
+                $this->_cast = new CastEntity($this, null);
+            }
+            return $this->_cast;
+        }
         return new CastEntity($this, $data);
     }
 
 
-    public function CastCredit($data = null)
+    private $_cast_credit = null;
+
+    // Idiomatic facade: $client->cast_credit()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CastCredit() (PHP method
+    // names are case-insensitive).
+    public function cast_credit($data = null)
     {
         require_once __DIR__ . '/entity/cast_credit_entity.php';
+        if ($data === null) {
+            if ($this->_cast_credit === null) {
+                $this->_cast_credit = new CastCreditEntity($this, null);
+            }
+            return $this->_cast_credit;
+        }
         return new CastCreditEntity($this, $data);
     }
 
 
-    public function CastMember($data = null)
+    private $_cast_member = null;
+
+    // Idiomatic facade: $client->cast_member()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CastMember() (PHP method
+    // names are case-insensitive).
+    public function cast_member($data = null)
     {
         require_once __DIR__ . '/entity/cast_member_entity.php';
+        if ($data === null) {
+            if ($this->_cast_member === null) {
+                $this->_cast_member = new CastMemberEntity($this, null);
+            }
+            return $this->_cast_member;
+        }
         return new CastMemberEntity($this, $data);
     }
 
 
-    public function Crew($data = null)
+    private $_crew = null;
+
+    // Idiomatic facade: $client->crew()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Crew() (PHP method
+    // names are case-insensitive).
+    public function crew($data = null)
     {
         require_once __DIR__ . '/entity/crew_entity.php';
+        if ($data === null) {
+            if ($this->_crew === null) {
+                $this->_crew = new CrewEntity($this, null);
+            }
+            return $this->_crew;
+        }
         return new CrewEntity($this, $data);
     }
 
 
-    public function CrewCredit($data = null)
+    private $_crew_credit = null;
+
+    // Idiomatic facade: $client->crew_credit()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CrewCredit() (PHP method
+    // names are case-insensitive).
+    public function crew_credit($data = null)
     {
         require_once __DIR__ . '/entity/crew_credit_entity.php';
+        if ($data === null) {
+            if ($this->_crew_credit === null) {
+                $this->_crew_credit = new CrewCreditEntity($this, null);
+            }
+            return $this->_crew_credit;
+        }
         return new CrewCreditEntity($this, $data);
     }
 
 
-    public function CrewMember($data = null)
+    private $_crew_member = null;
+
+    // Idiomatic facade: $client->crew_member()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CrewMember() (PHP method
+    // names are case-insensitive).
+    public function crew_member($data = null)
     {
         require_once __DIR__ . '/entity/crew_member_entity.php';
+        if ($data === null) {
+            if ($this->_crew_member === null) {
+                $this->_crew_member = new CrewMemberEntity($this, null);
+            }
+            return $this->_crew_member;
+        }
         return new CrewMemberEntity($this, $data);
     }
 
 
-    public function Episode($data = null)
+    private $_episode = null;
+
+    // Idiomatic facade: $client->episode()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Episode() (PHP method
+    // names are case-insensitive).
+    public function episode($data = null)
     {
         require_once __DIR__ . '/entity/episode_entity.php';
+        if ($data === null) {
+            if ($this->_episode === null) {
+                $this->_episode = new EpisodeEntity($this, null);
+            }
+            return $this->_episode;
+        }
         return new EpisodeEntity($this, $data);
     }
 
 
-    public function GuestCastCredit($data = null)
+    private $_guest_cast_credit = null;
+
+    // Idiomatic facade: $client->guest_cast_credit()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GuestCastCredit() (PHP method
+    // names are case-insensitive).
+    public function guest_cast_credit($data = null)
     {
         require_once __DIR__ . '/entity/guest_cast_credit_entity.php';
+        if ($data === null) {
+            if ($this->_guest_cast_credit === null) {
+                $this->_guest_cast_credit = new GuestCastCreditEntity($this, null);
+            }
+            return $this->_guest_cast_credit;
+        }
         return new GuestCastCreditEntity($this, $data);
     }
 
 
-    public function Image($data = null)
+    private $_image = null;
+
+    // Idiomatic facade: $client->image()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Image() (PHP method
+    // names are case-insensitive).
+    public function image($data = null)
     {
         require_once __DIR__ . '/entity/image_entity.php';
+        if ($data === null) {
+            if ($this->_image === null) {
+                $this->_image = new ImageEntity($this, null);
+            }
+            return $this->_image;
+        }
         return new ImageEntity($this, $data);
     }
 
 
-    public function Person($data = null)
+    private $_person = null;
+
+    // Idiomatic facade: $client->person()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Person() (PHP method
+    // names are case-insensitive).
+    public function person($data = null)
     {
         require_once __DIR__ . '/entity/person_entity.php';
+        if ($data === null) {
+            if ($this->_person === null) {
+                $this->_person = new PersonEntity($this, null);
+            }
+            return $this->_person;
+        }
         return new PersonEntity($this, $data);
     }
 
 
-    public function Schedule($data = null)
+    private $_schedule = null;
+
+    // Idiomatic facade: $client->schedule()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Schedule() (PHP method
+    // names are case-insensitive).
+    public function schedule($data = null)
     {
         require_once __DIR__ . '/entity/schedule_entity.php';
+        if ($data === null) {
+            if ($this->_schedule === null) {
+                $this->_schedule = new ScheduleEntity($this, null);
+            }
+            return $this->_schedule;
+        }
         return new ScheduleEntity($this, $data);
     }
 
 
-    public function ScheduledEpisode($data = null)
+    private $_scheduled_episode = null;
+
+    // Idiomatic facade: $client->scheduled_episode()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias ScheduledEpisode() (PHP method
+    // names are case-insensitive).
+    public function scheduled_episode($data = null)
     {
         require_once __DIR__ . '/entity/scheduled_episode_entity.php';
+        if ($data === null) {
+            if ($this->_scheduled_episode === null) {
+                $this->_scheduled_episode = new ScheduledEpisodeEntity($this, null);
+            }
+            return $this->_scheduled_episode;
+        }
         return new ScheduledEpisodeEntity($this, $data);
     }
 
 
-    public function Search($data = null)
+    private $_search = null;
+
+    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Search() (PHP method
+    // names are case-insensitive).
+    public function search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
+        if ($data === null) {
+            if ($this->_search === null) {
+                $this->_search = new SearchEntity($this, null);
+            }
+            return $this->_search;
+        }
         return new SearchEntity($this, $data);
     }
 
 
-    public function Season($data = null)
+    private $_season = null;
+
+    // Idiomatic facade: $client->season()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Season() (PHP method
+    // names are case-insensitive).
+    public function season($data = null)
     {
         require_once __DIR__ . '/entity/season_entity.php';
+        if ($data === null) {
+            if ($this->_season === null) {
+                $this->_season = new SeasonEntity($this, null);
+            }
+            return $this->_season;
+        }
         return new SeasonEntity($this, $data);
     }
 
 
-    public function Show($data = null)
+    private $_show = null;
+
+    // Idiomatic facade: $client->show()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Show() (PHP method
+    // names are case-insensitive).
+    public function show($data = null)
     {
         require_once __DIR__ . '/entity/show_entity.php';
+        if ($data === null) {
+            if ($this->_show === null) {
+                $this->_show = new ShowEntity($this, null);
+            }
+            return $this->_show;
+        }
         return new ShowEntity($this, $data);
     }
 
 
-    public function Update($data = null)
+    private $_update = null;
+
+    // Idiomatic facade: $client->update()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Update() (PHP method
+    // names are case-insensitive).
+    public function update($data = null)
     {
         require_once __DIR__ . '/entity/update_entity.php';
+        if ($data === null) {
+            if ($this->_update === null) {
+                $this->_update = new UpdateEntity($this, null);
+            }
+            return $this->_update;
+        }
         return new UpdateEntity($this, $data);
     }
 

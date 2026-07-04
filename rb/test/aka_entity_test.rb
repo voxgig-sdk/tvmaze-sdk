@@ -45,8 +45,7 @@ class AkaEntityTest < Minitest::Test
       "show_id" => setup[:idmap]["show01"],
     }
 
-    aka_ref01_list_result, err = aka_ref01_ent.list(aka_ref01_match, nil)
-    assert_nil err
+    aka_ref01_list_result = aka_ref01_ent.list(aka_ref01_match, nil)
     assert aka_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def aka_basic_setup(extra)
     "TVMAZE_TEST_AKA_ENTID" => idmap,
     "TVMAZE_TEST_LIVE" => "FALSE",
     "TVMAZE_TEST_EXPLAIN" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def aka_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TVMAZE_APIKEY"],
       },
       extra || {},
     ])

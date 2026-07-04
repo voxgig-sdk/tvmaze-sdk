@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -152,7 +151,7 @@ same parameters as `direct()`.
 ## AkaEntity
 
 ```lua
-local aka = client:Aka(nil)
+local aka = client:aka(nil)
 ```
 
 ### Fields
@@ -169,7 +168,7 @@ local aka = client:Aka(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Aka():list()
+local results, err = client:aka():list()
 ```
 
 ### Common Methods
@@ -205,7 +204,7 @@ Return the entity name.
 ## AlternateListEntity
 
 ```lua
-local alternate_list = client:AlternateList(nil)
+local alternate_list = client:alternate_list(nil)
 ```
 
 ### Fields
@@ -224,7 +223,7 @@ local alternate_list = client:AlternateList(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:AlternateList():list()
+local results, err = client:alternate_list():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -232,7 +231,7 @@ local results, err = client:AlternateList():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:AlternateList():load({ id = "alternate_list_id" })
+local result, err = client:alternate_list():load({ id = "alternate_list_id" })
 ```
 
 ### Common Methods
@@ -268,7 +267,7 @@ Return the entity name.
 ## CastEntity
 
 ```lua
-local cast = client:Cast(nil)
+local cast = client:cast(nil)
 ```
 
 ### Fields
@@ -287,7 +286,7 @@ local cast = client:Cast(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Cast():list()
+local results, err = client:cast():list()
 ```
 
 ### Common Methods
@@ -323,7 +322,7 @@ Return the entity name.
 ## CastCreditEntity
 
 ```lua
-local cast_credit = client:CastCredit(nil)
+local cast_credit = client:cast_credit(nil)
 ```
 
 ### Fields
@@ -339,7 +338,7 @@ local cast_credit = client:CastCredit(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CastCredit():list()
+local results, err = client:cast_credit():list()
 ```
 
 ### Common Methods
@@ -375,7 +374,7 @@ Return the entity name.
 ## CastMemberEntity
 
 ```lua
-local cast_member = client:CastMember(nil)
+local cast_member = client:cast_member(nil)
 ```
 
 ### Fields
@@ -394,7 +393,7 @@ local cast_member = client:CastMember(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CastMember():list()
+local results, err = client:cast_member():list()
 ```
 
 ### Common Methods
@@ -430,7 +429,7 @@ Return the entity name.
 ## CrewEntity
 
 ```lua
-local crew = client:Crew(nil)
+local crew = client:crew(nil)
 ```
 
 ### Fields
@@ -447,7 +446,7 @@ local crew = client:Crew(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Crew():list()
+local results, err = client:crew():list()
 ```
 
 ### Common Methods
@@ -483,7 +482,7 @@ Return the entity name.
 ## CrewCreditEntity
 
 ```lua
-local crew_credit = client:CrewCredit(nil)
+local crew_credit = client:crew_credit(nil)
 ```
 
 ### Fields
@@ -500,7 +499,7 @@ local crew_credit = client:CrewCredit(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CrewCredit():list()
+local results, err = client:crew_credit():list()
 ```
 
 ### Common Methods
@@ -536,7 +535,7 @@ Return the entity name.
 ## CrewMemberEntity
 
 ```lua
-local crew_member = client:CrewMember(nil)
+local crew_member = client:crew_member(nil)
 ```
 
 ### Fields
@@ -553,7 +552,7 @@ local crew_member = client:CrewMember(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CrewMember():list()
+local results, err = client:crew_member():list()
 ```
 
 ### Common Methods
@@ -589,7 +588,7 @@ Return the entity name.
 ## EpisodeEntity
 
 ```lua
-local episode = client:Episode(nil)
+local episode = client:episode(nil)
 ```
 
 ### Fields
@@ -618,7 +617,7 @@ local episode = client:Episode(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Episode():list()
+local results, err = client:episode():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -626,7 +625,7 @@ local results, err = client:Episode():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Episode():load({ id = "episode_id" })
+local result, err = client:episode():load({ id = "episode_id" })
 ```
 
 ### Common Methods
@@ -662,7 +661,7 @@ Return the entity name.
 ## GuestCastCreditEntity
 
 ```lua
-local guest_cast_credit = client:GuestCastCredit(nil)
+local guest_cast_credit = client:guest_cast_credit(nil)
 ```
 
 ### Fields
@@ -678,7 +677,7 @@ local guest_cast_credit = client:GuestCastCredit(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:GuestCastCredit():list()
+local results, err = client:guest_cast_credit():list()
 ```
 
 ### Common Methods
@@ -714,7 +713,7 @@ Return the entity name.
 ## ImageEntity
 
 ```lua
-local image = client:Image(nil)
+local image = client:image(nil)
 ```
 
 ### Fields
@@ -733,7 +732,7 @@ local image = client:Image(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Image():list()
+local results, err = client:image():list()
 ```
 
 ### Common Methods
@@ -769,7 +768,7 @@ Return the entity name.
 ## PersonEntity
 
 ```lua
-local person = client:Person(nil)
+local person = client:person(nil)
 ```
 
 ### Fields
@@ -796,7 +795,7 @@ local person = client:Person(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Person():list()
+local results, err = client:person():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -804,7 +803,7 @@ local results, err = client:Person():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Person():load({ id = "person_id" })
+local result, err = client:person():load({ id = "person_id" })
 ```
 
 ### Common Methods
@@ -840,7 +839,7 @@ Return the entity name.
 ## ScheduleEntity
 
 ```lua
-local schedule = client:Schedule(nil)
+local schedule = client:schedule(nil)
 ```
 
 ### Fields
@@ -870,7 +869,7 @@ local schedule = client:Schedule(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Schedule():list()
+local results, err = client:schedule():list()
 ```
 
 ### Common Methods
@@ -906,7 +905,7 @@ Return the entity name.
 ## ScheduledEpisodeEntity
 
 ```lua
-local scheduled_episode = client:ScheduledEpisode(nil)
+local scheduled_episode = client:scheduled_episode(nil)
 ```
 
 ### Fields
@@ -936,7 +935,7 @@ local scheduled_episode = client:ScheduledEpisode(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ScheduledEpisode():list()
+local results, err = client:scheduled_episode():list()
 ```
 
 ### Common Methods
@@ -972,7 +971,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:Search(nil)
+local search = client:search(nil)
 ```
 
 ### Operations
@@ -982,7 +981,7 @@ local search = client:Search(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Search():load({ id = "search_id" })
+local result, err = client:search():load({ id = "search_id" })
 ```
 
 ### Common Methods
@@ -1018,7 +1017,7 @@ Return the entity name.
 ## SeasonEntity
 
 ```lua
-local season = client:Season(nil)
+local season = client:season(nil)
 ```
 
 ### Fields
@@ -1045,7 +1044,7 @@ local season = client:Season(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Season():list()
+local results, err = client:season():list()
 ```
 
 ### Common Methods
@@ -1081,7 +1080,7 @@ Return the entity name.
 ## ShowEntity
 
 ```lua
-local show = client:Show(nil)
+local show = client:show(nil)
 ```
 
 ### Fields
@@ -1121,7 +1120,7 @@ local show = client:Show(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Show():list()
+local results, err = client:show():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -1129,7 +1128,7 @@ local results, err = client:Show():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Show():load({ id = "show_id" })
+local result, err = client:show():load({ id = "show_id" })
 ```
 
 ### Common Methods
@@ -1165,7 +1164,7 @@ Return the entity name.
 ## UpdateEntity
 
 ```lua
-local update = client:Update(nil)
+local update = client:update(nil)
 ```
 
 ### Operations
@@ -1175,7 +1174,7 @@ local update = client:Update(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Update():load({ id = "update_id" })
+local result, err = client:update():load({ id = "update_id" })
 ```
 
 ### Common Methods

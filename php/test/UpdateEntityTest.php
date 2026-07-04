@@ -49,8 +49,7 @@ class UpdateEntityTest extends TestCase
         // LOAD
         $update_ref01_ent = $client->Update(null);
         $update_ref01_match_dt0 = [];
-        [$update_ref01_data_dt0_loaded, $err] = $update_ref01_ent->load($update_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $update_ref01_data_dt0_loaded = $update_ref01_ent->load($update_ref01_match_dt0, null);
         $this->assertNotNull($update_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function update_basic_setup($extra)
         "TVMAZE_TEST_UPDATE_ENTID" => $idmap,
         "TVMAZE_TEST_LIVE" => "FALSE",
         "TVMAZE_TEST_EXPLAIN" => "FALSE",
-        "TVMAZE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function update_basic_setup($extra)
     if ($env["TVMAZE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TVMAZE_APIKEY"],
             ],
             $extra ?? [],
         ]);

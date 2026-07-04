@@ -45,8 +45,7 @@ class GuestCastCreditEntityTest < Minitest::Test
       "person_id" => setup[:idmap]["person01"],
     }
 
-    guest_cast_credit_ref01_list_result, err = guest_cast_credit_ref01_ent.list(guest_cast_credit_ref01_match, nil)
-    assert_nil err
+    guest_cast_credit_ref01_list_result = guest_cast_credit_ref01_ent.list(guest_cast_credit_ref01_match, nil)
     assert guest_cast_credit_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def guest_cast_credit_basic_setup(extra)
     "TVMAZE_TEST_GUEST_CAST_CREDIT_ENTID" => idmap,
     "TVMAZE_TEST_LIVE" => "FALSE",
     "TVMAZE_TEST_EXPLAIN" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def guest_cast_credit_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TVMAZE_APIKEY"],
       },
       extra || {},
     ])

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CrewMemberListMatch
+---@param ctrl? table
+---@return CrewMember[]
+---@return string? err
 function CrewMemberEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

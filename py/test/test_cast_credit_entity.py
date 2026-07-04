@@ -52,8 +52,7 @@ class TestCastCreditEntity:
             "person_id": setup["idmap"]["person01"],
         }
 
-        cast_credit_ref01_list_result, err = cast_credit_ref01_ent.list(cast_credit_ref01_match, None)
-        assert err is None
+        cast_credit_ref01_list_result = cast_credit_ref01_ent.list(cast_credit_ref01_match, None)
         assert isinstance(cast_credit_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _cast_credit_basic_setup(extra):
         "TVMAZE_TEST_CAST_CREDIT_ENTID": idmap,
         "TVMAZE_TEST_LIVE": "FALSE",
         "TVMAZE_TEST_EXPLAIN": "FALSE",
-        "TVMAZE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _cast_credit_basic_setup(extra):
     if env.get("TVMAZE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TVMAZE_APIKEY"),
             },
             extra or {},
         ])

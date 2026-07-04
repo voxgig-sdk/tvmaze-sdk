@@ -45,8 +45,7 @@ class CrewEntityTest < Minitest::Test
       "show_id" => setup[:idmap]["show01"],
     }
 
-    crew_ref01_list_result, err = crew_ref01_ent.list(crew_ref01_match, nil)
-    assert_nil err
+    crew_ref01_list_result = crew_ref01_ent.list(crew_ref01_match, nil)
     assert crew_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def crew_basic_setup(extra)
     "TVMAZE_TEST_CREW_ENTID" => idmap,
     "TVMAZE_TEST_LIVE" => "FALSE",
     "TVMAZE_TEST_EXPLAIN" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def crew_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TVMAZE_APIKEY"],
       },
       extra || {},
     ])

@@ -85,6 +85,27 @@ func (e *ShowEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Show; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *ShowEntity) DataTyped(data ...Show) Show {
+	if len(data) > 0 {
+		return typedFrom[Show](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Show](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Show (all fields
+// optional at the wire level).
+func (e *ShowEntity) MatchTyped(match ...Show) Show {
+	if len(match) > 0 {
+		return typedFrom[Show](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Show](e.Match())
+}
+
 
 func (e *ShowEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *ShowEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, er
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// ShowLoadMatch and returns an Show. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *ShowEntity) LoadTyped(reqmatch ShowLoadMatch, ctrl map[string]any) (Show, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Show{}, err
+	}
+	return typedFrom[Show](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *ShowEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, er
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// ShowListMatch and returns []Show. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *ShowEntity) ListTyped(reqmatch ShowListMatch, ctrl map[string]any) ([]Show, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Show](res), nil
 }
 
 

@@ -244,108 +244,342 @@ end
 
 
 
+-- Idiomatic facade: client:aka():list() / client:aka():load({ id = ... })
+function TvmazeSDK:aka(data)
+  local EntityMod = require("entity.aka_entity")
+  if data == nil then
+    if self._aka == nil then
+      self._aka = EntityMod.new(self, nil)
+    end
+    return self._aka
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:aka() instead.
 function TvmazeSDK:Aka(data)
   local EntityMod = require("entity.aka_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:alternate_list():list() / client:alternate_list():load({ id = ... })
+function TvmazeSDK:alternate_list(data)
+  local EntityMod = require("entity.alternate_list_entity")
+  if data == nil then
+    if self._alternate_list == nil then
+      self._alternate_list = EntityMod.new(self, nil)
+    end
+    return self._alternate_list
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:alternate_list() instead.
 function TvmazeSDK:AlternateList(data)
   local EntityMod = require("entity.alternate_list_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:cast():list() / client:cast():load({ id = ... })
+function TvmazeSDK:cast(data)
+  local EntityMod = require("entity.cast_entity")
+  if data == nil then
+    if self._cast == nil then
+      self._cast = EntityMod.new(self, nil)
+    end
+    return self._cast
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:cast() instead.
 function TvmazeSDK:Cast(data)
   local EntityMod = require("entity.cast_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:cast_credit():list() / client:cast_credit():load({ id = ... })
+function TvmazeSDK:cast_credit(data)
+  local EntityMod = require("entity.cast_credit_entity")
+  if data == nil then
+    if self._cast_credit == nil then
+      self._cast_credit = EntityMod.new(self, nil)
+    end
+    return self._cast_credit
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:cast_credit() instead.
 function TvmazeSDK:CastCredit(data)
   local EntityMod = require("entity.cast_credit_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:cast_member():list() / client:cast_member():load({ id = ... })
+function TvmazeSDK:cast_member(data)
+  local EntityMod = require("entity.cast_member_entity")
+  if data == nil then
+    if self._cast_member == nil then
+      self._cast_member = EntityMod.new(self, nil)
+    end
+    return self._cast_member
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:cast_member() instead.
 function TvmazeSDK:CastMember(data)
   local EntityMod = require("entity.cast_member_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:crew():list() / client:crew():load({ id = ... })
+function TvmazeSDK:crew(data)
+  local EntityMod = require("entity.crew_entity")
+  if data == nil then
+    if self._crew == nil then
+      self._crew = EntityMod.new(self, nil)
+    end
+    return self._crew
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:crew() instead.
 function TvmazeSDK:Crew(data)
   local EntityMod = require("entity.crew_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:crew_credit():list() / client:crew_credit():load({ id = ... })
+function TvmazeSDK:crew_credit(data)
+  local EntityMod = require("entity.crew_credit_entity")
+  if data == nil then
+    if self._crew_credit == nil then
+      self._crew_credit = EntityMod.new(self, nil)
+    end
+    return self._crew_credit
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:crew_credit() instead.
 function TvmazeSDK:CrewCredit(data)
   local EntityMod = require("entity.crew_credit_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:crew_member():list() / client:crew_member():load({ id = ... })
+function TvmazeSDK:crew_member(data)
+  local EntityMod = require("entity.crew_member_entity")
+  if data == nil then
+    if self._crew_member == nil then
+      self._crew_member = EntityMod.new(self, nil)
+    end
+    return self._crew_member
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:crew_member() instead.
 function TvmazeSDK:CrewMember(data)
   local EntityMod = require("entity.crew_member_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:episode():list() / client:episode():load({ id = ... })
+function TvmazeSDK:episode(data)
+  local EntityMod = require("entity.episode_entity")
+  if data == nil then
+    if self._episode == nil then
+      self._episode = EntityMod.new(self, nil)
+    end
+    return self._episode
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:episode() instead.
 function TvmazeSDK:Episode(data)
   local EntityMod = require("entity.episode_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:guest_cast_credit():list() / client:guest_cast_credit():load({ id = ... })
+function TvmazeSDK:guest_cast_credit(data)
+  local EntityMod = require("entity.guest_cast_credit_entity")
+  if data == nil then
+    if self._guest_cast_credit == nil then
+      self._guest_cast_credit = EntityMod.new(self, nil)
+    end
+    return self._guest_cast_credit
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:guest_cast_credit() instead.
 function TvmazeSDK:GuestCastCredit(data)
   local EntityMod = require("entity.guest_cast_credit_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:image():list() / client:image():load({ id = ... })
+function TvmazeSDK:image(data)
+  local EntityMod = require("entity.image_entity")
+  if data == nil then
+    if self._image == nil then
+      self._image = EntityMod.new(self, nil)
+    end
+    return self._image
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:image() instead.
 function TvmazeSDK:Image(data)
   local EntityMod = require("entity.image_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:person():list() / client:person():load({ id = ... })
+function TvmazeSDK:person(data)
+  local EntityMod = require("entity.person_entity")
+  if data == nil then
+    if self._person == nil then
+      self._person = EntityMod.new(self, nil)
+    end
+    return self._person
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:person() instead.
 function TvmazeSDK:Person(data)
   local EntityMod = require("entity.person_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:schedule():list() / client:schedule():load({ id = ... })
+function TvmazeSDK:schedule(data)
+  local EntityMod = require("entity.schedule_entity")
+  if data == nil then
+    if self._schedule == nil then
+      self._schedule = EntityMod.new(self, nil)
+    end
+    return self._schedule
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:schedule() instead.
 function TvmazeSDK:Schedule(data)
   local EntityMod = require("entity.schedule_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:scheduled_episode():list() / client:scheduled_episode():load({ id = ... })
+function TvmazeSDK:scheduled_episode(data)
+  local EntityMod = require("entity.scheduled_episode_entity")
+  if data == nil then
+    if self._scheduled_episode == nil then
+      self._scheduled_episode = EntityMod.new(self, nil)
+    end
+    return self._scheduled_episode
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:scheduled_episode() instead.
 function TvmazeSDK:ScheduledEpisode(data)
   local EntityMod = require("entity.scheduled_episode_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
+function TvmazeSDK:search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:search() instead.
 function TvmazeSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:season():list() / client:season():load({ id = ... })
+function TvmazeSDK:season(data)
+  local EntityMod = require("entity.season_entity")
+  if data == nil then
+    if self._season == nil then
+      self._season = EntityMod.new(self, nil)
+    end
+    return self._season
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:season() instead.
 function TvmazeSDK:Season(data)
   local EntityMod = require("entity.season_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:show():list() / client:show():load({ id = ... })
+function TvmazeSDK:show(data)
+  local EntityMod = require("entity.show_entity")
+  if data == nil then
+    if self._show == nil then
+      self._show = EntityMod.new(self, nil)
+    end
+    return self._show
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:show() instead.
 function TvmazeSDK:Show(data)
   local EntityMod = require("entity.show_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:update():list() / client:update():load({ id = ... })
+function TvmazeSDK:update(data)
+  local EntityMod = require("entity.update_entity")
+  if data == nil then
+    if self._update == nil then
+      self._update = EntityMod.new(self, nil)
+    end
+    return self._update
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:update() instead.
 function TvmazeSDK:Update(data)
   local EntityMod = require("entity.update_entity")
   return EntityMod.new(self, data)

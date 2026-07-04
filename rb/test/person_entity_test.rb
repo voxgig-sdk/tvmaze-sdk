@@ -43,16 +43,14 @@ class PersonEntityTest < Minitest::Test
     person_ref01_ent = client.Person(nil)
     person_ref01_match = {}
 
-    person_ref01_list_result, err = person_ref01_ent.list(person_ref01_match, nil)
-    assert_nil err
+    person_ref01_list_result = person_ref01_ent.list(person_ref01_match, nil)
     assert person_ref01_list_result.is_a?(Array)
 
     # LOAD
     person_ref01_match_dt0 = {
       "id" => person_ref01_data["id"],
     }
-    person_ref01_data_dt0_loaded, err = person_ref01_ent.load(person_ref01_match_dt0, nil)
-    assert_nil err
+    person_ref01_data_dt0_loaded = person_ref01_ent.load(person_ref01_match_dt0, nil)
     person_ref01_data_dt0_load_result = Helpers.to_map(person_ref01_data_dt0_loaded)
     assert !person_ref01_data_dt0_load_result.nil?
     assert_equal person_ref01_data_dt0_load_result["id"], person_ref01_data["id"]
@@ -93,7 +91,6 @@ def person_basic_setup(extra)
     "TVMAZE_TEST_PERSON_ENTID" => idmap,
     "TVMAZE_TEST_LIVE" => "FALSE",
     "TVMAZE_TEST_EXPLAIN" => "FALSE",
-    "TVMAZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def person_basic_setup(extra)
   if env["TVMAZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TVMAZE_APIKEY"],
       },
       extra || {},
     ])

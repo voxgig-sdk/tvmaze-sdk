@@ -9,11 +9,9 @@ The Python SDK for the Tvmaze API — an entity-oriented client following Python
 
 
 ## Install
-```bash
-pip install voxgig-sdk-tvmaze
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/tvmaze-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -28,25 +26,21 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from tvmaze_sdk import TvmazeSDK
 
-client = TvmazeSDK({
-    "apikey": os.environ.get("TVMAZE_APIKEY"),
-})
+client = TvmazeSDK()
 ```
 
 ### 2. List akas
 
 ```python
-result, err = client.Aka().list()
-if err:
-    raise Exception(err)
-
-if isinstance(result, list):
+try:
+    result = client.aka.list()
     for item in result:
         d = item.data_get()
         print(d["id"], d["name"])
+except Exception as err:
+    print(f"list failed: {err}")
 ```
 
 
@@ -57,29 +51,28 @@ if isinstance(result, list):
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -93,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TvmazeSDK.test()
 
-result, err = client.Tvmaze().load({"id": "test01"})
+result = client.aka.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -124,7 +117,6 @@ Create a `.env.local` file at the project root:
 
 ```
 TVMAZE_TEST_LIVE=TRUE
-TVMAZE_APIKEY=<your-key>
 ```
 
 Then run:
@@ -148,7 +140,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
@@ -170,8 +161,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Aka` | `(data) -> AkaEntity` | Create a Aka entity instance. |
 | `AlternateList` | `(data) -> AlternateListEntity` | Create a AlternateList entity instance. |
 | `Cast` | `(data) -> CastEntity` | Create a Cast entity instance. |
@@ -197,11 +188,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -211,8 +202,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -513,7 +508,7 @@ API path: `/updates/people`
 
 ### Aka
 
-Create an instance: `const aka = client.Aka()`
+Create an instance: `const aka = client.aka`
 
 #### Operations
 
@@ -531,13 +526,13 @@ Create an instance: `const aka = client.Aka()`
 #### Example: List
 
 ```ts
-const akas = await client.Aka().list()
+const akas = await client.aka.list()
 ```
 
 
 ### AlternateList
 
-Create an instance: `const alternate_list = client.AlternateList()`
+Create an instance: `const alternate_list = client.alternate_list`
 
 #### Operations
 
@@ -558,19 +553,19 @@ Create an instance: `const alternate_list = client.AlternateList()`
 #### Example: Load
 
 ```ts
-const alternate_list = await client.AlternateList().load({ id: 'alternate_list_id' })
+const alternate_list = await client.alternate_list.load({ id: 'alternate_list_id' })
 ```
 
 #### Example: List
 
 ```ts
-const alternate_lists = await client.AlternateList().list()
+const alternate_lists = await client.alternate_list.list()
 ```
 
 
 ### Cast
 
-Create an instance: `const cast = client.Cast()`
+Create an instance: `const cast = client.cast`
 
 #### Operations
 
@@ -590,13 +585,13 @@ Create an instance: `const cast = client.Cast()`
 #### Example: List
 
 ```ts
-const casts = await client.Cast().list()
+const casts = await client.cast.list()
 ```
 
 
 ### CastCredit
 
-Create an instance: `const cast_credit = client.CastCredit()`
+Create an instance: `const cast_credit = client.cast_credit`
 
 #### Operations
 
@@ -613,13 +608,13 @@ Create an instance: `const cast_credit = client.CastCredit()`
 #### Example: List
 
 ```ts
-const cast_credits = await client.CastCredit().list()
+const cast_credits = await client.cast_credit.list()
 ```
 
 
 ### CastMember
 
-Create an instance: `const cast_member = client.CastMember()`
+Create an instance: `const cast_member = client.cast_member`
 
 #### Operations
 
@@ -639,13 +634,13 @@ Create an instance: `const cast_member = client.CastMember()`
 #### Example: List
 
 ```ts
-const cast_members = await client.CastMember().list()
+const cast_members = await client.cast_member.list()
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.Crew()`
+Create an instance: `const crew = client.crew`
 
 #### Operations
 
@@ -663,13 +658,13 @@ Create an instance: `const crew = client.Crew()`
 #### Example: List
 
 ```ts
-const crews = await client.Crew().list()
+const crews = await client.crew.list()
 ```
 
 
 ### CrewCredit
 
-Create an instance: `const crew_credit = client.CrewCredit()`
+Create an instance: `const crew_credit = client.crew_credit`
 
 #### Operations
 
@@ -687,13 +682,13 @@ Create an instance: `const crew_credit = client.CrewCredit()`
 #### Example: List
 
 ```ts
-const crew_credits = await client.CrewCredit().list()
+const crew_credits = await client.crew_credit.list()
 ```
 
 
 ### CrewMember
 
-Create an instance: `const crew_member = client.CrewMember()`
+Create an instance: `const crew_member = client.crew_member`
 
 #### Operations
 
@@ -711,13 +706,13 @@ Create an instance: `const crew_member = client.CrewMember()`
 #### Example: List
 
 ```ts
-const crew_members = await client.CrewMember().list()
+const crew_members = await client.crew_member.list()
 ```
 
 
 ### Episode
 
-Create an instance: `const episode = client.Episode()`
+Create an instance: `const episode = client.episode`
 
 #### Operations
 
@@ -748,19 +743,19 @@ Create an instance: `const episode = client.Episode()`
 #### Example: Load
 
 ```ts
-const episode = await client.Episode().load({ id: 'episode_id' })
+const episode = await client.episode.load({ id: 'episode_id' })
 ```
 
 #### Example: List
 
 ```ts
-const episodes = await client.Episode().list()
+const episodes = await client.episode.list()
 ```
 
 
 ### GuestCastCredit
 
-Create an instance: `const guest_cast_credit = client.GuestCastCredit()`
+Create an instance: `const guest_cast_credit = client.guest_cast_credit`
 
 #### Operations
 
@@ -777,13 +772,13 @@ Create an instance: `const guest_cast_credit = client.GuestCastCredit()`
 #### Example: List
 
 ```ts
-const guest_cast_credits = await client.GuestCastCredit().list()
+const guest_cast_credits = await client.guest_cast_credit.list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -803,13 +798,13 @@ Create an instance: `const image = client.Image()`
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.image.list()
 ```
 
 
 ### Person
 
-Create an instance: `const person = client.Person()`
+Create an instance: `const person = client.person`
 
 #### Operations
 
@@ -838,19 +833,19 @@ Create an instance: `const person = client.Person()`
 #### Example: Load
 
 ```ts
-const person = await client.Person().load({ id: 'person_id' })
+const person = await client.person.load({ id: 'person_id' })
 ```
 
 #### Example: List
 
 ```ts
-const persons = await client.Person().list()
+const persons = await client.person.list()
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.Schedule()`
+Create an instance: `const schedule = client.schedule`
 
 #### Operations
 
@@ -881,13 +876,13 @@ Create an instance: `const schedule = client.Schedule()`
 #### Example: List
 
 ```ts
-const schedules = await client.Schedule().list()
+const schedules = await client.schedule.list()
 ```
 
 
 ### ScheduledEpisode
 
-Create an instance: `const scheduled_episode = client.ScheduledEpisode()`
+Create an instance: `const scheduled_episode = client.scheduled_episode`
 
 #### Operations
 
@@ -918,13 +913,13 @@ Create an instance: `const scheduled_episode = client.ScheduledEpisode()`
 #### Example: List
 
 ```ts
-const scheduled_episodes = await client.ScheduledEpisode().list()
+const scheduled_episodes = await client.scheduled_episode.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -935,13 +930,13 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.search.load({ id: 'search_id' })
 ```
 
 
 ### Season
 
-Create an instance: `const season = client.Season()`
+Create an instance: `const season = client.season`
 
 #### Operations
 
@@ -969,13 +964,13 @@ Create an instance: `const season = client.Season()`
 #### Example: List
 
 ```ts
-const seasons = await client.Season().list()
+const seasons = await client.season.list()
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.Show()`
+Create an instance: `const show = client.show`
 
 #### Operations
 
@@ -1017,19 +1012,19 @@ Create an instance: `const show = client.Show()`
 #### Example: Load
 
 ```ts
-const show = await client.Show().load({ id: 'show_id' })
+const show = await client.show.load({ id: 'show_id' })
 ```
 
 #### Example: List
 
 ```ts
-const shows = await client.Show().list()
+const shows = await client.show.list()
 ```
 
 
 ### Update
 
-Create an instance: `const update = client.Update()`
+Create an instance: `const update = client.update`
 
 #### Operations
 
@@ -1040,7 +1035,7 @@ Create an instance: `const update = client.Update()`
 #### Example: Load
 
 ```ts
-const update = await client.Update().load({ id: 'update_id' })
+const update = await client.update.load({ id: 'update_id' })
 ```
 
 
@@ -1114,11 +1109,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+aka = client.aka
+aka.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# aka.data_get() now returns the loaded aka data
+# aka.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

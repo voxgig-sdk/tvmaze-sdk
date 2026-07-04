@@ -50,8 +50,7 @@ class ScheduledEpisodeEntityTest extends TestCase
         $scheduled_episode_ref01_ent = $client->ScheduledEpisode(null);
         $scheduled_episode_ref01_match = [];
 
-        [$scheduled_episode_ref01_list_result, $err] = $scheduled_episode_ref01_ent->list($scheduled_episode_ref01_match, null);
-        $this->assertNull($err);
+        $scheduled_episode_ref01_list_result = $scheduled_episode_ref01_ent->list($scheduled_episode_ref01_match, null);
         $this->assertIsArray($scheduled_episode_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function scheduled_episode_basic_setup($extra)
         "TVMAZE_TEST_SCHEDULED_EPISODE_ENTID" => $idmap,
         "TVMAZE_TEST_LIVE" => "FALSE",
         "TVMAZE_TEST_EXPLAIN" => "FALSE",
-        "TVMAZE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function scheduled_episode_basic_setup($extra)
     if ($env["TVMAZE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TVMAZE_APIKEY"],
             ],
             $extra ?? [],
         ]);

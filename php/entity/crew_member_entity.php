@@ -55,6 +55,9 @@ class CrewMemberEntity
         return new CrewMemberEntity($this->_client, $opts);
     }
 
+    /**
+     * @param CrewMember|array $args CrewMember data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class CrewMemberEntity
         }
     }
 
+    /**
+     * @return CrewMember|array The current CrewMember data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of CrewMember fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class CrewMemberEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of CrewMember fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class CrewMemberEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List CrewMember items matching the given filter.
+     *
+     * @param CrewMemberListMatch|array|null $reqmatch Match filter (any subset
+     *   of CrewMember fields) as an assoc-array; CrewMemberListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return CrewMember[]|array A list of CrewMember items as assoc-arrays at
+     *   the SDK boundary; throws TvmazeError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class CrewMemberEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

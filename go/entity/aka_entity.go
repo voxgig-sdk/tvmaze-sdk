@@ -85,6 +85,27 @@ func (e *AkaEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Aka; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *AkaEntity) DataTyped(data ...Aka) Aka {
+	if len(data) > 0 {
+		return typedFrom[Aka](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Aka](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Aka (all fields
+// optional at the wire level).
+func (e *AkaEntity) MatchTyped(match ...Aka) Aka {
+	if len(match) > 0 {
+		return typedFrom[Aka](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Aka](e.Match())
+}
+
 func (e *AkaEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *AkaEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, err
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// AkaListMatch and returns []Aka. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *AkaEntity) ListTyped(reqmatch AkaListMatch, ctrl map[string]any) ([]Aka, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Aka](res), nil
 }
 
 

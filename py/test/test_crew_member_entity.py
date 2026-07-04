@@ -52,8 +52,7 @@ class TestCrewMemberEntity:
             "episode_id": setup["idmap"]["episode01"],
         }
 
-        crew_member_ref01_list_result, err = crew_member_ref01_ent.list(crew_member_ref01_match, None)
-        assert err is None
+        crew_member_ref01_list_result = crew_member_ref01_ent.list(crew_member_ref01_match, None)
         assert isinstance(crew_member_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _crew_member_basic_setup(extra):
         "TVMAZE_TEST_CREW_MEMBER_ENTID": idmap,
         "TVMAZE_TEST_LIVE": "FALSE",
         "TVMAZE_TEST_EXPLAIN": "FALSE",
-        "TVMAZE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _crew_member_basic_setup(extra):
     if env.get("TVMAZE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TVMAZE_APIKEY"),
             },
             extra or {},
         ])

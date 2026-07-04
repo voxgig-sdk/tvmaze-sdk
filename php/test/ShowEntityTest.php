@@ -50,16 +50,14 @@ class ShowEntityTest extends TestCase
         $show_ref01_ent = $client->Show(null);
         $show_ref01_match = [];
 
-        [$show_ref01_list_result, $err] = $show_ref01_ent->list($show_ref01_match, null);
-        $this->assertNull($err);
+        $show_ref01_list_result = $show_ref01_ent->list($show_ref01_match, null);
         $this->assertIsArray($show_ref01_list_result);
 
         // LOAD
         $show_ref01_match_dt0 = [
             "id" => $show_ref01_data["id"],
         ];
-        [$show_ref01_data_dt0_loaded, $err] = $show_ref01_ent->load($show_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $show_ref01_data_dt0_loaded = $show_ref01_ent->load($show_ref01_match_dt0, null);
         $show_ref01_data_dt0_load_result = Helpers::to_map($show_ref01_data_dt0_loaded);
         $this->assertNotNull($show_ref01_data_dt0_load_result);
         $this->assertEquals($show_ref01_data_dt0_load_result["id"], $show_ref01_data["id"]);
@@ -96,7 +94,6 @@ function show_basic_setup($extra)
         "TVMAZE_TEST_SHOW_ENTID" => $idmap,
         "TVMAZE_TEST_LIVE" => "FALSE",
         "TVMAZE_TEST_EXPLAIN" => "FALSE",
-        "TVMAZE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function show_basic_setup($extra)
     if ($env["TVMAZE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TVMAZE_APIKEY"],
             ],
             $extra ?? [],
         ]);
