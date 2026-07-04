@@ -4,353 +4,317 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Aka:
-    country: Optional[dict] = None
-    name: Optional[str] = None
+class Aka(TypedDict, total=False):
+    country: dict
+    name: str
 
 
-@dataclass
-class AkaListMatch:
+class AkaListMatch(TypedDict):
     show_id: int
 
 
-@dataclass
-class AlternateList:
-    id: Optional[int] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    url: Optional[str] = None
+class AlternateList(TypedDict, total=False):
+    id: int
+    link: dict
+    name: str
+    url: str
 
 
-@dataclass
-class AlternateListLoadMatch:
+class AlternateListLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class AlternateListListMatch:
+class AlternateListListMatch(TypedDict):
     show_id: int
 
 
-@dataclass
-class Cast:
-    character: Optional[dict] = None
-    person: Optional[dict] = None
-    self: Optional[bool] = None
-    voice: Optional[bool] = None
+class Cast(TypedDict, total=False):
+    character: dict
+    person: dict
+    self: bool
+    voice: bool
 
 
-@dataclass
-class CastListMatch:
+class CastListMatch(TypedDict):
     show_id: int
 
 
-@dataclass
-class CastCredit:
-    link: Optional[dict] = None
+class CastCredit(TypedDict, total=False):
+    link: dict
 
 
-@dataclass
-class CastCreditListMatch:
+class CastCreditListMatch(TypedDict):
     person_id: int
 
 
-@dataclass
-class CastMember:
-    character: Optional[dict] = None
-    person: Optional[dict] = None
-    self: Optional[bool] = None
-    voice: Optional[bool] = None
+class CastMember(TypedDict, total=False):
+    character: dict
+    person: dict
+    self: bool
+    voice: bool
 
 
-@dataclass
-class CastMemberListMatch:
+class CastMemberListMatch(TypedDict):
     episode_id: int
 
 
-@dataclass
-class Crew:
-    person: Optional[dict] = None
-    type: Optional[str] = None
+class Crew(TypedDict, total=False):
+    person: dict
+    type: str
 
 
-@dataclass
-class CrewListMatch:
+class CrewListMatch(TypedDict):
     show_id: int
 
 
-@dataclass
-class CrewCredit:
-    link: Optional[dict] = None
-    type: Optional[str] = None
+class CrewCredit(TypedDict, total=False):
+    link: dict
+    type: str
 
 
-@dataclass
-class CrewCreditListMatch:
+class CrewCreditListMatch(TypedDict):
     person_id: int
 
 
-@dataclass
-class CrewMember:
-    person: Optional[dict] = None
-    type: Optional[str] = None
+class CrewMember(TypedDict, total=False):
+    person: dict
+    type: str
 
 
-@dataclass
-class CrewMemberListMatch:
+class CrewMemberListMatch(TypedDict):
     episode_id: int
 
 
-@dataclass
-class Episode:
-    airdate: Optional[str] = None
-    airstamp: Optional[str] = None
-    airtime: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    number: Optional[int] = None
-    rating: Optional[dict] = None
-    runtime: Optional[int] = None
-    season: Optional[int] = None
-    summary: Optional[str] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
+class Episode(TypedDict, total=False):
+    airdate: str
+    airstamp: str
+    airtime: str
+    id: int
+    image: dict
+    link: dict
+    name: str
+    number: int
+    rating: dict
+    runtime: int
+    season: int
+    summary: str
+    type: str
+    url: str
 
 
-@dataclass
-class EpisodeLoadMatch:
+class EpisodeLoadMatch(TypedDict):
     show_id: int
     id: int
 
 
-@dataclass
-class EpisodeListMatch:
+class EpisodeListMatch(TypedDict):
     show_id: int
     season_id: int
 
 
-@dataclass
-class GuestCastCredit:
-    link: Optional[dict] = None
+class GuestCastCredit(TypedDict, total=False):
+    link: dict
 
 
-@dataclass
-class GuestCastCreditListMatch:
+class GuestCastCreditListMatch(TypedDict):
     person_id: int
 
 
-@dataclass
-class Image:
-    id: Optional[int] = None
-    main: Optional[bool] = None
-    resolution: Optional[dict] = None
-    type: Optional[str] = None
+class Image(TypedDict, total=False):
+    id: int
+    main: bool
+    resolution: dict
+    type: str
 
 
-@dataclass
-class ImageListMatch:
+class ImageListMatch(TypedDict):
     show_id: int
 
 
-@dataclass
-class Person:
-    birthday: Optional[str] = None
-    country: Optional[dict] = None
-    deathday: Optional[str] = None
-    gender: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    person: Optional[dict] = None
-    score: Optional[float] = None
-    updated: Optional[int] = None
-    url: Optional[str] = None
+class Person(TypedDict, total=False):
+    birthday: str
+    country: dict
+    deathday: str
+    gender: str
+    id: int
+    image: dict
+    link: dict
+    name: str
+    person: dict
+    score: float
+    updated: int
+    url: str
 
 
-@dataclass
-class PersonLoadMatch:
+class PersonLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class PersonListMatch:
-    birthday: Optional[str] = None
-    country: Optional[dict] = None
-    deathday: Optional[str] = None
-    gender: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    person: Optional[dict] = None
-    score: Optional[float] = None
-    updated: Optional[int] = None
-    url: Optional[str] = None
+class PersonListMatch(TypedDict, total=False):
+    birthday: str
+    country: dict
+    deathday: str
+    gender: str
+    id: int
+    image: dict
+    link: dict
+    name: str
+    person: dict
+    score: float
+    updated: int
+    url: str
 
 
-@dataclass
-class Schedule:
-    airdate: Optional[str] = None
-    airstamp: Optional[str] = None
-    airtime: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    number: Optional[int] = None
-    rating: Optional[dict] = None
-    runtime: Optional[int] = None
-    season: Optional[int] = None
-    show: Optional[dict] = None
-    summary: Optional[str] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
+class Schedule(TypedDict, total=False):
+    airdate: str
+    airstamp: str
+    airtime: str
+    id: int
+    image: dict
+    link: dict
+    name: str
+    number: int
+    rating: dict
+    runtime: int
+    season: int
+    show: dict
+    summary: str
+    type: str
+    url: str
 
 
-@dataclass
-class ScheduleListMatch:
-    airdate: Optional[str] = None
-    airstamp: Optional[str] = None
-    airtime: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    number: Optional[int] = None
-    rating: Optional[dict] = None
-    runtime: Optional[int] = None
-    season: Optional[int] = None
-    show: Optional[dict] = None
-    summary: Optional[str] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
+class ScheduleListMatch(TypedDict, total=False):
+    airdate: str
+    airstamp: str
+    airtime: str
+    id: int
+    image: dict
+    link: dict
+    name: str
+    number: int
+    rating: dict
+    runtime: int
+    season: int
+    show: dict
+    summary: str
+    type: str
+    url: str
 
 
-@dataclass
-class ScheduledEpisode:
-    airdate: Optional[str] = None
-    airstamp: Optional[str] = None
-    airtime: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    number: Optional[int] = None
-    rating: Optional[dict] = None
-    runtime: Optional[int] = None
-    season: Optional[int] = None
-    show: Optional[dict] = None
-    summary: Optional[str] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
+class ScheduledEpisode(TypedDict, total=False):
+    airdate: str
+    airstamp: str
+    airtime: str
+    id: int
+    image: dict
+    link: dict
+    name: str
+    number: int
+    rating: dict
+    runtime: int
+    season: int
+    show: dict
+    summary: str
+    type: str
+    url: str
 
 
-@dataclass
-class ScheduledEpisodeListMatch:
-    airdate: Optional[str] = None
-    airstamp: Optional[str] = None
-    airtime: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    number: Optional[int] = None
-    rating: Optional[dict] = None
-    runtime: Optional[int] = None
-    season: Optional[int] = None
-    show: Optional[dict] = None
-    summary: Optional[str] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
+class ScheduledEpisodeListMatch(TypedDict, total=False):
+    airdate: str
+    airstamp: str
+    airtime: str
+    id: int
+    image: dict
+    link: dict
+    name: str
+    number: int
+    rating: dict
+    runtime: int
+    season: int
+    show: dict
+    summary: str
+    type: str
+    url: str
 
 
-@dataclass
-class Search:
+class Search(TypedDict):
     pass
 
 
-@dataclass
-class SearchLoadMatch:
+class SearchLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Season:
-    end_date: Optional[str] = None
-    episode_order: Optional[int] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    network: Optional[dict] = None
-    number: Optional[int] = None
-    premiere_date: Optional[str] = None
-    summary: Optional[str] = None
-    url: Optional[str] = None
-    web_channel: Optional[dict] = None
+class Season(TypedDict, total=False):
+    end_date: str
+    episode_order: int
+    id: int
+    image: dict
+    link: dict
+    name: str
+    network: dict
+    number: int
+    premiere_date: str
+    summary: str
+    url: str
+    web_channel: dict
 
 
-@dataclass
-class SeasonListMatch:
+class SeasonListMatch(TypedDict):
     show_id: int
 
 
-@dataclass
-class Show:
-    average_runtime: Optional[int] = None
-    dvd_country: Optional[dict] = None
-    ended: Optional[str] = None
-    external: Optional[dict] = None
-    genre: Optional[list] = None
-    id: Optional[int] = None
-    image: Optional[dict] = None
-    language: Optional[str] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    network: Optional[dict] = None
-    official_site: Optional[str] = None
-    premiered: Optional[str] = None
-    rating: Optional[dict] = None
-    runtime: Optional[int] = None
-    schedule: Optional[dict] = None
-    score: Optional[float] = None
-    show: Optional[dict] = None
-    status: Optional[str] = None
-    summary: Optional[str] = None
-    type: Optional[str] = None
-    updated: Optional[int] = None
-    url: Optional[str] = None
-    web_channel: Optional[dict] = None
-    weight: Optional[int] = None
+class Show(TypedDict, total=False):
+    average_runtime: int
+    dvd_country: dict
+    ended: str
+    external: dict
+    genre: list
+    id: int
+    image: dict
+    language: str
+    link: dict
+    name: str
+    network: dict
+    official_site: str
+    premiered: str
+    rating: dict
+    runtime: int
+    schedule: dict
+    score: float
+    show: dict
+    status: str
+    summary: str
+    type: str
+    updated: int
+    url: str
+    web_channel: dict
+    weight: int
 
 
-@dataclass
-class ShowLoadMatch:
+class ShowLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class ShowListMatch:
+class ShowListMatch(TypedDict):
     alternatelist_id: int
 
 
-@dataclass
-class Update:
+class Update(TypedDict):
     pass
 
 
-@dataclass
-class UpdateLoadMatch:
+class UpdateLoadMatch(TypedDict):
     pass
-

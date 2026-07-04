@@ -26,9 +26,11 @@ import { TvmazeSDK } from '@voxgig-sdk/tvmaze'
 
 const client = new TvmazeSDK()
 
-// List all akas
-const akas = await client.aka.list()
-console.log(akas.data)
+// List all akas (returns Aka[])
+const akas = await client.Aka().list()
+for (const aka of akas) {
+  console.log(aka)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -100,9 +102,10 @@ from tvmaze_sdk import TvmazeSDK
 
 client = TvmazeSDK()
 
-# List all akas
-akas = client.aka.list()
-print(akas)
+# List all akas (returns a list, raises on error)
+akas = client.Aka().list({})
+for aka in akas:
+    print(aka)
 ```
 
 ### PHP
@@ -113,8 +116,8 @@ require_once 'tvmaze_sdk.php';
 
 $client = new TvmazeSDK();
 
-// List all akas (throws on error)
-$akas = $client->aka()->list();
+// List all akas (returns an array; throws on error)
+$akas = $client->Aka()->list();
 print_r($akas);
 ```
 
@@ -137,8 +140,8 @@ require_relative "Tvmaze_sdk"
 
 client = TvmazeSDK.new
 
-# List all akas
-akas = client.aka.list
+# List all akas (returns an Array; raises on error)
+akas = client.Aka.list
 puts akas
 ```
 
@@ -150,7 +153,7 @@ local sdk = require("tvmaze_sdk")
 local client = sdk.new()
 
 -- List all akas
-local akas, err = client:aka():list()
+local akas, err = client:Aka():list()
 print(akas)
 ```
 
@@ -163,22 +166,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = TvmazeSDK.test()
-const result = await client.aka.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const aka = await client.Aka().load({ id: 'test01' })
+// aka is a bare Aka populated with mock data
+console.log(aka)
 ```
 
 ### Python
 
 ```python
 client = TvmazeSDK.test()
-result = client.aka.load({"id": "test01"})
+aka = client.Aka().load({"id": "test01"})
+print(aka)
 ```
 
 ### PHP
 
 ```php
-$client = TvmazeSDK::test();
-$result = $client->aka()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = TvmazeSDK::test([
+    "entity" => ["aka" => ["test01" => ["id" => "test01"]]],
+]);
+$aka = $client->Aka()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +201,18 @@ result, err := client.Aka(nil).Load(
 ### Ruby
 
 ```ruby
-client = TvmazeSDK.test
-result = client.aka.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = TvmazeSDK.test({
+  "entity" => { "aka" => { "test01" => { "id" => "test01" } } },
+})
+aka = client.Aka.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:aka():load({ id = "test01" })
+local result, err = client:Aka():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +260,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

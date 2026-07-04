@@ -29,18 +29,16 @@ require_once 'tvmaze_sdk.php';
 $client = new TvmazeSDK();
 ```
 
-### 2. List akas
+### 2. List aka records
 
 ```php
 try {
-    $result = $client->aka()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Aka records — iterate directly.
+    $akas = $client->Aka()->list();
+    foreach ($akas as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = TvmazeSDK::test();
+$client = TvmazeSDK::test([
+    "entity" => ["aka" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->aka()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$aka = $client->Aka()->load(["id" => "test01"]);
+print_r($aka);
 ```
 
 ### Use a custom fetch function
@@ -171,24 +173,24 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Aka` | `($data): AkaEntity` | Create a Aka entity instance. |
-| `AlternateList` | `($data): AlternateListEntity` | Create a AlternateList entity instance. |
+| `Aka` | `($data): AkaEntity` | Create an Aka entity instance. |
+| `AlternateList` | `($data): AlternateListEntity` | Create an AlternateList entity instance. |
 | `Cast` | `($data): CastEntity` | Create a Cast entity instance. |
 | `CastCredit` | `($data): CastCreditEntity` | Create a CastCredit entity instance. |
 | `CastMember` | `($data): CastMemberEntity` | Create a CastMember entity instance. |
 | `Crew` | `($data): CrewEntity` | Create a Crew entity instance. |
 | `CrewCredit` | `($data): CrewCreditEntity` | Create a CrewCredit entity instance. |
 | `CrewMember` | `($data): CrewMemberEntity` | Create a CrewMember entity instance. |
-| `Episode` | `($data): EpisodeEntity` | Create a Episode entity instance. |
+| `Episode` | `($data): EpisodeEntity` | Create an Episode entity instance. |
 | `GuestCastCredit` | `($data): GuestCastCreditEntity` | Create a GuestCastCredit entity instance. |
-| `Image` | `($data): ImageEntity` | Create a Image entity instance. |
+| `Image` | `($data): ImageEntity` | Create an Image entity instance. |
 | `Person` | `($data): PersonEntity` | Create a Person entity instance. |
 | `Schedule` | `($data): ScheduleEntity` | Create a Schedule entity instance. |
 | `ScheduledEpisode` | `($data): ScheduledEpisodeEntity` | Create a ScheduledEpisode entity instance. |
 | `Search` | `($data): SearchEntity` | Create a Search entity instance. |
 | `Season` | `($data): SeasonEntity` | Create a Season entity instance. |
 | `Show` | `($data): ShowEntity` | Create a Show entity instance. |
-| `Update` | `($data): UpdateEntity` | Create a Update entity instance. |
+| `Update` | `($data): UpdateEntity` | Create an Update entity instance. |
 
 ### Entity interface
 
@@ -516,7 +518,7 @@ API path: `/updates/people`
 
 ### Aka
 
-Create an instance: `const aka = client.aka`
+Create an instance: `$aka = $client->Aka();`
 
 #### Operations
 
@@ -533,14 +535,15 @@ Create an instance: `const aka = client.aka`
 
 #### Example: List
 
-```ts
-const akas = await client.aka.list()
+```php
+// list() returns an array of Aka records (throws on error).
+$akas = $client->Aka()->list();
 ```
 
 
 ### AlternateList
 
-Create an instance: `const alternate_list = client.alternate_list`
+Create an instance: `$alternate_list = $client->AlternateList();`
 
 #### Operations
 
@@ -560,20 +563,22 @@ Create an instance: `const alternate_list = client.alternate_list`
 
 #### Example: Load
 
-```ts
-const alternate_list = await client.alternate_list.load({ id: 'alternate_list_id' })
+```php
+// load() returns the bare AlternateList record (throws on error).
+$alternate_list = $client->AlternateList()->load(["id" => "alternate_list_id"]);
 ```
 
 #### Example: List
 
-```ts
-const alternate_lists = await client.alternate_list.list()
+```php
+// list() returns an array of AlternateList records (throws on error).
+$alternate_lists = $client->AlternateList()->list();
 ```
 
 
 ### Cast
 
-Create an instance: `const cast = client.cast`
+Create an instance: `$cast = $client->Cast();`
 
 #### Operations
 
@@ -592,14 +597,15 @@ Create an instance: `const cast = client.cast`
 
 #### Example: List
 
-```ts
-const casts = await client.cast.list()
+```php
+// list() returns an array of Cast records (throws on error).
+$casts = $client->Cast()->list();
 ```
 
 
 ### CastCredit
 
-Create an instance: `const cast_credit = client.cast_credit`
+Create an instance: `$cast_credit = $client->CastCredit();`
 
 #### Operations
 
@@ -615,14 +621,15 @@ Create an instance: `const cast_credit = client.cast_credit`
 
 #### Example: List
 
-```ts
-const cast_credits = await client.cast_credit.list()
+```php
+// list() returns an array of CastCredit records (throws on error).
+$cast_credits = $client->CastCredit()->list();
 ```
 
 
 ### CastMember
 
-Create an instance: `const cast_member = client.cast_member`
+Create an instance: `$cast_member = $client->CastMember();`
 
 #### Operations
 
@@ -641,14 +648,15 @@ Create an instance: `const cast_member = client.cast_member`
 
 #### Example: List
 
-```ts
-const cast_members = await client.cast_member.list()
+```php
+// list() returns an array of CastMember records (throws on error).
+$cast_members = $client->CastMember()->list();
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.crew`
+Create an instance: `$crew = $client->Crew();`
 
 #### Operations
 
@@ -665,14 +673,15 @@ Create an instance: `const crew = client.crew`
 
 #### Example: List
 
-```ts
-const crews = await client.crew.list()
+```php
+// list() returns an array of Crew records (throws on error).
+$crews = $client->Crew()->list();
 ```
 
 
 ### CrewCredit
 
-Create an instance: `const crew_credit = client.crew_credit`
+Create an instance: `$crew_credit = $client->CrewCredit();`
 
 #### Operations
 
@@ -689,14 +698,15 @@ Create an instance: `const crew_credit = client.crew_credit`
 
 #### Example: List
 
-```ts
-const crew_credits = await client.crew_credit.list()
+```php
+// list() returns an array of CrewCredit records (throws on error).
+$crew_credits = $client->CrewCredit()->list();
 ```
 
 
 ### CrewMember
 
-Create an instance: `const crew_member = client.crew_member`
+Create an instance: `$crew_member = $client->CrewMember();`
 
 #### Operations
 
@@ -713,14 +723,15 @@ Create an instance: `const crew_member = client.crew_member`
 
 #### Example: List
 
-```ts
-const crew_members = await client.crew_member.list()
+```php
+// list() returns an array of CrewMember records (throws on error).
+$crew_members = $client->CrewMember()->list();
 ```
 
 
 ### Episode
 
-Create an instance: `const episode = client.episode`
+Create an instance: `$episode = $client->Episode();`
 
 #### Operations
 
@@ -750,20 +761,22 @@ Create an instance: `const episode = client.episode`
 
 #### Example: Load
 
-```ts
-const episode = await client.episode.load({ id: 'episode_id' })
+```php
+// load() returns the bare Episode record (throws on error).
+$episode = $client->Episode()->load(["id" => "episode_id"]);
 ```
 
 #### Example: List
 
-```ts
-const episodes = await client.episode.list()
+```php
+// list() returns an array of Episode records (throws on error).
+$episodes = $client->Episode()->list();
 ```
 
 
 ### GuestCastCredit
 
-Create an instance: `const guest_cast_credit = client.guest_cast_credit`
+Create an instance: `$guest_cast_credit = $client->GuestCastCredit();`
 
 #### Operations
 
@@ -779,14 +792,15 @@ Create an instance: `const guest_cast_credit = client.guest_cast_credit`
 
 #### Example: List
 
-```ts
-const guest_cast_credits = await client.guest_cast_credit.list()
+```php
+// list() returns an array of GuestCastCredit records (throws on error).
+$guest_cast_credits = $client->GuestCastCredit()->list();
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `$image = $client->Image();`
 
 #### Operations
 
@@ -805,14 +819,15 @@ Create an instance: `const image = client.image`
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```php
+// list() returns an array of Image records (throws on error).
+$images = $client->Image()->list();
 ```
 
 
 ### Person
 
-Create an instance: `const person = client.person`
+Create an instance: `$person = $client->Person();`
 
 #### Operations
 
@@ -840,20 +855,22 @@ Create an instance: `const person = client.person`
 
 #### Example: Load
 
-```ts
-const person = await client.person.load({ id: 'person_id' })
+```php
+// load() returns the bare Person record (throws on error).
+$person = $client->Person()->load(["id" => "person_id"]);
 ```
 
 #### Example: List
 
-```ts
-const persons = await client.person.list()
+```php
+// list() returns an array of Person records (throws on error).
+$persons = $client->Person()->list();
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.schedule`
+Create an instance: `$schedule = $client->Schedule();`
 
 #### Operations
 
@@ -883,14 +900,15 @@ Create an instance: `const schedule = client.schedule`
 
 #### Example: List
 
-```ts
-const schedules = await client.schedule.list()
+```php
+// list() returns an array of Schedule records (throws on error).
+$schedules = $client->Schedule()->list();
 ```
 
 
 ### ScheduledEpisode
 
-Create an instance: `const scheduled_episode = client.scheduled_episode`
+Create an instance: `$scheduled_episode = $client->ScheduledEpisode();`
 
 #### Operations
 
@@ -920,14 +938,15 @@ Create an instance: `const scheduled_episode = client.scheduled_episode`
 
 #### Example: List
 
-```ts
-const scheduled_episodes = await client.scheduled_episode.list()
+```php
+// list() returns an array of ScheduledEpisode records (throws on error).
+$scheduled_episodes = $client->ScheduledEpisode()->list();
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `$search = $client->Search();`
 
 #### Operations
 
@@ -937,14 +956,15 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```php
+// load() returns the bare Search record (throws on error).
+$search = $client->Search()->load(["id" => "search_id"]);
 ```
 
 
 ### Season
 
-Create an instance: `const season = client.season`
+Create an instance: `$season = $client->Season();`
 
 #### Operations
 
@@ -971,14 +991,15 @@ Create an instance: `const season = client.season`
 
 #### Example: List
 
-```ts
-const seasons = await client.season.list()
+```php
+// list() returns an array of Season records (throws on error).
+$seasons = $client->Season()->list();
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.show`
+Create an instance: `$show = $client->Show();`
 
 #### Operations
 
@@ -1019,20 +1040,22 @@ Create an instance: `const show = client.show`
 
 #### Example: Load
 
-```ts
-const show = await client.show.load({ id: 'show_id' })
+```php
+// load() returns the bare Show record (throws on error).
+$show = $client->Show()->load(["id" => "show_id"]);
 ```
 
 #### Example: List
 
-```ts
-const shows = await client.show.list()
+```php
+// list() returns an array of Show records (throws on error).
+$shows = $client->Show()->list();
 ```
 
 
 ### Update
 
-Create an instance: `const update = client.update`
+Create an instance: `$update = $client->Update();`
 
 #### Operations
 
@@ -1042,8 +1065,9 @@ Create an instance: `const update = client.update`
 
 #### Example: Load
 
-```ts
-const update = await client.update.load({ id: 'update_id' })
+```php
+// load() returns the bare Update record (throws on error).
+$update = $client->Update()->load(["id" => "update_id"]);
 ```
 
 
@@ -1118,7 +1142,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$aka = $client->aka();
+$aka = $client->Aka();
 $aka->load(["id" => "example_id"]);
 
 // $aka->dataGet() now returns the loaded aka data

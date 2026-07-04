@@ -31,17 +31,17 @@ local sdk = require("tvmaze_sdk")
 local client = sdk.new()
 ```
 
-### 2. List akas
+### 2. List aka records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:aka():list()
+local akas, err = client:Aka():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(akas) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:aka():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Aka():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,24 +167,24 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Aka` | `(data) -> AkaEntity` | Create a Aka entity instance. |
-| `AlternateList` | `(data) -> AlternateListEntity` | Create a AlternateList entity instance. |
+| `Aka` | `(data) -> AkaEntity` | Create an Aka entity instance. |
+| `AlternateList` | `(data) -> AlternateListEntity` | Create an AlternateList entity instance. |
 | `Cast` | `(data) -> CastEntity` | Create a Cast entity instance. |
 | `CastCredit` | `(data) -> CastCreditEntity` | Create a CastCredit entity instance. |
 | `CastMember` | `(data) -> CastMemberEntity` | Create a CastMember entity instance. |
 | `Crew` | `(data) -> CrewEntity` | Create a Crew entity instance. |
 | `CrewCredit` | `(data) -> CrewCreditEntity` | Create a CrewCredit entity instance. |
 | `CrewMember` | `(data) -> CrewMemberEntity` | Create a CrewMember entity instance. |
-| `Episode` | `(data) -> EpisodeEntity` | Create a Episode entity instance. |
+| `Episode` | `(data) -> EpisodeEntity` | Create an Episode entity instance. |
 | `GuestCastCredit` | `(data) -> GuestCastCreditEntity` | Create a GuestCastCredit entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `Person` | `(data) -> PersonEntity` | Create a Person entity instance. |
 | `Schedule` | `(data) -> ScheduleEntity` | Create a Schedule entity instance. |
 | `ScheduledEpisode` | `(data) -> ScheduledEpisodeEntity` | Create a ScheduledEpisode entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Season` | `(data) -> SeasonEntity` | Create a Season entity instance. |
 | `Show` | `(data) -> ShowEntity` | Create a Show entity instance. |
-| `Update` | `(data) -> UpdateEntity` | Create a Update entity instance. |
+| `Update` | `(data) -> UpdateEntity` | Create an Update entity instance. |
 
 ### Entity interface
 
@@ -206,17 +206,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local aka, err = client:Aka():load({ id = "example_id" })
+    if err then error(err) end
+    -- aka is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -508,7 +513,7 @@ API path: `/updates/people`
 
 ### Aka
 
-Create an instance: `const aka = client.aka`
+Create an instance: `local aka = client:Aka(nil)`
 
 #### Operations
 
@@ -525,14 +530,14 @@ Create an instance: `const aka = client.aka`
 
 #### Example: List
 
-```ts
-const akas = await client.aka.list()
+```lua
+local akas, err = client:Aka():list()
 ```
 
 
 ### AlternateList
 
-Create an instance: `const alternate_list = client.alternate_list`
+Create an instance: `local alternate_list = client:AlternateList(nil)`
 
 #### Operations
 
@@ -552,20 +557,20 @@ Create an instance: `const alternate_list = client.alternate_list`
 
 #### Example: Load
 
-```ts
-const alternate_list = await client.alternate_list.load({ id: 'alternate_list_id' })
+```lua
+local alternate_list, err = client:AlternateList():load({ id = "alternate_list_id" })
 ```
 
 #### Example: List
 
-```ts
-const alternate_lists = await client.alternate_list.list()
+```lua
+local alternate_lists, err = client:AlternateList():list()
 ```
 
 
 ### Cast
 
-Create an instance: `const cast = client.cast`
+Create an instance: `local cast = client:Cast(nil)`
 
 #### Operations
 
@@ -584,14 +589,14 @@ Create an instance: `const cast = client.cast`
 
 #### Example: List
 
-```ts
-const casts = await client.cast.list()
+```lua
+local casts, err = client:Cast():list()
 ```
 
 
 ### CastCredit
 
-Create an instance: `const cast_credit = client.cast_credit`
+Create an instance: `local cast_credit = client:CastCredit(nil)`
 
 #### Operations
 
@@ -607,14 +612,14 @@ Create an instance: `const cast_credit = client.cast_credit`
 
 #### Example: List
 
-```ts
-const cast_credits = await client.cast_credit.list()
+```lua
+local cast_credits, err = client:CastCredit():list()
 ```
 
 
 ### CastMember
 
-Create an instance: `const cast_member = client.cast_member`
+Create an instance: `local cast_member = client:CastMember(nil)`
 
 #### Operations
 
@@ -633,14 +638,14 @@ Create an instance: `const cast_member = client.cast_member`
 
 #### Example: List
 
-```ts
-const cast_members = await client.cast_member.list()
+```lua
+local cast_members, err = client:CastMember():list()
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.crew`
+Create an instance: `local crew = client:Crew(nil)`
 
 #### Operations
 
@@ -657,14 +662,14 @@ Create an instance: `const crew = client.crew`
 
 #### Example: List
 
-```ts
-const crews = await client.crew.list()
+```lua
+local crews, err = client:Crew():list()
 ```
 
 
 ### CrewCredit
 
-Create an instance: `const crew_credit = client.crew_credit`
+Create an instance: `local crew_credit = client:CrewCredit(nil)`
 
 #### Operations
 
@@ -681,14 +686,14 @@ Create an instance: `const crew_credit = client.crew_credit`
 
 #### Example: List
 
-```ts
-const crew_credits = await client.crew_credit.list()
+```lua
+local crew_credits, err = client:CrewCredit():list()
 ```
 
 
 ### CrewMember
 
-Create an instance: `const crew_member = client.crew_member`
+Create an instance: `local crew_member = client:CrewMember(nil)`
 
 #### Operations
 
@@ -705,14 +710,14 @@ Create an instance: `const crew_member = client.crew_member`
 
 #### Example: List
 
-```ts
-const crew_members = await client.crew_member.list()
+```lua
+local crew_members, err = client:CrewMember():list()
 ```
 
 
 ### Episode
 
-Create an instance: `const episode = client.episode`
+Create an instance: `local episode = client:Episode(nil)`
 
 #### Operations
 
@@ -742,20 +747,20 @@ Create an instance: `const episode = client.episode`
 
 #### Example: Load
 
-```ts
-const episode = await client.episode.load({ id: 'episode_id' })
+```lua
+local episode, err = client:Episode():load({ id = "episode_id" })
 ```
 
 #### Example: List
 
-```ts
-const episodes = await client.episode.list()
+```lua
+local episodes, err = client:Episode():list()
 ```
 
 
 ### GuestCastCredit
 
-Create an instance: `const guest_cast_credit = client.guest_cast_credit`
+Create an instance: `local guest_cast_credit = client:GuestCastCredit(nil)`
 
 #### Operations
 
@@ -771,14 +776,14 @@ Create an instance: `const guest_cast_credit = client.guest_cast_credit`
 
 #### Example: List
 
-```ts
-const guest_cast_credits = await client.guest_cast_credit.list()
+```lua
+local guest_cast_credits, err = client:GuestCastCredit():list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `local image = client:Image(nil)`
 
 #### Operations
 
@@ -797,14 +802,14 @@ Create an instance: `const image = client.image`
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```lua
+local images, err = client:Image():list()
 ```
 
 
 ### Person
 
-Create an instance: `const person = client.person`
+Create an instance: `local person = client:Person(nil)`
 
 #### Operations
 
@@ -832,20 +837,20 @@ Create an instance: `const person = client.person`
 
 #### Example: Load
 
-```ts
-const person = await client.person.load({ id: 'person_id' })
+```lua
+local person, err = client:Person():load({ id = "person_id" })
 ```
 
 #### Example: List
 
-```ts
-const persons = await client.person.list()
+```lua
+local persons, err = client:Person():list()
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.schedule`
+Create an instance: `local schedule = client:Schedule(nil)`
 
 #### Operations
 
@@ -875,14 +880,14 @@ Create an instance: `const schedule = client.schedule`
 
 #### Example: List
 
-```ts
-const schedules = await client.schedule.list()
+```lua
+local schedules, err = client:Schedule():list()
 ```
 
 
 ### ScheduledEpisode
 
-Create an instance: `const scheduled_episode = client.scheduled_episode`
+Create an instance: `local scheduled_episode = client:ScheduledEpisode(nil)`
 
 #### Operations
 
@@ -912,14 +917,14 @@ Create an instance: `const scheduled_episode = client.scheduled_episode`
 
 #### Example: List
 
-```ts
-const scheduled_episodes = await client.scheduled_episode.list()
+```lua
+local scheduled_episodes, err = client:ScheduledEpisode():list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `local search = client:Search(nil)`
 
 #### Operations
 
@@ -929,14 +934,14 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```lua
+local search, err = client:Search():load({ id = "search_id" })
 ```
 
 
 ### Season
 
-Create an instance: `const season = client.season`
+Create an instance: `local season = client:Season(nil)`
 
 #### Operations
 
@@ -963,14 +968,14 @@ Create an instance: `const season = client.season`
 
 #### Example: List
 
-```ts
-const seasons = await client.season.list()
+```lua
+local seasons, err = client:Season():list()
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.show`
+Create an instance: `local show = client:Show(nil)`
 
 #### Operations
 
@@ -1011,20 +1016,20 @@ Create an instance: `const show = client.show`
 
 #### Example: Load
 
-```ts
-const show = await client.show.load({ id: 'show_id' })
+```lua
+local show, err = client:Show():load({ id = "show_id" })
 ```
 
 #### Example: List
 
-```ts
-const shows = await client.show.list()
+```lua
+local shows, err = client:Show():list()
 ```
 
 
 ### Update
 
-Create an instance: `const update = client.update`
+Create an instance: `local update = client:Update(nil)`
 
 #### Operations
 
@@ -1034,8 +1039,8 @@ Create an instance: `const update = client.update`
 
 #### Example: Load
 
-```ts
-const update = await client.update.load({ id: 'update_id' })
+```lua
+local update, err = client:Update():load({ id = "update_id" })
 ```
 
 
@@ -1110,7 +1115,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local aka = client:aka()
+local aka = client:Aka()
 aka:load({ id = "example_id" })
 
 -- aka:data_get() now returns the loaded aka data

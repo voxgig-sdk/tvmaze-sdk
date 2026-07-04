@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/tvmaze-sdk/go=../tvmaze-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/tvmaze-sdk/go"
-    "github.com/voxgig-sdk/tvmaze-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List akas
-
-```go
-    result, err := client.Aka(nil).List(nil, nil)
+    // List aka records — the value is the array of records itself.
+    akas, err := client.Aka(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range akas.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Aka(nil).Load(
+aka, err := client.Aka(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(aka) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -190,24 +189,24 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Aka` | `(data map[string]any) TvmazeEntity` | Create a Aka entity instance. |
-| `AlternateList` | `(data map[string]any) TvmazeEntity` | Create a AlternateList entity instance. |
+| `Aka` | `(data map[string]any) TvmazeEntity` | Create an Aka entity instance. |
+| `AlternateList` | `(data map[string]any) TvmazeEntity` | Create an AlternateList entity instance. |
 | `Cast` | `(data map[string]any) TvmazeEntity` | Create a Cast entity instance. |
 | `CastCredit` | `(data map[string]any) TvmazeEntity` | Create a CastCredit entity instance. |
 | `CastMember` | `(data map[string]any) TvmazeEntity` | Create a CastMember entity instance. |
 | `Crew` | `(data map[string]any) TvmazeEntity` | Create a Crew entity instance. |
 | `CrewCredit` | `(data map[string]any) TvmazeEntity` | Create a CrewCredit entity instance. |
 | `CrewMember` | `(data map[string]any) TvmazeEntity` | Create a CrewMember entity instance. |
-| `Episode` | `(data map[string]any) TvmazeEntity` | Create a Episode entity instance. |
+| `Episode` | `(data map[string]any) TvmazeEntity` | Create an Episode entity instance. |
 | `GuestCastCredit` | `(data map[string]any) TvmazeEntity` | Create a GuestCastCredit entity instance. |
-| `Image` | `(data map[string]any) TvmazeEntity` | Create a Image entity instance. |
+| `Image` | `(data map[string]any) TvmazeEntity` | Create an Image entity instance. |
 | `Person` | `(data map[string]any) TvmazeEntity` | Create a Person entity instance. |
 | `Schedule` | `(data map[string]any) TvmazeEntity` | Create a Schedule entity instance. |
 | `ScheduledEpisode` | `(data map[string]any) TvmazeEntity` | Create a ScheduledEpisode entity instance. |
 | `Search` | `(data map[string]any) TvmazeEntity` | Create a Search entity instance. |
 | `Season` | `(data map[string]any) TvmazeEntity` | Create a Season entity instance. |
 | `Show` | `(data map[string]any) TvmazeEntity` | Create a Show entity instance. |
-| `Update` | `(data map[string]any) TvmazeEntity` | Create a Update entity instance. |
+| `Update` | `(data map[string]any) TvmazeEntity` | Create an Update entity instance. |
 
 ### Entity interface (TvmazeEntity)
 
@@ -227,17 +226,24 @@ All entities implement the `TvmazeEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    aka, err := client.Aka(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // aka is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -547,7 +553,11 @@ Create an instance: `aka := client.Aka(nil)`
 #### Example: List
 
 ```go
-results, err := client.Aka(nil).List(nil, nil)
+akas, err := client.Aka(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(akas) // the array of records
 ```
 
 
@@ -574,13 +584,21 @@ Create an instance: `alternate_list := client.AlternateList(nil)`
 #### Example: Load
 
 ```go
-result, err := client.AlternateList(nil).Load(map[string]any{"id": "alternate_list_id"}, nil)
+alternate_list, err := client.AlternateList(nil).Load(map[string]any{"id": "alternate_list_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(alternate_list) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.AlternateList(nil).List(nil, nil)
+alternate_lists, err := client.AlternateList(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(alternate_lists) // the array of records
 ```
 
 
@@ -606,7 +624,11 @@ Create an instance: `cast := client.Cast(nil)`
 #### Example: List
 
 ```go
-results, err := client.Cast(nil).List(nil, nil)
+casts, err := client.Cast(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(casts) // the array of records
 ```
 
 
@@ -629,7 +651,11 @@ Create an instance: `cast_credit := client.CastCredit(nil)`
 #### Example: List
 
 ```go
-results, err := client.CastCredit(nil).List(nil, nil)
+cast_credits, err := client.CastCredit(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(cast_credits) // the array of records
 ```
 
 
@@ -655,7 +681,11 @@ Create an instance: `cast_member := client.CastMember(nil)`
 #### Example: List
 
 ```go
-results, err := client.CastMember(nil).List(nil, nil)
+cast_members, err := client.CastMember(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(cast_members) // the array of records
 ```
 
 
@@ -679,7 +709,11 @@ Create an instance: `crew := client.Crew(nil)`
 #### Example: List
 
 ```go
-results, err := client.Crew(nil).List(nil, nil)
+crews, err := client.Crew(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(crews) // the array of records
 ```
 
 
@@ -703,7 +737,11 @@ Create an instance: `crew_credit := client.CrewCredit(nil)`
 #### Example: List
 
 ```go
-results, err := client.CrewCredit(nil).List(nil, nil)
+crew_credits, err := client.CrewCredit(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(crew_credits) // the array of records
 ```
 
 
@@ -727,7 +765,11 @@ Create an instance: `crew_member := client.CrewMember(nil)`
 #### Example: List
 
 ```go
-results, err := client.CrewMember(nil).List(nil, nil)
+crew_members, err := client.CrewMember(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(crew_members) // the array of records
 ```
 
 
@@ -764,13 +806,21 @@ Create an instance: `episode := client.Episode(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Episode(nil).Load(map[string]any{"id": "episode_id"}, nil)
+episode, err := client.Episode(nil).Load(map[string]any{"id": "episode_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(episode) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Episode(nil).List(nil, nil)
+episodes, err := client.Episode(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(episodes) // the array of records
 ```
 
 
@@ -793,7 +843,11 @@ Create an instance: `guest_cast_credit := client.GuestCastCredit(nil)`
 #### Example: List
 
 ```go
-results, err := client.GuestCastCredit(nil).List(nil, nil)
+guest_cast_credits, err := client.GuestCastCredit(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(guest_cast_credits) // the array of records
 ```
 
 
@@ -819,7 +873,11 @@ Create an instance: `image := client.Image(nil)`
 #### Example: List
 
 ```go
-results, err := client.Image(nil).List(nil, nil)
+images, err := client.Image(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(images) // the array of records
 ```
 
 
@@ -854,13 +912,21 @@ Create an instance: `person := client.Person(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Person(nil).Load(map[string]any{"id": "person_id"}, nil)
+person, err := client.Person(nil).Load(map[string]any{"id": "person_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(person) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Person(nil).List(nil, nil)
+persons, err := client.Person(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(persons) // the array of records
 ```
 
 
@@ -897,7 +963,11 @@ Create an instance: `schedule := client.Schedule(nil)`
 #### Example: List
 
 ```go
-results, err := client.Schedule(nil).List(nil, nil)
+schedules, err := client.Schedule(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(schedules) // the array of records
 ```
 
 
@@ -934,7 +1004,11 @@ Create an instance: `scheduled_episode := client.ScheduledEpisode(nil)`
 #### Example: List
 
 ```go
-results, err := client.ScheduledEpisode(nil).List(nil, nil)
+scheduled_episodes, err := client.ScheduledEpisode(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(scheduled_episodes) // the array of records
 ```
 
 
@@ -951,7 +1025,11 @@ Create an instance: `search := client.Search(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+search, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(search) // the loaded record
 ```
 
 
@@ -985,7 +1063,11 @@ Create an instance: `season := client.Season(nil)`
 #### Example: List
 
 ```go
-results, err := client.Season(nil).List(nil, nil)
+seasons, err := client.Season(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(seasons) // the array of records
 ```
 
 
@@ -1033,13 +1115,21 @@ Create an instance: `show := client.Show(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Show(nil).Load(map[string]any{"id": "show_id"}, nil)
+show, err := client.Show(nil).Load(map[string]any{"id": "show_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(show) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Show(nil).List(nil, nil)
+shows, err := client.Show(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(shows) // the array of records
 ```
 
 
@@ -1056,7 +1146,11 @@ Create an instance: `update := client.Update(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Update(nil).Load(map[string]any{"id": "update_id"}, nil)
+update, err := client.Update(nil).Load(map[string]any{"id": "update_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(update) // the loaded record
 ```
 
 

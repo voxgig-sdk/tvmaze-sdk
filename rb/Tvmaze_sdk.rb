@@ -208,234 +208,126 @@ class TvmazeSDK
   end
 
 
-  # Idiomatic facade: client.aka.list / client.aka.load({ "id" => ... })
-  def aka
-    require_relative 'entity/aka_entity'
-    @aka ||= AkaEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.aka instead.
+  # Canonical facade: client.Aka.list / client.Aka.load({ "id" => ... })
   def Aka(data = nil)
     require_relative 'entity/aka_entity'
     AkaEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.alternate_list.list / client.alternate_list.load({ "id" => ... })
-  def alternate_list
-    require_relative 'entity/alternate_list_entity'
-    @alternate_list ||= AlternateListEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.alternate_list instead.
+  # Canonical facade: client.AlternateList.list / client.AlternateList.load({ "id" => ... })
   def AlternateList(data = nil)
     require_relative 'entity/alternate_list_entity'
     AlternateListEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.cast.list / client.cast.load({ "id" => ... })
-  def cast
-    require_relative 'entity/cast_entity'
-    @cast ||= CastEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.cast instead.
+  # Canonical facade: client.Cast.list / client.Cast.load({ "id" => ... })
   def Cast(data = nil)
     require_relative 'entity/cast_entity'
     CastEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.cast_credit.list / client.cast_credit.load({ "id" => ... })
-  def cast_credit
-    require_relative 'entity/cast_credit_entity'
-    @cast_credit ||= CastCreditEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.cast_credit instead.
+  # Canonical facade: client.CastCredit.list / client.CastCredit.load({ "id" => ... })
   def CastCredit(data = nil)
     require_relative 'entity/cast_credit_entity'
     CastCreditEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.cast_member.list / client.cast_member.load({ "id" => ... })
-  def cast_member
-    require_relative 'entity/cast_member_entity'
-    @cast_member ||= CastMemberEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.cast_member instead.
+  # Canonical facade: client.CastMember.list / client.CastMember.load({ "id" => ... })
   def CastMember(data = nil)
     require_relative 'entity/cast_member_entity'
     CastMemberEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.crew.list / client.crew.load({ "id" => ... })
-  def crew
-    require_relative 'entity/crew_entity'
-    @crew ||= CrewEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.crew instead.
+  # Canonical facade: client.Crew.list / client.Crew.load({ "id" => ... })
   def Crew(data = nil)
     require_relative 'entity/crew_entity'
     CrewEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.crew_credit.list / client.crew_credit.load({ "id" => ... })
-  def crew_credit
-    require_relative 'entity/crew_credit_entity'
-    @crew_credit ||= CrewCreditEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.crew_credit instead.
+  # Canonical facade: client.CrewCredit.list / client.CrewCredit.load({ "id" => ... })
   def CrewCredit(data = nil)
     require_relative 'entity/crew_credit_entity'
     CrewCreditEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.crew_member.list / client.crew_member.load({ "id" => ... })
-  def crew_member
-    require_relative 'entity/crew_member_entity'
-    @crew_member ||= CrewMemberEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.crew_member instead.
+  # Canonical facade: client.CrewMember.list / client.CrewMember.load({ "id" => ... })
   def CrewMember(data = nil)
     require_relative 'entity/crew_member_entity'
     CrewMemberEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.episode.list / client.episode.load({ "id" => ... })
-  def episode
-    require_relative 'entity/episode_entity'
-    @episode ||= EpisodeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.episode instead.
+  # Canonical facade: client.Episode.list / client.Episode.load({ "id" => ... })
   def Episode(data = nil)
     require_relative 'entity/episode_entity'
     EpisodeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.guest_cast_credit.list / client.guest_cast_credit.load({ "id" => ... })
-  def guest_cast_credit
-    require_relative 'entity/guest_cast_credit_entity'
-    @guest_cast_credit ||= GuestCastCreditEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.guest_cast_credit instead.
+  # Canonical facade: client.GuestCastCredit.list / client.GuestCastCredit.load({ "id" => ... })
   def GuestCastCredit(data = nil)
     require_relative 'entity/guest_cast_credit_entity'
     GuestCastCreditEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.image.list / client.image.load({ "id" => ... })
-  def image
-    require_relative 'entity/image_entity'
-    @image ||= ImageEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.image instead.
+  # Canonical facade: client.Image.list / client.Image.load({ "id" => ... })
   def Image(data = nil)
     require_relative 'entity/image_entity'
     ImageEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.person.list / client.person.load({ "id" => ... })
-  def person
-    require_relative 'entity/person_entity'
-    @person ||= PersonEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.person instead.
+  # Canonical facade: client.Person.list / client.Person.load({ "id" => ... })
   def Person(data = nil)
     require_relative 'entity/person_entity'
     PersonEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.schedule.list / client.schedule.load({ "id" => ... })
-  def schedule
-    require_relative 'entity/schedule_entity'
-    @schedule ||= ScheduleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.schedule instead.
+  # Canonical facade: client.Schedule.list / client.Schedule.load({ "id" => ... })
   def Schedule(data = nil)
     require_relative 'entity/schedule_entity'
     ScheduleEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.scheduled_episode.list / client.scheduled_episode.load({ "id" => ... })
-  def scheduled_episode
-    require_relative 'entity/scheduled_episode_entity'
-    @scheduled_episode ||= ScheduledEpisodeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.scheduled_episode instead.
+  # Canonical facade: client.ScheduledEpisode.list / client.ScheduledEpisode.load({ "id" => ... })
   def ScheduledEpisode(data = nil)
     require_relative 'entity/scheduled_episode_entity'
     ScheduledEpisodeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
-  def search
-    require_relative 'entity/search_entity'
-    @search ||= SearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.search instead.
+  # Canonical facade: client.Search.list / client.Search.load({ "id" => ... })
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.season.list / client.season.load({ "id" => ... })
-  def season
-    require_relative 'entity/season_entity'
-    @season ||= SeasonEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.season instead.
+  # Canonical facade: client.Season.list / client.Season.load({ "id" => ... })
   def Season(data = nil)
     require_relative 'entity/season_entity'
     SeasonEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.show.list / client.show.load({ "id" => ... })
-  def show
-    require_relative 'entity/show_entity'
-    @show ||= ShowEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.show instead.
+  # Canonical facade: client.Show.list / client.Show.load({ "id" => ... })
   def Show(data = nil)
     require_relative 'entity/show_entity'
     ShowEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.update.list / client.update.load({ "id" => ... })
-  def update
-    require_relative 'entity/update_entity'
-    @update ||= UpdateEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.update instead.
+  # Canonical facade: client.Update.list / client.Update.load({ "id" => ... })
   def Update(data = nil)
     require_relative 'entity/update_entity'
     UpdateEntity.new(self, data)

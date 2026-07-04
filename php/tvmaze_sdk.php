@@ -233,10 +233,10 @@ class TvmazeSDK
 
     private $_aka = null;
 
-    // Idiomatic facade: $client->aka()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Aka() (PHP method
-    // names are case-insensitive).
-    public function aka($data = null)
+    // Canonical facade: $client->Aka()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->aka()
+    // resolves here too.
+    public function Aka($data = null)
     {
         require_once __DIR__ . '/entity/aka_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class TvmazeSDK
 
     private $_alternate_list = null;
 
-    // Idiomatic facade: $client->alternate_list()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias AlternateList() (PHP method
-    // names are case-insensitive).
-    public function alternate_list($data = null)
+    // Canonical facade: $client->AlternateList()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->alternate_list()
+    // resolves here too.
+    public function AlternateList($data = null)
     {
         require_once __DIR__ . '/entity/alternate_list_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class TvmazeSDK
 
     private $_cast = null;
 
-    // Idiomatic facade: $client->cast()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Cast() (PHP method
-    // names are case-insensitive).
-    public function cast($data = null)
+    // Canonical facade: $client->Cast()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cast()
+    // resolves here too.
+    public function Cast($data = null)
     {
         require_once __DIR__ . '/entity/cast_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class TvmazeSDK
 
     private $_cast_credit = null;
 
-    // Idiomatic facade: $client->cast_credit()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CastCredit() (PHP method
-    // names are case-insensitive).
-    public function cast_credit($data = null)
+    // Canonical facade: $client->CastCredit()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cast_credit()
+    // resolves here too.
+    public function CastCredit($data = null)
     {
         require_once __DIR__ . '/entity/cast_credit_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class TvmazeSDK
 
     private $_cast_member = null;
 
-    // Idiomatic facade: $client->cast_member()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CastMember() (PHP method
-    // names are case-insensitive).
-    public function cast_member($data = null)
+    // Canonical facade: $client->CastMember()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cast_member()
+    // resolves here too.
+    public function CastMember($data = null)
     {
         require_once __DIR__ . '/entity/cast_member_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class TvmazeSDK
 
     private $_crew = null;
 
-    // Idiomatic facade: $client->crew()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Crew() (PHP method
-    // names are case-insensitive).
-    public function crew($data = null)
+    // Canonical facade: $client->Crew()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->crew()
+    // resolves here too.
+    public function Crew($data = null)
     {
         require_once __DIR__ . '/entity/crew_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class TvmazeSDK
 
     private $_crew_credit = null;
 
-    // Idiomatic facade: $client->crew_credit()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CrewCredit() (PHP method
-    // names are case-insensitive).
-    public function crew_credit($data = null)
+    // Canonical facade: $client->CrewCredit()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->crew_credit()
+    // resolves here too.
+    public function CrewCredit($data = null)
     {
         require_once __DIR__ . '/entity/crew_credit_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class TvmazeSDK
 
     private $_crew_member = null;
 
-    // Idiomatic facade: $client->crew_member()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CrewMember() (PHP method
-    // names are case-insensitive).
-    public function crew_member($data = null)
+    // Canonical facade: $client->CrewMember()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->crew_member()
+    // resolves here too.
+    public function CrewMember($data = null)
     {
         require_once __DIR__ . '/entity/crew_member_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class TvmazeSDK
 
     private $_episode = null;
 
-    // Idiomatic facade: $client->episode()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Episode() (PHP method
-    // names are case-insensitive).
-    public function episode($data = null)
+    // Canonical facade: $client->Episode()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->episode()
+    // resolves here too.
+    public function Episode($data = null)
     {
         require_once __DIR__ . '/entity/episode_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class TvmazeSDK
 
     private $_guest_cast_credit = null;
 
-    // Idiomatic facade: $client->guest_cast_credit()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GuestCastCredit() (PHP method
-    // names are case-insensitive).
-    public function guest_cast_credit($data = null)
+    // Canonical facade: $client->GuestCastCredit()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->guest_cast_credit()
+    // resolves here too.
+    public function GuestCastCredit($data = null)
     {
         require_once __DIR__ . '/entity/guest_cast_credit_entity.php';
         if ($data === null) {
@@ -413,10 +413,10 @@ class TvmazeSDK
 
     private $_image = null;
 
-    // Idiomatic facade: $client->image()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Image() (PHP method
-    // names are case-insensitive).
-    public function image($data = null)
+    // Canonical facade: $client->Image()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->image()
+    // resolves here too.
+    public function Image($data = null)
     {
         require_once __DIR__ . '/entity/image_entity.php';
         if ($data === null) {
@@ -431,10 +431,10 @@ class TvmazeSDK
 
     private $_person = null;
 
-    // Idiomatic facade: $client->person()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Person() (PHP method
-    // names are case-insensitive).
-    public function person($data = null)
+    // Canonical facade: $client->Person()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->person()
+    // resolves here too.
+    public function Person($data = null)
     {
         require_once __DIR__ . '/entity/person_entity.php';
         if ($data === null) {
@@ -449,10 +449,10 @@ class TvmazeSDK
 
     private $_schedule = null;
 
-    // Idiomatic facade: $client->schedule()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Schedule() (PHP method
-    // names are case-insensitive).
-    public function schedule($data = null)
+    // Canonical facade: $client->Schedule()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->schedule()
+    // resolves here too.
+    public function Schedule($data = null)
     {
         require_once __DIR__ . '/entity/schedule_entity.php';
         if ($data === null) {
@@ -467,10 +467,10 @@ class TvmazeSDK
 
     private $_scheduled_episode = null;
 
-    // Idiomatic facade: $client->scheduled_episode()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ScheduledEpisode() (PHP method
-    // names are case-insensitive).
-    public function scheduled_episode($data = null)
+    // Canonical facade: $client->ScheduledEpisode()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->scheduled_episode()
+    // resolves here too.
+    public function ScheduledEpisode($data = null)
     {
         require_once __DIR__ . '/entity/scheduled_episode_entity.php';
         if ($data === null) {
@@ -485,10 +485,10 @@ class TvmazeSDK
 
     private $_search = null;
 
-    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Search() (PHP method
-    // names are case-insensitive).
-    public function search($data = null)
+    // Canonical facade: $client->Search()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->search()
+    // resolves here too.
+    public function Search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
         if ($data === null) {
@@ -503,10 +503,10 @@ class TvmazeSDK
 
     private $_season = null;
 
-    // Idiomatic facade: $client->season()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Season() (PHP method
-    // names are case-insensitive).
-    public function season($data = null)
+    // Canonical facade: $client->Season()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->season()
+    // resolves here too.
+    public function Season($data = null)
     {
         require_once __DIR__ . '/entity/season_entity.php';
         if ($data === null) {
@@ -521,10 +521,10 @@ class TvmazeSDK
 
     private $_show = null;
 
-    // Idiomatic facade: $client->show()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Show() (PHP method
-    // names are case-insensitive).
-    public function show($data = null)
+    // Canonical facade: $client->Show()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->show()
+    // resolves here too.
+    public function Show($data = null)
     {
         require_once __DIR__ . '/entity/show_entity.php';
         if ($data === null) {
@@ -539,10 +539,10 @@ class TvmazeSDK
 
     private $_update = null;
 
-    // Idiomatic facade: $client->update()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Update() (PHP method
-    // names are case-insensitive).
-    public function update($data = null)
+    // Canonical facade: $client->Update()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->update()
+    // resolves here too.
+    public function Update($data = null)
     {
         require_once __DIR__ . '/entity/update_entity.php';
         if ($data === null) {

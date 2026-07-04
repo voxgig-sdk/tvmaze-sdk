@@ -154,7 +154,7 @@ same parameters as `direct()`. Raises on error.
 ## AkaEntity
 
 ```ruby
-aka = client.aka
+aka = client.Aka
 ```
 
 ### Fields
@@ -171,7 +171,7 @@ aka = client.aka
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.aka.list(nil)
+results = client.Aka.list(nil)
 ```
 
 ### Common Methods
@@ -207,7 +207,7 @@ Return the entity name.
 ## AlternateListEntity
 
 ```ruby
-alternate_list = client.alternate_list
+alternate_list = client.AlternateList
 ```
 
 ### Fields
@@ -226,7 +226,7 @@ alternate_list = client.alternate_list
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.alternate_list.list(nil)
+results = client.AlternateList.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -234,7 +234,7 @@ results = client.alternate_list.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.alternate_list.load({ "id" => "alternate_list_id" })
+result = client.AlternateList.load({ "id" => "alternate_list_id" })
 ```
 
 ### Common Methods
@@ -270,7 +270,7 @@ Return the entity name.
 ## CastEntity
 
 ```ruby
-cast = client.cast
+cast = client.Cast
 ```
 
 ### Fields
@@ -289,7 +289,7 @@ cast = client.cast
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.cast.list(nil)
+results = client.Cast.list(nil)
 ```
 
 ### Common Methods
@@ -325,7 +325,7 @@ Return the entity name.
 ## CastCreditEntity
 
 ```ruby
-cast_credit = client.cast_credit
+cast_credit = client.CastCredit
 ```
 
 ### Fields
@@ -341,7 +341,7 @@ cast_credit = client.cast_credit
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.cast_credit.list(nil)
+results = client.CastCredit.list(nil)
 ```
 
 ### Common Methods
@@ -377,7 +377,7 @@ Return the entity name.
 ## CastMemberEntity
 
 ```ruby
-cast_member = client.cast_member
+cast_member = client.CastMember
 ```
 
 ### Fields
@@ -396,7 +396,7 @@ cast_member = client.cast_member
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.cast_member.list(nil)
+results = client.CastMember.list(nil)
 ```
 
 ### Common Methods
@@ -432,7 +432,7 @@ Return the entity name.
 ## CrewEntity
 
 ```ruby
-crew = client.crew
+crew = client.Crew
 ```
 
 ### Fields
@@ -449,7 +449,7 @@ crew = client.crew
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.crew.list(nil)
+results = client.Crew.list(nil)
 ```
 
 ### Common Methods
@@ -485,7 +485,7 @@ Return the entity name.
 ## CrewCreditEntity
 
 ```ruby
-crew_credit = client.crew_credit
+crew_credit = client.CrewCredit
 ```
 
 ### Fields
@@ -502,7 +502,7 @@ crew_credit = client.crew_credit
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.crew_credit.list(nil)
+results = client.CrewCredit.list(nil)
 ```
 
 ### Common Methods
@@ -538,7 +538,7 @@ Return the entity name.
 ## CrewMemberEntity
 
 ```ruby
-crew_member = client.crew_member
+crew_member = client.CrewMember
 ```
 
 ### Fields
@@ -555,7 +555,7 @@ crew_member = client.crew_member
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.crew_member.list(nil)
+results = client.CrewMember.list(nil)
 ```
 
 ### Common Methods
@@ -591,7 +591,7 @@ Return the entity name.
 ## EpisodeEntity
 
 ```ruby
-episode = client.episode
+episode = client.Episode
 ```
 
 ### Fields
@@ -620,7 +620,7 @@ episode = client.episode
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.episode.list(nil)
+results = client.Episode.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -628,7 +628,7 @@ results = client.episode.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.episode.load({ "id" => "episode_id" })
+result = client.Episode.load({ "id" => "episode_id" })
 ```
 
 ### Common Methods
@@ -664,7 +664,7 @@ Return the entity name.
 ## GuestCastCreditEntity
 
 ```ruby
-guest_cast_credit = client.guest_cast_credit
+guest_cast_credit = client.GuestCastCredit
 ```
 
 ### Fields
@@ -680,7 +680,7 @@ guest_cast_credit = client.guest_cast_credit
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.guest_cast_credit.list(nil)
+results = client.GuestCastCredit.list(nil)
 ```
 
 ### Common Methods
@@ -716,7 +716,7 @@ Return the entity name.
 ## ImageEntity
 
 ```ruby
-image = client.image
+image = client.Image
 ```
 
 ### Fields
@@ -735,7 +735,7 @@ image = client.image
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.image.list(nil)
+results = client.Image.list(nil)
 ```
 
 ### Common Methods
@@ -771,7 +771,7 @@ Return the entity name.
 ## PersonEntity
 
 ```ruby
-person = client.person
+person = client.Person
 ```
 
 ### Fields
@@ -798,7 +798,7 @@ person = client.person
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.person.list(nil)
+results = client.Person.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -806,7 +806,7 @@ results = client.person.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.person.load({ "id" => "person_id" })
+result = client.Person.load({ "id" => "person_id" })
 ```
 
 ### Common Methods
@@ -842,7 +842,7 @@ Return the entity name.
 ## ScheduleEntity
 
 ```ruby
-schedule = client.schedule
+schedule = client.Schedule
 ```
 
 ### Fields
@@ -872,7 +872,7 @@ schedule = client.schedule
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.schedule.list(nil)
+results = client.Schedule.list(nil)
 ```
 
 ### Common Methods
@@ -908,7 +908,7 @@ Return the entity name.
 ## ScheduledEpisodeEntity
 
 ```ruby
-scheduled_episode = client.scheduled_episode
+scheduled_episode = client.ScheduledEpisode
 ```
 
 ### Fields
@@ -938,7 +938,7 @@ scheduled_episode = client.scheduled_episode
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.scheduled_episode.list(nil)
+results = client.ScheduledEpisode.list(nil)
 ```
 
 ### Common Methods
@@ -974,7 +974,7 @@ Return the entity name.
 ## SearchEntity
 
 ```ruby
-search = client.search
+search = client.Search
 ```
 
 ### Operations
@@ -984,7 +984,7 @@ search = client.search
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.search.load({ "id" => "search_id" })
+result = client.Search.load({ "id" => "search_id" })
 ```
 
 ### Common Methods
@@ -1020,7 +1020,7 @@ Return the entity name.
 ## SeasonEntity
 
 ```ruby
-season = client.season
+season = client.Season
 ```
 
 ### Fields
@@ -1047,7 +1047,7 @@ season = client.season
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.season.list(nil)
+results = client.Season.list(nil)
 ```
 
 ### Common Methods
@@ -1083,7 +1083,7 @@ Return the entity name.
 ## ShowEntity
 
 ```ruby
-show = client.show
+show = client.Show
 ```
 
 ### Fields
@@ -1123,7 +1123,7 @@ show = client.show
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.show.list(nil)
+results = client.Show.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1131,7 +1131,7 @@ results = client.show.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.show.load({ "id" => "show_id" })
+result = client.Show.load({ "id" => "show_id" })
 ```
 
 ### Common Methods
@@ -1167,7 +1167,7 @@ Return the entity name.
 ## UpdateEntity
 
 ```ruby
-update = client.update
+update = client.Update
 ```
 
 ### Operations
@@ -1177,7 +1177,7 @@ update = client.update
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.update.load({ "id" => "update_id" })
+result = client.Update.load({ "id" => "update_id" })
 ```
 
 ### Common Methods

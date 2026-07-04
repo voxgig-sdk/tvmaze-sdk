@@ -313,7 +313,7 @@ Alias for `TvmazeSDK.test()`.
 ## AkaEntity
 
 ```ts
-const aka = client.aka
+const aka = client.Aka()
 ```
 
 ### Fields
@@ -330,7 +330,7 @@ const aka = client.aka
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.aka.list()
+const results = await client.Aka().list()
 ```
 
 ### Common Methods
@@ -364,7 +364,7 @@ Return a copy of the entity options.
 ## AlternateListEntity
 
 ```ts
-const alternate_list = client.alternate_list
+const alternate_list = client.AlternateList()
 ```
 
 ### Fields
@@ -383,7 +383,7 @@ const alternate_list = client.alternate_list
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.alternate_list.list()
+const results = await client.AlternateList().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -391,7 +391,7 @@ const results = await client.alternate_list.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.alternate_list.load({ id: 'alternate_list_id' })
+const result = await client.AlternateList().load({ id: 'alternate_list_id' })
 ```
 
 ### Common Methods
@@ -425,7 +425,7 @@ Return a copy of the entity options.
 ## CastEntity
 
 ```ts
-const cast = client.cast
+const cast = client.Cast()
 ```
 
 ### Fields
@@ -444,7 +444,7 @@ const cast = client.cast
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.cast.list()
+const results = await client.Cast().list()
 ```
 
 ### Common Methods
@@ -478,7 +478,7 @@ Return a copy of the entity options.
 ## CastCreditEntity
 
 ```ts
-const cast_credit = client.cast_credit
+const cast_credit = client.CastCredit()
 ```
 
 ### Fields
@@ -494,7 +494,7 @@ const cast_credit = client.cast_credit
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.cast_credit.list()
+const results = await client.CastCredit().list()
 ```
 
 ### Common Methods
@@ -528,7 +528,7 @@ Return a copy of the entity options.
 ## CastMemberEntity
 
 ```ts
-const cast_member = client.cast_member
+const cast_member = client.CastMember()
 ```
 
 ### Fields
@@ -547,7 +547,7 @@ const cast_member = client.cast_member
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.cast_member.list()
+const results = await client.CastMember().list()
 ```
 
 ### Common Methods
@@ -581,7 +581,7 @@ Return a copy of the entity options.
 ## CrewEntity
 
 ```ts
-const crew = client.crew
+const crew = client.Crew()
 ```
 
 ### Fields
@@ -598,7 +598,7 @@ const crew = client.crew
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.crew.list()
+const results = await client.Crew().list()
 ```
 
 ### Common Methods
@@ -632,7 +632,7 @@ Return a copy of the entity options.
 ## CrewCreditEntity
 
 ```ts
-const crew_credit = client.crew_credit
+const crew_credit = client.CrewCredit()
 ```
 
 ### Fields
@@ -649,7 +649,7 @@ const crew_credit = client.crew_credit
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.crew_credit.list()
+const results = await client.CrewCredit().list()
 ```
 
 ### Common Methods
@@ -683,7 +683,7 @@ Return a copy of the entity options.
 ## CrewMemberEntity
 
 ```ts
-const crew_member = client.crew_member
+const crew_member = client.CrewMember()
 ```
 
 ### Fields
@@ -700,7 +700,7 @@ const crew_member = client.crew_member
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.crew_member.list()
+const results = await client.CrewMember().list()
 ```
 
 ### Common Methods
@@ -734,7 +734,7 @@ Return a copy of the entity options.
 ## EpisodeEntity
 
 ```ts
-const episode = client.episode
+const episode = client.Episode()
 ```
 
 ### Fields
@@ -763,7 +763,7 @@ const episode = client.episode
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.episode.list()
+const results = await client.Episode().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -771,7 +771,7 @@ const results = await client.episode.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.episode.load({ id: 'episode_id' })
+const result = await client.Episode().load({ id: 'episode_id' })
 ```
 
 ### Common Methods
@@ -805,7 +805,7 @@ Return a copy of the entity options.
 ## GuestCastCreditEntity
 
 ```ts
-const guest_cast_credit = client.guest_cast_credit
+const guest_cast_credit = client.GuestCastCredit()
 ```
 
 ### Fields
@@ -821,7 +821,7 @@ const guest_cast_credit = client.guest_cast_credit
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.guest_cast_credit.list()
+const results = await client.GuestCastCredit().list()
 ```
 
 ### Common Methods
@@ -855,7 +855,7 @@ Return a copy of the entity options.
 ## ImageEntity
 
 ```ts
-const image = client.image
+const image = client.Image()
 ```
 
 ### Fields
@@ -874,7 +874,7 @@ const image = client.image
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.image.list()
+const results = await client.Image().list()
 ```
 
 ### Common Methods
@@ -908,7 +908,7 @@ Return a copy of the entity options.
 ## PersonEntity
 
 ```ts
-const person = client.person
+const person = client.Person()
 ```
 
 ### Fields
@@ -935,7 +935,7 @@ const person = client.person
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.person.list()
+const results = await client.Person().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -943,7 +943,7 @@ const results = await client.person.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.person.load({ id: 'person_id' })
+const result = await client.Person().load({ id: 'person_id' })
 ```
 
 ### Common Methods
@@ -977,7 +977,7 @@ Return a copy of the entity options.
 ## ScheduleEntity
 
 ```ts
-const schedule = client.schedule
+const schedule = client.Schedule()
 ```
 
 ### Fields
@@ -1007,7 +1007,7 @@ const schedule = client.schedule
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.schedule.list()
+const results = await client.Schedule().list()
 ```
 
 ### Common Methods
@@ -1041,7 +1041,7 @@ Return a copy of the entity options.
 ## ScheduledEpisodeEntity
 
 ```ts
-const scheduled_episode = client.scheduled_episode
+const scheduled_episode = client.ScheduledEpisode()
 ```
 
 ### Fields
@@ -1071,7 +1071,7 @@ const scheduled_episode = client.scheduled_episode
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.scheduled_episode.list()
+const results = await client.ScheduledEpisode().list()
 ```
 
 ### Common Methods
@@ -1105,7 +1105,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.search
+const search = client.Search()
 ```
 
 ### Operations
@@ -1115,7 +1115,7 @@ const search = client.search
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.search.load({ id: 'search_id' })
+const result = await client.Search().load({ id: 'search_id' })
 ```
 
 ### Common Methods
@@ -1149,7 +1149,7 @@ Return a copy of the entity options.
 ## SeasonEntity
 
 ```ts
-const season = client.season
+const season = client.Season()
 ```
 
 ### Fields
@@ -1176,7 +1176,7 @@ const season = client.season
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.season.list()
+const results = await client.Season().list()
 ```
 
 ### Common Methods
@@ -1210,7 +1210,7 @@ Return a copy of the entity options.
 ## ShowEntity
 
 ```ts
-const show = client.show
+const show = client.Show()
 ```
 
 ### Fields
@@ -1250,7 +1250,7 @@ const show = client.show
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.show.list()
+const results = await client.Show().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -1258,7 +1258,7 @@ const results = await client.show.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.show.load({ id: 'show_id' })
+const result = await client.Show().load({ id: 'show_id' })
 ```
 
 ### Common Methods
@@ -1292,7 +1292,7 @@ Return a copy of the entity options.
 ## UpdateEntity
 
 ```ts
-const update = client.update
+const update = client.Update()
 ```
 
 ### Operations
@@ -1302,7 +1302,7 @@ const update = client.update
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.update.load({ id: 'update_id' })
+const result = await client.Update().load({ id: 'update_id' })
 ```
 
 ### Common Methods
