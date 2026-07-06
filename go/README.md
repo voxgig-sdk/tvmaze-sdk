@@ -4,6 +4,8 @@
 
 The Golang SDK for the Tvmaze API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Aka(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -60,6 +62,35 @@ func main() {
 ```
 
 
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+akas, err := client.Aka(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = akas
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -106,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-aka, err := client.Aka(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+aka, err := client.Aka(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(aka) // the loaded mock data
+fmt.Println(aka) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -216,9 +247,6 @@ All entities implement the `TvmazeEntity` interface.
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -231,16 +259,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    aka, err := client.Aka(nil).Load(map[string]any{"id": "example_id"}, nil)
+    aka, err := client.Aka(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // aka is the loaded record
+    // aka is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -547,8 +575,8 @@ Create an instance: `aka := client.Aka(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
+| `country` | `map[string]any` |  |
+| `name` | `string` |  |
 
 #### Example: List
 
@@ -576,10 +604,10 @@ Create an instance: `alternate_list := client.AlternateList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `id` | `int` |  |
+| `link` | `map[string]any` |  |
+| `name` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -616,10 +644,10 @@ Create an instance: `cast := client.Cast(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `map[string]any` |  |
+| `person` | `map[string]any` |  |
+| `self` | `bool` |  |
+| `voice` | `bool` |  |
 
 #### Example: List
 
@@ -646,7 +674,7 @@ Create an instance: `cast_credit := client.CastCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `map[string]any` |  |
 
 #### Example: List
 
@@ -673,10 +701,10 @@ Create an instance: `cast_member := client.CastMember(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `map[string]any` |  |
+| `person` | `map[string]any` |  |
+| `self` | `bool` |  |
+| `voice` | `bool` |  |
 
 #### Example: List
 
@@ -703,8 +731,8 @@ Create an instance: `crew := client.Crew(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `map[string]any` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -731,8 +759,8 @@ Create an instance: `crew_credit := client.CrewCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `link` | `map[string]any` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -759,8 +787,8 @@ Create an instance: `crew_member := client.CrewMember(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `map[string]any` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -788,20 +816,20 @@ Create an instance: `episode := client.Episode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `int` |  |
+| `image` | `map[string]any` |  |
+| `link` | `map[string]any` |  |
+| `name` | `string` |  |
+| `number` | `int` |  |
+| `rating` | `map[string]any` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -838,7 +866,7 @@ Create an instance: `guest_cast_credit := client.GuestCastCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `map[string]any` |  |
 
 #### Example: List
 
@@ -865,10 +893,10 @@ Create an instance: `image := client.Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `main` | ``$BOOLEAN`` |  |
-| `resolution` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `id` | `int` |  |
+| `main` | `bool` |  |
+| `resolution` | `map[string]any` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -896,18 +924,18 @@ Create an instance: `person := client.Person(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `birthday` | ``$STRING`` |  |
-| `country` | ``$OBJECT`` |  |
-| `deathday` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `person` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
+| `birthday` | `string` |  |
+| `country` | `map[string]any` |  |
+| `deathday` | `string` |  |
+| `gender` | `string` |  |
+| `id` | `int` |  |
+| `image` | `map[string]any` |  |
+| `link` | `map[string]any` |  |
+| `name` | `string` |  |
+| `person` | `map[string]any` |  |
+| `score` | `float64` |  |
+| `updated` | `int` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -944,21 +972,21 @@ Create an instance: `schedule := client.Schedule(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `int` |  |
+| `image` | `map[string]any` |  |
+| `link` | `map[string]any` |  |
+| `name` | `string` |  |
+| `number` | `int` |  |
+| `rating` | `map[string]any` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `show` | `map[string]any` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -985,21 +1013,21 @@ Create an instance: `scheduled_episode := client.ScheduledEpisode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `int` |  |
+| `image` | `map[string]any` |  |
+| `link` | `map[string]any` |  |
+| `name` | `string` |  |
+| `number` | `int` |  |
+| `rating` | `map[string]any` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `show` | `map[string]any` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -1025,7 +1053,7 @@ Create an instance: `search := client.Search(nil)`
 #### Example: Load
 
 ```go
-search, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+search, err := client.Search(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1047,18 +1075,18 @@ Create an instance: `season := client.Season(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | ``$STRING`` |  |
-| `episode_order` | ``$INTEGER`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `number` | ``$INTEGER`` |  |
-| `premiere_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
+| `end_date` | `string` |  |
+| `episode_order` | `int` |  |
+| `id` | `int` |  |
+| `image` | `map[string]any` |  |
+| `link` | `map[string]any` |  |
+| `name` | `string` |  |
+| `network` | `map[string]any` |  |
+| `number` | `int` |  |
+| `premiere_date` | `string` |  |
+| `summary` | `string` |  |
+| `url` | `string` |  |
+| `web_channel` | `map[string]any` |  |
 
 #### Example: List
 
@@ -1086,31 +1114,31 @@ Create an instance: `show := client.Show(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` |  |
-| `dvd_country` | ``$OBJECT`` |  |
-| `ended` | ``$STRING`` |  |
-| `external` | ``$OBJECT`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `language` | ``$STRING`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `official_site` | ``$STRING`` |  |
-| `premiered` | ``$STRING`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `schedule` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `status` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
-| `weight` | ``$INTEGER`` |  |
+| `average_runtime` | `int` |  |
+| `dvd_country` | `map[string]any` |  |
+| `ended` | `string` |  |
+| `external` | `map[string]any` |  |
+| `genre` | `[]any` |  |
+| `id` | `int` |  |
+| `image` | `map[string]any` |  |
+| `language` | `string` |  |
+| `link` | `map[string]any` |  |
+| `name` | `string` |  |
+| `network` | `map[string]any` |  |
+| `official_site` | `string` |  |
+| `premiered` | `string` |  |
+| `rating` | `map[string]any` |  |
+| `runtime` | `int` |  |
+| `schedule` | `map[string]any` |  |
+| `score` | `float64` |  |
+| `show` | `map[string]any` |  |
+| `status` | `string` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `updated` | `int` |  |
+| `url` | `string` |  |
+| `web_channel` | `map[string]any` |  |
+| `weight` | `int` |  |
 
 #### Example: Load
 
@@ -1146,7 +1174,7 @@ Create an instance: `update := client.Update(nil)`
 #### Example: Load
 
 ```go
-update, err := client.Update(nil).Load(map[string]any{"id": "update_id"}, nil)
+update, err := client.Update(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1154,12 +1182,16 @@ fmt.Println(update) // the loaded record
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1176,9 +1208,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1219,14 +1251,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 aka := client.Aka(nil)
-aka.Load(map[string]any{"id": "example_id"}, nil)
+aka.List(nil, nil)
 
-// aka.Data() now returns the loaded aka data
+// aka.Data() now returns the aka data from the last list
 // aka.Match() returns the last match criteria
 ```
 

@@ -210,7 +210,7 @@ class PersonLoadMatch
     public int $id;
 }
 
-/** Match filter for Person#list (any subset of Person fields). */
+/** Request payload for Person#list. */
 class PersonListMatch
 {
     public ?string $birthday = null;
@@ -247,7 +247,7 @@ class Schedule
     public ?string $url = null;
 }
 
-/** Match filter for Schedule#list (any subset of Schedule fields). */
+/** Request payload for Schedule#list. */
 class ScheduleListMatch
 {
     public ?string $airdate = null;
@@ -287,7 +287,7 @@ class ScheduledEpisode
     public ?string $url = null;
 }
 
-/** Match filter for ScheduledEpisode#list (any subset of ScheduledEpisode fields). */
+/** Request payload for ScheduledEpisode#list. */
 class ScheduledEpisodeListMatch
 {
     public ?string $airdate = null;
@@ -312,7 +312,7 @@ class Search
 {
 }
 
-/** Match filter for Search#load (any subset of Search fields). */
+/** Request payload for Search#load. */
 class SearchLoadMatch
 {
 }
@@ -387,7 +387,7 @@ class Update
 {
 }
 
-/** Match filter for Update#load (any subset of Update fields). */
+/** Request payload for Update#load. */
 class UpdateLoadMatch
 {
 }

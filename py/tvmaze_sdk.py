@@ -221,109 +221,109 @@ class TvmazeSDK:
 
 
     def Aka(self, data=None) -> "AkaEntity":
-        """Entity factory: client.Aka().list({}) / client.Aka().load({"id": ...})."""
+        """Entity factory: client.Aka().list() / client.Aka().load({"id": ...})."""
         from entity.aka_entity import AkaEntity
         return AkaEntity(self, data)
 
 
     def AlternateList(self, data=None) -> "AlternateListEntity":
-        """Entity factory: client.AlternateList().list({}) / client.AlternateList().load({"id": ...})."""
+        """Entity factory: client.AlternateList().list() / client.AlternateList().load({"id": ...})."""
         from entity.alternate_list_entity import AlternateListEntity
         return AlternateListEntity(self, data)
 
 
     def Cast(self, data=None) -> "CastEntity":
-        """Entity factory: client.Cast().list({}) / client.Cast().load({"id": ...})."""
+        """Entity factory: client.Cast().list() / client.Cast().load({"id": ...})."""
         from entity.cast_entity import CastEntity
         return CastEntity(self, data)
 
 
     def CastCredit(self, data=None) -> "CastCreditEntity":
-        """Entity factory: client.CastCredit().list({}) / client.CastCredit().load({"id": ...})."""
+        """Entity factory: client.CastCredit().list() / client.CastCredit().load({"id": ...})."""
         from entity.cast_credit_entity import CastCreditEntity
         return CastCreditEntity(self, data)
 
 
     def CastMember(self, data=None) -> "CastMemberEntity":
-        """Entity factory: client.CastMember().list({}) / client.CastMember().load({"id": ...})."""
+        """Entity factory: client.CastMember().list() / client.CastMember().load({"id": ...})."""
         from entity.cast_member_entity import CastMemberEntity
         return CastMemberEntity(self, data)
 
 
     def Crew(self, data=None) -> "CrewEntity":
-        """Entity factory: client.Crew().list({}) / client.Crew().load({"id": ...})."""
+        """Entity factory: client.Crew().list() / client.Crew().load({"id": ...})."""
         from entity.crew_entity import CrewEntity
         return CrewEntity(self, data)
 
 
     def CrewCredit(self, data=None) -> "CrewCreditEntity":
-        """Entity factory: client.CrewCredit().list({}) / client.CrewCredit().load({"id": ...})."""
+        """Entity factory: client.CrewCredit().list() / client.CrewCredit().load({"id": ...})."""
         from entity.crew_credit_entity import CrewCreditEntity
         return CrewCreditEntity(self, data)
 
 
     def CrewMember(self, data=None) -> "CrewMemberEntity":
-        """Entity factory: client.CrewMember().list({}) / client.CrewMember().load({"id": ...})."""
+        """Entity factory: client.CrewMember().list() / client.CrewMember().load({"id": ...})."""
         from entity.crew_member_entity import CrewMemberEntity
         return CrewMemberEntity(self, data)
 
 
     def Episode(self, data=None) -> "EpisodeEntity":
-        """Entity factory: client.Episode().list({}) / client.Episode().load({"id": ...})."""
+        """Entity factory: client.Episode().list() / client.Episode().load({"id": ...})."""
         from entity.episode_entity import EpisodeEntity
         return EpisodeEntity(self, data)
 
 
     def GuestCastCredit(self, data=None) -> "GuestCastCreditEntity":
-        """Entity factory: client.GuestCastCredit().list({}) / client.GuestCastCredit().load({"id": ...})."""
+        """Entity factory: client.GuestCastCredit().list() / client.GuestCastCredit().load({"id": ...})."""
         from entity.guest_cast_credit_entity import GuestCastCreditEntity
         return GuestCastCreditEntity(self, data)
 
 
     def Image(self, data=None) -> "ImageEntity":
-        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
+        """Entity factory: client.Image().list() / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
     def Person(self, data=None) -> "PersonEntity":
-        """Entity factory: client.Person().list({}) / client.Person().load({"id": ...})."""
+        """Entity factory: client.Person().list() / client.Person().load({"id": ...})."""
         from entity.person_entity import PersonEntity
         return PersonEntity(self, data)
 
 
     def Schedule(self, data=None) -> "ScheduleEntity":
-        """Entity factory: client.Schedule().list({}) / client.Schedule().load({"id": ...})."""
+        """Entity factory: client.Schedule().list() / client.Schedule().load({"id": ...})."""
         from entity.schedule_entity import ScheduleEntity
         return ScheduleEntity(self, data)
 
 
     def ScheduledEpisode(self, data=None) -> "ScheduledEpisodeEntity":
-        """Entity factory: client.ScheduledEpisode().list({}) / client.ScheduledEpisode().load({"id": ...})."""
+        """Entity factory: client.ScheduledEpisode().list() / client.ScheduledEpisode().load({"id": ...})."""
         from entity.scheduled_episode_entity import ScheduledEpisodeEntity
         return ScheduledEpisodeEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
     def Season(self, data=None) -> "SeasonEntity":
-        """Entity factory: client.Season().list({}) / client.Season().load({"id": ...})."""
+        """Entity factory: client.Season().list() / client.Season().load({"id": ...})."""
         from entity.season_entity import SeasonEntity
         return SeasonEntity(self, data)
 
 
     def Show(self, data=None) -> "ShowEntity":
-        """Entity factory: client.Show().list({}) / client.Show().load({"id": ...})."""
+        """Entity factory: client.Show().list() / client.Show().load({"id": ...})."""
         from entity.show_entity import ShowEntity
         return ShowEntity(self, data)
 
 
     def Update(self, data=None) -> "UpdateEntity":
-        """Entity factory: client.Update().list({}) / client.Update().load({"id": ...})."""
+        """Entity factory: client.Update().list() / client.Update().load({"id": ...})."""
         from entity.update_entity import UpdateEntity
         return UpdateEntity(self, data)
 

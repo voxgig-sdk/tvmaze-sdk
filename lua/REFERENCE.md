@@ -158,8 +158,8 @@ local aka = client:Aka(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `table` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -211,10 +211,10 @@ local alternate_list = client:AlternateList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `link` | `table` | No |  |
+| `name` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -274,10 +274,10 @@ local cast = client:Cast(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `character` | ``$OBJECT`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `self` | ``$BOOLEAN`` | No |  |
-| `voice` | ``$BOOLEAN`` | No |  |
+| `character` | `table` | No |  |
+| `person` | `table` | No |  |
+| `self` | `boolean` | No |  |
+| `voice` | `boolean` | No |  |
 
 ### Operations
 
@@ -329,7 +329,7 @@ local cast_credit = client:CastCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
+| `link` | `table` | No |  |
 
 ### Operations
 
@@ -381,10 +381,10 @@ local cast_member = client:CastMember(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `character` | ``$OBJECT`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `self` | ``$BOOLEAN`` | No |  |
-| `voice` | ``$BOOLEAN`` | No |  |
+| `character` | `table` | No |  |
+| `person` | `table` | No |  |
+| `self` | `boolean` | No |  |
+| `voice` | `boolean` | No |  |
 
 ### Operations
 
@@ -436,8 +436,8 @@ local crew = client:Crew(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `person` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `person` | `table` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -489,8 +489,8 @@ local crew_credit = client:CrewCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `link` | `table` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -542,8 +542,8 @@ local crew_member = client:CrewMember(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `person` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `person` | `table` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -595,20 +595,20 @@ local episode = client:Episode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `number` | No |  |
+| `image` | `table` | No |  |
+| `link` | `table` | No |  |
+| `name` | `string` | No |  |
+| `number` | `number` | No |  |
+| `rating` | `table` | No |  |
+| `runtime` | `number` | No |  |
+| `season` | `number` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -668,7 +668,7 @@ local guest_cast_credit = client:GuestCastCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
+| `link` | `table` | No |  |
 
 ### Operations
 
@@ -720,10 +720,10 @@ local image = client:Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `main` | ``$BOOLEAN`` | No |  |
-| `resolution` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `main` | `boolean` | No |  |
+| `resolution` | `table` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -775,18 +775,18 @@ local person = client:Person(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `birthday` | ``$STRING`` | No |  |
-| `country` | ``$OBJECT`` | No |  |
-| `deathday` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `updated` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `birthday` | `string` | No |  |
+| `country` | `table` | No |  |
+| `deathday` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `number` | No |  |
+| `image` | `table` | No |  |
+| `link` | `table` | No |  |
+| `name` | `string` | No |  |
+| `person` | `table` | No |  |
+| `score` | `number` | No |  |
+| `updated` | `number` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -846,21 +846,21 @@ local schedule = client:Schedule(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `number` | No |  |
+| `image` | `table` | No |  |
+| `link` | `table` | No |  |
+| `name` | `string` | No |  |
+| `number` | `number` | No |  |
+| `rating` | `table` | No |  |
+| `runtime` | `number` | No |  |
+| `season` | `number` | No |  |
+| `show` | `table` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -912,21 +912,21 @@ local scheduled_episode = client:ScheduledEpisode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `number` | No |  |
+| `image` | `table` | No |  |
+| `link` | `table` | No |  |
+| `name` | `string` | No |  |
+| `number` | `number` | No |  |
+| `rating` | `table` | No |  |
+| `runtime` | `number` | No |  |
+| `season` | `number` | No |  |
+| `show` | `table` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -981,7 +981,7 @@ local search = client:Search(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Search():load({ id = "search_id" })
+local result, err = client:Search():load()
 ```
 
 ### Common Methods
@@ -1024,18 +1024,18 @@ local season = client:Season(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `episode_order` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `premiere_date` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `web_channel` | ``$OBJECT`` | No |  |
+| `end_date` | `string` | No |  |
+| `episode_order` | `number` | No |  |
+| `id` | `number` | No |  |
+| `image` | `table` | No |  |
+| `link` | `table` | No |  |
+| `name` | `string` | No |  |
+| `network` | `table` | No |  |
+| `number` | `number` | No |  |
+| `premiere_date` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `url` | `string` | No |  |
+| `web_channel` | `table` | No |  |
 
 ### Operations
 
@@ -1087,31 +1087,31 @@ local show = client:Show(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` | No |  |
-| `dvd_country` | ``$OBJECT`` | No |  |
-| `ended` | ``$STRING`` | No |  |
-| `external` | ``$OBJECT`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
-| `official_site` | ``$STRING`` | No |  |
-| `premiered` | ``$STRING`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `schedule` | ``$OBJECT`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `updated` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `web_channel` | ``$OBJECT`` | No |  |
-| `weight` | ``$INTEGER`` | No |  |
+| `average_runtime` | `number` | No |  |
+| `dvd_country` | `table` | No |  |
+| `ended` | `string` | No |  |
+| `external` | `table` | No |  |
+| `genre` | `table` | No |  |
+| `id` | `number` | No |  |
+| `image` | `table` | No |  |
+| `language` | `string` | No |  |
+| `link` | `table` | No |  |
+| `name` | `string` | No |  |
+| `network` | `table` | No |  |
+| `official_site` | `string` | No |  |
+| `premiered` | `string` | No |  |
+| `rating` | `table` | No |  |
+| `runtime` | `number` | No |  |
+| `schedule` | `table` | No |  |
+| `score` | `number` | No |  |
+| `show` | `table` | No |  |
+| `status` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `updated` | `number` | No |  |
+| `url` | `string` | No |  |
+| `web_channel` | `table` | No |  |
+| `weight` | `number` | No |  |
 
 ### Operations
 
@@ -1174,7 +1174,7 @@ local update = client:Update(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Update():load({ id = "update_id" })
+local result, err = client:Update():load()
 ```
 
 ### Common Methods

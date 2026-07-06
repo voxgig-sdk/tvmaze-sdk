@@ -410,7 +410,7 @@ PersonLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Person#list (any subset of Person fields).
+# Request payload for Person#list.
 #
 # @!attribute [rw] birthday
 #   @return [String, nil]
@@ -528,7 +528,7 @@ Schedule = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Schedule#list (any subset of Schedule fields).
+# Request payload for Schedule#list.
 #
 # @!attribute [rw] airdate
 #   @return [String, nil]
@@ -658,7 +658,7 @@ ScheduledEpisode = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ScheduledEpisode#list (any subset of ScheduledEpisode fields).
+# Request payload for ScheduledEpisode#list.
 #
 # @!attribute [rw] airdate
 #   @return [String, nil]
@@ -727,7 +727,7 @@ ScheduledEpisodeListMatch = Struct.new(
 class Search
 end
 
-# Match filter for Search#load (any subset of Search fields).
+# Request payload for Search#load.
 class SearchLoadMatch
 end
 
@@ -920,7 +920,7 @@ ShowListMatch = Struct.new(
 class Update
 end
 
-# Match filter for Update#load (any subset of Update fields).
+# Request payload for Update#load.
 class UpdateLoadMatch
 end
 

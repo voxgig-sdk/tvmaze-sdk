@@ -155,17 +155,17 @@ aka = client.Aka()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `dict` | No |  |
+| `name` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Aka().list({})
+results = client.Aka().list()
 for aka in results:
     print(aka)
 ```
@@ -209,19 +209,19 @@ alternate_list = client.AlternateList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `link` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.AlternateList().list({})
+results = client.AlternateList().list()
 for alternate_list in results:
     print(alternate_list)
 ```
@@ -273,19 +273,19 @@ cast = client.Cast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `character` | ``$OBJECT`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `self` | ``$BOOLEAN`` | No |  |
-| `voice` | ``$BOOLEAN`` | No |  |
+| `character` | `dict` | No |  |
+| `person` | `dict` | No |  |
+| `self` | `bool` | No |  |
+| `voice` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Cast().list({})
+results = client.Cast().list()
 for cast in results:
     print(cast)
 ```
@@ -329,16 +329,16 @@ cast_credit = client.CastCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
+| `link` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CastCredit().list({})
+results = client.CastCredit().list()
 for cast_credit in results:
     print(cast_credit)
 ```
@@ -382,19 +382,19 @@ cast_member = client.CastMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `character` | ``$OBJECT`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `self` | ``$BOOLEAN`` | No |  |
-| `voice` | ``$BOOLEAN`` | No |  |
+| `character` | `dict` | No |  |
+| `person` | `dict` | No |  |
+| `self` | `bool` | No |  |
+| `voice` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CastMember().list({})
+results = client.CastMember().list()
 for cast_member in results:
     print(cast_member)
 ```
@@ -438,17 +438,17 @@ crew = client.Crew()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `person` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `person` | `dict` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Crew().list({})
+results = client.Crew().list()
 for crew in results:
     print(crew)
 ```
@@ -492,17 +492,17 @@ crew_credit = client.CrewCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `link` | `dict` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CrewCredit().list({})
+results = client.CrewCredit().list()
 for crew_credit in results:
     print(crew_credit)
 ```
@@ -546,17 +546,17 @@ crew_member = client.CrewMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `person` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `person` | `dict` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CrewMember().list({})
+results = client.CrewMember().list()
 for crew_member in results:
     print(crew_member)
 ```
@@ -600,29 +600,29 @@ episode = client.Episode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `str` | No |  |
+| `airstamp` | `str` | No |  |
+| `airtime` | `str` | No |  |
+| `id` | `int` | No |  |
+| `image` | `dict` | No |  |
+| `link` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `number` | `int` | No |  |
+| `rating` | `dict` | No |  |
+| `runtime` | `int` | No |  |
+| `season` | `int` | No |  |
+| `summary` | `str` | No |  |
+| `type` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Episode().list({})
+results = client.Episode().list()
 for episode in results:
     print(episode)
 ```
@@ -674,16 +674,16 @@ guest_cast_credit = client.GuestCastCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
+| `link` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GuestCastCredit().list({})
+results = client.GuestCastCredit().list()
 for guest_cast_credit in results:
     print(guest_cast_credit)
 ```
@@ -727,19 +727,19 @@ image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `main` | ``$BOOLEAN`` | No |  |
-| `resolution` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `main` | `bool` | No |  |
+| `resolution` | `dict` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Image().list({})
+results = client.Image().list()
 for image in results:
     print(image)
 ```
@@ -783,27 +783,27 @@ person = client.Person()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `birthday` | ``$STRING`` | No |  |
-| `country` | ``$OBJECT`` | No |  |
-| `deathday` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `updated` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `birthday` | `str` | No |  |
+| `country` | `dict` | No |  |
+| `deathday` | `str` | No |  |
+| `gender` | `str` | No |  |
+| `id` | `int` | No |  |
+| `image` | `dict` | No |  |
+| `link` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `person` | `dict` | No |  |
+| `score` | `float` | No |  |
+| `updated` | `int` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Person().list({})
+results = client.Person().list()
 for person in results:
     print(person)
 ```
@@ -855,30 +855,30 @@ schedule = client.Schedule()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `str` | No |  |
+| `airstamp` | `str` | No |  |
+| `airtime` | `str` | No |  |
+| `id` | `int` | No |  |
+| `image` | `dict` | No |  |
+| `link` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `number` | `int` | No |  |
+| `rating` | `dict` | No |  |
+| `runtime` | `int` | No |  |
+| `season` | `int` | No |  |
+| `show` | `dict` | No |  |
+| `summary` | `str` | No |  |
+| `type` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Schedule().list({})
+results = client.Schedule().list()
 for schedule in results:
     print(schedule)
 ```
@@ -922,30 +922,30 @@ scheduled_episode = client.ScheduledEpisode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `str` | No |  |
+| `airstamp` | `str` | No |  |
+| `airtime` | `str` | No |  |
+| `id` | `int` | No |  |
+| `image` | `dict` | No |  |
+| `link` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `number` | `int` | No |  |
+| `rating` | `dict` | No |  |
+| `runtime` | `int` | No |  |
+| `season` | `int` | No |  |
+| `show` | `dict` | No |  |
+| `summary` | `str` | No |  |
+| `type` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ScheduledEpisode().list({})
+results = client.ScheduledEpisode().list()
 for scheduled_episode in results:
     print(scheduled_episode)
 ```
@@ -992,7 +992,7 @@ search = client.Search()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Search().load({"id": "search_id"})
+result = client.Search().load()
 ```
 
 ### Common Methods
@@ -1034,27 +1034,27 @@ season = client.Season()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `episode_order` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `premiere_date` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `web_channel` | ``$OBJECT`` | No |  |
+| `end_date` | `str` | No |  |
+| `episode_order` | `int` | No |  |
+| `id` | `int` | No |  |
+| `image` | `dict` | No |  |
+| `link` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `network` | `dict` | No |  |
+| `number` | `int` | No |  |
+| `premiere_date` | `str` | No |  |
+| `summary` | `str` | No |  |
+| `url` | `str` | No |  |
+| `web_channel` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Season().list({})
+results = client.Season().list()
 for season in results:
     print(season)
 ```
@@ -1098,40 +1098,40 @@ show = client.Show()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` | No |  |
-| `dvd_country` | ``$OBJECT`` | No |  |
-| `ended` | ``$STRING`` | No |  |
-| `external` | ``$OBJECT`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
-| `official_site` | ``$STRING`` | No |  |
-| `premiered` | ``$STRING`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `schedule` | ``$OBJECT`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `updated` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `web_channel` | ``$OBJECT`` | No |  |
-| `weight` | ``$INTEGER`` | No |  |
+| `average_runtime` | `int` | No |  |
+| `dvd_country` | `dict` | No |  |
+| `ended` | `str` | No |  |
+| `external` | `dict` | No |  |
+| `genre` | `list` | No |  |
+| `id` | `int` | No |  |
+| `image` | `dict` | No |  |
+| `language` | `str` | No |  |
+| `link` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `network` | `dict` | No |  |
+| `official_site` | `str` | No |  |
+| `premiered` | `str` | No |  |
+| `rating` | `dict` | No |  |
+| `runtime` | `int` | No |  |
+| `schedule` | `dict` | No |  |
+| `score` | `float` | No |  |
+| `show` | `dict` | No |  |
+| `status` | `str` | No |  |
+| `summary` | `str` | No |  |
+| `type` | `str` | No |  |
+| `updated` | `int` | No |  |
+| `url` | `str` | No |  |
+| `web_channel` | `dict` | No |  |
+| `weight` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Show().list({})
+results = client.Show().list()
 for show in results:
     print(show)
 ```
@@ -1186,7 +1186,7 @@ update = client.Update()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Update().load({"id": "update_id"})
+result = client.Update().load()
 ```
 
 ### Common Methods

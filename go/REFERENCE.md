@@ -165,8 +165,8 @@ aka := client.Aka(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -212,10 +212,10 @@ alternate_list := client.AlternateList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `link` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -269,10 +269,10 @@ cast := client.Cast(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `character` | ``$OBJECT`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `self` | ``$BOOLEAN`` | No |  |
-| `voice` | ``$BOOLEAN`` | No |  |
+| `character` | `map[string]any` | No |  |
+| `person` | `map[string]any` | No |  |
+| `self` | `bool` | No |  |
+| `voice` | `bool` | No |  |
 
 ### Operations
 
@@ -318,7 +318,7 @@ cast_credit := client.CastCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
+| `link` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -364,10 +364,10 @@ cast_member := client.CastMember(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `character` | ``$OBJECT`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `self` | ``$BOOLEAN`` | No |  |
-| `voice` | ``$BOOLEAN`` | No |  |
+| `character` | `map[string]any` | No |  |
+| `person` | `map[string]any` | No |  |
+| `self` | `bool` | No |  |
+| `voice` | `bool` | No |  |
 
 ### Operations
 
@@ -413,8 +413,8 @@ crew := client.Crew(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `person` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `person` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -460,8 +460,8 @@ crew_credit := client.CrewCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `link` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -507,8 +507,8 @@ crew_member := client.CrewMember(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `person` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `person` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -554,20 +554,20 @@ episode := client.Episode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `int` | No |  |
+| `image` | `map[string]any` | No |  |
+| `link` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `number` | `int` | No |  |
+| `rating` | `map[string]any` | No |  |
+| `runtime` | `int` | No |  |
+| `season` | `int` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -621,7 +621,7 @@ guest_cast_credit := client.GuestCastCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
+| `link` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -667,10 +667,10 @@ image := client.Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `main` | ``$BOOLEAN`` | No |  |
-| `resolution` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `main` | `bool` | No |  |
+| `resolution` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -716,18 +716,18 @@ person := client.Person(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `birthday` | ``$STRING`` | No |  |
-| `country` | ``$OBJECT`` | No |  |
-| `deathday` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `updated` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `birthday` | `string` | No |  |
+| `country` | `map[string]any` | No |  |
+| `deathday` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `int` | No |  |
+| `image` | `map[string]any` | No |  |
+| `link` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `person` | `map[string]any` | No |  |
+| `score` | `float64` | No |  |
+| `updated` | `int` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -781,21 +781,21 @@ schedule := client.Schedule(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `int` | No |  |
+| `image` | `map[string]any` | No |  |
+| `link` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `number` | `int` | No |  |
+| `rating` | `map[string]any` | No |  |
+| `runtime` | `int` | No |  |
+| `season` | `int` | No |  |
+| `show` | `map[string]any` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -841,21 +841,21 @@ scheduled_episode := client.ScheduledEpisode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `int` | No |  |
+| `image` | `map[string]any` | No |  |
+| `link` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `number` | `int` | No |  |
+| `rating` | `map[string]any` | No |  |
+| `runtime` | `int` | No |  |
+| `season` | `int` | No |  |
+| `show` | `map[string]any` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -904,7 +904,7 @@ search := client.Search(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+result, err := client.Search(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -941,18 +941,18 @@ season := client.Season(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `episode_order` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `premiere_date` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `web_channel` | ``$OBJECT`` | No |  |
+| `end_date` | `string` | No |  |
+| `episode_order` | `int` | No |  |
+| `id` | `int` | No |  |
+| `image` | `map[string]any` | No |  |
+| `link` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `network` | `map[string]any` | No |  |
+| `number` | `int` | No |  |
+| `premiere_date` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `url` | `string` | No |  |
+| `web_channel` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -998,31 +998,31 @@ show := client.Show(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` | No |  |
-| `dvd_country` | ``$OBJECT`` | No |  |
-| `ended` | ``$STRING`` | No |  |
-| `external` | ``$OBJECT`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
-| `official_site` | ``$STRING`` | No |  |
-| `premiered` | ``$STRING`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `schedule` | ``$OBJECT`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `updated` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `web_channel` | ``$OBJECT`` | No |  |
-| `weight` | ``$INTEGER`` | No |  |
+| `average_runtime` | `int` | No |  |
+| `dvd_country` | `map[string]any` | No |  |
+| `ended` | `string` | No |  |
+| `external` | `map[string]any` | No |  |
+| `genre` | `[]any` | No |  |
+| `id` | `int` | No |  |
+| `image` | `map[string]any` | No |  |
+| `language` | `string` | No |  |
+| `link` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `network` | `map[string]any` | No |  |
+| `official_site` | `string` | No |  |
+| `premiered` | `string` | No |  |
+| `rating` | `map[string]any` | No |  |
+| `runtime` | `int` | No |  |
+| `schedule` | `map[string]any` | No |  |
+| `score` | `float64` | No |  |
+| `show` | `map[string]any` | No |  |
+| `status` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `updated` | `int` | No |  |
+| `url` | `string` | No |  |
+| `web_channel` | `map[string]any` | No |  |
+| `weight` | `int` | No |  |
 
 ### Operations
 
@@ -1079,7 +1079,7 @@ update := client.Update(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Update(nil).Load(map[string]any{"id": "update_id"}, nil)
+result, err := client.Update(nil).Load(nil, nil)
 ```
 
 ### Common Methods

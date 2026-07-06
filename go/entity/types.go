@@ -180,8 +180,7 @@ type PersonLoadMatch struct {
 	Id int `json:"id"`
 }
 
-// PersonListMatch mirrors the person fields as an all-optional match
-// filter (Go analog of Partial<Person>).
+// PersonListMatch is the typed request payload for Person.ListTyped.
 type PersonListMatch struct {
 	Birthday *string `json:"birthday,omitempty"`
 	Country *map[string]any `json:"country,omitempty"`
@@ -216,8 +215,7 @@ type Schedule struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// ScheduleListMatch mirrors the schedule fields as an all-optional match
-// filter (Go analog of Partial<Schedule>).
+// ScheduleListMatch is the typed request payload for Schedule.ListTyped.
 type ScheduleListMatch struct {
 	Airdate *string `json:"airdate,omitempty"`
 	Airstamp *string `json:"airstamp,omitempty"`
@@ -255,8 +253,7 @@ type ScheduledEpisode struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// ScheduledEpisodeListMatch mirrors the scheduled_episode fields as an all-optional match
-// filter (Go analog of Partial<ScheduledEpisode>).
+// ScheduledEpisodeListMatch is the typed request payload for ScheduledEpisode.ListTyped.
 type ScheduledEpisodeListMatch struct {
 	Airdate *string `json:"airdate,omitempty"`
 	Airstamp *string `json:"airstamp,omitempty"`
@@ -279,8 +276,7 @@ type ScheduledEpisodeListMatch struct {
 type Search struct {
 }
 
-// SearchLoadMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchLoadMatch is the typed request payload for Search.LoadTyped.
 type SearchLoadMatch struct {
 }
 
@@ -348,8 +344,7 @@ type ShowListMatch struct {
 type Update struct {
 }
 
-// UpdateLoadMatch mirrors the update fields as an all-optional match
-// filter (Go analog of Partial<Update>).
+// UpdateLoadMatch is the typed request payload for Update.LoadTyped.
 type UpdateLoadMatch struct {
 }
 

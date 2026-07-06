@@ -4,6 +4,11 @@
 
 The Python SDK for the Tvmaze API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Aka()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,11 +43,39 @@ error — iterate it directly.
 
 ```python
 try:
-    akas = client.Aka().list({})
+    akas = client.Aka().list()
     for aka in akas:
         print(aka)
 except Exception as err:
     print(f"list failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    akas = client.Aka().list()
+    print(akas)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -63,7 +96,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -89,7 +125,7 @@ Create a mock client for unit testing — no server required:
 client = TvmazeSDK.test()
 
 # Entity ops return the bare record and raise on error.
-aka = client.Aka().load({"id": "test01"})
+aka = client.Aka().list()
 # aka contains the mock response record
 ```
 
@@ -193,9 +229,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -517,19 +550,19 @@ Create an instance: `aka = client.Aka()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
+| `country` | `dict` |  |
+| `name` | `str` |  |
 
 #### Example: List
 
 ```python
-akas = client.Aka().list({})
+akas = client.Aka().list()
 ```
 
 
@@ -541,17 +574,17 @@ Create an instance: `alternate_list = client.AlternateList()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `id` | `int` |  |
+| `link` | `dict` |  |
+| `name` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: Load
 
@@ -562,7 +595,7 @@ alternate_list = client.AlternateList().load({"id": "alternate_list_id"})
 #### Example: List
 
 ```python
-alternate_lists = client.AlternateList().list({})
+alternate_lists = client.AlternateList().list()
 ```
 
 
@@ -574,21 +607,21 @@ Create an instance: `cast = client.Cast()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `dict` |  |
+| `person` | `dict` |  |
+| `self` | `bool` |  |
+| `voice` | `bool` |  |
 
 #### Example: List
 
 ```python
-casts = client.Cast().list({})
+casts = client.Cast().list()
 ```
 
 
@@ -600,18 +633,18 @@ Create an instance: `cast_credit = client.CastCredit()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `dict` |  |
 
 #### Example: List
 
 ```python
-cast_credits = client.CastCredit().list({})
+cast_credits = client.CastCredit().list()
 ```
 
 
@@ -623,21 +656,21 @@ Create an instance: `cast_member = client.CastMember()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `dict` |  |
+| `person` | `dict` |  |
+| `self` | `bool` |  |
+| `voice` | `bool` |  |
 
 #### Example: List
 
 ```python
-cast_members = client.CastMember().list({})
+cast_members = client.CastMember().list()
 ```
 
 
@@ -649,19 +682,19 @@ Create an instance: `crew = client.Crew()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `dict` |  |
+| `type` | `str` |  |
 
 #### Example: List
 
 ```python
-crews = client.Crew().list({})
+crews = client.Crew().list()
 ```
 
 
@@ -673,19 +706,19 @@ Create an instance: `crew_credit = client.CrewCredit()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `link` | `dict` |  |
+| `type` | `str` |  |
 
 #### Example: List
 
 ```python
-crew_credits = client.CrewCredit().list({})
+crew_credits = client.CrewCredit().list()
 ```
 
 
@@ -697,19 +730,19 @@ Create an instance: `crew_member = client.CrewMember()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `dict` |  |
+| `type` | `str` |  |
 
 #### Example: List
 
 ```python
-crew_members = client.CrewMember().list({})
+crew_members = client.CrewMember().list()
 ```
 
 
@@ -721,27 +754,27 @@ Create an instance: `episode = client.Episode()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `str` |  |
+| `airstamp` | `str` |  |
+| `airtime` | `str` |  |
+| `id` | `int` |  |
+| `image` | `dict` |  |
+| `link` | `dict` |  |
+| `name` | `str` |  |
+| `number` | `int` |  |
+| `rating` | `dict` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `summary` | `str` |  |
+| `type` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: Load
 
@@ -752,7 +785,7 @@ episode = client.Episode().load({"id": "episode_id"})
 #### Example: List
 
 ```python
-episodes = client.Episode().list({})
+episodes = client.Episode().list()
 ```
 
 
@@ -764,18 +797,18 @@ Create an instance: `guest_cast_credit = client.GuestCastCredit()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `dict` |  |
 
 #### Example: List
 
 ```python
-guest_cast_credits = client.GuestCastCredit().list({})
+guest_cast_credits = client.GuestCastCredit().list()
 ```
 
 
@@ -787,21 +820,21 @@ Create an instance: `image = client.Image()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `main` | ``$BOOLEAN`` |  |
-| `resolution` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `id` | `int` |  |
+| `main` | `bool` |  |
+| `resolution` | `dict` |  |
+| `type` | `str` |  |
 
 #### Example: List
 
 ```python
-images = client.Image().list({})
+images = client.Image().list()
 ```
 
 
@@ -813,25 +846,25 @@ Create an instance: `person = client.Person()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `birthday` | ``$STRING`` |  |
-| `country` | ``$OBJECT`` |  |
-| `deathday` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `person` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
+| `birthday` | `str` |  |
+| `country` | `dict` |  |
+| `deathday` | `str` |  |
+| `gender` | `str` |  |
+| `id` | `int` |  |
+| `image` | `dict` |  |
+| `link` | `dict` |  |
+| `name` | `str` |  |
+| `person` | `dict` |  |
+| `score` | `float` |  |
+| `updated` | `int` |  |
+| `url` | `str` |  |
 
 #### Example: Load
 
@@ -842,7 +875,7 @@ person = client.Person().load({"id": "person_id"})
 #### Example: List
 
 ```python
-persons = client.Person().list({})
+persons = client.Person().list()
 ```
 
 
@@ -854,32 +887,32 @@ Create an instance: `schedule = client.Schedule()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `str` |  |
+| `airstamp` | `str` |  |
+| `airtime` | `str` |  |
+| `id` | `int` |  |
+| `image` | `dict` |  |
+| `link` | `dict` |  |
+| `name` | `str` |  |
+| `number` | `int` |  |
+| `rating` | `dict` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `show` | `dict` |  |
+| `summary` | `str` |  |
+| `type` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: List
 
 ```python
-schedules = client.Schedule().list({})
+schedules = client.Schedule().list()
 ```
 
 
@@ -891,32 +924,32 @@ Create an instance: `scheduled_episode = client.ScheduledEpisode()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `str` |  |
+| `airstamp` | `str` |  |
+| `airtime` | `str` |  |
+| `id` | `int` |  |
+| `image` | `dict` |  |
+| `link` | `dict` |  |
+| `name` | `str` |  |
+| `number` | `int` |  |
+| `rating` | `dict` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `show` | `dict` |  |
+| `summary` | `str` |  |
+| `type` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: List
 
 ```python
-scheduled_episodes = client.ScheduledEpisode().list({})
+scheduled_episodes = client.ScheduledEpisode().list()
 ```
 
 
@@ -933,7 +966,7 @@ Create an instance: `search = client.Search()`
 #### Example: Load
 
 ```python
-search = client.Search().load({"id": "search_id"})
+search = client.Search().load()
 ```
 
 
@@ -945,29 +978,29 @@ Create an instance: `season = client.Season()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | ``$STRING`` |  |
-| `episode_order` | ``$INTEGER`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `number` | ``$INTEGER`` |  |
-| `premiere_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
+| `end_date` | `str` |  |
+| `episode_order` | `int` |  |
+| `id` | `int` |  |
+| `image` | `dict` |  |
+| `link` | `dict` |  |
+| `name` | `str` |  |
+| `network` | `dict` |  |
+| `number` | `int` |  |
+| `premiere_date` | `str` |  |
+| `summary` | `str` |  |
+| `url` | `str` |  |
+| `web_channel` | `dict` |  |
 
 #### Example: List
 
 ```python
-seasons = client.Season().list({})
+seasons = client.Season().list()
 ```
 
 
@@ -979,38 +1012,38 @@ Create an instance: `show = client.Show()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` |  |
-| `dvd_country` | ``$OBJECT`` |  |
-| `ended` | ``$STRING`` |  |
-| `external` | ``$OBJECT`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `language` | ``$STRING`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `official_site` | ``$STRING`` |  |
-| `premiered` | ``$STRING`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `schedule` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `status` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
-| `weight` | ``$INTEGER`` |  |
+| `average_runtime` | `int` |  |
+| `dvd_country` | `dict` |  |
+| `ended` | `str` |  |
+| `external` | `dict` |  |
+| `genre` | `list` |  |
+| `id` | `int` |  |
+| `image` | `dict` |  |
+| `language` | `str` |  |
+| `link` | `dict` |  |
+| `name` | `str` |  |
+| `network` | `dict` |  |
+| `official_site` | `str` |  |
+| `premiered` | `str` |  |
+| `rating` | `dict` |  |
+| `runtime` | `int` |  |
+| `schedule` | `dict` |  |
+| `score` | `float` |  |
+| `show` | `dict` |  |
+| `status` | `str` |  |
+| `summary` | `str` |  |
+| `type` | `str` |  |
+| `updated` | `int` |  |
+| `url` | `str` |  |
+| `web_channel` | `dict` |  |
+| `weight` | `int` |  |
 
 #### Example: Load
 
@@ -1021,7 +1054,7 @@ show = client.Show().load({"id": "show_id"})
 #### Example: List
 
 ```python
-shows = client.Show().list({})
+shows = client.Show().list()
 ```
 
 
@@ -1038,16 +1071,20 @@ Create an instance: `update = client.Update()`
 #### Example: Load
 
 ```python
-update = client.Update().load({"id": "update_id"})
+update = client.Update().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1064,8 +1101,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1108,14 +1146,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 aka = client.Aka()
-aka.load({"id": "example_id"})
+aka.list()
 
-# aka.data_get() now returns the loaded aka data
+# aka.data_get() now returns the aka data from the last list
 # aka.match_get() returns the last match criteria
 ```
 

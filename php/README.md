@@ -4,6 +4,8 @@
 
 The PHP SDK for the Tvmaze API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Aka()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,10 +38,41 @@ try {
     // list() returns an array of Aka records — iterate directly.
     $akas = $client->Aka()->list();
     foreach ($akas as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["country"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $akas = $client->Aka()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -63,7 +96,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -84,16 +120,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = TvmazeSDK::test([
-    "entity" => ["aka" => ["test01" => ["id" => "test01"]]],
-]);
+$client = TvmazeSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$aka = $client->Aka()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$aka = $client->Aka()->list();
 print_r($aka);
 ```
 
@@ -199,10 +232,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -530,8 +560,8 @@ Create an instance: `$aka = $client->Aka();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
+| `country` | `array` |  |
+| `name` | `string` |  |
 
 #### Example: List
 
@@ -556,10 +586,10 @@ Create an instance: `$alternate_list = $client->AlternateList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `id` | `int` |  |
+| `link` | `array` |  |
+| `name` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -590,10 +620,10 @@ Create an instance: `$cast = $client->Cast();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `array` |  |
+| `person` | `array` |  |
+| `self` | `bool` |  |
+| `voice` | `bool` |  |
 
 #### Example: List
 
@@ -617,7 +647,7 @@ Create an instance: `$cast_credit = $client->CastCredit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `array` |  |
 
 #### Example: List
 
@@ -641,10 +671,10 @@ Create an instance: `$cast_member = $client->CastMember();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `array` |  |
+| `person` | `array` |  |
+| `self` | `bool` |  |
+| `voice` | `bool` |  |
 
 #### Example: List
 
@@ -668,8 +698,8 @@ Create an instance: `$crew = $client->Crew();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `array` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -693,8 +723,8 @@ Create an instance: `$crew_credit = $client->CrewCredit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `link` | `array` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -718,8 +748,8 @@ Create an instance: `$crew_member = $client->CrewMember();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `array` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -744,20 +774,20 @@ Create an instance: `$episode = $client->Episode();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `int` |  |
+| `image` | `array` |  |
+| `link` | `array` |  |
+| `name` | `string` |  |
+| `number` | `int` |  |
+| `rating` | `array` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -788,7 +818,7 @@ Create an instance: `$guest_cast_credit = $client->GuestCastCredit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `array` |  |
 
 #### Example: List
 
@@ -812,10 +842,10 @@ Create an instance: `$image = $client->Image();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `main` | ``$BOOLEAN`` |  |
-| `resolution` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `id` | `int` |  |
+| `main` | `bool` |  |
+| `resolution` | `array` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -840,18 +870,18 @@ Create an instance: `$person = $client->Person();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `birthday` | ``$STRING`` |  |
-| `country` | ``$OBJECT`` |  |
-| `deathday` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `person` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
+| `birthday` | `string` |  |
+| `country` | `array` |  |
+| `deathday` | `string` |  |
+| `gender` | `string` |  |
+| `id` | `int` |  |
+| `image` | `array` |  |
+| `link` | `array` |  |
+| `name` | `string` |  |
+| `person` | `array` |  |
+| `score` | `float` |  |
+| `updated` | `int` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -882,21 +912,21 @@ Create an instance: `$schedule = $client->Schedule();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `int` |  |
+| `image` | `array` |  |
+| `link` | `array` |  |
+| `name` | `string` |  |
+| `number` | `int` |  |
+| `rating` | `array` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `show` | `array` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -920,21 +950,21 @@ Create an instance: `$scheduled_episode = $client->ScheduledEpisode();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `int` |  |
+| `image` | `array` |  |
+| `link` | `array` |  |
+| `name` | `string` |  |
+| `number` | `int` |  |
+| `rating` | `array` |  |
+| `runtime` | `int` |  |
+| `season` | `int` |  |
+| `show` | `array` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -958,7 +988,7 @@ Create an instance: `$search = $client->Search();`
 
 ```php
 // load() returns the bare Search record (throws on error).
-$search = $client->Search()->load(["id" => "search_id"]);
+$search = $client->Search()->load();
 ```
 
 
@@ -976,18 +1006,18 @@ Create an instance: `$season = $client->Season();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | ``$STRING`` |  |
-| `episode_order` | ``$INTEGER`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `number` | ``$INTEGER`` |  |
-| `premiere_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
+| `end_date` | `string` |  |
+| `episode_order` | `int` |  |
+| `id` | `int` |  |
+| `image` | `array` |  |
+| `link` | `array` |  |
+| `name` | `string` |  |
+| `network` | `array` |  |
+| `number` | `int` |  |
+| `premiere_date` | `string` |  |
+| `summary` | `string` |  |
+| `url` | `string` |  |
+| `web_channel` | `array` |  |
 
 #### Example: List
 
@@ -1012,31 +1042,31 @@ Create an instance: `$show = $client->Show();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` |  |
-| `dvd_country` | ``$OBJECT`` |  |
-| `ended` | ``$STRING`` |  |
-| `external` | ``$OBJECT`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `language` | ``$STRING`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `official_site` | ``$STRING`` |  |
-| `premiered` | ``$STRING`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `schedule` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `status` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
-| `weight` | ``$INTEGER`` |  |
+| `average_runtime` | `int` |  |
+| `dvd_country` | `array` |  |
+| `ended` | `string` |  |
+| `external` | `array` |  |
+| `genre` | `array` |  |
+| `id` | `int` |  |
+| `image` | `array` |  |
+| `language` | `string` |  |
+| `link` | `array` |  |
+| `name` | `string` |  |
+| `network` | `array` |  |
+| `official_site` | `string` |  |
+| `premiered` | `string` |  |
+| `rating` | `array` |  |
+| `runtime` | `int` |  |
+| `schedule` | `array` |  |
+| `score` | `float` |  |
+| `show` | `array` |  |
+| `status` | `string` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `updated` | `int` |  |
+| `url` | `string` |  |
+| `web_channel` | `array` |  |
+| `weight` | `int` |  |
 
 #### Example: Load
 
@@ -1067,16 +1097,20 @@ Create an instance: `$update = $client->Update();`
 
 ```php
 // load() returns the bare Update record (throws on error).
-$update = $client->Update()->load(["id" => "update_id"]);
+$update = $client->Update()->load();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1093,8 +1127,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1138,15 +1173,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $aka = $client->Aka();
-$aka->load(["id" => "example_id"]);
+$aka->list();
 
-// $aka->dataGet() now returns the loaded aka data
-// $aka->matchGet() returns the last match criteria
+// $aka->data_get() now returns the aka data from the last list
+// $aka->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

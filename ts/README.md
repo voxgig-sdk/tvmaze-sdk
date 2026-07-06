@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the Tvmaze API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Aka()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,6 +42,35 @@ const akas = await client.Aka().list()
 
 for (const aka of akas) {
   console.log(aka)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const akas = await client.Aka().list()
+  console.log(akas)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -85,7 +119,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TvmazeSDK.test()
 
-const aka = await client.Aka().load({ id: 'test01' })
+const aka = await client.Aka().list()
 // aka is a bare entity populated with mock response data
 console.log(aka)
 ```
@@ -104,12 +138,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Aka()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -216,11 +250,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): TvmazeSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -230,10 +261,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -569,8 +599,8 @@ Create an instance: `const aka = client.Aka()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
+| `country` | `Record<string, any>` |  |
+| `name` | `string` |  |
 
 #### Example: List
 
@@ -594,15 +624,15 @@ Create an instance: `const alternate_list = client.AlternateList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `id` | `number` |  |
+| `link` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const alternate_list = await client.AlternateList().load({ id: 'alternate_list_id' })
+const alternate_list = await client.AlternateList().load({ id: 1 })
 ```
 
 #### Example: List
@@ -626,10 +656,10 @@ Create an instance: `const cast = client.Cast()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `Record<string, any>` |  |
+| `person` | `Record<string, any>` |  |
+| `self` | `boolean` |  |
+| `voice` | `boolean` |  |
 
 #### Example: List
 
@@ -652,7 +682,7 @@ Create an instance: `const cast_credit = client.CastCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `Record<string, any>` |  |
 
 #### Example: List
 
@@ -675,10 +705,10 @@ Create an instance: `const cast_member = client.CastMember()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `Record<string, any>` |  |
+| `person` | `Record<string, any>` |  |
+| `self` | `boolean` |  |
+| `voice` | `boolean` |  |
 
 #### Example: List
 
@@ -701,8 +731,8 @@ Create an instance: `const crew = client.Crew()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `Record<string, any>` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -725,8 +755,8 @@ Create an instance: `const crew_credit = client.CrewCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `link` | `Record<string, any>` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -749,8 +779,8 @@ Create an instance: `const crew_member = client.CrewMember()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `Record<string, any>` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -774,25 +804,25 @@ Create an instance: `const episode = client.Episode()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `number` |  |
+| `image` | `Record<string, any>` |  |
+| `link` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `number` | `number` |  |
+| `rating` | `Record<string, any>` |  |
+| `runtime` | `number` |  |
+| `season` | `number` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const episode = await client.Episode().load({ id: 'episode_id' })
+const episode = await client.Episode().load({ id: 1 })
 ```
 
 #### Example: List
@@ -816,7 +846,7 @@ Create an instance: `const guest_cast_credit = client.GuestCastCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `Record<string, any>` |  |
 
 #### Example: List
 
@@ -839,10 +869,10 @@ Create an instance: `const image = client.Image()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `main` | ``$BOOLEAN`` |  |
-| `resolution` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `id` | `number` |  |
+| `main` | `boolean` |  |
+| `resolution` | `Record<string, any>` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -866,23 +896,23 @@ Create an instance: `const person = client.Person()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `birthday` | ``$STRING`` |  |
-| `country` | ``$OBJECT`` |  |
-| `deathday` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `person` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
+| `birthday` | `string` |  |
+| `country` | `Record<string, any>` |  |
+| `deathday` | `string` |  |
+| `gender` | `string` |  |
+| `id` | `number` |  |
+| `image` | `Record<string, any>` |  |
+| `link` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `person` | `Record<string, any>` |  |
+| `score` | `number` |  |
+| `updated` | `number` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const person = await client.Person().load({ id: 'person_id' })
+const person = await client.Person().load({ id: 1 })
 ```
 
 #### Example: List
@@ -906,21 +936,21 @@ Create an instance: `const schedule = client.Schedule()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `number` |  |
+| `image` | `Record<string, any>` |  |
+| `link` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `number` | `number` |  |
+| `rating` | `Record<string, any>` |  |
+| `runtime` | `number` |  |
+| `season` | `number` |  |
+| `show` | `Record<string, any>` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -943,21 +973,21 @@ Create an instance: `const scheduled_episode = client.ScheduledEpisode()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `string` |  |
+| `airstamp` | `string` |  |
+| `airtime` | `string` |  |
+| `id` | `number` |  |
+| `image` | `Record<string, any>` |  |
+| `link` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `number` | `number` |  |
+| `rating` | `Record<string, any>` |  |
+| `runtime` | `number` |  |
+| `season` | `number` |  |
+| `show` | `Record<string, any>` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -979,7 +1009,7 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.Search().load()
 ```
 
 
@@ -997,18 +1027,18 @@ Create an instance: `const season = client.Season()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | ``$STRING`` |  |
-| `episode_order` | ``$INTEGER`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `number` | ``$INTEGER`` |  |
-| `premiere_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
+| `end_date` | `string` |  |
+| `episode_order` | `number` |  |
+| `id` | `number` |  |
+| `image` | `Record<string, any>` |  |
+| `link` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `network` | `Record<string, any>` |  |
+| `number` | `number` |  |
+| `premiere_date` | `string` |  |
+| `summary` | `string` |  |
+| `url` | `string` |  |
+| `web_channel` | `Record<string, any>` |  |
 
 #### Example: List
 
@@ -1032,36 +1062,36 @@ Create an instance: `const show = client.Show()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` |  |
-| `dvd_country` | ``$OBJECT`` |  |
-| `ended` | ``$STRING`` |  |
-| `external` | ``$OBJECT`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `language` | ``$STRING`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `official_site` | ``$STRING`` |  |
-| `premiered` | ``$STRING`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `schedule` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `status` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
-| `weight` | ``$INTEGER`` |  |
+| `average_runtime` | `number` |  |
+| `dvd_country` | `Record<string, any>` |  |
+| `ended` | `string` |  |
+| `external` | `Record<string, any>` |  |
+| `genre` | `any[]` |  |
+| `id` | `number` |  |
+| `image` | `Record<string, any>` |  |
+| `language` | `string` |  |
+| `link` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `network` | `Record<string, any>` |  |
+| `official_site` | `string` |  |
+| `premiered` | `string` |  |
+| `rating` | `Record<string, any>` |  |
+| `runtime` | `number` |  |
+| `schedule` | `Record<string, any>` |  |
+| `score` | `number` |  |
+| `show` | `Record<string, any>` |  |
+| `status` | `string` |  |
+| `summary` | `string` |  |
+| `type` | `string` |  |
+| `updated` | `number` |  |
+| `url` | `string` |  |
+| `web_channel` | `Record<string, any>` |  |
+| `weight` | `number` |  |
 
 #### Example: Load
 
 ```ts
-const show = await client.Show().load({ id: 'show_id' })
+const show = await client.Show().load({ id: 1 })
 ```
 
 #### Example: List
@@ -1084,16 +1114,20 @@ Create an instance: `const update = client.Update()`
 #### Example: Load
 
 ```ts
-const update = await client.Update().load({ id: 'update_id' })
+const update = await client.Update().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1110,11 +1144,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1150,16 +1182,16 @@ import { TvmazeSDK } from '@voxgig-sdk/tvmaze'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const aka = client.Aka()
-await aka.load({ id: "example_id" })
+await aka.list()
 
-// aka.data() now returns the loaded aka data
-// aka.match() returns { id: "example_id" }
+// aka.data() now returns the aka data from the last `list`
+// aka.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

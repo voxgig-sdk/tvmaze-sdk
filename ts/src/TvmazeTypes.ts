@@ -151,7 +151,20 @@ export interface PersonLoadMatch {
   id: number
 }
 
-export type PersonListMatch = Partial<Person>
+export interface PersonListMatch {
+  birthday?: string
+  country?: Record<string, any>
+  deathday?: string
+  gender?: string
+  id?: number
+  image?: Record<string, any>
+  link?: Record<string, any>
+  name?: string
+  person?: Record<string, any>
+  score?: number
+  updated?: number
+  url?: string
+}
 
 export interface Schedule {
   airdate?: string
@@ -171,7 +184,23 @@ export interface Schedule {
   url?: string
 }
 
-export type ScheduleListMatch = Partial<Schedule>
+export interface ScheduleListMatch {
+  airdate?: string
+  airstamp?: string
+  airtime?: string
+  id?: number
+  image?: Record<string, any>
+  link?: Record<string, any>
+  name?: string
+  number?: number
+  rating?: Record<string, any>
+  runtime?: number
+  season?: number
+  show?: Record<string, any>
+  summary?: string
+  type?: string
+  url?: string
+}
 
 export interface ScheduledEpisode {
   airdate?: string
@@ -191,12 +220,29 @@ export interface ScheduledEpisode {
   url?: string
 }
 
-export type ScheduledEpisodeListMatch = Partial<ScheduledEpisode>
+export interface ScheduledEpisodeListMatch {
+  airdate?: string
+  airstamp?: string
+  airtime?: string
+  id?: number
+  image?: Record<string, any>
+  link?: Record<string, any>
+  name?: string
+  number?: number
+  rating?: Record<string, any>
+  runtime?: number
+  season?: number
+  show?: Record<string, any>
+  summary?: string
+  type?: string
+  url?: string
+}
 
 export interface Search {
 }
 
-export type SearchLoadMatch = Partial<Search>
+export interface SearchLoadMatch {
+}
 
 export interface Season {
   end_date?: string
@@ -256,5 +302,6 @@ export interface ShowListMatch {
 export interface Update {
 }
 
-export type UpdateLoadMatch = Partial<Update>
+export interface UpdateLoadMatch {
+}
 

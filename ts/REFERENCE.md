@@ -320,8 +320,8 @@ const aka = client.Aka()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -371,10 +371,10 @@ const alternate_list = client.AlternateList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `link` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -391,7 +391,7 @@ const results = await client.AlternateList().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.AlternateList().load({ id: 'alternate_list_id' })
+const result = await client.AlternateList().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -432,10 +432,10 @@ const cast = client.Cast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `character` | ``$OBJECT`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `self` | ``$BOOLEAN`` | No |  |
-| `voice` | ``$BOOLEAN`` | No |  |
+| `character` | `Record<string, any>` | No |  |
+| `person` | `Record<string, any>` | No |  |
+| `self` | `boolean` | No |  |
+| `voice` | `boolean` | No |  |
 
 ### Operations
 
@@ -485,7 +485,7 @@ const cast_credit = client.CastCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
+| `link` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -535,10 +535,10 @@ const cast_member = client.CastMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `character` | ``$OBJECT`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `self` | ``$BOOLEAN`` | No |  |
-| `voice` | ``$BOOLEAN`` | No |  |
+| `character` | `Record<string, any>` | No |  |
+| `person` | `Record<string, any>` | No |  |
+| `self` | `boolean` | No |  |
+| `voice` | `boolean` | No |  |
 
 ### Operations
 
@@ -588,8 +588,8 @@ const crew = client.Crew()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `person` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `person` | `Record<string, any>` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -639,8 +639,8 @@ const crew_credit = client.CrewCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `link` | `Record<string, any>` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -690,8 +690,8 @@ const crew_member = client.CrewMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `person` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `person` | `Record<string, any>` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -741,20 +741,20 @@ const episode = client.Episode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `number` | No |  |
+| `image` | `Record<string, any>` | No |  |
+| `link` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `number` | `number` | No |  |
+| `rating` | `Record<string, any>` | No |  |
+| `runtime` | `number` | No |  |
+| `season` | `number` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -771,7 +771,7 @@ const results = await client.Episode().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Episode().load({ id: 'episode_id' })
+const result = await client.Episode().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -812,7 +812,7 @@ const guest_cast_credit = client.GuestCastCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$OBJECT`` | No |  |
+| `link` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -862,10 +862,10 @@ const image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `main` | ``$BOOLEAN`` | No |  |
-| `resolution` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `main` | `boolean` | No |  |
+| `resolution` | `Record<string, any>` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -915,18 +915,18 @@ const person = client.Person()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `birthday` | ``$STRING`` | No |  |
-| `country` | ``$OBJECT`` | No |  |
-| `deathday` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `person` | ``$OBJECT`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `updated` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `birthday` | `string` | No |  |
+| `country` | `Record<string, any>` | No |  |
+| `deathday` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `number` | No |  |
+| `image` | `Record<string, any>` | No |  |
+| `link` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `person` | `Record<string, any>` | No |  |
+| `score` | `number` | No |  |
+| `updated` | `number` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -943,7 +943,7 @@ const results = await client.Person().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Person().load({ id: 'person_id' })
+const result = await client.Person().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -984,21 +984,21 @@ const schedule = client.Schedule()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `number` | No |  |
+| `image` | `Record<string, any>` | No |  |
+| `link` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `number` | `number` | No |  |
+| `rating` | `Record<string, any>` | No |  |
+| `runtime` | `number` | No |  |
+| `season` | `number` | No |  |
+| `show` | `Record<string, any>` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -1048,21 +1048,21 @@ const scheduled_episode = client.ScheduledEpisode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | ``$STRING`` | No |  |
-| `airstamp` | ``$STRING`` | No |  |
-| `airtime` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `season` | ``$INTEGER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `airdate` | `string` | No |  |
+| `airstamp` | `string` | No |  |
+| `airtime` | `string` | No |  |
+| `id` | `number` | No |  |
+| `image` | `Record<string, any>` | No |  |
+| `link` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `number` | `number` | No |  |
+| `rating` | `Record<string, any>` | No |  |
+| `runtime` | `number` | No |  |
+| `season` | `number` | No |  |
+| `show` | `Record<string, any>` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -1115,7 +1115,7 @@ const search = client.Search()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Search().load({ id: 'search_id' })
+const result = await client.Search().load()
 ```
 
 ### Common Methods
@@ -1156,18 +1156,18 @@ const season = client.Season()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `episode_order` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
-| `number` | ``$INTEGER`` | No |  |
-| `premiere_date` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `web_channel` | ``$OBJECT`` | No |  |
+| `end_date` | `string` | No |  |
+| `episode_order` | `number` | No |  |
+| `id` | `number` | No |  |
+| `image` | `Record<string, any>` | No |  |
+| `link` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `network` | `Record<string, any>` | No |  |
+| `number` | `number` | No |  |
+| `premiere_date` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `url` | `string` | No |  |
+| `web_channel` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -1217,31 +1217,31 @@ const show = client.Show()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` | No |  |
-| `dvd_country` | ``$OBJECT`` | No |  |
-| `ended` | ``$STRING`` | No |  |
-| `external` | ``$OBJECT`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$OBJECT`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$OBJECT`` | No |  |
-| `official_site` | ``$STRING`` | No |  |
-| `premiered` | ``$STRING`` | No |  |
-| `rating` | ``$OBJECT`` | No |  |
-| `runtime` | ``$INTEGER`` | No |  |
-| `schedule` | ``$OBJECT`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `show` | ``$OBJECT`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `updated` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `web_channel` | ``$OBJECT`` | No |  |
-| `weight` | ``$INTEGER`` | No |  |
+| `average_runtime` | `number` | No |  |
+| `dvd_country` | `Record<string, any>` | No |  |
+| `ended` | `string` | No |  |
+| `external` | `Record<string, any>` | No |  |
+| `genre` | `any[]` | No |  |
+| `id` | `number` | No |  |
+| `image` | `Record<string, any>` | No |  |
+| `language` | `string` | No |  |
+| `link` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `network` | `Record<string, any>` | No |  |
+| `official_site` | `string` | No |  |
+| `premiered` | `string` | No |  |
+| `rating` | `Record<string, any>` | No |  |
+| `runtime` | `number` | No |  |
+| `schedule` | `Record<string, any>` | No |  |
+| `score` | `number` | No |  |
+| `show` | `Record<string, any>` | No |  |
+| `status` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `type` | `string` | No |  |
+| `updated` | `number` | No |  |
+| `url` | `string` | No |  |
+| `web_channel` | `Record<string, any>` | No |  |
+| `weight` | `number` | No |  |
 
 ### Operations
 
@@ -1258,7 +1258,7 @@ const results = await client.Show().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Show().load({ id: 'show_id' })
+const result = await client.Show().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -1302,7 +1302,7 @@ const update = client.Update()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Update().load({ id: 'update_id' })
+const result = await client.Update().load()
 ```
 
 ### Common Methods

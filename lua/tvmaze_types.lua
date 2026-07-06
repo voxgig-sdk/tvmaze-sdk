@@ -127,6 +127,18 @@
 ---@field id number
 
 ---@class PersonListMatch
+---@field birthday? string
+---@field country? table
+---@field deathday? string
+---@field gender? string
+---@field id? number
+---@field image? table
+---@field link? table
+---@field name? string
+---@field person? table
+---@field score? number
+---@field updated? number
+---@field url? string
 
 ---@class Schedule
 ---@field airdate? string
@@ -146,6 +158,21 @@
 ---@field url? string
 
 ---@class ScheduleListMatch
+---@field airdate? string
+---@field airstamp? string
+---@field airtime? string
+---@field id? number
+---@field image? table
+---@field link? table
+---@field name? string
+---@field number? number
+---@field rating? table
+---@field runtime? number
+---@field season? number
+---@field show? table
+---@field summary? string
+---@field type? string
+---@field url? string
 
 ---@class ScheduledEpisode
 ---@field airdate? string
@@ -165,6 +192,21 @@
 ---@field url? string
 
 ---@class ScheduledEpisodeListMatch
+---@field airdate? string
+---@field airstamp? string
+---@field airtime? string
+---@field id? number
+---@field image? table
+---@field link? table
+---@field name? string
+---@field number? number
+---@field rating? table
+---@field runtime? number
+---@field season? number
+---@field show? table
+---@field summary? string
+---@field type? string
+---@field url? string
 
 ---@class Search
 

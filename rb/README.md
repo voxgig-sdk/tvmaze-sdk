@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Tvmaze API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Aka` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,11 +37,38 @@ begin
   # list returns an Array of Aka records — iterate directly.
   akas = client.Aka.list
   akas.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["country"]}"
   end
 rescue => err
   warn "list failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  akas = client.Aka.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -60,7 +89,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -83,16 +114,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = TvmazeSDK.test({
-  "entity" => { "aka" => { "test01" => { "id" => "test01" } } },
-})
+client = TvmazeSDK.test
 
-# load returns the bare mock record (raises on error).
-aka = client.Aka.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+aka = client.Aka.list()
 puts aka
 ```
 
@@ -195,10 +223,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -525,8 +550,8 @@ Create an instance: `aka = client.Aka`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
+| `country` | `Hash` |  |
+| `name` | `String` |  |
 
 #### Example: List
 
@@ -551,10 +576,10 @@ Create an instance: `alternate_list = client.AlternateList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `id` | `Integer` |  |
+| `link` | `Hash` |  |
+| `name` | `String` |  |
+| `url` | `String` |  |
 
 #### Example: Load
 
@@ -585,10 +610,10 @@ Create an instance: `cast = client.Cast`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `Hash` |  |
+| `person` | `Hash` |  |
+| `self` | `Boolean` |  |
+| `voice` | `Boolean` |  |
 
 #### Example: List
 
@@ -612,7 +637,7 @@ Create an instance: `cast_credit = client.CastCredit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `Hash` |  |
 
 #### Example: List
 
@@ -636,10 +661,10 @@ Create an instance: `cast_member = client.CastMember`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `character` | ``$OBJECT`` |  |
-| `person` | ``$OBJECT`` |  |
-| `self` | ``$BOOLEAN`` |  |
-| `voice` | ``$BOOLEAN`` |  |
+| `character` | `Hash` |  |
+| `person` | `Hash` |  |
+| `self` | `Boolean` |  |
+| `voice` | `Boolean` |  |
 
 #### Example: List
 
@@ -663,8 +688,8 @@ Create an instance: `crew = client.Crew`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `Hash` |  |
+| `type` | `String` |  |
 
 #### Example: List
 
@@ -688,8 +713,8 @@ Create an instance: `crew_credit = client.CrewCredit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `link` | `Hash` |  |
+| `type` | `String` |  |
 
 #### Example: List
 
@@ -713,8 +738,8 @@ Create an instance: `crew_member = client.CrewMember`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `person` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `person` | `Hash` |  |
+| `type` | `String` |  |
 
 #### Example: List
 
@@ -739,20 +764,20 @@ Create an instance: `episode = client.Episode`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `String` |  |
+| `airstamp` | `String` |  |
+| `airtime` | `String` |  |
+| `id` | `Integer` |  |
+| `image` | `Hash` |  |
+| `link` | `Hash` |  |
+| `name` | `String` |  |
+| `number` | `Integer` |  |
+| `rating` | `Hash` |  |
+| `runtime` | `Integer` |  |
+| `season` | `Integer` |  |
+| `summary` | `String` |  |
+| `type` | `String` |  |
+| `url` | `String` |  |
 
 #### Example: Load
 
@@ -783,7 +808,7 @@ Create an instance: `guest_cast_credit = client.GuestCastCredit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$OBJECT`` |  |
+| `link` | `Hash` |  |
 
 #### Example: List
 
@@ -807,10 +832,10 @@ Create an instance: `image = client.Image`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `main` | ``$BOOLEAN`` |  |
-| `resolution` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `id` | `Integer` |  |
+| `main` | `Boolean` |  |
+| `resolution` | `Hash` |  |
+| `type` | `String` |  |
 
 #### Example: List
 
@@ -835,18 +860,18 @@ Create an instance: `person = client.Person`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `birthday` | ``$STRING`` |  |
-| `country` | ``$OBJECT`` |  |
-| `deathday` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `person` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
+| `birthday` | `String` |  |
+| `country` | `Hash` |  |
+| `deathday` | `String` |  |
+| `gender` | `String` |  |
+| `id` | `Integer` |  |
+| `image` | `Hash` |  |
+| `link` | `Hash` |  |
+| `name` | `String` |  |
+| `person` | `Hash` |  |
+| `score` | `Float` |  |
+| `updated` | `Integer` |  |
+| `url` | `String` |  |
 
 #### Example: Load
 
@@ -877,21 +902,21 @@ Create an instance: `schedule = client.Schedule`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `String` |  |
+| `airstamp` | `String` |  |
+| `airtime` | `String` |  |
+| `id` | `Integer` |  |
+| `image` | `Hash` |  |
+| `link` | `Hash` |  |
+| `name` | `String` |  |
+| `number` | `Integer` |  |
+| `rating` | `Hash` |  |
+| `runtime` | `Integer` |  |
+| `season` | `Integer` |  |
+| `show` | `Hash` |  |
+| `summary` | `String` |  |
+| `type` | `String` |  |
+| `url` | `String` |  |
 
 #### Example: List
 
@@ -915,21 +940,21 @@ Create an instance: `scheduled_episode = client.ScheduledEpisode`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | ``$STRING`` |  |
-| `airstamp` | ``$STRING`` |  |
-| `airtime` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `number` | ``$INTEGER`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `season` | ``$INTEGER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `airdate` | `String` |  |
+| `airstamp` | `String` |  |
+| `airtime` | `String` |  |
+| `id` | `Integer` |  |
+| `image` | `Hash` |  |
+| `link` | `Hash` |  |
+| `name` | `String` |  |
+| `number` | `Integer` |  |
+| `rating` | `Hash` |  |
+| `runtime` | `Integer` |  |
+| `season` | `Integer` |  |
+| `show` | `Hash` |  |
+| `summary` | `String` |  |
+| `type` | `String` |  |
+| `url` | `String` |  |
 
 #### Example: List
 
@@ -953,7 +978,7 @@ Create an instance: `search = client.Search`
 
 ```ruby
 # load returns the bare Search record (raises on error).
-search = client.Search.load({ "id" => "search_id" })
+search = client.Search.load()
 ```
 
 
@@ -971,18 +996,18 @@ Create an instance: `season = client.Season`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | ``$STRING`` |  |
-| `episode_order` | ``$INTEGER`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `number` | ``$INTEGER`` |  |
-| `premiere_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
+| `end_date` | `String` |  |
+| `episode_order` | `Integer` |  |
+| `id` | `Integer` |  |
+| `image` | `Hash` |  |
+| `link` | `Hash` |  |
+| `name` | `String` |  |
+| `network` | `Hash` |  |
+| `number` | `Integer` |  |
+| `premiere_date` | `String` |  |
+| `summary` | `String` |  |
+| `url` | `String` |  |
+| `web_channel` | `Hash` |  |
 
 #### Example: List
 
@@ -1007,31 +1032,31 @@ Create an instance: `show = client.Show`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | ``$INTEGER`` |  |
-| `dvd_country` | ``$OBJECT`` |  |
-| `ended` | ``$STRING`` |  |
-| `external` | ``$OBJECT`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$OBJECT`` |  |
-| `language` | ``$STRING`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$OBJECT`` |  |
-| `official_site` | ``$STRING`` |  |
-| `premiered` | ``$STRING`` |  |
-| `rating` | ``$OBJECT`` |  |
-| `runtime` | ``$INTEGER`` |  |
-| `schedule` | ``$OBJECT`` |  |
-| `score` | ``$NUMBER`` |  |
-| `show` | ``$OBJECT`` |  |
-| `status` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `updated` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
-| `web_channel` | ``$OBJECT`` |  |
-| `weight` | ``$INTEGER`` |  |
+| `average_runtime` | `Integer` |  |
+| `dvd_country` | `Hash` |  |
+| `ended` | `String` |  |
+| `external` | `Hash` |  |
+| `genre` | `Array` |  |
+| `id` | `Integer` |  |
+| `image` | `Hash` |  |
+| `language` | `String` |  |
+| `link` | `Hash` |  |
+| `name` | `String` |  |
+| `network` | `Hash` |  |
+| `official_site` | `String` |  |
+| `premiered` | `String` |  |
+| `rating` | `Hash` |  |
+| `runtime` | `Integer` |  |
+| `schedule` | `Hash` |  |
+| `score` | `Float` |  |
+| `show` | `Hash` |  |
+| `status` | `String` |  |
+| `summary` | `String` |  |
+| `type` | `String` |  |
+| `updated` | `Integer` |  |
+| `url` | `String` |  |
+| `web_channel` | `Hash` |  |
+| `weight` | `Integer` |  |
 
 #### Example: Load
 
@@ -1062,16 +1087,20 @@ Create an instance: `update = client.Update`
 
 ```ruby
 # load returns the bare Update record (raises on error).
-update = client.Update.load({ "id" => "update_id" })
+update = client.Update.load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1088,8 +1117,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1133,14 +1163,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 aka = client.Aka
-aka.load({ "id" => "example_id" })
+aka.list()
 
-# aka.data_get now returns the loaded aka data
+# aka.data_get now returns the aka data from the last list
 # aka.match_get returns the last match criteria
 ```
 

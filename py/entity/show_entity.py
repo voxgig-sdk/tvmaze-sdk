@@ -65,8 +65,13 @@ class ShowEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: ShowLoadMatch, ctrl=None) -> Show:
+    def load(self, reqmatch=None, ctrl=None) -> Show:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Show().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class ShowEntity:
 
 
     
-    def list(self, reqmatch: ShowListMatch, ctrl=None) -> list[Show]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Show]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Show().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,
