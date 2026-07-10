@@ -126,14 +126,14 @@ type Episode struct {
 
 // EpisodeLoadMatch is the typed request payload for Episode.LoadTyped.
 type EpisodeLoadMatch struct {
-	ShowId int `json:"show_id"`
-	Id int `json:"id"`
+	ShowId *int `json:"show_id,omitempty"`
+	Id *int `json:"id,omitempty"`
 }
 
 // EpisodeListMatch is the typed request payload for Episode.ListTyped.
 type EpisodeListMatch struct {
-	ShowId int `json:"show_id"`
-	SeasonId int `json:"season_id"`
+	ShowId *int `json:"show_id,omitempty"`
+	SeasonId *int `json:"season_id,omitempty"`
 }
 
 // GuestCastCredit is the typed data model for the guest_cast_credit entity.
@@ -337,7 +337,7 @@ type ShowLoadMatch struct {
 
 // ShowListMatch is the typed request payload for Show.ListTyped.
 type ShowListMatch struct {
-	AlternatelistId int `json:"alternatelist_id"`
+	AlternatelistId *int `json:"alternatelist_id,omitempty"`
 }
 
 // Update is the typed data model for the update entity.

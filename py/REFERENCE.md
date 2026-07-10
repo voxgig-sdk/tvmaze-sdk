@@ -231,7 +231,7 @@ for alternate_list in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.AlternateList().load({"id": "alternate_list_id"})
+result = client.AlternateList().load({"id": 1})
 ```
 
 ### Common Methods
@@ -632,7 +632,7 @@ for episode in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Episode().load({"id": "episode_id"})
+result = client.Episode().load({"id": 1})
 ```
 
 ### Common Methods
@@ -813,7 +813,7 @@ for person in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Person().load({"id": "person_id"})
+result = client.Person().load({"id": 1})
 ```
 
 ### Common Methods
@@ -1141,7 +1141,7 @@ for show in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Show().load({"id": "show_id"})
+result = client.Show().load({"id": 1})
 ```
 
 ### Common Methods

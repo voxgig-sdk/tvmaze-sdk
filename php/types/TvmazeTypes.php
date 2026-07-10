@@ -149,15 +149,15 @@ class Episode
 /** Request payload for Episode#load. */
 class EpisodeLoadMatch
 {
-    public int $show_id;
-    public int $id;
+    public ?int $show_id = null;
+    public ?int $id = null;
 }
 
 /** Request payload for Episode#list. */
 class EpisodeListMatch
 {
-    public int $show_id;
-    public int $season_id;
+    public ?int $show_id = null;
+    public ?int $season_id = null;
 }
 
 /** GuestCastCredit entity data model. */
@@ -379,7 +379,7 @@ class ShowLoadMatch
 /** Request payload for Show#list. */
 class ShowListMatch
 {
-    public int $alternatelist_id;
+    public ?int $alternatelist_id = null;
 }
 
 /** Update entity data model. */

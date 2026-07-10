@@ -104,13 +104,13 @@ export interface Episode {
 }
 
 export interface EpisodeLoadMatch {
-  show_id: number
-  id: number
+  show_id?: number
+  id?: number
 }
 
 export interface EpisodeListMatch {
-  show_id: number
-  season_id: number
+  show_id?: number
+  season_id?: number
 }
 
 export interface GuestCastCredit {
@@ -296,7 +296,7 @@ export interface ShowLoadMatch {
 }
 
 export interface ShowListMatch {
-  alternatelist_id: number
+  alternatelist_id?: number
 }
 
 export interface Update {

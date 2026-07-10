@@ -579,7 +579,7 @@ Create an instance: `local alternate_list = client:AlternateList(nil)`
 #### Example: Load
 
 ```lua
-local alternate_list, err = client:AlternateList():load({ id = "alternate_list_id" })
+local alternate_list, err = client:AlternateList():load({ id = 1 })
 ```
 
 #### Example: List
@@ -769,7 +769,7 @@ Create an instance: `local episode = client:Episode(nil)`
 #### Example: Load
 
 ```lua
-local episode, err = client:Episode():load({ id = "episode_id" })
+local episode, err = client:Episode():load({ id = 1 })
 ```
 
 #### Example: List
@@ -859,7 +859,7 @@ Create an instance: `local person = client:Person(nil)`
 #### Example: Load
 
 ```lua
-local person, err = client:Person():load({ id = "person_id" })
+local person, err = client:Person():load({ id = 1 })
 ```
 
 #### Example: List
@@ -1038,7 +1038,7 @@ Create an instance: `local show = client:Show(nil)`
 #### Example: Load
 
 ```lua
-local show, err = client:Show():load({ id = "show_id" })
+local show, err = client:Show():load({ id = 1 })
 ```
 
 #### Example: List

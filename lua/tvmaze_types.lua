@@ -87,12 +87,12 @@
 ---@field url? string
 
 ---@class EpisodeLoadMatch
----@field show_id number
----@field id number
+---@field show_id? number
+---@field id? number
 
 ---@class EpisodeListMatch
----@field show_id number
----@field season_id number
+---@field show_id? number
+---@field season_id? number
 
 ---@class GuestCastCredit
 ---@field link? table
@@ -260,7 +260,7 @@
 ---@field id number
 
 ---@class ShowListMatch
----@field alternatelist_id number
+---@field alternatelist_id? number
 
 ---@class Update
 

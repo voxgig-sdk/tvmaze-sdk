@@ -591,7 +591,7 @@ fmt.Println(akas) // the array of records
 
 ### AlternateList
 
-Create an instance: `alternate_list := client.AlternateList(nil)`
+Create an instance: `alternateList := client.AlternateList(nil)`
 
 #### Operations
 
@@ -612,21 +612,21 @@ Create an instance: `alternate_list := client.AlternateList(nil)`
 #### Example: Load
 
 ```go
-alternate_list, err := client.AlternateList(nil).Load(map[string]any{"id": "alternate_list_id"}, nil)
+alternateList, err := client.AlternateList(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(alternate_list) // the loaded record
+fmt.Println(alternateList) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-alternate_lists, err := client.AlternateList(nil).List(nil, nil)
+alternateLists, err := client.AlternateList(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(alternate_lists) // the array of records
+fmt.Println(alternateLists) // the array of records
 ```
 
 
@@ -662,7 +662,7 @@ fmt.Println(casts) // the array of records
 
 ### CastCredit
 
-Create an instance: `cast_credit := client.CastCredit(nil)`
+Create an instance: `castCredit := client.CastCredit(nil)`
 
 #### Operations
 
@@ -679,17 +679,17 @@ Create an instance: `cast_credit := client.CastCredit(nil)`
 #### Example: List
 
 ```go
-cast_credits, err := client.CastCredit(nil).List(nil, nil)
+castCredits, err := client.CastCredit(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cast_credits) // the array of records
+fmt.Println(castCredits) // the array of records
 ```
 
 
 ### CastMember
 
-Create an instance: `cast_member := client.CastMember(nil)`
+Create an instance: `castMember := client.CastMember(nil)`
 
 #### Operations
 
@@ -709,11 +709,11 @@ Create an instance: `cast_member := client.CastMember(nil)`
 #### Example: List
 
 ```go
-cast_members, err := client.CastMember(nil).List(nil, nil)
+castMembers, err := client.CastMember(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cast_members) // the array of records
+fmt.Println(castMembers) // the array of records
 ```
 
 
@@ -747,7 +747,7 @@ fmt.Println(crews) // the array of records
 
 ### CrewCredit
 
-Create an instance: `crew_credit := client.CrewCredit(nil)`
+Create an instance: `crewCredit := client.CrewCredit(nil)`
 
 #### Operations
 
@@ -765,17 +765,17 @@ Create an instance: `crew_credit := client.CrewCredit(nil)`
 #### Example: List
 
 ```go
-crew_credits, err := client.CrewCredit(nil).List(nil, nil)
+crewCredits, err := client.CrewCredit(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(crew_credits) // the array of records
+fmt.Println(crewCredits) // the array of records
 ```
 
 
 ### CrewMember
 
-Create an instance: `crew_member := client.CrewMember(nil)`
+Create an instance: `crewMember := client.CrewMember(nil)`
 
 #### Operations
 
@@ -793,11 +793,11 @@ Create an instance: `crew_member := client.CrewMember(nil)`
 #### Example: List
 
 ```go
-crew_members, err := client.CrewMember(nil).List(nil, nil)
+crewMembers, err := client.CrewMember(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(crew_members) // the array of records
+fmt.Println(crewMembers) // the array of records
 ```
 
 
@@ -834,7 +834,7 @@ Create an instance: `episode := client.Episode(nil)`
 #### Example: Load
 
 ```go
-episode, err := client.Episode(nil).Load(map[string]any{"id": "episode_id"}, nil)
+episode, err := client.Episode(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -854,7 +854,7 @@ fmt.Println(episodes) // the array of records
 
 ### GuestCastCredit
 
-Create an instance: `guest_cast_credit := client.GuestCastCredit(nil)`
+Create an instance: `guestCastCredit := client.GuestCastCredit(nil)`
 
 #### Operations
 
@@ -871,11 +871,11 @@ Create an instance: `guest_cast_credit := client.GuestCastCredit(nil)`
 #### Example: List
 
 ```go
-guest_cast_credits, err := client.GuestCastCredit(nil).List(nil, nil)
+guestCastCredits, err := client.GuestCastCredit(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(guest_cast_credits) // the array of records
+fmt.Println(guestCastCredits) // the array of records
 ```
 
 
@@ -940,7 +940,7 @@ Create an instance: `person := client.Person(nil)`
 #### Example: Load
 
 ```go
-person, err := client.Person(nil).Load(map[string]any{"id": "person_id"}, nil)
+person, err := client.Person(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -1001,7 +1001,7 @@ fmt.Println(schedules) // the array of records
 
 ### ScheduledEpisode
 
-Create an instance: `scheduled_episode := client.ScheduledEpisode(nil)`
+Create an instance: `scheduledEpisode := client.ScheduledEpisode(nil)`
 
 #### Operations
 
@@ -1032,11 +1032,11 @@ Create an instance: `scheduled_episode := client.ScheduledEpisode(nil)`
 #### Example: List
 
 ```go
-scheduled_episodes, err := client.ScheduledEpisode(nil).List(nil, nil)
+scheduledEpisodes, err := client.ScheduledEpisode(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(scheduled_episodes) // the array of records
+fmt.Println(scheduledEpisodes) // the array of records
 ```
 
 
@@ -1143,7 +1143,7 @@ Create an instance: `show := client.Show(nil)`
 #### Example: Load
 
 ```go
-show, err := client.Show(nil).Load(map[string]any{"id": "show_id"}, nil)
+show, err := client.Show(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }

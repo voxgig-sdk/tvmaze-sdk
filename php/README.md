@@ -595,7 +595,7 @@ Create an instance: `$alternate_list = $client->AlternateList();`
 
 ```php
 // load() returns the bare AlternateList record (throws on error).
-$alternate_list = $client->AlternateList()->load(["id" => "alternate_list_id"]);
+$alternate_list = $client->AlternateList()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -793,7 +793,7 @@ Create an instance: `$episode = $client->Episode();`
 
 ```php
 // load() returns the bare Episode record (throws on error).
-$episode = $client->Episode()->load(["id" => "episode_id"]);
+$episode = $client->Episode()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -887,7 +887,7 @@ Create an instance: `$person = $client->Person();`
 
 ```php
 // load() returns the bare Person record (throws on error).
-$person = $client->Person()->load(["id" => "person_id"]);
+$person = $client->Person()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -1072,7 +1072,7 @@ Create an instance: `$show = $client->Show();`
 
 ```php
 // load() returns the bare Show record (throws on error).
-$show = $client->Show()->load(["id" => "show_id"]);
+$show = $client->Show()->load(["id" => 1]);
 ```
 
 #### Example: List

@@ -277,10 +277,10 @@ Episode = Struct.new(
 # Request payload for Episode#load.
 #
 # @!attribute [rw] show_id
-#   @return [Integer]
+#   @return [Integer, nil]
 #
 # @!attribute [rw] id
-#   @return [Integer]
+#   @return [Integer, nil]
 EpisodeLoadMatch = Struct.new(
   :show_id,
   :id,
@@ -290,10 +290,10 @@ EpisodeLoadMatch = Struct.new(
 # Request payload for Episode#list.
 #
 # @!attribute [rw] show_id
-#   @return [Integer]
+#   @return [Integer, nil]
 #
 # @!attribute [rw] season_id
-#   @return [Integer]
+#   @return [Integer, nil]
 EpisodeListMatch = Struct.new(
   :show_id,
   :season_id,
@@ -910,7 +910,7 @@ ShowLoadMatch = Struct.new(
 # Request payload for Show#list.
 #
 # @!attribute [rw] alternatelist_id
-#   @return [Integer]
+#   @return [Integer, nil]
 ShowListMatch = Struct.new(
   :alternatelist_id,
   keyword_init: true

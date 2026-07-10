@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -3098,14 +3095,17 @@
           "name": "See TVmaze Licensing",
           "url": "https://www.tvmaze.com/api"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "TVmaze API Server",
             "url": "https://api.tvmaze.com"
           }
         ],
+        "summary": "Add television information to your own website or app with a fast and clean TV API.",
         "title": "TVmaze API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://tvmaze.com"
       },
       "option": {},
       "target": {
@@ -3158,6 +3158,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -3208,6 +3211,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

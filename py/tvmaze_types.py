@@ -114,12 +114,12 @@ class Episode(TypedDict, total=False):
     url: str
 
 
-class EpisodeLoadMatch(TypedDict):
+class EpisodeLoadMatch(TypedDict, total=False):
     show_id: int
     id: int
 
 
-class EpisodeListMatch(TypedDict):
+class EpisodeListMatch(TypedDict, total=False):
     show_id: int
     season_id: int
 
@@ -308,7 +308,7 @@ class ShowLoadMatch(TypedDict):
     id: int
 
 
-class ShowListMatch(TypedDict):
+class ShowListMatch(TypedDict, total=False):
     alternatelist_id: int
 
 

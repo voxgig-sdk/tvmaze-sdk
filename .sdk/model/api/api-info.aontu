@@ -19,9 +19,9 @@ main: {
           url: "https://api.tvmaze.com"
         }
       ]
+      summary: "Add television information to your own website or app with a fast and clean TV API."
       title: "TVmaze API"
       version: "1.0.0"
+      website: "https://tvmaze.com"
     }
   }
-}
-

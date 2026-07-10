@@ -233,7 +233,7 @@ $results = $client->AlternateList()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->AlternateList()->load(["id" => "alternate_list_id"]);
+$result = $client->AlternateList()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -627,7 +627,7 @@ $results = $client->Episode()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Episode()->load(["id" => "episode_id"]);
+$result = $client->Episode()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -805,7 +805,7 @@ $results = $client->Person()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Person()->load(["id" => "person_id"]);
+$result = $client->Person()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -1130,7 +1130,7 @@ $results = $client->Show()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Show()->load(["id" => "show_id"]);
+$result = $client->Show()->load(["id" => 1]);
 ```
 
 ### Common Methods

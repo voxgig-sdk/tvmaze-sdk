@@ -589,7 +589,7 @@ Create an instance: `alternate_list = client.AlternateList()`
 #### Example: Load
 
 ```python
-alternate_list = client.AlternateList().load({"id": "alternate_list_id"})
+alternate_list = client.AlternateList().load({"id": 1})
 ```
 
 #### Example: List
@@ -779,7 +779,7 @@ Create an instance: `episode = client.Episode()`
 #### Example: Load
 
 ```python
-episode = client.Episode().load({"id": "episode_id"})
+episode = client.Episode().load({"id": 1})
 ```
 
 #### Example: List
@@ -869,7 +869,7 @@ Create an instance: `person = client.Person()`
 #### Example: Load
 
 ```python
-person = client.Person().load({"id": "person_id"})
+person = client.Person().load({"id": 1})
 ```
 
 #### Example: List
@@ -1048,7 +1048,7 @@ Create an instance: `show = client.Show()`
 #### Example: Load
 
 ```python
-show = client.Show().load({"id": "show_id"})
+show = client.Show().load({"id": 1})
 ```
 
 #### Example: List

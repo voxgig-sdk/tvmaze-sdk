@@ -231,7 +231,7 @@ local results, err = client:AlternateList():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:AlternateList():load({ id = "alternate_list_id" })
+local result, err = client:AlternateList():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -625,7 +625,7 @@ local results, err = client:Episode():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Episode():load({ id = "episode_id" })
+local result, err = client:Episode():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -803,7 +803,7 @@ local results, err = client:Person():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Person():load({ id = "person_id" })
+local result, err = client:Person():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -1128,7 +1128,7 @@ local results, err = client:Show():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Show():load({ id = "show_id" })
+local result, err = client:Show():load({ id = 1 })
 ```
 
 ### Common Methods
