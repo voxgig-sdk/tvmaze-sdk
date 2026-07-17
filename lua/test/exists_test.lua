@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Tvmaze SDK exists test
 
 local sdk = require("tvmaze_sdk")
 
