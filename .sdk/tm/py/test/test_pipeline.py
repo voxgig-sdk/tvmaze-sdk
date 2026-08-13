@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import TvmazeSDK
-from core.error import TvmazeError
-from core.result import TvmazeResult
-from core.response import TvmazeResponse
-from core.spec import TvmazeSpec
-from feature.base_feature import TvmazeBaseFeature
+from projectname_sdk.core.error import TvmazeError
+from projectname_sdk.core.result import TvmazeResult
+from projectname_sdk.core.response import TvmazeResponse
+from projectname_sdk.core.spec import TvmazeSpec
+from projectname_sdk.feature.base_feature import TvmazeBaseFeature
 
 
 def _client():

@@ -63,7 +63,7 @@ describe('ScheduledEpisodeEntity', async () => {
     const scheduled_episode_ref01_ent = client.ScheduledEpisode()
     const scheduled_episode_ref01_match: any = {}
 
-    const scheduled_episode_ref01_list = await scheduled_episode_ref01_ent.list(scheduled_episode_ref01_match)
+    const scheduled_episode_ref01_list = (await scheduled_episode_ref01_ent.list(scheduled_episode_ref01_match)).map((e: any) => e.data())
 
 
   })

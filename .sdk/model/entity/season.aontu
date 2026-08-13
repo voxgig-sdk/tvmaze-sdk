@@ -6,12 +6,12 @@ main: kit: entity: season: {
 
   fields: [
     {
-      name: "end_date"
+      name: "endDate"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "episode_order"
+      name: "episodeOrder"
       req: false
       type: "`$INTEGER`"
     }
@@ -26,7 +26,7 @@ main: kit: entity: season: {
       type: "`$OBJECT`"
     }
     {
-      name: "link"
+      name: "links"
       req: false
       type: "`$OBJECT`"
     }
@@ -46,7 +46,7 @@ main: kit: entity: season: {
       type: "`$INTEGER`"
     }
     {
-      name: "premiere_date"
+      name: "premiereDate"
       req: false
       type: "`$STRING`"
     }
@@ -61,7 +61,7 @@ main: kit: entity: season: {
       type: "`$STRING`"
     }
     {
-      name: "web_channel"
+      name: "webChannel"
       req: false
       type: "`$OBJECT`"
     }

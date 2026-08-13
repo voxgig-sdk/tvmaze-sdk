@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Tvmaze',
   }
 
 
@@ -141,6 +141,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/akas",
               "parts": [
@@ -187,7 +188,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 1
@@ -201,10 +202,17 @@ class Config {
         },
         {
           "active": true,
+          "name": "self",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 3
+        },
+        {
+          "active": true,
           "name": "url",
           "req": false,
           "type": "`$STRING`",
-          "index$": 3
+          "index$": 4
         }
       ],
       "name": "alternate_list",
@@ -228,6 +236,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/alternatelists",
               "parts": [
@@ -283,6 +292,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/alternatelists/{id}",
               "parts": [
@@ -297,7 +307,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body._links`"
               },
               "index$": 0
             }
@@ -365,6 +375,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/cast",
               "parts": [
@@ -404,7 +415,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 0
@@ -441,6 +452,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/people/{id}/castcredits",
               "parts": [
@@ -529,6 +541,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/episodes/{id}/guestcast",
               "parts": [
@@ -602,6 +615,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/crew",
               "parts": [
@@ -641,7 +655,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 0
@@ -685,6 +699,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/people/{id}/crewcredits",
               "parts": [
@@ -759,6 +774,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/episodes/{id}/guestcrew",
               "parts": [
@@ -833,7 +849,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 5
@@ -926,6 +942,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/episodesbydate",
               "parts": [
@@ -975,6 +992,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/seasons/{id}/episodes",
               "parts": [
@@ -1024,6 +1042,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/episodes",
               "parts": [
@@ -1088,6 +1107,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/episodebynumber",
               "parts": [
@@ -1138,6 +1158,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/episodes/{id}",
               "parts": [
@@ -1175,7 +1196,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 0
@@ -1212,6 +1233,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/people/{id}/guestcastcredits",
               "parts": [
@@ -1266,7 +1288,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "resolution",
+          "name": "resolutions",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 2
@@ -1300,6 +1322,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/images",
               "parts": [
@@ -1381,7 +1404,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 6
@@ -1443,6 +1466,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/people",
               "parts": [
@@ -1473,6 +1497,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/search/people",
               "parts": [
@@ -1522,6 +1547,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/people/{id}",
               "parts": [
@@ -1587,7 +1613,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 5
@@ -1685,6 +1711,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/schedule",
               "parts": [
@@ -1749,7 +1776,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 5
@@ -1846,6 +1873,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/schedule/web",
               "parts": [
@@ -1867,6 +1895,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/schedule/full",
               "parts": [
@@ -1926,6 +1955,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lookup/shows",
               "parts": [
@@ -1957,14 +1987,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "end_date",
+          "name": "endDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "episode_order",
+          "name": "episodeOrder",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 1
@@ -1985,7 +2015,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 4
@@ -2013,7 +2043,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "premiere_date",
+          "name": "premiereDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
@@ -2034,7 +2064,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "web_channel",
+          "name": "webChannel",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 11
@@ -2061,6 +2091,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}/seasons",
               "parts": [
@@ -2100,14 +2131,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "average_runtime",
+          "name": "averageRuntime",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "dvd_country",
+          "name": "dvdCountry",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 1
@@ -2121,14 +2152,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "external",
+          "name": "externals",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "genre",
+          "name": "genres",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 4
@@ -2156,7 +2187,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "link",
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 8
@@ -2177,7 +2208,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "official_site",
+          "name": "officialSite",
           "req": false,
           "type": "`$STRING`",
           "index$": 11
@@ -2261,7 +2292,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "web_channel",
+          "name": "webChannel",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 23
@@ -2305,6 +2336,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/alternatelists/{id}/alternateepisodes",
               "parts": [
@@ -2351,6 +2383,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/singlesearch/shows",
               "parts": [
@@ -2384,6 +2417,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows",
               "parts": [
@@ -2414,6 +2448,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/search/shows",
               "parts": [
@@ -2463,6 +2498,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}",
               "parts": [
@@ -2515,6 +2551,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/updates/people",
               "parts": [
@@ -2547,6 +2584,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/updates/shows",
               "parts": [

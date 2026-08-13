@@ -64,7 +64,7 @@ describe('AkaEntity', async () => {
     const aka_ref01_match: any = {}
     aka_ref01_match['show_id'] = setup.idmap['show01']
 
-    const aka_ref01_list = await aka_ref01_ent.list(aka_ref01_match)
+    const aka_ref01_list = (await aka_ref01_ent.list(aka_ref01_match)).map((e: any) => e.data())
 
 
   })

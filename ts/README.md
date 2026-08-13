@@ -35,10 +35,12 @@ const client = new TvmazeSDK()
 
 ### 2. List aka records
 
-`list()` resolves to an array of Aka objects — iterate it directly:
+`list()` resolves to an array of Aka ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const akas = await client.Aka().list()
+const akas = await client.Aka().list({ show_id: 1 })
 
 for (const aka of akas) {
   console.log(aka)
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const akas = await client.Aka().list()
-  console.log(akas)
+  const images = await client.Image().list()
+  console.log(images)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TvmazeSDK.test()
 
-const aka = await client.Aka().list()
-// aka is a bare entity populated with mock response data
-console.log(aka)
+const image = await client.Image().list()
+// image is the entity, populated with mock response data
+// — call image.data() for the record itself
+console.log(image)
 ```
 
 You can also use the instance method:
@@ -136,14 +139,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Aka()
+const entity = client.Image()
 
 // First call runs the operation and stores its result
 await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -315,8 +318,9 @@ API path: `/shows/{id}/akas`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
+| `self` |  |
 | `url` |  |
 
 Operations: list, load.
@@ -340,7 +344,7 @@ API path: `/shows/{id}/cast`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: list.
 
@@ -374,7 +378,7 @@ API path: `/shows/{id}/crew`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 | `type` |  |
 
 Operations: list.
@@ -401,7 +405,7 @@ API path: `/episodes/{id}/guestcrew`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -419,7 +423,7 @@ API path: `/shows/{id}/episodesbydate`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: list.
 
@@ -431,7 +435,7 @@ API path: `/people/{id}/guestcastcredits`
 | --- | --- |
 | `id` |  |
 | `main` |  |
-| `resolution` |  |
+| `resolutions` |  |
 | `type` |  |
 
 Operations: list.
@@ -448,7 +452,7 @@ API path: `/shows/{id}/images`
 | `gender` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `person` |  |
 | `score` |  |
@@ -468,7 +472,7 @@ API path: `/people`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -492,7 +496,7 @@ API path: `/schedule`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -520,18 +524,18 @@ API path: `/lookup/shows`
 
 | Field | Description |
 | --- | --- |
-| `end_date` |  |
-| `episode_order` |  |
+| `endDate` |  |
+| `episodeOrder` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
 | `number` |  |
-| `premiere_date` |  |
+| `premiereDate` |  |
 | `summary` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 
 Operations: list.
 
@@ -541,18 +545,18 @@ API path: `/shows/{id}/seasons`
 
 | Field | Description |
 | --- | --- |
-| `average_runtime` |  |
-| `dvd_country` |  |
+| `averageRuntime` |  |
+| `dvdCountry` |  |
 | `ended` |  |
-| `external` |  |
-| `genre` |  |
+| `externals` |  |
+| `genres` |  |
 | `id` |  |
 | `image` |  |
 | `language` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
-| `official_site` |  |
+| `officialSite` |  |
 | `premiered` |  |
 | `rating` |  |
 | `runtime` |  |
@@ -564,7 +568,7 @@ API path: `/shows/{id}/seasons`
 | `type` |  |
 | `updated` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 | `weight` |  |
 
 Operations: list, load.
@@ -605,7 +609,7 @@ Create an instance: `const aka = client.Aka()`
 #### Example: List
 
 ```ts
-const akas = await client.Aka().list()
+const akas = await client.Aka().list({ show_id: 1 })
 ```
 
 
@@ -625,8 +629,9 @@ Create an instance: `const alternate_list = client.AlternateList()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `number` |  |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 | `name` | `string` |  |
+| `self` | `Record<string, any>` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -638,7 +643,7 @@ const alternate_list = await client.AlternateList().load({ id: 1 })
 #### Example: List
 
 ```ts
-const alternate_lists = await client.AlternateList().list()
+const alternate_lists = await client.AlternateList().list({ show_id: 1 })
 ```
 
 
@@ -664,7 +669,7 @@ Create an instance: `const cast = client.Cast()`
 #### Example: List
 
 ```ts
-const casts = await client.Cast().list()
+const casts = await client.Cast().list({ show_id: 1 })
 ```
 
 
@@ -682,12 +687,12 @@ Create an instance: `const cast_credit = client.CastCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 
 #### Example: List
 
 ```ts
-const cast_credits = await client.CastCredit().list()
+const cast_credits = await client.CastCredit().list({ person_id: 1 })
 ```
 
 
@@ -713,7 +718,7 @@ Create an instance: `const cast_member = client.CastMember()`
 #### Example: List
 
 ```ts
-const cast_members = await client.CastMember().list()
+const cast_members = await client.CastMember().list({ episode_id: 1 })
 ```
 
 
@@ -737,7 +742,7 @@ Create an instance: `const crew = client.Crew()`
 #### Example: List
 
 ```ts
-const crews = await client.Crew().list()
+const crews = await client.Crew().list({ show_id: 1 })
 ```
 
 
@@ -755,13 +760,13 @@ Create an instance: `const crew_credit = client.CrewCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 | `type` | `string` |  |
 
 #### Example: List
 
 ```ts
-const crew_credits = await client.CrewCredit().list()
+const crew_credits = await client.CrewCredit().list({ person_id: 1 })
 ```
 
 
@@ -785,7 +790,7 @@ Create an instance: `const crew_member = client.CrewMember()`
 #### Example: List
 
 ```ts
-const crew_members = await client.CrewMember().list()
+const crew_members = await client.CrewMember().list({ episode_id: 1 })
 ```
 
 
@@ -809,7 +814,7 @@ Create an instance: `const episode = client.Episode()`
 | `airtime` | `string` |  |
 | `id` | `number` |  |
 | `image` | `Record<string, any>` |  |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `number` | `number` |  |
 | `rating` | `Record<string, any>` |  |
@@ -846,12 +851,12 @@ Create an instance: `const guest_cast_credit = client.GuestCastCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 
 #### Example: List
 
 ```ts
-const guest_cast_credits = await client.GuestCastCredit().list()
+const guest_cast_credits = await client.GuestCastCredit().list({ person_id: 1 })
 ```
 
 
@@ -871,13 +876,13 @@ Create an instance: `const image = client.Image()`
 | --- | --- | --- |
 | `id` | `number` |  |
 | `main` | `boolean` |  |
-| `resolution` | `Record<string, any>` |  |
+| `resolutions` | `Record<string, any>` |  |
 | `type` | `string` |  |
 
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.Image().list({ show_id: 1 })
 ```
 
 
@@ -902,7 +907,7 @@ Create an instance: `const person = client.Person()`
 | `gender` | `string` |  |
 | `id` | `number` |  |
 | `image` | `Record<string, any>` |  |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `person` | `Record<string, any>` |  |
 | `score` | `number` |  |
@@ -941,7 +946,7 @@ Create an instance: `const schedule = client.Schedule()`
 | `airtime` | `string` |  |
 | `id` | `number` |  |
 | `image` | `Record<string, any>` |  |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `number` | `number` |  |
 | `rating` | `Record<string, any>` |  |
@@ -978,7 +983,7 @@ Create an instance: `const scheduled_episode = client.ScheduledEpisode()`
 | `airtime` | `string` |  |
 | `id` | `number` |  |
 | `image` | `Record<string, any>` |  |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `number` | `number` |  |
 | `rating` | `Record<string, any>` |  |
@@ -1027,23 +1032,23 @@ Create an instance: `const season = client.Season()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | `string` |  |
-| `episode_order` | `number` |  |
+| `endDate` | `string` |  |
+| `episodeOrder` | `number` |  |
 | `id` | `number` |  |
 | `image` | `Record<string, any>` |  |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `network` | `Record<string, any>` |  |
 | `number` | `number` |  |
-| `premiere_date` | `string` |  |
+| `premiereDate` | `string` |  |
 | `summary` | `string` |  |
 | `url` | `string` |  |
-| `web_channel` | `Record<string, any>` |  |
+| `webChannel` | `Record<string, any>` |  |
 
 #### Example: List
 
 ```ts
-const seasons = await client.Season().list()
+const seasons = await client.Season().list({ show_id: 1 })
 ```
 
 
@@ -1062,18 +1067,18 @@ Create an instance: `const show = client.Show()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | `number` |  |
-| `dvd_country` | `Record<string, any>` |  |
+| `averageRuntime` | `number` |  |
+| `dvdCountry` | `Record<string, any>` |  |
 | `ended` | `string` |  |
-| `external` | `Record<string, any>` |  |
-| `genre` | `any[]` |  |
+| `externals` | `Record<string, any>` |  |
+| `genres` | `any[]` |  |
 | `id` | `number` |  |
 | `image` | `Record<string, any>` |  |
 | `language` | `string` |  |
-| `link` | `Record<string, any>` |  |
+| `links` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `network` | `Record<string, any>` |  |
-| `official_site` | `string` |  |
+| `officialSite` | `string` |  |
 | `premiered` | `string` |  |
 | `rating` | `Record<string, any>` |  |
 | `runtime` | `number` |  |
@@ -1085,7 +1090,7 @@ Create an instance: `const show = client.Show()`
 | `type` | `string` |  |
 | `updated` | `number` |  |
 | `url` | `string` |  |
-| `web_channel` | `Record<string, any>` |  |
+| `webChannel` | `Record<string, any>` |  |
 | `weight` | `number` |  |
 
 #### Example: Load
@@ -1187,11 +1192,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const aka = client.Aka()
-await aka.list()
+const image = client.Image()
+await image.list()
 
-// aka.data() now returns the aka data from the last `list`
-// aka.match() returns the last match criteria
+// image.data() now returns the image data from the last `list`
+// image.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

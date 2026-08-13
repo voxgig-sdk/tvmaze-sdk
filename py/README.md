@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    akas = client.Aka().list()
+    akas = client.Aka().list({"show_id": 1})
     for aka in akas:
         print(aka)
 except Exception as err:
@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    akas = client.Aka().list()
-    print(akas)
+    images = client.Image().list()
+    print(images)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TvmazeSDK.test()
 
-# Entity ops return the bare record and raise on error.
-aka = client.Aka().list()
-# aka contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+image = client.Image().list()
+# image contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -238,7 +239,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -272,8 +273,9 @@ API path: `/shows/{id}/akas`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
+| `self` |  |
 | `url` |  |
 
 Operations: List, Load.
@@ -297,7 +299,7 @@ API path: `/shows/{id}/cast`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: List.
 
@@ -331,7 +333,7 @@ API path: `/shows/{id}/crew`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 | `type` |  |
 
 Operations: List.
@@ -358,7 +360,7 @@ API path: `/episodes/{id}/guestcrew`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -376,7 +378,7 @@ API path: `/shows/{id}/episodesbydate`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: List.
 
@@ -388,7 +390,7 @@ API path: `/people/{id}/guestcastcredits`
 | --- | --- |
 | `id` |  |
 | `main` |  |
-| `resolution` |  |
+| `resolutions` |  |
 | `type` |  |
 
 Operations: List.
@@ -405,7 +407,7 @@ API path: `/shows/{id}/images`
 | `gender` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `person` |  |
 | `score` |  |
@@ -425,7 +427,7 @@ API path: `/people`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -449,7 +451,7 @@ API path: `/schedule`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -477,18 +479,18 @@ API path: `/lookup/shows`
 
 | Field | Description |
 | --- | --- |
-| `end_date` |  |
-| `episode_order` |  |
+| `endDate` |  |
+| `episodeOrder` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
 | `number` |  |
-| `premiere_date` |  |
+| `premiereDate` |  |
 | `summary` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 
 Operations: List.
 
@@ -498,18 +500,18 @@ API path: `/shows/{id}/seasons`
 
 | Field | Description |
 | --- | --- |
-| `average_runtime` |  |
-| `dvd_country` |  |
+| `averageRuntime` |  |
+| `dvdCountry` |  |
 | `ended` |  |
-| `external` |  |
-| `genre` |  |
+| `externals` |  |
+| `genres` |  |
 | `id` |  |
 | `image` |  |
 | `language` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
-| `official_site` |  |
+| `officialSite` |  |
 | `premiered` |  |
 | `rating` |  |
 | `runtime` |  |
@@ -521,7 +523,7 @@ API path: `/shows/{id}/seasons`
 | `type` |  |
 | `updated` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 | `weight` |  |
 
 Operations: List, Load.
@@ -562,7 +564,7 @@ Create an instance: `aka = client.Aka()`
 #### Example: List
 
 ```python
-akas = client.Aka().list()
+akas = client.Aka().list({"show_id": 1})
 ```
 
 
@@ -582,8 +584,9 @@ Create an instance: `alternate_list = client.AlternateList()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `int` |  |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 | `name` | `str` |  |
+| `self` | `dict` |  |
 | `url` | `str` |  |
 
 #### Example: Load
@@ -595,7 +598,7 @@ alternate_list = client.AlternateList().load({"id": 1})
 #### Example: List
 
 ```python
-alternate_lists = client.AlternateList().list()
+alternate_lists = client.AlternateList().list({"show_id": 1})
 ```
 
 
@@ -621,7 +624,7 @@ Create an instance: `cast = client.Cast()`
 #### Example: List
 
 ```python
-casts = client.Cast().list()
+casts = client.Cast().list({"show_id": 1})
 ```
 
 
@@ -639,12 +642,12 @@ Create an instance: `cast_credit = client.CastCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 
 #### Example: List
 
 ```python
-cast_credits = client.CastCredit().list()
+cast_credits = client.CastCredit().list({"person_id": 1})
 ```
 
 
@@ -670,7 +673,7 @@ Create an instance: `cast_member = client.CastMember()`
 #### Example: List
 
 ```python
-cast_members = client.CastMember().list()
+cast_members = client.CastMember().list({"episode_id": 1})
 ```
 
 
@@ -694,7 +697,7 @@ Create an instance: `crew = client.Crew()`
 #### Example: List
 
 ```python
-crews = client.Crew().list()
+crews = client.Crew().list({"show_id": 1})
 ```
 
 
@@ -712,13 +715,13 @@ Create an instance: `crew_credit = client.CrewCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 | `type` | `str` |  |
 
 #### Example: List
 
 ```python
-crew_credits = client.CrewCredit().list()
+crew_credits = client.CrewCredit().list({"person_id": 1})
 ```
 
 
@@ -742,7 +745,7 @@ Create an instance: `crew_member = client.CrewMember()`
 #### Example: List
 
 ```python
-crew_members = client.CrewMember().list()
+crew_members = client.CrewMember().list({"episode_id": 1})
 ```
 
 
@@ -766,7 +769,7 @@ Create an instance: `episode = client.Episode()`
 | `airtime` | `str` |  |
 | `id` | `int` |  |
 | `image` | `dict` |  |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 | `name` | `str` |  |
 | `number` | `int` |  |
 | `rating` | `dict` |  |
@@ -803,12 +806,12 @@ Create an instance: `guest_cast_credit = client.GuestCastCredit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 
 #### Example: List
 
 ```python
-guest_cast_credits = client.GuestCastCredit().list()
+guest_cast_credits = client.GuestCastCredit().list({"person_id": 1})
 ```
 
 
@@ -828,13 +831,13 @@ Create an instance: `image = client.Image()`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `main` | `bool` |  |
-| `resolution` | `dict` |  |
+| `resolutions` | `dict` |  |
 | `type` | `str` |  |
 
 #### Example: List
 
 ```python
-images = client.Image().list()
+images = client.Image().list({"show_id": 1})
 ```
 
 
@@ -859,7 +862,7 @@ Create an instance: `person = client.Person()`
 | `gender` | `str` |  |
 | `id` | `int` |  |
 | `image` | `dict` |  |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 | `name` | `str` |  |
 | `person` | `dict` |  |
 | `score` | `float` |  |
@@ -898,7 +901,7 @@ Create an instance: `schedule = client.Schedule()`
 | `airtime` | `str` |  |
 | `id` | `int` |  |
 | `image` | `dict` |  |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 | `name` | `str` |  |
 | `number` | `int` |  |
 | `rating` | `dict` |  |
@@ -935,7 +938,7 @@ Create an instance: `scheduled_episode = client.ScheduledEpisode()`
 | `airtime` | `str` |  |
 | `id` | `int` |  |
 | `image` | `dict` |  |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 | `name` | `str` |  |
 | `number` | `int` |  |
 | `rating` | `dict` |  |
@@ -984,23 +987,23 @@ Create an instance: `season = client.Season()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | `str` |  |
-| `episode_order` | `int` |  |
+| `endDate` | `str` |  |
+| `episodeOrder` | `int` |  |
 | `id` | `int` |  |
 | `image` | `dict` |  |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 | `name` | `str` |  |
 | `network` | `dict` |  |
 | `number` | `int` |  |
-| `premiere_date` | `str` |  |
+| `premiereDate` | `str` |  |
 | `summary` | `str` |  |
 | `url` | `str` |  |
-| `web_channel` | `dict` |  |
+| `webChannel` | `dict` |  |
 
 #### Example: List
 
 ```python
-seasons = client.Season().list()
+seasons = client.Season().list({"show_id": 1})
 ```
 
 
@@ -1019,18 +1022,18 @@ Create an instance: `show = client.Show()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | `int` |  |
-| `dvd_country` | `dict` |  |
+| `averageRuntime` | `int` |  |
+| `dvdCountry` | `dict` |  |
 | `ended` | `str` |  |
-| `external` | `dict` |  |
-| `genre` | `list` |  |
+| `externals` | `dict` |  |
+| `genres` | `list` |  |
 | `id` | `int` |  |
 | `image` | `dict` |  |
 | `language` | `str` |  |
-| `link` | `dict` |  |
+| `links` | `dict` |  |
 | `name` | `str` |  |
 | `network` | `dict` |  |
-| `official_site` | `str` |  |
+| `officialSite` | `str` |  |
 | `premiered` | `str` |  |
 | `rating` | `dict` |  |
 | `runtime` | `int` |  |
@@ -1042,7 +1045,7 @@ Create an instance: `show = client.Show()`
 | `type` | `str` |  |
 | `updated` | `int` |  |
 | `url` | `str` |  |
-| `web_channel` | `dict` |  |
+| `webChannel` | `dict` |  |
 | `weight` | `int` |  |
 
 #### Example: Load
@@ -1150,11 +1153,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-aka = client.Aka()
-aka.list()
+image = client.Image()
+image.list()
 
-# aka.data_get() now returns the aka data from the last list
-# aka.match_get() returns the last match criteria
+# image.data_get() now returns the image data from the last list
+# image.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

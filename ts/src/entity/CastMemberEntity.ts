@@ -37,7 +37,7 @@ class CastMemberEntity extends TvmazeEntityBase<CastMember> {
 
 
 
-  async list(this: any, reqmatch?: CastMemberListMatch, ctrl?: Control): Promise<CastMember[]> {
+  async list(this: any, reqmatch?: CastMemberListMatch, ctrl?: Control): Promise<CastMemberEntity[]> {
 
     const utility = this._utility
 

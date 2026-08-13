@@ -63,7 +63,7 @@ describe('ScheduleEntity', async () => {
     const schedule_ref01_ent = client.Schedule()
     const schedule_ref01_match: any = {}
 
-    const schedule_ref01_list = await schedule_ref01_ent.list(schedule_ref01_match)
+    const schedule_ref01_list = (await schedule_ref01_ent.list(schedule_ref01_match)).map((e: any) => e.data())
 
 
   })

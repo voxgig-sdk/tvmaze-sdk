@@ -97,7 +97,7 @@ describe("PersonEntity", function()
     }
     local person_ref01_data_dt0_loaded, err = person_ref01_ent:load(person_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local person_ref01_data_dt0_load_result = helpers.to_map(person_ref01_data_dt0_loaded)
+    local person_ref01_data_dt0_load_result = helpers.to_map(type(person_ref01_data_dt0_loaded) == 'table' and person_ref01_data_dt0_loaded.data_get and person_ref01_data_dt0_loaded:data_get() or person_ref01_data_dt0_loaded)
     assert.is_not_nil(person_ref01_data_dt0_load_result)
     assert.are.equal(person_ref01_data_dt0_load_result["id"], person_ref01_data["id"])
 

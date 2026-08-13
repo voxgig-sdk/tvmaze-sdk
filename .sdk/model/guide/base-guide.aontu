@@ -15,6 +15,7 @@ guide: {
   entity: alternate_list: {
     path: "/alternatelists/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body._links`")|top
     }
     path: "/shows/{id}/alternatelists": {
       rename: param: "id": *"show_id"

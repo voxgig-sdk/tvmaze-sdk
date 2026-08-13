@@ -31,7 +31,7 @@ main: kit: entity: scheduled_episode: {
       type: "`$OBJECT`"
     }
     {
-      name: "link"
+      name: "links"
       req: false
       type: "`$OBJECT`"
     }

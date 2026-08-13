@@ -215,8 +215,9 @@ alternate_list = client.AlternateList
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `Integer` | No |  |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 | `name` | `String` | No |  |
+| `self` | `Hash` | No |  |
 | `url` | `String` | No |  |
 
 ### Operations
@@ -332,7 +333,7 @@ cast_credit = client.CastCredit
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 
 ### Operations
 
@@ -492,7 +493,7 @@ crew_credit = client.CrewCredit
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -603,7 +604,7 @@ episode = client.Episode
 | `airtime` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `image` | `Hash` | No |  |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `number` | `Integer` | No |  |
 | `rating` | `Hash` | No |  |
@@ -671,7 +672,7 @@ guest_cast_credit = client.GuestCastCredit
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 
 ### Operations
 
@@ -725,7 +726,7 @@ image = client.Image
 | --- | --- | --- | --- |
 | `id` | `Integer` | No |  |
 | `main` | `Boolean` | No |  |
-| `resolution` | `Hash` | No |  |
+| `resolutions` | `Hash` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -784,7 +785,7 @@ person = client.Person
 | `gender` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `image` | `Hash` | No |  |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `person` | `Hash` | No |  |
 | `score` | `Float` | No |  |
@@ -854,7 +855,7 @@ schedule = client.Schedule
 | `airtime` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `image` | `Hash` | No |  |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `number` | `Integer` | No |  |
 | `rating` | `Hash` | No |  |
@@ -920,7 +921,7 @@ scheduled_episode = client.ScheduledEpisode
 | `airtime` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `image` | `Hash` | No |  |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `number` | `Integer` | No |  |
 | `rating` | `Hash` | No |  |
@@ -1027,18 +1028,18 @@ season = client.Season
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | `String` | No |  |
-| `episode_order` | `Integer` | No |  |
+| `endDate` | `String` | No |  |
+| `episodeOrder` | `Integer` | No |  |
 | `id` | `Integer` | No |  |
 | `image` | `Hash` | No |  |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `network` | `Hash` | No |  |
 | `number` | `Integer` | No |  |
-| `premiere_date` | `String` | No |  |
+| `premiereDate` | `String` | No |  |
 | `summary` | `String` | No |  |
 | `url` | `String` | No |  |
-| `web_channel` | `Hash` | No |  |
+| `webChannel` | `Hash` | No |  |
 
 ### Operations
 
@@ -1090,18 +1091,18 @@ show = client.Show
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | `Integer` | No |  |
-| `dvd_country` | `Hash` | No |  |
+| `averageRuntime` | `Integer` | No |  |
+| `dvdCountry` | `Hash` | No |  |
 | `ended` | `String` | No |  |
-| `external` | `Hash` | No |  |
-| `genre` | `Array` | No |  |
+| `externals` | `Hash` | No |  |
+| `genres` | `Array` | No |  |
 | `id` | `Integer` | No |  |
 | `image` | `Hash` | No |  |
 | `language` | `String` | No |  |
-| `link` | `Hash` | No |  |
+| `links` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `network` | `Hash` | No |  |
-| `official_site` | `String` | No |  |
+| `officialSite` | `String` | No |  |
 | `premiered` | `String` | No |  |
 | `rating` | `Hash` | No |  |
 | `runtime` | `Integer` | No |  |
@@ -1113,7 +1114,7 @@ show = client.Show
 | `type` | `String` | No |  |
 | `updated` | `Integer` | No |  |
 | `url` | `String` | No |  |
-| `web_channel` | `Hash` | No |  |
+| `webChannel` | `Hash` | No |  |
 | `weight` | `Integer` | No |  |
 
 ### Operations

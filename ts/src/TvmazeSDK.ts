@@ -163,8 +163,29 @@ class TvmazeSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('TvmazeSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -225,129 +246,219 @@ class TvmazeSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('TvmazeSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('TvmazeSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Aka().list()` / `client.Aka().load({ id })`.
-  Aka(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Aka(entopts?: Record<string, any>) {
     const self = this
-    return new AkaEntity(self,data)
+    return new AkaEntity(self, entopts)
   }
 
 
   // Entity access: `client.AlternateList().list()` / `client.AlternateList().load({ id })`.
-  AlternateList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AlternateList(entopts?: Record<string, any>) {
     const self = this
-    return new AlternateListEntity(self,data)
+    return new AlternateListEntity(self, entopts)
   }
 
 
   // Entity access: `client.Cast().list()` / `client.Cast().load({ id })`.
-  Cast(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Cast(entopts?: Record<string, any>) {
     const self = this
-    return new CastEntity(self,data)
+    return new CastEntity(self, entopts)
   }
 
 
   // Entity access: `client.CastCredit().list()` / `client.CastCredit().load({ id })`.
-  CastCredit(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CastCredit(entopts?: Record<string, any>) {
     const self = this
-    return new CastCreditEntity(self,data)
+    return new CastCreditEntity(self, entopts)
   }
 
 
   // Entity access: `client.CastMember().list()` / `client.CastMember().load({ id })`.
-  CastMember(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CastMember(entopts?: Record<string, any>) {
     const self = this
-    return new CastMemberEntity(self,data)
+    return new CastMemberEntity(self, entopts)
   }
 
 
   // Entity access: `client.Crew().list()` / `client.Crew().load({ id })`.
-  Crew(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Crew(entopts?: Record<string, any>) {
     const self = this
-    return new CrewEntity(self,data)
+    return new CrewEntity(self, entopts)
   }
 
 
   // Entity access: `client.CrewCredit().list()` / `client.CrewCredit().load({ id })`.
-  CrewCredit(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CrewCredit(entopts?: Record<string, any>) {
     const self = this
-    return new CrewCreditEntity(self,data)
+    return new CrewCreditEntity(self, entopts)
   }
 
 
   // Entity access: `client.CrewMember().list()` / `client.CrewMember().load({ id })`.
-  CrewMember(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CrewMember(entopts?: Record<string, any>) {
     const self = this
-    return new CrewMemberEntity(self,data)
+    return new CrewMemberEntity(self, entopts)
   }
 
 
   // Entity access: `client.Episode().list()` / `client.Episode().load({ id })`.
-  Episode(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Episode(entopts?: Record<string, any>) {
     const self = this
-    return new EpisodeEntity(self,data)
+    return new EpisodeEntity(self, entopts)
   }
 
 
   // Entity access: `client.GuestCastCredit().list()` / `client.GuestCastCredit().load({ id })`.
-  GuestCastCredit(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  GuestCastCredit(entopts?: Record<string, any>) {
     const self = this
-    return new GuestCastCreditEntity(self,data)
+    return new GuestCastCreditEntity(self, entopts)
   }
 
 
   // Entity access: `client.Image().list()` / `client.Image().load({ id })`.
-  Image(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Image(entopts?: Record<string, any>) {
     const self = this
-    return new ImageEntity(self,data)
+    return new ImageEntity(self, entopts)
   }
 
 
   // Entity access: `client.Person().list()` / `client.Person().load({ id })`.
-  Person(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Person(entopts?: Record<string, any>) {
     const self = this
-    return new PersonEntity(self,data)
+    return new PersonEntity(self, entopts)
   }
 
 
   // Entity access: `client.Schedule().list()` / `client.Schedule().load({ id })`.
-  Schedule(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Schedule(entopts?: Record<string, any>) {
     const self = this
-    return new ScheduleEntity(self,data)
+    return new ScheduleEntity(self, entopts)
   }
 
 
   // Entity access: `client.ScheduledEpisode().list()` / `client.ScheduledEpisode().load({ id })`.
-  ScheduledEpisode(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ScheduledEpisode(entopts?: Record<string, any>) {
     const self = this
-    return new ScheduledEpisodeEntity(self,data)
+    return new ScheduledEpisodeEntity(self, entopts)
   }
 
 
   // Entity access: `client.Search().list()` / `client.Search().load({ id })`.
-  Search(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Search(entopts?: Record<string, any>) {
     const self = this
-    return new SearchEntity(self,data)
+    return new SearchEntity(self, entopts)
   }
 
 
   // Entity access: `client.Season().list()` / `client.Season().load({ id })`.
-  Season(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Season(entopts?: Record<string, any>) {
     const self = this
-    return new SeasonEntity(self,data)
+    return new SeasonEntity(self, entopts)
   }
 
 
   // Entity access: `client.Show().list()` / `client.Show().load({ id })`.
-  Show(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Show(entopts?: Record<string, any>) {
     const self = this
-    return new ShowEntity(self,data)
+    return new ShowEntity(self, entopts)
   }
 
 
   // Entity access: `client.Update().list()` / `client.Update().load({ id })`.
-  Update(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Update(entopts?: Record<string, any>) {
     const self = this
-    return new UpdateEntity(self,data)
+    return new UpdateEntity(self, entopts)
   }
 
 

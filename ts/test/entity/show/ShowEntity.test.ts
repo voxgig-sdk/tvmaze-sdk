@@ -63,13 +63,13 @@ describe('ShowEntity', async () => {
     const show_ref01_ent = client.Show()
     const show_ref01_match: any = {}
 
-    const show_ref01_list = await show_ref01_ent.list(show_ref01_match)
+    const show_ref01_list = (await show_ref01_ent.list(show_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const show_ref01_match_dt0: any = {}
     show_ref01_match_dt0.id = show_ref01_data.id
-    const show_ref01_data_dt0 = await show_ref01_ent.load(show_ref01_match_dt0)
+    const show_ref01_data_dt0 = (await show_ref01_ent.load(show_ref01_match_dt0)).data()
     assert(show_ref01_data_dt0.id === show_ref01_data.id)
 
 

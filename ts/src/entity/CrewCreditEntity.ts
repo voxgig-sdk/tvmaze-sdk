@@ -37,7 +37,7 @@ class CrewCreditEntity extends TvmazeEntityBase<CrewCredit> {
 
 
 
-  async list(this: any, reqmatch?: CrewCreditListMatch, ctrl?: Control): Promise<CrewCredit[]> {
+  async list(this: any, reqmatch?: CrewCreditListMatch, ctrl?: Control): Promise<CrewCreditEntity[]> {
 
     const utility = this._utility
 

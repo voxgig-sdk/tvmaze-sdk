@@ -64,7 +64,7 @@ describe('SeasonEntity', async () => {
     const season_ref01_match: any = {}
     season_ref01_match['show_id'] = setup.idmap['show01']
 
-    const season_ref01_list = await season_ref01_ent.list(season_ref01_match)
+    const season_ref01_list = (await season_ref01_ent.list(season_ref01_match)).map((e: any) => e.data())
 
 
   })

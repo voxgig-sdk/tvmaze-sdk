@@ -64,7 +64,7 @@ describe('CrewCreditEntity', async () => {
     const crew_credit_ref01_match: any = {}
     crew_credit_ref01_match['person_id'] = setup.idmap['person01']
 
-    const crew_credit_ref01_list = await crew_credit_ref01_ent.list(crew_credit_ref01_match)
+    const crew_credit_ref01_list = (await crew_credit_ref01_ent.list(crew_credit_ref01_match)).map((e: any) => e.data())
 
 
   })

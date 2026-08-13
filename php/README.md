@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $akas = $client->Aka()->list();
+    $images = $client->Image()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = TvmazeSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$aka = $client->Aka()->list();
-print_r($aka);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$image = $client->Image()->list();
+print_r($image);
 ```
 
 ### Use a custom fetch function
@@ -242,7 +243,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -276,8 +277,9 @@ API path: `/shows/{id}/akas`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
+| `self` |  |
 | `url` |  |
 
 Operations: List, Load.
@@ -301,7 +303,7 @@ API path: `/shows/{id}/cast`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: List.
 
@@ -335,7 +337,7 @@ API path: `/shows/{id}/crew`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 | `type` |  |
 
 Operations: List.
@@ -362,7 +364,7 @@ API path: `/episodes/{id}/guestcrew`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -380,7 +382,7 @@ API path: `/shows/{id}/episodesbydate`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: List.
 
@@ -392,7 +394,7 @@ API path: `/people/{id}/guestcastcredits`
 | --- | --- |
 | `id` |  |
 | `main` |  |
-| `resolution` |  |
+| `resolutions` |  |
 | `type` |  |
 
 Operations: List.
@@ -409,7 +411,7 @@ API path: `/shows/{id}/images`
 | `gender` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `person` |  |
 | `score` |  |
@@ -429,7 +431,7 @@ API path: `/people`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -453,7 +455,7 @@ API path: `/schedule`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -481,18 +483,18 @@ API path: `/lookup/shows`
 
 | Field | Description |
 | --- | --- |
-| `end_date` |  |
-| `episode_order` |  |
+| `endDate` |  |
+| `episodeOrder` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
 | `number` |  |
-| `premiere_date` |  |
+| `premiereDate` |  |
 | `summary` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 
 Operations: List.
 
@@ -502,18 +504,18 @@ API path: `/shows/{id}/seasons`
 
 | Field | Description |
 | --- | --- |
-| `average_runtime` |  |
-| `dvd_country` |  |
+| `averageRuntime` |  |
+| `dvdCountry` |  |
 | `ended` |  |
-| `external` |  |
-| `genre` |  |
+| `externals` |  |
+| `genres` |  |
 | `id` |  |
 | `image` |  |
 | `language` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
-| `official_site` |  |
+| `officialSite` |  |
 | `premiered` |  |
 | `rating` |  |
 | `runtime` |  |
@@ -525,7 +527,7 @@ API path: `/shows/{id}/seasons`
 | `type` |  |
 | `updated` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 | `weight` |  |
 
 Operations: List, Load.
@@ -587,14 +589,15 @@ Create an instance: `$alternate_list = $client->AlternateList();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `int` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
+| `self` | `array` |  |
 | `url` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare AlternateList record (throws on error).
+// load() returns the ENTITY — call data_get() for the AlternateList record (throws on error).
 $alternate_list = $client->AlternateList()->load(["id" => 1]);
 ```
 
@@ -647,7 +650,7 @@ Create an instance: `$cast_credit = $client->CastCredit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `array` |  |
+| `links` | `array` |  |
 
 #### Example: List
 
@@ -723,7 +726,7 @@ Create an instance: `$crew_credit = $client->CrewCredit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -779,7 +782,7 @@ Create an instance: `$episode = $client->Episode();`
 | `airtime` | `string` |  |
 | `id` | `int` |  |
 | `image` | `array` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
 | `number` | `int` |  |
 | `rating` | `array` |  |
@@ -792,7 +795,7 @@ Create an instance: `$episode = $client->Episode();`
 #### Example: Load
 
 ```php
-// load() returns the bare Episode record (throws on error).
+// load() returns the ENTITY — call data_get() for the Episode record (throws on error).
 $episode = $client->Episode()->load(["id" => 1]);
 ```
 
@@ -818,7 +821,7 @@ Create an instance: `$guest_cast_credit = $client->GuestCastCredit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `array` |  |
+| `links` | `array` |  |
 
 #### Example: List
 
@@ -844,7 +847,7 @@ Create an instance: `$image = $client->Image();`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `main` | `bool` |  |
-| `resolution` | `array` |  |
+| `resolutions` | `array` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -876,7 +879,7 @@ Create an instance: `$person = $client->Person();`
 | `gender` | `string` |  |
 | `id` | `int` |  |
 | `image` | `array` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
 | `person` | `array` |  |
 | `score` | `float` |  |
@@ -886,7 +889,7 @@ Create an instance: `$person = $client->Person();`
 #### Example: Load
 
 ```php
-// load() returns the bare Person record (throws on error).
+// load() returns the ENTITY — call data_get() for the Person record (throws on error).
 $person = $client->Person()->load(["id" => 1]);
 ```
 
@@ -917,7 +920,7 @@ Create an instance: `$schedule = $client->Schedule();`
 | `airtime` | `string` |  |
 | `id` | `int` |  |
 | `image` | `array` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
 | `number` | `int` |  |
 | `rating` | `array` |  |
@@ -955,7 +958,7 @@ Create an instance: `$scheduled_episode = $client->ScheduledEpisode();`
 | `airtime` | `string` |  |
 | `id` | `int` |  |
 | `image` | `array` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
 | `number` | `int` |  |
 | `rating` | `array` |  |
@@ -987,7 +990,7 @@ Create an instance: `$search = $client->Search();`
 #### Example: Load
 
 ```php
-// load() returns the bare Search record (throws on error).
+// load() returns the ENTITY — call data_get() for the Search record (throws on error).
 $search = $client->Search()->load();
 ```
 
@@ -1006,18 +1009,18 @@ Create an instance: `$season = $client->Season();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | `string` |  |
-| `episode_order` | `int` |  |
+| `endDate` | `string` |  |
+| `episodeOrder` | `int` |  |
 | `id` | `int` |  |
 | `image` | `array` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
 | `network` | `array` |  |
 | `number` | `int` |  |
-| `premiere_date` | `string` |  |
+| `premiereDate` | `string` |  |
 | `summary` | `string` |  |
 | `url` | `string` |  |
-| `web_channel` | `array` |  |
+| `webChannel` | `array` |  |
 
 #### Example: List
 
@@ -1042,18 +1045,18 @@ Create an instance: `$show = $client->Show();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | `int` |  |
-| `dvd_country` | `array` |  |
+| `averageRuntime` | `int` |  |
+| `dvdCountry` | `array` |  |
 | `ended` | `string` |  |
-| `external` | `array` |  |
-| `genre` | `array` |  |
+| `externals` | `array` |  |
+| `genres` | `array` |  |
 | `id` | `int` |  |
 | `image` | `array` |  |
 | `language` | `string` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
 | `network` | `array` |  |
-| `official_site` | `string` |  |
+| `officialSite` | `string` |  |
 | `premiered` | `string` |  |
 | `rating` | `array` |  |
 | `runtime` | `int` |  |
@@ -1065,13 +1068,13 @@ Create an instance: `$show = $client->Show();`
 | `type` | `string` |  |
 | `updated` | `int` |  |
 | `url` | `string` |  |
-| `web_channel` | `array` |  |
+| `webChannel` | `array` |  |
 | `weight` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Show record (throws on error).
+// load() returns the ENTITY — call data_get() for the Show record (throws on error).
 $show = $client->Show()->load(["id" => 1]);
 ```
 
@@ -1096,7 +1099,7 @@ Create an instance: `$update = $client->Update();`
 #### Example: Load
 
 ```php
-// load() returns the bare Update record (throws on error).
+// load() returns the ENTITY — call data_get() for the Update record (throws on error).
 $update = $client->Update()->load();
 ```
 
@@ -1177,11 +1180,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$aka = $client->Aka();
-$aka->list();
+$image = $client->Image();
+$image->list();
 
-// $aka->data_get() now returns the aka data from the last list
-// $aka->match_get() returns the last match criteria
+// $image->data_get() now returns the image data from the last list
+// $image->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

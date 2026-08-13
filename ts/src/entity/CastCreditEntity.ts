@@ -37,7 +37,7 @@ class CastCreditEntity extends TvmazeEntityBase<CastCredit> {
 
 
 
-  async list(this: any, reqmatch?: CastCreditListMatch, ctrl?: Control): Promise<CastCredit[]> {
+  async list(this: any, reqmatch?: CastCreditListMatch, ctrl?: Control): Promise<CastCreditEntity[]> {
 
     const utility = this._utility
 

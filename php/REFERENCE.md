@@ -214,8 +214,9 @@ $alternate_list = $client->AlternateList();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 | `name` | `string` | No |  |
+| `self` | `array` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -331,7 +332,7 @@ $cast_credit = $client->CastCredit();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 
 ### Operations
 
@@ -491,7 +492,7 @@ $crew_credit = $client->CrewCredit();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -602,7 +603,7 @@ $episode = $client->Episode();
 | `airtime` | `string` | No |  |
 | `id` | `int` | No |  |
 | `image` | `array` | No |  |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 | `name` | `string` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `array` | No |  |
@@ -670,7 +671,7 @@ $guest_cast_credit = $client->GuestCastCredit();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 
 ### Operations
 
@@ -724,7 +725,7 @@ $image = $client->Image();
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `main` | `bool` | No |  |
-| `resolution` | `array` | No |  |
+| `resolutions` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -783,7 +784,7 @@ $person = $client->Person();
 | `gender` | `string` | No |  |
 | `id` | `int` | No |  |
 | `image` | `array` | No |  |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 | `name` | `string` | No |  |
 | `person` | `array` | No |  |
 | `score` | `float` | No |  |
@@ -853,7 +854,7 @@ $schedule = $client->Schedule();
 | `airtime` | `string` | No |  |
 | `id` | `int` | No |  |
 | `image` | `array` | No |  |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 | `name` | `string` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `array` | No |  |
@@ -919,7 +920,7 @@ $scheduled_episode = $client->ScheduledEpisode();
 | `airtime` | `string` | No |  |
 | `id` | `int` | No |  |
 | `image` | `array` | No |  |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 | `name` | `string` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `array` | No |  |
@@ -1026,18 +1027,18 @@ $season = $client->Season();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | `string` | No |  |
-| `episode_order` | `int` | No |  |
+| `endDate` | `string` | No |  |
+| `episodeOrder` | `int` | No |  |
 | `id` | `int` | No |  |
 | `image` | `array` | No |  |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 | `name` | `string` | No |  |
 | `network` | `array` | No |  |
 | `number` | `int` | No |  |
-| `premiere_date` | `string` | No |  |
+| `premiereDate` | `string` | No |  |
 | `summary` | `string` | No |  |
 | `url` | `string` | No |  |
-| `web_channel` | `array` | No |  |
+| `webChannel` | `array` | No |  |
 
 ### Operations
 
@@ -1089,18 +1090,18 @@ $show = $client->Show();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | `int` | No |  |
-| `dvd_country` | `array` | No |  |
+| `averageRuntime` | `int` | No |  |
+| `dvdCountry` | `array` | No |  |
 | `ended` | `string` | No |  |
-| `external` | `array` | No |  |
-| `genre` | `array` | No |  |
+| `externals` | `array` | No |  |
+| `genres` | `array` | No |  |
 | `id` | `int` | No |  |
 | `image` | `array` | No |  |
 | `language` | `string` | No |  |
-| `link` | `array` | No |  |
+| `links` | `array` | No |  |
 | `name` | `string` | No |  |
 | `network` | `array` | No |  |
-| `official_site` | `string` | No |  |
+| `officialSite` | `string` | No |  |
 | `premiered` | `string` | No |  |
 | `rating` | `array` | No |  |
 | `runtime` | `int` | No |  |
@@ -1112,7 +1113,7 @@ $show = $client->Show();
 | `type` | `string` | No |  |
 | `updated` | `int` | No |  |
 | `url` | `string` | No |  |
-| `web_channel` | `array` | No |  |
+| `webChannel` | `array` | No |  |
 | `weight` | `int` | No |  |
 
 ### Operations

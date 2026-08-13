@@ -2,15 +2,15 @@
   "existing": {
     "cast_credit": {
       "CAST_CREDIT00": {
-        "link": {},
+        "links": {},
         "person_id": "PERSON01"
       },
       "CAST_CREDIT01": {
-        "link": {},
+        "links": {},
         "person_id": "PERSON01"
       },
       "CAST_CREDIT02": {
-        "link": {},
+        "links": {},
         "person_id": "PERSON01"
       }
     }
@@ -18,7 +18,7 @@
   "new": {
     "cast_credit": {
       "cast_credit_ref01": {
-        "link": {}
+        "links": {}
       }
     }
   }

@@ -97,7 +97,7 @@ describe("ShowEntity", function()
     }
     local show_ref01_data_dt0_loaded, err = show_ref01_ent:load(show_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local show_ref01_data_dt0_load_result = helpers.to_map(show_ref01_data_dt0_loaded)
+    local show_ref01_data_dt0_load_result = helpers.to_map(type(show_ref01_data_dt0_loaded) == 'table' and show_ref01_data_dt0_loaded.data_get and show_ref01_data_dt0_loaded:data_get() or show_ref01_data_dt0_loaded)
     assert.is_not_nil(show_ref01_data_dt0_load_result)
     assert.are.equal(show_ref01_data_dt0_load_result["id"], show_ref01_data["id"])
 

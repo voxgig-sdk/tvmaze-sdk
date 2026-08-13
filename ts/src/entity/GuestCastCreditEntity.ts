@@ -37,7 +37,7 @@ class GuestCastCreditEntity extends TvmazeEntityBase<GuestCastCredit> {
 
 
 
-  async list(this: any, reqmatch?: GuestCastCreditListMatch, ctrl?: Control): Promise<GuestCastCredit[]> {
+  async list(this: any, reqmatch?: GuestCastCreditListMatch, ctrl?: Control): Promise<GuestCastCreditEntity[]> {
 
     const utility = this._utility
 

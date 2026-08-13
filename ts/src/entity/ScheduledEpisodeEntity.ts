@@ -37,7 +37,7 @@ class ScheduledEpisodeEntity extends TvmazeEntityBase<ScheduledEpisode> {
 
 
 
-  async list(this: any, reqmatch?: ScheduledEpisodeListMatch, ctrl?: Control): Promise<ScheduledEpisode[]> {
+  async list(this: any, reqmatch?: ScheduledEpisodeListMatch, ctrl?: Control): Promise<ScheduledEpisodeEntity[]> {
 
     const utility = this._utility
 

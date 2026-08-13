@@ -77,6 +77,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/akas",
 								"parts": []any{
@@ -101,7 +102,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -123,7 +123,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 1,
@@ -137,10 +137,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
+						"name": "self",
+						"req": false,
+						"type": "`$OBJECT`",
+						"index$": 3,
+					},
+					map[string]any{
+						"active": true,
 						"name": "url",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 3,
+						"index$": 4,
 					},
 				},
 				"name": "alternate_list",
@@ -164,6 +171,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/alternatelists",
 								"parts": []any{
@@ -188,7 +196,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -219,6 +226,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/alternatelists/{id}",
 								"parts": []any{
@@ -233,12 +241,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body._links`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -301,6 +308,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/cast",
 								"parts": []any{
@@ -325,7 +333,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -340,7 +347,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 0,
@@ -377,6 +384,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/people/{id}/castcredits",
 								"parts": []any{
@@ -402,7 +410,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -465,6 +472,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/episodes/{id}/guestcast",
 								"parts": []any{
@@ -489,7 +497,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -538,6 +545,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/crew",
 								"parts": []any{
@@ -562,7 +570,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -577,7 +584,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 0,
@@ -621,6 +628,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/people/{id}/crewcredits",
 								"parts": []any{
@@ -646,7 +654,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -695,6 +702,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/episodes/{id}/guestcrew",
 								"parts": []any{
@@ -719,7 +727,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -769,7 +776,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 5,
@@ -862,6 +869,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/episodesbydate",
 								"parts": []any{
@@ -911,6 +919,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/seasons/{id}/episodes",
 								"parts": []any{
@@ -960,6 +969,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/episodes",
 								"parts": []any{
@@ -985,7 +995,6 @@ func MakeConfig() map[string]any {
 								"index$": 2,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1024,6 +1033,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/episodebynumber",
 								"parts": []any{
@@ -1074,6 +1084,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/episodes/{id}",
 								"parts": []any{
@@ -1093,7 +1104,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1111,7 +1121,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 0,
@@ -1148,6 +1158,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/people/{id}/guestcastcredits",
 								"parts": []any{
@@ -1173,7 +1184,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -1202,7 +1212,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "resolution",
+						"name": "resolutions",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 2,
@@ -1236,6 +1246,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/images",
 								"parts": []any{
@@ -1260,7 +1271,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -1317,7 +1327,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 6,
@@ -1379,6 +1389,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/people",
 								"parts": []any{
@@ -1409,6 +1420,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/search/people",
 								"parts": []any{
@@ -1427,7 +1439,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1458,6 +1469,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/people/{id}",
 								"parts": []any{
@@ -1477,7 +1489,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1523,7 +1534,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 5,
@@ -1621,6 +1632,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/schedule",
 								"parts": []any{
@@ -1639,7 +1651,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -1685,7 +1696,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 5,
@@ -1782,6 +1793,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/schedule/web",
 								"parts": []any{
@@ -1803,6 +1815,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/schedule/full",
 								"parts": []any{
@@ -1817,7 +1830,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -1862,6 +1874,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/lookup/shows",
 								"parts": []any{
@@ -1882,7 +1895,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1893,14 +1905,14 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "end_date",
+						"name": "endDate",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "episode_order",
+						"name": "episodeOrder",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 1,
@@ -1921,7 +1933,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 4,
@@ -1949,7 +1961,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "premiere_date",
+						"name": "premiereDate",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 8,
@@ -1970,7 +1982,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "web_channel",
+						"name": "webChannel",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 11,
@@ -1997,6 +2009,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}/seasons",
 								"parts": []any{
@@ -2021,7 +2034,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -2036,14 +2048,14 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "average_runtime",
+						"name": "averageRuntime",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "dvd_country",
+						"name": "dvdCountry",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 1,
@@ -2057,14 +2069,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "external",
+						"name": "externals",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "genre",
+						"name": "genres",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 4,
@@ -2092,7 +2104,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "link",
+						"name": "links",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 8,
@@ -2113,7 +2125,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "official_site",
+						"name": "officialSite",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 11,
@@ -2197,7 +2209,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "web_channel",
+						"name": "webChannel",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 23,
@@ -2241,6 +2253,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/alternatelists/{id}/alternateepisodes",
 								"parts": []any{
@@ -2287,6 +2300,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/singlesearch/shows",
 								"parts": []any{
@@ -2320,6 +2334,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows",
 								"parts": []any{
@@ -2350,6 +2365,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/search/shows",
 								"parts": []any{
@@ -2368,7 +2384,6 @@ func MakeConfig() map[string]any {
 								"index$": 3,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -2399,6 +2414,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/shows/{id}",
 								"parts": []any{
@@ -2418,7 +2434,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -2451,6 +2466,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/updates/people",
 								"parts": []any{
@@ -2483,6 +2499,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/updates/shows",
 								"parts": []any{
@@ -2502,7 +2519,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

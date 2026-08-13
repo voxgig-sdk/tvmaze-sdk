@@ -219,8 +219,9 @@ fmt.Println(alternateList.GetName()) // "alternate_list"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
+| `self` | `map[string]any` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -338,7 +339,7 @@ fmt.Println(castCredit.GetName()) // "cast_credit"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -495,7 +496,7 @@ fmt.Println(crewCredit.GetName()) // "crew_credit"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -604,7 +605,7 @@ fmt.Println(episode.GetName()) // "episode"
 | `airtime` | `string` | No |  |
 | `id` | `int` | No |  |
 | `image` | `map[string]any` | No |  |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `map[string]any` | No |  |
@@ -675,7 +676,7 @@ fmt.Println(guestCastCredit.GetName()) // "guest_cast_credit"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -728,7 +729,7 @@ fmt.Println(image.GetName()) // "image"
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `main` | `bool` | No |  |
-| `resolution` | `map[string]any` | No |  |
+| `resolutions` | `map[string]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -786,7 +787,7 @@ fmt.Println(person.GetName()) // "person"
 | `gender` | `string` | No |  |
 | `id` | `int` | No |  |
 | `image` | `map[string]any` | No |  |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `person` | `map[string]any` | No |  |
 | `score` | `float64` | No |  |
@@ -859,7 +860,7 @@ fmt.Println(schedule.GetName()) // "schedule"
 | `airtime` | `string` | No |  |
 | `id` | `int` | No |  |
 | `image` | `map[string]any` | No |  |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `map[string]any` | No |  |
@@ -924,7 +925,7 @@ fmt.Println(scheduledEpisode.GetName()) // "scheduled_episode"
 | `airtime` | `string` | No |  |
 | `id` | `int` | No |  |
 | `image` | `map[string]any` | No |  |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `map[string]any` | No |  |
@@ -1029,18 +1030,18 @@ fmt.Println(season.GetName()) // "season"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | `string` | No |  |
-| `episode_order` | `int` | No |  |
+| `endDate` | `string` | No |  |
+| `episodeOrder` | `int` | No |  |
 | `id` | `int` | No |  |
 | `image` | `map[string]any` | No |  |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `network` | `map[string]any` | No |  |
 | `number` | `int` | No |  |
-| `premiere_date` | `string` | No |  |
+| `premiereDate` | `string` | No |  |
 | `summary` | `string` | No |  |
 | `url` | `string` | No |  |
-| `web_channel` | `map[string]any` | No |  |
+| `webChannel` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -1091,18 +1092,18 @@ fmt.Println(show.GetName()) // "show"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | `int` | No |  |
-| `dvd_country` | `map[string]any` | No |  |
+| `averageRuntime` | `int` | No |  |
+| `dvdCountry` | `map[string]any` | No |  |
 | `ended` | `string` | No |  |
-| `external` | `map[string]any` | No |  |
-| `genre` | `[]any` | No |  |
+| `externals` | `map[string]any` | No |  |
+| `genres` | `[]any` | No |  |
 | `id` | `int` | No |  |
 | `image` | `map[string]any` | No |  |
 | `language` | `string` | No |  |
-| `link` | `map[string]any` | No |  |
+| `links` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `network` | `map[string]any` | No |  |
-| `official_site` | `string` | No |  |
+| `officialSite` | `string` | No |  |
 | `premiered` | `string` | No |  |
 | `rating` | `map[string]any` | No |  |
 | `runtime` | `int` | No |  |
@@ -1114,7 +1115,7 @@ fmt.Println(show.GetName()) // "show"
 | `type` | `string` | No |  |
 | `updated` | `int` | No |  |
 | `url` | `string` | No |  |
-| `web_channel` | `map[string]any` | No |  |
+| `webChannel` | `map[string]any` | No |  |
 | `weight` | `int` | No |  |
 
 ### Operations

@@ -64,7 +64,7 @@ describe('CastEntity', async () => {
     const cast_ref01_match: any = {}
     cast_ref01_match['show_id'] = setup.idmap['show01']
 
-    const cast_ref01_list = await cast_ref01_ent.list(cast_ref01_match)
+    const cast_ref01_list = (await cast_ref01_ent.list(cast_ref01_match)).map((e: any) => e.data())
 
 
   })

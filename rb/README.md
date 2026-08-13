@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  akas = client.Aka.list()
+  images = client.Image.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TvmazeSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-aka = client.Aka.list()
-puts aka
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+image = client.Image.list()
+puts image
 ```
 
 ### Use a custom fetch function
@@ -266,8 +267,9 @@ API path: `/shows/{id}/akas`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
+| `self` |  |
 | `url` |  |
 
 Operations: List, Load.
@@ -291,7 +293,7 @@ API path: `/shows/{id}/cast`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: List.
 
@@ -325,7 +327,7 @@ API path: `/shows/{id}/crew`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 | `type` |  |
 
 Operations: List.
@@ -352,7 +354,7 @@ API path: `/episodes/{id}/guestcrew`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -370,7 +372,7 @@ API path: `/shows/{id}/episodesbydate`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: List.
 
@@ -382,7 +384,7 @@ API path: `/people/{id}/guestcastcredits`
 | --- | --- |
 | `id` |  |
 | `main` |  |
-| `resolution` |  |
+| `resolutions` |  |
 | `type` |  |
 
 Operations: List.
@@ -399,7 +401,7 @@ API path: `/shows/{id}/images`
 | `gender` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `person` |  |
 | `score` |  |
@@ -419,7 +421,7 @@ API path: `/people`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -443,7 +445,7 @@ API path: `/schedule`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -471,18 +473,18 @@ API path: `/lookup/shows`
 
 | Field | Description |
 | --- | --- |
-| `end_date` |  |
-| `episode_order` |  |
+| `endDate` |  |
+| `episodeOrder` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
 | `number` |  |
-| `premiere_date` |  |
+| `premiereDate` |  |
 | `summary` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 
 Operations: List.
 
@@ -492,18 +494,18 @@ API path: `/shows/{id}/seasons`
 
 | Field | Description |
 | --- | --- |
-| `average_runtime` |  |
-| `dvd_country` |  |
+| `averageRuntime` |  |
+| `dvdCountry` |  |
 | `ended` |  |
-| `external` |  |
-| `genre` |  |
+| `externals` |  |
+| `genres` |  |
 | `id` |  |
 | `image` |  |
 | `language` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
-| `official_site` |  |
+| `officialSite` |  |
 | `premiered` |  |
 | `rating` |  |
 | `runtime` |  |
@@ -515,7 +517,7 @@ API path: `/shows/{id}/seasons`
 | `type` |  |
 | `updated` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 | `weight` |  |
 
 Operations: List, Load.
@@ -577,14 +579,15 @@ Create an instance: `alternate_list = client.AlternateList`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `Integer` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
+| `self` | `Hash` |  |
 | `url` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare AlternateList record (raises on error).
+# load returns the ENTITY — call data_get for the AlternateList record (raises on error).
 alternate_list = client.AlternateList.load({ "id" => 1 })
 ```
 
@@ -637,7 +640,7 @@ Create an instance: `cast_credit = client.CastCredit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 
 #### Example: List
 
@@ -713,7 +716,7 @@ Create an instance: `crew_credit = client.CrewCredit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `type` | `String` |  |
 
 #### Example: List
@@ -769,7 +772,7 @@ Create an instance: `episode = client.Episode`
 | `airtime` | `String` |  |
 | `id` | `Integer` |  |
 | `image` | `Hash` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
 | `number` | `Integer` |  |
 | `rating` | `Hash` |  |
@@ -782,7 +785,7 @@ Create an instance: `episode = client.Episode`
 #### Example: Load
 
 ```ruby
-# load returns the bare Episode record (raises on error).
+# load returns the ENTITY — call data_get for the Episode record (raises on error).
 episode = client.Episode.load({ "id" => 1 })
 ```
 
@@ -808,7 +811,7 @@ Create an instance: `guest_cast_credit = client.GuestCastCredit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 
 #### Example: List
 
@@ -834,7 +837,7 @@ Create an instance: `image = client.Image`
 | --- | --- | --- |
 | `id` | `Integer` |  |
 | `main` | `Boolean` |  |
-| `resolution` | `Hash` |  |
+| `resolutions` | `Hash` |  |
 | `type` | `String` |  |
 
 #### Example: List
@@ -866,7 +869,7 @@ Create an instance: `person = client.Person`
 | `gender` | `String` |  |
 | `id` | `Integer` |  |
 | `image` | `Hash` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
 | `person` | `Hash` |  |
 | `score` | `Float` |  |
@@ -876,7 +879,7 @@ Create an instance: `person = client.Person`
 #### Example: Load
 
 ```ruby
-# load returns the bare Person record (raises on error).
+# load returns the ENTITY — call data_get for the Person record (raises on error).
 person = client.Person.load({ "id" => 1 })
 ```
 
@@ -907,7 +910,7 @@ Create an instance: `schedule = client.Schedule`
 | `airtime` | `String` |  |
 | `id` | `Integer` |  |
 | `image` | `Hash` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
 | `number` | `Integer` |  |
 | `rating` | `Hash` |  |
@@ -945,7 +948,7 @@ Create an instance: `scheduled_episode = client.ScheduledEpisode`
 | `airtime` | `String` |  |
 | `id` | `Integer` |  |
 | `image` | `Hash` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
 | `number` | `Integer` |  |
 | `rating` | `Hash` |  |
@@ -977,7 +980,7 @@ Create an instance: `search = client.Search`
 #### Example: Load
 
 ```ruby
-# load returns the bare Search record (raises on error).
+# load returns the ENTITY — call data_get for the Search record (raises on error).
 search = client.Search.load()
 ```
 
@@ -996,18 +999,18 @@ Create an instance: `season = client.Season`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | `String` |  |
-| `episode_order` | `Integer` |  |
+| `endDate` | `String` |  |
+| `episodeOrder` | `Integer` |  |
 | `id` | `Integer` |  |
 | `image` | `Hash` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
 | `network` | `Hash` |  |
 | `number` | `Integer` |  |
-| `premiere_date` | `String` |  |
+| `premiereDate` | `String` |  |
 | `summary` | `String` |  |
 | `url` | `String` |  |
-| `web_channel` | `Hash` |  |
+| `webChannel` | `Hash` |  |
 
 #### Example: List
 
@@ -1032,18 +1035,18 @@ Create an instance: `show = client.Show`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | `Integer` |  |
-| `dvd_country` | `Hash` |  |
+| `averageRuntime` | `Integer` |  |
+| `dvdCountry` | `Hash` |  |
 | `ended` | `String` |  |
-| `external` | `Hash` |  |
-| `genre` | `Array` |  |
+| `externals` | `Hash` |  |
+| `genres` | `Array` |  |
 | `id` | `Integer` |  |
 | `image` | `Hash` |  |
 | `language` | `String` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
 | `network` | `Hash` |  |
-| `official_site` | `String` |  |
+| `officialSite` | `String` |  |
 | `premiered` | `String` |  |
 | `rating` | `Hash` |  |
 | `runtime` | `Integer` |  |
@@ -1055,13 +1058,13 @@ Create an instance: `show = client.Show`
 | `type` | `String` |  |
 | `updated` | `Integer` |  |
 | `url` | `String` |  |
-| `web_channel` | `Hash` |  |
+| `webChannel` | `Hash` |  |
 | `weight` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Show record (raises on error).
+# load returns the ENTITY — call data_get for the Show record (raises on error).
 show = client.Show.load({ "id" => 1 })
 ```
 
@@ -1086,7 +1089,7 @@ Create an instance: `update = client.Update`
 #### Example: Load
 
 ```ruby
-# load returns the bare Update record (raises on error).
+# load returns the ENTITY — call data_get for the Update record (raises on error).
 update = client.Update.load()
 ```
 
@@ -1167,11 +1170,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-aka = client.Aka
-aka.list()
+image = client.Image
+image.list()
 
-# aka.data_get now returns the aka data from the last list
-# aka.match_get returns the last match criteria
+# image.data_get now returns the image data from the last list
+# image.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

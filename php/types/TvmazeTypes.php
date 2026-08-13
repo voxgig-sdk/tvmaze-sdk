@@ -29,8 +29,9 @@ class AkaListMatch
 class AlternateList
 {
     public ?int $id = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
+    public ?array $self = null;
     public ?string $url = null;
 }
 
@@ -64,7 +65,7 @@ class CastListMatch
 /** CastCredit entity data model. */
 class CastCredit
 {
-    public ?array $link = null;
+    public ?array $links = null;
 }
 
 /** Request payload for CastCredit#list. */
@@ -104,7 +105,7 @@ class CrewListMatch
 /** CrewCredit entity data model. */
 class CrewCredit
 {
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $type = null;
 }
 
@@ -135,7 +136,7 @@ class Episode
     public ?string $airtime = null;
     public ?int $id = null;
     public ?array $image = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?int $number = null;
     public ?array $rating = null;
@@ -163,7 +164,7 @@ class EpisodeListMatch
 /** GuestCastCredit entity data model. */
 class GuestCastCredit
 {
-    public ?array $link = null;
+    public ?array $links = null;
 }
 
 /** Request payload for GuestCastCredit#list. */
@@ -177,7 +178,7 @@ class Image
 {
     public ?int $id = null;
     public ?bool $main = null;
-    public ?array $resolution = null;
+    public ?array $resolutions = null;
     public ?string $type = null;
 }
 
@@ -196,7 +197,7 @@ class Person
     public ?string $gender = null;
     public ?int $id = null;
     public ?array $image = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?array $person = null;
     public ?float $score = null;
@@ -219,7 +220,7 @@ class PersonListMatch
     public ?string $gender = null;
     public ?int $id = null;
     public ?array $image = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?array $person = null;
     public ?float $score = null;
@@ -235,7 +236,7 @@ class Schedule
     public ?string $airtime = null;
     public ?int $id = null;
     public ?array $image = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?int $number = null;
     public ?array $rating = null;
@@ -255,7 +256,7 @@ class ScheduleListMatch
     public ?string $airtime = null;
     public ?int $id = null;
     public ?array $image = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?int $number = null;
     public ?array $rating = null;
@@ -275,7 +276,7 @@ class ScheduledEpisode
     public ?string $airtime = null;
     public ?int $id = null;
     public ?array $image = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?int $number = null;
     public ?array $rating = null;
@@ -295,7 +296,7 @@ class ScheduledEpisodeListMatch
     public ?string $airtime = null;
     public ?int $id = null;
     public ?array $image = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?int $number = null;
     public ?array $rating = null;
@@ -320,18 +321,18 @@ class SearchLoadMatch
 /** Season entity data model. */
 class Season
 {
-    public ?string $end_date = null;
-    public ?int $episode_order = null;
+    public ?string $endDate = null;
+    public ?int $episodeOrder = null;
     public ?int $id = null;
     public ?array $image = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?array $network = null;
     public ?int $number = null;
-    public ?string $premiere_date = null;
+    public ?string $premiereDate = null;
     public ?string $summary = null;
     public ?string $url = null;
-    public ?array $web_channel = null;
+    public ?array $webChannel = null;
 }
 
 /** Request payload for Season#list. */
@@ -343,18 +344,18 @@ class SeasonListMatch
 /** Show entity data model. */
 class Show
 {
-    public ?int $average_runtime = null;
-    public ?array $dvd_country = null;
+    public ?int $averageRuntime = null;
+    public ?array $dvdCountry = null;
     public ?string $ended = null;
-    public ?array $external = null;
-    public ?array $genre = null;
+    public ?array $externals = null;
+    public ?array $genres = null;
     public ?int $id = null;
     public ?array $image = null;
     public ?string $language = null;
-    public ?array $link = null;
+    public ?array $links = null;
     public ?string $name = null;
     public ?array $network = null;
-    public ?string $official_site = null;
+    public ?string $officialSite = null;
     public ?string $premiered = null;
     public ?array $rating = null;
     public ?int $runtime = null;
@@ -366,7 +367,7 @@ class Show
     public ?string $type = null;
     public ?int $updated = null;
     public ?string $url = null;
-    public ?array $web_channel = null;
+    public ?array $webChannel = null;
     public ?int $weight = null;
 }
 

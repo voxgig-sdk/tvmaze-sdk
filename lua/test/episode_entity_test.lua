@@ -99,7 +99,7 @@ describe("EpisodeEntity", function()
     }
     local episode_ref01_data_dt0_loaded, err = episode_ref01_ent:load(episode_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local episode_ref01_data_dt0_load_result = helpers.to_map(episode_ref01_data_dt0_loaded)
+    local episode_ref01_data_dt0_load_result = helpers.to_map(type(episode_ref01_data_dt0_loaded) == 'table' and episode_ref01_data_dt0_loaded.data_get and episode_ref01_data_dt0_loaded:data_get() or episode_ref01_data_dt0_loaded)
     assert.is_not_nil(episode_ref01_data_dt0_load_result)
     assert.are.equal(episode_ref01_data_dt0_load_result["id"], episode_ref01_data["id"])
 

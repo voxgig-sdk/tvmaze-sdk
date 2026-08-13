@@ -77,6 +77,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/akas",
                 ["parts"] = {
@@ -123,7 +124,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -137,10 +138,17 @@ local function make_config()
           },
           {
             ["active"] = true,
+            ["name"] = "self",
+            ["req"] = false,
+            ["type"] = "`$OBJECT`",
+            ["index$"] = 3,
+          },
+          {
+            ["active"] = true,
             ["name"] = "url",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
+            ["index$"] = 4,
           },
         },
         ["name"] = "alternate_list",
@@ -164,6 +172,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/alternatelists",
                 ["parts"] = {
@@ -219,6 +228,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/alternatelists/{id}",
                 ["parts"] = {
@@ -233,7 +243,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body._links`",
                 },
                 ["index$"] = 0,
               },
@@ -301,6 +311,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/cast",
                 ["parts"] = {
@@ -340,7 +351,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 0,
@@ -377,6 +388,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/people/{id}/castcredits",
                 ["parts"] = {
@@ -465,6 +477,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/episodes/{id}/guestcast",
                 ["parts"] = {
@@ -538,6 +551,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/crew",
                 ["parts"] = {
@@ -577,7 +591,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 0,
@@ -621,6 +635,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/people/{id}/crewcredits",
                 ["parts"] = {
@@ -695,6 +710,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/episodes/{id}/guestcrew",
                 ["parts"] = {
@@ -769,7 +785,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 5,
@@ -862,6 +878,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/episodesbydate",
                 ["parts"] = {
@@ -911,6 +928,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/seasons/{id}/episodes",
                 ["parts"] = {
@@ -960,6 +978,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/episodes",
                 ["parts"] = {
@@ -1024,6 +1043,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/episodebynumber",
                 ["parts"] = {
@@ -1074,6 +1094,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/episodes/{id}",
                 ["parts"] = {
@@ -1111,7 +1132,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 0,
@@ -1148,6 +1169,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/people/{id}/guestcastcredits",
                 ["parts"] = {
@@ -1202,7 +1224,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "resolution",
+            ["name"] = "resolutions",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 2,
@@ -1236,6 +1258,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/images",
                 ["parts"] = {
@@ -1317,7 +1340,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 6,
@@ -1379,6 +1402,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/people",
                 ["parts"] = {
@@ -1409,6 +1433,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/search/people",
                 ["parts"] = {
@@ -1458,6 +1483,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/people/{id}",
                 ["parts"] = {
@@ -1523,7 +1549,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 5,
@@ -1621,6 +1647,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/schedule",
                 ["parts"] = {
@@ -1685,7 +1712,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 5,
@@ -1782,6 +1809,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/schedule/web",
                 ["parts"] = {
@@ -1803,6 +1831,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/schedule/full",
                 ["parts"] = {
@@ -1862,6 +1891,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/shows",
                 ["parts"] = {
@@ -1893,14 +1923,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "end_date",
+            ["name"] = "endDate",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "episode_order",
+            ["name"] = "episodeOrder",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 1,
@@ -1921,7 +1951,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 4,
@@ -1949,7 +1979,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "premiere_date",
+            ["name"] = "premiereDate",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 8,
@@ -1970,7 +2000,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "web_channel",
+            ["name"] = "webChannel",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 11,
@@ -1997,6 +2027,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}/seasons",
                 ["parts"] = {
@@ -2036,14 +2067,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "average_runtime",
+            ["name"] = "averageRuntime",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "dvd_country",
+            ["name"] = "dvdCountry",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -2057,14 +2088,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "external",
+            ["name"] = "externals",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "genre",
+            ["name"] = "genres",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
@@ -2092,7 +2123,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 8,
@@ -2113,7 +2144,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "official_site",
+            ["name"] = "officialSite",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 11,
@@ -2197,7 +2228,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "web_channel",
+            ["name"] = "webChannel",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 23,
@@ -2241,6 +2272,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/alternatelists/{id}/alternateepisodes",
                 ["parts"] = {
@@ -2287,6 +2319,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/singlesearch/shows",
                 ["parts"] = {
@@ -2320,6 +2353,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows",
                 ["parts"] = {
@@ -2350,6 +2384,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/search/shows",
                 ["parts"] = {
@@ -2399,6 +2434,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/shows/{id}",
                 ["parts"] = {
@@ -2451,6 +2487,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/updates/people",
                 ["parts"] = {
@@ -2483,6 +2520,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/updates/shows",
                 ["parts"] = {

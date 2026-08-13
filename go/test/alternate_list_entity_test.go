@@ -130,7 +130,7 @@ func TestAlternateListEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		alternateListRef01DataDt0LoadResult := core.ToMapAny(alternateListRef01DataDt0Loaded)
+		alternateListRef01DataDt0LoadResult := core.ToMapAny(entityData(alternateListRef01DataDt0Loaded))
 		if alternateListRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

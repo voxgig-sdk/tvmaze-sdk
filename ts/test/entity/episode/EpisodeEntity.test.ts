@@ -64,13 +64,13 @@ describe('EpisodeEntity', async () => {
     const episode_ref01_match: any = {}
     episode_ref01_match['show_id'] = setup.idmap['show01']
 
-    const episode_ref01_list = await episode_ref01_ent.list(episode_ref01_match)
+    const episode_ref01_list = (await episode_ref01_ent.list(episode_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const episode_ref01_match_dt0: any = {}
     episode_ref01_match_dt0.id = episode_ref01_data.id
-    const episode_ref01_data_dt0 = await episode_ref01_ent.load(episode_ref01_match_dt0)
+    const episode_ref01_data_dt0 = (await episode_ref01_ent.load(episode_ref01_match_dt0)).data()
     assert(episode_ref01_data_dt0.id === episode_ref01_data.id)
 
 

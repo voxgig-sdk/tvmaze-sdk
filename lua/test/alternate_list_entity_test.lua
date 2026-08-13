@@ -99,7 +99,7 @@ describe("AlternateListEntity", function()
     }
     local alternate_list_ref01_data_dt0_loaded, err = alternate_list_ref01_ent:load(alternate_list_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local alternate_list_ref01_data_dt0_load_result = helpers.to_map(alternate_list_ref01_data_dt0_loaded)
+    local alternate_list_ref01_data_dt0_load_result = helpers.to_map(type(alternate_list_ref01_data_dt0_loaded) == 'table' and alternate_list_ref01_data_dt0_loaded.data_get and alternate_list_ref01_data_dt0_loaded:data_get() or alternate_list_ref01_data_dt0_loaded)
     assert.is_not_nil(alternate_list_ref01_data_dt0_load_result)
     assert.are.equal(alternate_list_ref01_data_dt0_load_result["id"], alternate_list_ref01_data["id"])
 

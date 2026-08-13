@@ -87,7 +87,7 @@ class ShowEntityTest < Minitest::Test
       "id" => show_ref01_data["id"],
     }
     show_ref01_data_dt0_loaded = show_ref01_ent.load(show_ref01_match_dt0, nil)
-    show_ref01_data_dt0_load_result = Helpers.to_map(show_ref01_data_dt0_loaded)
+    show_ref01_data_dt0_load_result = Helpers.to_map(show_ref01_data_dt0_loaded.respond_to?(:data_get) ? show_ref01_data_dt0_loaded.data_get : show_ref01_data_dt0_loaded)
     assert !show_ref01_data_dt0_load_result.nil?
     assert_equal show_ref01_data_dt0_load_result["id"], show_ref01_data["id"]
 

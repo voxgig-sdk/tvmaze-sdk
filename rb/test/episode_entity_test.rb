@@ -89,7 +89,7 @@ class EpisodeEntityTest < Minitest::Test
       "id" => episode_ref01_data["id"],
     }
     episode_ref01_data_dt0_loaded = episode_ref01_ent.load(episode_ref01_match_dt0, nil)
-    episode_ref01_data_dt0_load_result = Helpers.to_map(episode_ref01_data_dt0_loaded)
+    episode_ref01_data_dt0_load_result = Helpers.to_map(episode_ref01_data_dt0_loaded.respond_to?(:data_get) ? episode_ref01_data_dt0_loaded.data_get : episode_ref01_data_dt0_loaded)
     assert !episode_ref01_data_dt0_load_result.nil?
     assert_equal episode_ref01_data_dt0_load_result["id"], episode_ref01_data["id"]
 

@@ -35,18 +35,22 @@ AkaListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
+# @!attribute [rw] self
+#   @return [Hash, nil]
+#
 # @!attribute [rw] url
 #   @return [String, nil]
 AlternateList = Struct.new(
   :id,
-  :link,
+  :links,
   :name,
+  :self,
   :url,
   keyword_init: true
 )
@@ -101,10 +105,10 @@ CastListMatch = Struct.new(
 
 # CastCredit entity data model.
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 CastCredit = Struct.new(
-  :link,
+  :links,
   keyword_init: true
 )
 
@@ -171,13 +175,13 @@ CrewListMatch = Struct.new(
 
 # CrewCredit entity data model.
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 CrewCredit = Struct.new(
-  :link,
+  :links,
   :type,
   keyword_init: true
 )
@@ -230,7 +234,7 @@ CrewMemberListMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [Hash, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -262,7 +266,7 @@ Episode = Struct.new(
   :airtime,
   :id,
   :image,
-  :link,
+  :links,
   :name,
   :number,
   :rating,
@@ -302,10 +306,10 @@ EpisodeListMatch = Struct.new(
 
 # GuestCastCredit entity data model.
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 GuestCastCredit = Struct.new(
-  :link,
+  :links,
   keyword_init: true
 )
 
@@ -326,7 +330,7 @@ GuestCastCreditListMatch = Struct.new(
 # @!attribute [rw] main
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] resolution
+# @!attribute [rw] resolutions
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
@@ -334,7 +338,7 @@ GuestCastCreditListMatch = Struct.new(
 Image = Struct.new(
   :id,
   :main,
-  :resolution,
+  :resolutions,
   :type,
   keyword_init: true
 )
@@ -368,7 +372,7 @@ ImageListMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [Hash, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -392,7 +396,7 @@ Person = Struct.new(
   :gender,
   :id,
   :image,
-  :link,
+  :links,
   :name,
   :person,
   :score,
@@ -430,7 +434,7 @@ PersonLoadMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [Hash, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -454,7 +458,7 @@ PersonListMatch = Struct.new(
   :gender,
   :id,
   :image,
-  :link,
+  :links,
   :name,
   :person,
   :score,
@@ -480,7 +484,7 @@ PersonListMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [Hash, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -515,7 +519,7 @@ Schedule = Struct.new(
   :airtime,
   :id,
   :image,
-  :link,
+  :links,
   :name,
   :number,
   :rating,
@@ -545,7 +549,7 @@ Schedule = Struct.new(
 # @!attribute [rw] image
 #   @return [Hash, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -580,7 +584,7 @@ ScheduleListMatch = Struct.new(
   :airtime,
   :id,
   :image,
-  :link,
+  :links,
   :name,
   :number,
   :rating,
@@ -610,7 +614,7 @@ ScheduleListMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [Hash, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -645,7 +649,7 @@ ScheduledEpisode = Struct.new(
   :airtime,
   :id,
   :image,
-  :link,
+  :links,
   :name,
   :number,
   :rating,
@@ -675,7 +679,7 @@ ScheduledEpisode = Struct.new(
 # @!attribute [rw] image
 #   @return [Hash, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -710,7 +714,7 @@ ScheduledEpisodeListMatch = Struct.new(
   :airtime,
   :id,
   :image,
-  :link,
+  :links,
   :name,
   :number,
   :rating,
@@ -733,10 +737,10 @@ end
 
 # Season entity data model.
 #
-# @!attribute [rw] end_date
+# @!attribute [rw] endDate
 #   @return [String, nil]
 #
-# @!attribute [rw] episode_order
+# @!attribute [rw] episodeOrder
 #   @return [Integer, nil]
 #
 # @!attribute [rw] id
@@ -745,7 +749,7 @@ end
 # @!attribute [rw] image
 #   @return [Hash, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -757,7 +761,7 @@ end
 # @!attribute [rw] number
 #   @return [Integer, nil]
 #
-# @!attribute [rw] premiere_date
+# @!attribute [rw] premiereDate
 #   @return [String, nil]
 #
 # @!attribute [rw] summary
@@ -766,21 +770,21 @@ end
 # @!attribute [rw] url
 #   @return [String, nil]
 #
-# @!attribute [rw] web_channel
+# @!attribute [rw] webChannel
 #   @return [Hash, nil]
 Season = Struct.new(
-  :end_date,
-  :episode_order,
+  :endDate,
+  :episodeOrder,
   :id,
   :image,
-  :link,
+  :links,
   :name,
   :network,
   :number,
-  :premiere_date,
+  :premiereDate,
   :summary,
   :url,
-  :web_channel,
+  :webChannel,
   keyword_init: true
 )
 
@@ -795,19 +799,19 @@ SeasonListMatch = Struct.new(
 
 # Show entity data model.
 #
-# @!attribute [rw] average_runtime
+# @!attribute [rw] averageRuntime
 #   @return [Integer, nil]
 #
-# @!attribute [rw] dvd_country
+# @!attribute [rw] dvdCountry
 #   @return [Hash, nil]
 #
 # @!attribute [rw] ended
 #   @return [String, nil]
 #
-# @!attribute [rw] external
+# @!attribute [rw] externals
 #   @return [Hash, nil]
 #
-# @!attribute [rw] genre
+# @!attribute [rw] genres
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -819,7 +823,7 @@ SeasonListMatch = Struct.new(
 # @!attribute [rw] language
 #   @return [String, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -828,7 +832,7 @@ SeasonListMatch = Struct.new(
 # @!attribute [rw] network
 #   @return [Hash, nil]
 #
-# @!attribute [rw] official_site
+# @!attribute [rw] officialSite
 #   @return [String, nil]
 #
 # @!attribute [rw] premiered
@@ -864,24 +868,24 @@ SeasonListMatch = Struct.new(
 # @!attribute [rw] url
 #   @return [String, nil]
 #
-# @!attribute [rw] web_channel
+# @!attribute [rw] webChannel
 #   @return [Hash, nil]
 #
 # @!attribute [rw] weight
 #   @return [Integer, nil]
 Show = Struct.new(
-  :average_runtime,
-  :dvd_country,
+  :averageRuntime,
+  :dvdCountry,
   :ended,
-  :external,
-  :genre,
+  :externals,
+  :genres,
   :id,
   :image,
   :language,
-  :link,
+  :links,
   :name,
   :network,
-  :official_site,
+  :officialSite,
   :premiered,
   :rating,
   :runtime,
@@ -893,7 +897,7 @@ Show = Struct.new(
   :type,
   :updated,
   :url,
-  :web_channel,
+  :webChannel,
   :weight,
   keyword_init: true
 )

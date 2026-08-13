@@ -64,13 +64,13 @@ describe('AlternateListEntity', async () => {
     const alternate_list_ref01_match: any = {}
     alternate_list_ref01_match['show_id'] = setup.idmap['show01']
 
-    const alternate_list_ref01_list = await alternate_list_ref01_ent.list(alternate_list_ref01_match)
+    const alternate_list_ref01_list = (await alternate_list_ref01_ent.list(alternate_list_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const alternate_list_ref01_match_dt0: any = {}
     alternate_list_ref01_match_dt0.id = alternate_list_ref01_data.id
-    const alternate_list_ref01_data_dt0 = await alternate_list_ref01_ent.load(alternate_list_ref01_match_dt0)
+    const alternate_list_ref01_data_dt0 = (await alternate_list_ref01_ent.load(alternate_list_ref01_match_dt0)).data()
     assert(alternate_list_ref01_data_dt0.id === alternate_list_ref01_data.id)
 
 

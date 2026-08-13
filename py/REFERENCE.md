@@ -165,7 +165,7 @@ aka = client.Aka()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Aka().list()
+results = client.Aka().list({"show_id": 1})
 for aka in results:
     print(aka)
 ```
@@ -210,8 +210,9 @@ alternate_list = client.AlternateList()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 | `name` | `str` | No |  |
+| `self` | `dict` | No |  |
 | `url` | `str` | No |  |
 
 ### Operations
@@ -221,7 +222,7 @@ alternate_list = client.AlternateList()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.AlternateList().list()
+results = client.AlternateList().list({"show_id": 1})
 for alternate_list in results:
     print(alternate_list)
 ```
@@ -285,7 +286,7 @@ cast = client.Cast()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Cast().list()
+results = client.Cast().list({"show_id": 1})
 for cast in results:
     print(cast)
 ```
@@ -329,7 +330,7 @@ cast_credit = client.CastCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 
 ### Operations
 
@@ -338,7 +339,7 @@ cast_credit = client.CastCredit()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CastCredit().list()
+results = client.CastCredit().list({"person_id": 1})
 for cast_credit in results:
     print(cast_credit)
 ```
@@ -394,7 +395,7 @@ cast_member = client.CastMember()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CastMember().list()
+results = client.CastMember().list({"episode_id": 1})
 for cast_member in results:
     print(cast_member)
 ```
@@ -448,7 +449,7 @@ crew = client.Crew()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Crew().list()
+results = client.Crew().list({"show_id": 1})
 for crew in results:
     print(crew)
 ```
@@ -492,7 +493,7 @@ crew_credit = client.CrewCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -502,7 +503,7 @@ crew_credit = client.CrewCredit()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CrewCredit().list()
+results = client.CrewCredit().list({"person_id": 1})
 for crew_credit in results:
     print(crew_credit)
 ```
@@ -556,7 +557,7 @@ crew_member = client.CrewMember()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CrewMember().list()
+results = client.CrewMember().list({"episode_id": 1})
 for crew_member in results:
     print(crew_member)
 ```
@@ -605,7 +606,7 @@ episode = client.Episode()
 | `airtime` | `str` | No |  |
 | `id` | `int` | No |  |
 | `image` | `dict` | No |  |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `dict` | No |  |
@@ -674,7 +675,7 @@ guest_cast_credit = client.GuestCastCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 
 ### Operations
 
@@ -683,7 +684,7 @@ guest_cast_credit = client.GuestCastCredit()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GuestCastCredit().list()
+results = client.GuestCastCredit().list({"person_id": 1})
 for guest_cast_credit in results:
     print(guest_cast_credit)
 ```
@@ -729,7 +730,7 @@ image = client.Image()
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `main` | `bool` | No |  |
-| `resolution` | `dict` | No |  |
+| `resolutions` | `dict` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -739,7 +740,7 @@ image = client.Image()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Image().list()
+results = client.Image().list({"show_id": 1})
 for image in results:
     print(image)
 ```
@@ -789,7 +790,7 @@ person = client.Person()
 | `gender` | `str` | No |  |
 | `id` | `int` | No |  |
 | `image` | `dict` | No |  |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `person` | `dict` | No |  |
 | `score` | `float` | No |  |
@@ -860,7 +861,7 @@ schedule = client.Schedule()
 | `airtime` | `str` | No |  |
 | `id` | `int` | No |  |
 | `image` | `dict` | No |  |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `dict` | No |  |
@@ -927,7 +928,7 @@ scheduled_episode = client.ScheduledEpisode()
 | `airtime` | `str` | No |  |
 | `id` | `int` | No |  |
 | `image` | `dict` | No |  |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `number` | `int` | No |  |
 | `rating` | `dict` | No |  |
@@ -1034,18 +1035,18 @@ season = client.Season()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | `str` | No |  |
-| `episode_order` | `int` | No |  |
+| `endDate` | `str` | No |  |
+| `episodeOrder` | `int` | No |  |
 | `id` | `int` | No |  |
 | `image` | `dict` | No |  |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `network` | `dict` | No |  |
 | `number` | `int` | No |  |
-| `premiere_date` | `str` | No |  |
+| `premiereDate` | `str` | No |  |
 | `summary` | `str` | No |  |
 | `url` | `str` | No |  |
-| `web_channel` | `dict` | No |  |
+| `webChannel` | `dict` | No |  |
 
 ### Operations
 
@@ -1054,7 +1055,7 @@ season = client.Season()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Season().list()
+results = client.Season().list({"show_id": 1})
 for season in results:
     print(season)
 ```
@@ -1098,18 +1099,18 @@ show = client.Show()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | `int` | No |  |
-| `dvd_country` | `dict` | No |  |
+| `averageRuntime` | `int` | No |  |
+| `dvdCountry` | `dict` | No |  |
 | `ended` | `str` | No |  |
-| `external` | `dict` | No |  |
-| `genre` | `list` | No |  |
+| `externals` | `dict` | No |  |
+| `genres` | `list` | No |  |
 | `id` | `int` | No |  |
 | `image` | `dict` | No |  |
 | `language` | `str` | No |  |
-| `link` | `dict` | No |  |
+| `links` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `network` | `dict` | No |  |
-| `official_site` | `str` | No |  |
+| `officialSite` | `str` | No |  |
 | `premiered` | `str` | No |  |
 | `rating` | `dict` | No |  |
 | `runtime` | `int` | No |  |
@@ -1121,7 +1122,7 @@ show = client.Show()
 | `type` | `str` | No |  |
 | `updated` | `int` | No |  |
 | `url` | `str` | No |  |
-| `web_channel` | `dict` | No |  |
+| `webChannel` | `dict` | No |  |
 | `weight` | `int` | No |  |
 
 ### Operations

@@ -130,7 +130,7 @@ func TestEpisodeEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		episodeRef01DataDt0LoadResult := core.ToMapAny(episodeRef01DataDt0Loaded)
+		episodeRef01DataDt0LoadResult := core.ToMapAny(entityData(episodeRef01DataDt0Loaded))
 		if episodeRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

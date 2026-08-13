@@ -16,8 +16,9 @@ export interface AkaListMatch {
 
 export interface AlternateList {
   id?: number
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
+  self?: Record<string, any>
   url?: string
 }
 
@@ -41,7 +42,7 @@ export interface CastListMatch {
 }
 
 export interface CastCredit {
-  link?: Record<string, any>
+  links?: Record<string, any>
 }
 
 export interface CastCreditListMatch {
@@ -69,7 +70,7 @@ export interface CrewListMatch {
 }
 
 export interface CrewCredit {
-  link?: Record<string, any>
+  links?: Record<string, any>
   type?: string
 }
 
@@ -92,7 +93,7 @@ export interface Episode {
   airtime?: string
   id?: number
   image?: Record<string, any>
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   number?: number
   rating?: Record<string, any>
@@ -114,7 +115,7 @@ export interface EpisodeListMatch {
 }
 
 export interface GuestCastCredit {
-  link?: Record<string, any>
+  links?: Record<string, any>
 }
 
 export interface GuestCastCreditListMatch {
@@ -124,7 +125,7 @@ export interface GuestCastCreditListMatch {
 export interface Image {
   id?: number
   main?: boolean
-  resolution?: Record<string, any>
+  resolutions?: Record<string, any>
   type?: string
 }
 
@@ -139,7 +140,7 @@ export interface Person {
   gender?: string
   id?: number
   image?: Record<string, any>
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   person?: Record<string, any>
   score?: number
@@ -158,7 +159,7 @@ export interface PersonListMatch {
   gender?: string
   id?: number
   image?: Record<string, any>
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   person?: Record<string, any>
   score?: number
@@ -172,7 +173,7 @@ export interface Schedule {
   airtime?: string
   id?: number
   image?: Record<string, any>
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   number?: number
   rating?: Record<string, any>
@@ -190,7 +191,7 @@ export interface ScheduleListMatch {
   airtime?: string
   id?: number
   image?: Record<string, any>
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   number?: number
   rating?: Record<string, any>
@@ -208,7 +209,7 @@ export interface ScheduledEpisode {
   airtime?: string
   id?: number
   image?: Record<string, any>
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   number?: number
   rating?: Record<string, any>
@@ -226,7 +227,7 @@ export interface ScheduledEpisodeListMatch {
   airtime?: string
   id?: number
   image?: Record<string, any>
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   number?: number
   rating?: Record<string, any>
@@ -245,18 +246,18 @@ export interface SearchLoadMatch {
 }
 
 export interface Season {
-  end_date?: string
-  episode_order?: number
+  endDate?: string
+  episodeOrder?: number
   id?: number
   image?: Record<string, any>
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   network?: Record<string, any>
   number?: number
-  premiere_date?: string
+  premiereDate?: string
   summary?: string
   url?: string
-  web_channel?: Record<string, any>
+  webChannel?: Record<string, any>
 }
 
 export interface SeasonListMatch {
@@ -264,18 +265,18 @@ export interface SeasonListMatch {
 }
 
 export interface Show {
-  average_runtime?: number
-  dvd_country?: Record<string, any>
+  averageRuntime?: number
+  dvdCountry?: Record<string, any>
   ended?: string
-  external?: Record<string, any>
-  genre?: any[]
+  externals?: Record<string, any>
+  genres?: any[]
   id?: number
   image?: Record<string, any>
   language?: string
-  link?: Record<string, any>
+  links?: Record<string, any>
   name?: string
   network?: Record<string, any>
-  official_site?: string
+  officialSite?: string
   premiered?: string
   rating?: Record<string, any>
   runtime?: number
@@ -287,7 +288,7 @@ export interface Show {
   type?: string
   updated?: number
   url?: string
-  web_channel?: Record<string, any>
+  webChannel?: Record<string, any>
   weight?: number
 }
 
@@ -303,5 +304,11 @@ export interface Update {
 }
 
 export interface UpdateLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'person' | 'show'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 

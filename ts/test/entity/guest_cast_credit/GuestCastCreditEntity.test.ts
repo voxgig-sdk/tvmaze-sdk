@@ -64,7 +64,7 @@ describe('GuestCastCreditEntity', async () => {
     const guest_cast_credit_ref01_match: any = {}
     guest_cast_credit_ref01_match['person_id'] = setup.idmap['person01']
 
-    const guest_cast_credit_ref01_list = await guest_cast_credit_ref01_ent.list(guest_cast_credit_ref01_match)
+    const guest_cast_credit_ref01_list = (await guest_cast_credit_ref01_ent.list(guest_cast_credit_ref01_match)).map((e: any) => e.data())
 
 
   })

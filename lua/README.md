@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local akas, err = client:Aka():list()
+local images, err = client:Image():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Aka():list()
+local result, err = client:Image():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -237,9 +237,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local aka, err = client:Aka():load()
+    local alternate_list, err = client:AlternateList():load({ id = "example_id" })
     if err then error(err) end
-    -- aka is the loaded record
+    -- alternate_list is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -262,8 +262,9 @@ API path: `/shows/{id}/akas`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
+| `self` |  |
 | `url` |  |
 
 Operations: List, Load.
@@ -287,7 +288,7 @@ API path: `/shows/{id}/cast`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: List.
 
@@ -321,7 +322,7 @@ API path: `/shows/{id}/crew`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 | `type` |  |
 
 Operations: List.
@@ -348,7 +349,7 @@ API path: `/episodes/{id}/guestcrew`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -366,7 +367,7 @@ API path: `/shows/{id}/episodesbydate`
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
+| `links` |  |
 
 Operations: List.
 
@@ -378,7 +379,7 @@ API path: `/people/{id}/guestcastcredits`
 | --- | --- |
 | `id` |  |
 | `main` |  |
-| `resolution` |  |
+| `resolutions` |  |
 | `type` |  |
 
 Operations: List.
@@ -395,7 +396,7 @@ API path: `/shows/{id}/images`
 | `gender` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `person` |  |
 | `score` |  |
@@ -415,7 +416,7 @@ API path: `/people`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -439,7 +440,7 @@ API path: `/schedule`
 | `airtime` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `number` |  |
 | `rating` |  |
@@ -467,18 +468,18 @@ API path: `/lookup/shows`
 
 | Field | Description |
 | --- | --- |
-| `end_date` |  |
-| `episode_order` |  |
+| `endDate` |  |
+| `episodeOrder` |  |
 | `id` |  |
 | `image` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
 | `number` |  |
-| `premiere_date` |  |
+| `premiereDate` |  |
 | `summary` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 
 Operations: List.
 
@@ -488,18 +489,18 @@ API path: `/shows/{id}/seasons`
 
 | Field | Description |
 | --- | --- |
-| `average_runtime` |  |
-| `dvd_country` |  |
+| `averageRuntime` |  |
+| `dvdCountry` |  |
 | `ended` |  |
-| `external` |  |
-| `genre` |  |
+| `externals` |  |
+| `genres` |  |
 | `id` |  |
 | `image` |  |
 | `language` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
 | `network` |  |
-| `official_site` |  |
+| `officialSite` |  |
 | `premiered` |  |
 | `rating` |  |
 | `runtime` |  |
@@ -511,7 +512,7 @@ API path: `/shows/{id}/seasons`
 | `type` |  |
 | `updated` |  |
 | `url` |  |
-| `web_channel` |  |
+| `webChannel` |  |
 | `weight` |  |
 
 Operations: List, Load.
@@ -572,8 +573,9 @@ Create an instance: `local alternate_list = client:AlternateList(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `number` |  |
-| `link` | `table` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
+| `self` | `table` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -629,7 +631,7 @@ Create an instance: `local cast_credit = client:CastCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `table` |  |
+| `links` | `table` |  |
 
 #### Example: List
 
@@ -702,7 +704,7 @@ Create an instance: `local crew_credit = client:CrewCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `table` |  |
+| `links` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -756,7 +758,7 @@ Create an instance: `local episode = client:Episode(nil)`
 | `airtime` | `string` |  |
 | `id` | `number` |  |
 | `image` | `table` |  |
-| `link` | `table` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
 | `number` | `number` |  |
 | `rating` | `table` |  |
@@ -793,7 +795,7 @@ Create an instance: `local guest_cast_credit = client:GuestCastCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `table` |  |
+| `links` | `table` |  |
 
 #### Example: List
 
@@ -818,7 +820,7 @@ Create an instance: `local image = client:Image(nil)`
 | --- | --- | --- |
 | `id` | `number` |  |
 | `main` | `boolean` |  |
-| `resolution` | `table` |  |
+| `resolutions` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -849,7 +851,7 @@ Create an instance: `local person = client:Person(nil)`
 | `gender` | `string` |  |
 | `id` | `number` |  |
 | `image` | `table` |  |
-| `link` | `table` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
 | `person` | `table` |  |
 | `score` | `number` |  |
@@ -888,7 +890,7 @@ Create an instance: `local schedule = client:Schedule(nil)`
 | `airtime` | `string` |  |
 | `id` | `number` |  |
 | `image` | `table` |  |
-| `link` | `table` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
 | `number` | `number` |  |
 | `rating` | `table` |  |
@@ -925,7 +927,7 @@ Create an instance: `local scheduled_episode = client:ScheduledEpisode(nil)`
 | `airtime` | `string` |  |
 | `id` | `number` |  |
 | `image` | `table` |  |
-| `link` | `table` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
 | `number` | `number` |  |
 | `rating` | `table` |  |
@@ -974,18 +976,18 @@ Create an instance: `local season = client:Season(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | `string` |  |
-| `episode_order` | `number` |  |
+| `endDate` | `string` |  |
+| `episodeOrder` | `number` |  |
 | `id` | `number` |  |
 | `image` | `table` |  |
-| `link` | `table` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
 | `network` | `table` |  |
 | `number` | `number` |  |
-| `premiere_date` | `string` |  |
+| `premiereDate` | `string` |  |
 | `summary` | `string` |  |
 | `url` | `string` |  |
-| `web_channel` | `table` |  |
+| `webChannel` | `table` |  |
 
 #### Example: List
 
@@ -1009,18 +1011,18 @@ Create an instance: `local show = client:Show(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | `number` |  |
-| `dvd_country` | `table` |  |
+| `averageRuntime` | `number` |  |
+| `dvdCountry` | `table` |  |
 | `ended` | `string` |  |
-| `external` | `table` |  |
-| `genre` | `table` |  |
+| `externals` | `table` |  |
+| `genres` | `table` |  |
 | `id` | `number` |  |
 | `image` | `table` |  |
 | `language` | `string` |  |
-| `link` | `table` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
 | `network` | `table` |  |
-| `official_site` | `string` |  |
+| `officialSite` | `string` |  |
 | `premiered` | `string` |  |
 | `rating` | `table` |  |
 | `runtime` | `number` |  |
@@ -1032,7 +1034,7 @@ Create an instance: `local show = client:Show(nil)`
 | `type` | `string` |  |
 | `updated` | `number` |  |
 | `url` | `string` |  |
-| `web_channel` | `table` |  |
+| `webChannel` | `table` |  |
 | `weight` | `number` |  |
 
 #### Example: Load
@@ -1141,11 +1143,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local aka = client:Aka()
-aka:list()
+local image = client:Image()
+image:list()
 
--- aka:data_get() now returns the aka data from the last list
--- aka:match_get() returns the last match criteria
+-- image:data_get() now returns the image data from the last list
+-- image:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

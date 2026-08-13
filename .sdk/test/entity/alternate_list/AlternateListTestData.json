@@ -3,23 +3,26 @@
     "alternate_list": {
       "ALTERNATE_LIST00": {
         "id": "ALTERNATE_LIST00",
-        "link": {},
-        "name": "s2a",
-        "url": "s2b",
+        "links": {},
+        "name": "s34",
+        "self": {},
+        "url": "s36",
         "show_id": "SHOW01"
       },
       "ALTERNATE_LIST01": {
         "id": "ALTERNATE_LIST01",
-        "link": {},
-        "name": "s52",
-        "url": "s53",
+        "links": {},
+        "name": "s66",
+        "self": {},
+        "url": "s68",
         "show_id": "SHOW01"
       },
       "ALTERNATE_LIST02": {
         "id": "ALTERNATE_LIST02",
-        "link": {},
-        "name": "s7a",
-        "url": "s7b",
+        "links": {},
+        "name": "s98",
+        "self": {},
+        "url": "s9a",
         "show_id": "SHOW01"
       }
     }
@@ -27,9 +30,10 @@
   "new": {
     "alternate_list": {
       "alternate_list_ref01": {
-        "link": {},
-        "name": "sa2",
-        "url": "sa3"
+        "links": {},
+        "name": "sca",
+        "self": {},
+        "url": "scc"
       }
     }
   }

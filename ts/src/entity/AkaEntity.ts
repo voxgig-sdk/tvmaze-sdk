@@ -37,7 +37,7 @@ class AkaEntity extends TvmazeEntityBase<Aka> {
 
 
 
-  async list(this: any, reqmatch?: AkaListMatch, ctrl?: Control): Promise<Aka[]> {
+  async list(this: any, reqmatch?: AkaListMatch, ctrl?: Control): Promise<AkaEntity[]> {
 
     const utility = this._utility
 

@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from tvmaze_sdk.utility.voxgig_struct import voxgig_struct as vs
 from tvmaze_sdk import TvmazeSDK
-from core import helpers
+from tvmaze_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -42,7 +42,7 @@ class TestAlternateListEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from config import make_config
+        from tvmaze_sdk.config import make_config
         cfg = make_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = TvmazeSDK.test(
@@ -94,7 +94,7 @@ class TestAlternateListEntity:
             "id": alternate_list_ref01_data["id"],
         }
         alternate_list_ref01_data_dt0_loaded = alternate_list_ref01_ent.load(alternate_list_ref01_match_dt0, None)
-        alternate_list_ref01_data_dt0_load_result = helpers.to_map(alternate_list_ref01_data_dt0_loaded)
+        alternate_list_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(alternate_list_ref01_data_dt0_loaded))
         assert alternate_list_ref01_data_dt0_load_result is not None
         assert alternate_list_ref01_data_dt0_load_result["id"] == alternate_list_ref01_data["id"]
 

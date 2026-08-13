@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/tvmaze-sdk/go/core"
+)
 
 // Aka is the typed data model for the aka entity.
 type Aka struct {
@@ -22,8 +26,9 @@ type AkaListMatch struct {
 // AlternateList is the typed data model for the alternate_list entity.
 type AlternateList struct {
 	Id *int `json:"id,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
+	Self *map[string]any `json:"self,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -52,7 +57,7 @@ type CastListMatch struct {
 
 // CastCredit is the typed data model for the cast_credit entity.
 type CastCredit struct {
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 }
 
 // CastCreditListMatch is the typed request payload for CastCredit.ListTyped.
@@ -86,7 +91,7 @@ type CrewListMatch struct {
 
 // CrewCredit is the typed data model for the crew_credit entity.
 type CrewCredit struct {
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
@@ -113,7 +118,7 @@ type Episode struct {
 	Airtime *string `json:"airtime,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Number *int `json:"number,omitempty"`
 	Rating *map[string]any `json:"rating,omitempty"`
@@ -138,7 +143,7 @@ type EpisodeListMatch struct {
 
 // GuestCastCredit is the typed data model for the guest_cast_credit entity.
 type GuestCastCredit struct {
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 }
 
 // GuestCastCreditListMatch is the typed request payload for GuestCastCredit.ListTyped.
@@ -150,7 +155,7 @@ type GuestCastCreditListMatch struct {
 type Image struct {
 	Id *int `json:"id,omitempty"`
 	Main *bool `json:"main,omitempty"`
-	Resolution *map[string]any `json:"resolution,omitempty"`
+	Resolutions *map[string]any `json:"resolutions,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
@@ -167,7 +172,7 @@ type Person struct {
 	Gender *string `json:"gender,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Person *map[string]any `json:"person,omitempty"`
 	Score *float64 `json:"score,omitempty"`
@@ -188,7 +193,7 @@ type PersonListMatch struct {
 	Gender *string `json:"gender,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Person *map[string]any `json:"person,omitempty"`
 	Score *float64 `json:"score,omitempty"`
@@ -203,7 +208,7 @@ type Schedule struct {
 	Airtime *string `json:"airtime,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Number *int `json:"number,omitempty"`
 	Rating *map[string]any `json:"rating,omitempty"`
@@ -222,7 +227,7 @@ type ScheduleListMatch struct {
 	Airtime *string `json:"airtime,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Number *int `json:"number,omitempty"`
 	Rating *map[string]any `json:"rating,omitempty"`
@@ -241,7 +246,7 @@ type ScheduledEpisode struct {
 	Airtime *string `json:"airtime,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Number *int `json:"number,omitempty"`
 	Rating *map[string]any `json:"rating,omitempty"`
@@ -260,7 +265,7 @@ type ScheduledEpisodeListMatch struct {
 	Airtime *string `json:"airtime,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Number *int `json:"number,omitempty"`
 	Rating *map[string]any `json:"rating,omitempty"`
@@ -282,18 +287,18 @@ type SearchLoadMatch struct {
 
 // Season is the typed data model for the season entity.
 type Season struct {
-	EndDate *string `json:"end_date,omitempty"`
-	EpisodeOrder *int `json:"episode_order,omitempty"`
+	EndDate *string `json:"endDate,omitempty"`
+	EpisodeOrder *int `json:"episodeOrder,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Network *map[string]any `json:"network,omitempty"`
 	Number *int `json:"number,omitempty"`
-	PremiereDate *string `json:"premiere_date,omitempty"`
+	PremiereDate *string `json:"premiereDate,omitempty"`
 	Summary *string `json:"summary,omitempty"`
 	Url *string `json:"url,omitempty"`
-	WebChannel *map[string]any `json:"web_channel,omitempty"`
+	WebChannel *map[string]any `json:"webChannel,omitempty"`
 }
 
 // SeasonListMatch is the typed request payload for Season.ListTyped.
@@ -303,18 +308,18 @@ type SeasonListMatch struct {
 
 // Show is the typed data model for the show entity.
 type Show struct {
-	AverageRuntime *int `json:"average_runtime,omitempty"`
-	DvdCountry *map[string]any `json:"dvd_country,omitempty"`
+	AverageRuntime *int `json:"averageRuntime,omitempty"`
+	DvdCountry *map[string]any `json:"dvdCountry,omitempty"`
 	Ended *string `json:"ended,omitempty"`
-	External *map[string]any `json:"external,omitempty"`
-	Genre *[]any `json:"genre,omitempty"`
+	Externals *map[string]any `json:"externals,omitempty"`
+	Genres *[]any `json:"genres,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Image *map[string]any `json:"image,omitempty"`
 	Language *string `json:"language,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Network *map[string]any `json:"network,omitempty"`
-	OfficialSite *string `json:"official_site,omitempty"`
+	OfficialSite *string `json:"officialSite,omitempty"`
 	Premiered *string `json:"premiered,omitempty"`
 	Rating *map[string]any `json:"rating,omitempty"`
 	Runtime *int `json:"runtime,omitempty"`
@@ -326,7 +331,7 @@ type Show struct {
 	Type *string `json:"type,omitempty"`
 	Updated *int `json:"updated,omitempty"`
 	Url *string `json:"url,omitempty"`
-	WebChannel *map[string]any `json:"web_channel,omitempty"`
+	WebChannel *map[string]any `json:"webChannel,omitempty"`
 	Weight *int `json:"weight,omitempty"`
 }
 
@@ -360,12 +365,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -377,12 +396,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

@@ -62,7 +62,7 @@ describe('UpdateEntity', async () => {
     // LOAD
     const update_ref01_ent = client.Update()
     const update_ref01_match_dt0: any = {}
-    const update_ref01_data_dt0 = await update_ref01_ent.load(update_ref01_match_dt0)
+    const update_ref01_data_dt0 = (await update_ref01_ent.load(update_ref01_match_dt0)).data()
     assert(null != update_ref01_data_dt0)
 
 

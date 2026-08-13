@@ -4,21 +4,21 @@
       "IMAGE00": {
         "id": "IMAGE00",
         "main": false,
-        "resolution": {},
+        "resolutions": {},
         "type": "s2b",
         "show_id": "SHOW01"
       },
       "IMAGE01": {
         "id": "IMAGE01",
         "main": false,
-        "resolution": {},
+        "resolutions": {},
         "type": "s53",
         "show_id": "SHOW01"
       },
       "IMAGE02": {
         "id": "IMAGE02",
         "main": false,
-        "resolution": {},
+        "resolutions": {},
         "type": "s7b",
         "show_id": "SHOW01"
       }
@@ -28,7 +28,7 @@
     "image": {
       "image_ref01": {
         "main": false,
-        "resolution": {},
+        "resolutions": {},
         "type": "sa3"
       }
     }

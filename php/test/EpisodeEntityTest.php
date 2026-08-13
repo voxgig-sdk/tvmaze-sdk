@@ -99,7 +99,7 @@ class EpisodeEntityTest extends TestCase
             "id" => $episode_ref01_data["id"],
         ];
         $episode_ref01_data_dt0_loaded = $episode_ref01_ent->load($episode_ref01_match_dt0, null);
-        $episode_ref01_data_dt0_load_result = Helpers::to_map($episode_ref01_data_dt0_loaded);
+        $episode_ref01_data_dt0_load_result = Helpers::to_map(is_object($episode_ref01_data_dt0_loaded) && method_exists($episode_ref01_data_dt0_loaded, 'data_get') ? $episode_ref01_data_dt0_loaded->data_get() : $episode_ref01_data_dt0_loaded);
         $this->assertNotNull($episode_ref01_data_dt0_load_result);
         $this->assertEquals($episode_ref01_data_dt0_load_result["id"], $episode_ref01_data["id"]);
 

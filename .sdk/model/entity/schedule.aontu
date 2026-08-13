@@ -31,7 +31,7 @@ main: kit: entity: schedule: {
       type: "`$OBJECT`"
     }
     {
-      name: "link"
+      name: "links"
       req: false
       type: "`$OBJECT`"
     }

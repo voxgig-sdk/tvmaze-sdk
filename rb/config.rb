@@ -78,6 +78,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/akas",
                   "parts" => [
@@ -124,7 +125,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 1,
@@ -138,10 +139,17 @@ module TvmazeConfig
             },
             {
               "active" => true,
+              "name" => "self",
+              "req" => false,
+              "type" => "`$OBJECT`",
+              "index$" => 3,
+            },
+            {
+              "active" => true,
               "name" => "url",
               "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
+              "index$" => 4,
             },
           ],
           "name" => "alternate_list",
@@ -165,6 +173,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/alternatelists",
                   "parts" => [
@@ -220,6 +229,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/alternatelists/{id}",
                   "parts" => [
@@ -234,7 +244,7 @@ module TvmazeConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body._links`",
                   },
                   "index$" => 0,
                 },
@@ -302,6 +312,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/cast",
                   "parts" => [
@@ -341,7 +352,7 @@ module TvmazeConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 0,
@@ -378,6 +389,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/people/{id}/castcredits",
                   "parts" => [
@@ -466,6 +478,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/episodes/{id}/guestcast",
                   "parts" => [
@@ -539,6 +552,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/crew",
                   "parts" => [
@@ -578,7 +592,7 @@ module TvmazeConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 0,
@@ -622,6 +636,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/people/{id}/crewcredits",
                   "parts" => [
@@ -696,6 +711,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/episodes/{id}/guestcrew",
                   "parts" => [
@@ -770,7 +786,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 5,
@@ -863,6 +879,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/episodesbydate",
                   "parts" => [
@@ -912,6 +929,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/seasons/{id}/episodes",
                   "parts" => [
@@ -961,6 +979,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/episodes",
                   "parts" => [
@@ -1025,6 +1044,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/episodebynumber",
                   "parts" => [
@@ -1075,6 +1095,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/episodes/{id}",
                   "parts" => [
@@ -1112,7 +1133,7 @@ module TvmazeConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 0,
@@ -1149,6 +1170,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/people/{id}/guestcastcredits",
                   "parts" => [
@@ -1203,7 +1225,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "resolution",
+              "name" => "resolutions",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 2,
@@ -1237,6 +1259,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/images",
                   "parts" => [
@@ -1318,7 +1341,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 6,
@@ -1380,6 +1403,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/people",
                   "parts" => [
@@ -1410,6 +1434,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/search/people",
                   "parts" => [
@@ -1459,6 +1484,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/people/{id}",
                   "parts" => [
@@ -1524,7 +1550,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 5,
@@ -1622,6 +1648,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/schedule",
                   "parts" => [
@@ -1686,7 +1713,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 5,
@@ -1783,6 +1810,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/schedule/web",
                   "parts" => [
@@ -1804,6 +1832,7 @@ module TvmazeConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/schedule/full",
                   "parts" => [
@@ -1863,6 +1892,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/shows",
                   "parts" => [
@@ -1894,14 +1924,14 @@ module TvmazeConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "end_date",
+              "name" => "endDate",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "episode_order",
+              "name" => "episodeOrder",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 1,
@@ -1922,7 +1952,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 4,
@@ -1950,7 +1980,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "premiere_date",
+              "name" => "premiereDate",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 8,
@@ -1971,7 +2001,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "web_channel",
+              "name" => "webChannel",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 11,
@@ -1998,6 +2028,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}/seasons",
                   "parts" => [
@@ -2037,14 +2068,14 @@ module TvmazeConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "average_runtime",
+              "name" => "averageRuntime",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "dvd_country",
+              "name" => "dvdCountry",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 1,
@@ -2058,14 +2089,14 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "external",
+              "name" => "externals",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 3,
             },
             {
               "active" => true,
-              "name" => "genre",
+              "name" => "genres",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 4,
@@ -2093,7 +2124,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "link",
+              "name" => "links",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 8,
@@ -2114,7 +2145,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "official_site",
+              "name" => "officialSite",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 11,
@@ -2198,7 +2229,7 @@ module TvmazeConfig
             },
             {
               "active" => true,
-              "name" => "web_channel",
+              "name" => "webChannel",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 23,
@@ -2242,6 +2273,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/alternatelists/{id}/alternateepisodes",
                   "parts" => [
@@ -2288,6 +2320,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/singlesearch/shows",
                   "parts" => [
@@ -2321,6 +2354,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows",
                   "parts" => [
@@ -2351,6 +2385,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/search/shows",
                   "parts" => [
@@ -2400,6 +2435,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shows/{id}",
                   "parts" => [
@@ -2452,6 +2488,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/updates/people",
                   "parts" => [
@@ -2484,6 +2521,7 @@ module TvmazeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/updates/shows",
                   "parts" => [

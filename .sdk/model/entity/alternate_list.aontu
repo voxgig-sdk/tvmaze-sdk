@@ -11,7 +11,7 @@ main: kit: entity: alternate_list: {
       type: "`$INTEGER`"
     }
     {
-      name: "link"
+      name: "links"
       req: false
       type: "`$OBJECT`"
     }
@@ -19,6 +19,11 @@ main: kit: entity: alternate_list: {
       name: "name"
       req: false
       type: "`$STRING`"
+    }
+    {
+      name: "self"
+      req: false
+      type: "`$OBJECT`"
     }
     {
       name: "url"
@@ -111,7 +116,7 @@ main: kit: entity: alternate_list: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body._links`"
           }
         }
       ]

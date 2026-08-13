@@ -99,7 +99,7 @@ class AlternateListEntityTest extends TestCase
             "id" => $alternate_list_ref01_data["id"],
         ];
         $alternate_list_ref01_data_dt0_loaded = $alternate_list_ref01_ent->load($alternate_list_ref01_match_dt0, null);
-        $alternate_list_ref01_data_dt0_load_result = Helpers::to_map($alternate_list_ref01_data_dt0_loaded);
+        $alternate_list_ref01_data_dt0_load_result = Helpers::to_map(is_object($alternate_list_ref01_data_dt0_loaded) && method_exists($alternate_list_ref01_data_dt0_loaded, 'data_get') ? $alternate_list_ref01_data_dt0_loaded->data_get() : $alternate_list_ref01_data_dt0_loaded);
         $this->assertNotNull($alternate_list_ref01_data_dt0_load_result);
         $this->assertEquals($alternate_list_ref01_data_dt0_load_result["id"], $alternate_list_ref01_data["id"]);
 

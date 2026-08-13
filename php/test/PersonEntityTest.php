@@ -97,7 +97,7 @@ class PersonEntityTest extends TestCase
             "id" => $person_ref01_data["id"],
         ];
         $person_ref01_data_dt0_loaded = $person_ref01_ent->load($person_ref01_match_dt0, null);
-        $person_ref01_data_dt0_load_result = Helpers::to_map($person_ref01_data_dt0_loaded);
+        $person_ref01_data_dt0_load_result = Helpers::to_map(is_object($person_ref01_data_dt0_loaded) && method_exists($person_ref01_data_dt0_loaded, 'data_get') ? $person_ref01_data_dt0_loaded->data_get() : $person_ref01_data_dt0_loaded);
         $this->assertNotNull($person_ref01_data_dt0_load_result);
         $this->assertEquals($person_ref01_data_dt0_load_result["id"], $person_ref01_data["id"]);
 

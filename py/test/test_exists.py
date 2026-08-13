@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Tvmaze SDK exists test
 
 import pytest
 from tvmaze_sdk import TvmazeSDK

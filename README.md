@@ -23,7 +23,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new TvmazeSDK()
-const items = await client.Aka().list()
+const items = await client.Aka().list({ show_id: 1 })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TvmazeSDK.test()
-const akas = await client.Aka().list()
-// akas is an array of bare Aka records populated with mock data
-console.log(akas)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TvmazeSDK.test({
+  entity: {
+    image: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const images = await client.Image().list()
+// images is an array of Image entities, populated with mock data
+// — call images[0].data() for the record itself
+console.log(images)
 ```
 
 ### Python
 
 ```python
 client = TvmazeSDK.test()
-akas = client.Aka().list()
-print(akas)
+images = client.Image().list()
+print(images)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(akas)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = TvmazeSDK::test([
-    "entity" => ["aka" => ["test01" => []]],
+    "entity" => ["image" => ["test01" => []]],
 ]);
-$akas = $client->Aka()->list();
+$images = $client->Image()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Aka(nil).List(
+result, err := client.Image(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Aka(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = TvmazeSDK.test({
-  "entity" => { "aka" => { "test01" => {} } },
+  "entity" => { "image" => { "test01" => {} } },
 })
-akas = client.Aka.list()
+images = client.Image.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Aka():list()
+local results, err = client:Image():list()
 ```
 
 ## Packages
@@ -110,8 +119,8 @@ import { TvmazeSDK } from '@voxgig-sdk/tvmaze'
 
 const client = new TvmazeSDK()
 
-// List all akas (returns Aka[])
-const akas = await client.Aka().list()
+// List all akas (returns AkaEntity[] — .data() for the record)
+const akas = await client.Aka().list({ show_id: 1 })
 for (const aka of akas) {
   console.log(aka)
 }
@@ -187,7 +196,7 @@ from tvmaze_sdk import TvmazeSDK
 client = TvmazeSDK()
 
 # List all akas (returns a list, raises on error)
-akas = client.Aka().list()
+akas = client.Aka().list({"show_id": 1})
 for aka in akas:
     print(aka)
 ```
@@ -360,6 +369,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.tvmaze.com/api](https://www.tvmaze.com/api)
 

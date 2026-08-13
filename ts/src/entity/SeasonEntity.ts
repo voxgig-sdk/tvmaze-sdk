@@ -37,7 +37,7 @@ class SeasonEntity extends TvmazeEntityBase<Season> {
 
 
 
-  async list(this: any, reqmatch?: SeasonListMatch, ctrl?: Control): Promise<Season[]> {
+  async list(this: any, reqmatch?: SeasonListMatch, ctrl?: Control): Promise<SeasonEntity[]> {
 
     const utility = this._utility
 

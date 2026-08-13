@@ -87,7 +87,7 @@ class PersonEntityTest < Minitest::Test
       "id" => person_ref01_data["id"],
     }
     person_ref01_data_dt0_loaded = person_ref01_ent.load(person_ref01_match_dt0, nil)
-    person_ref01_data_dt0_load_result = Helpers.to_map(person_ref01_data_dt0_loaded)
+    person_ref01_data_dt0_load_result = Helpers.to_map(person_ref01_data_dt0_loaded.respond_to?(:data_get) ? person_ref01_data_dt0_loaded.data_get : person_ref01_data_dt0_loaded)
     assert !person_ref01_data_dt0_load_result.nil?
     assert_equal person_ref01_data_dt0_load_result["id"], person_ref01_data["id"]
 

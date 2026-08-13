@@ -6,7 +6,7 @@ main: kit: entity: crew_credit: {
 
   fields: [
     {
-      name: "link"
+      name: "links"
       req: false
       type: "`$OBJECT`"
     }

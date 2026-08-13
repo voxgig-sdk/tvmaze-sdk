@@ -6,12 +6,12 @@ main: kit: entity: show: {
 
   fields: [
     {
-      name: "average_runtime"
+      name: "averageRuntime"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "dvd_country"
+      name: "dvdCountry"
       req: false
       type: "`$OBJECT`"
     }
@@ -21,12 +21,12 @@ main: kit: entity: show: {
       type: "`$STRING`"
     }
     {
-      name: "external"
+      name: "externals"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "genre"
+      name: "genres"
       req: false
       type: "`$ARRAY`"
     }
@@ -46,7 +46,7 @@ main: kit: entity: show: {
       type: "`$STRING`"
     }
     {
-      name: "link"
+      name: "links"
       req: false
       type: "`$OBJECT`"
     }
@@ -61,7 +61,7 @@ main: kit: entity: show: {
       type: "`$OBJECT`"
     }
     {
-      name: "official_site"
+      name: "officialSite"
       req: false
       type: "`$STRING`"
     }
@@ -121,7 +121,7 @@ main: kit: entity: show: {
       type: "`$STRING`"
     }
     {
-      name: "web_channel"
+      name: "webChannel"
       req: false
       type: "`$OBJECT`"
     }

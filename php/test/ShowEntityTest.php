@@ -97,7 +97,7 @@ class ShowEntityTest extends TestCase
             "id" => $show_ref01_data["id"],
         ];
         $show_ref01_data_dt0_loaded = $show_ref01_ent->load($show_ref01_match_dt0, null);
-        $show_ref01_data_dt0_load_result = Helpers::to_map($show_ref01_data_dt0_loaded);
+        $show_ref01_data_dt0_load_result = Helpers::to_map(is_object($show_ref01_data_dt0_loaded) && method_exists($show_ref01_data_dt0_loaded, 'data_get') ? $show_ref01_data_dt0_loaded->data_get() : $show_ref01_data_dt0_loaded);
         $this->assertNotNull($show_ref01_data_dt0_load_result);
         $this->assertEquals($show_ref01_data_dt0_load_result["id"], $show_ref01_data["id"]);
 

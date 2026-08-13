@@ -212,8 +212,9 @@ local alternate_list = client:AlternateList(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 | `name` | `string` | No |  |
+| `self` | `table` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -329,7 +330,7 @@ local cast_credit = client:CastCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 
 ### Operations
 
@@ -489,7 +490,7 @@ local crew_credit = client:CrewCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -600,7 +601,7 @@ local episode = client:Episode(nil)
 | `airtime` | `string` | No |  |
 | `id` | `number` | No |  |
 | `image` | `table` | No |  |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 | `name` | `string` | No |  |
 | `number` | `number` | No |  |
 | `rating` | `table` | No |  |
@@ -668,7 +669,7 @@ local guest_cast_credit = client:GuestCastCredit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 
 ### Operations
 
@@ -722,7 +723,7 @@ local image = client:Image(nil)
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
 | `main` | `boolean` | No |  |
-| `resolution` | `table` | No |  |
+| `resolutions` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -781,7 +782,7 @@ local person = client:Person(nil)
 | `gender` | `string` | No |  |
 | `id` | `number` | No |  |
 | `image` | `table` | No |  |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 | `name` | `string` | No |  |
 | `person` | `table` | No |  |
 | `score` | `number` | No |  |
@@ -851,7 +852,7 @@ local schedule = client:Schedule(nil)
 | `airtime` | `string` | No |  |
 | `id` | `number` | No |  |
 | `image` | `table` | No |  |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 | `name` | `string` | No |  |
 | `number` | `number` | No |  |
 | `rating` | `table` | No |  |
@@ -917,7 +918,7 @@ local scheduled_episode = client:ScheduledEpisode(nil)
 | `airtime` | `string` | No |  |
 | `id` | `number` | No |  |
 | `image` | `table` | No |  |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 | `name` | `string` | No |  |
 | `number` | `number` | No |  |
 | `rating` | `table` | No |  |
@@ -1024,18 +1025,18 @@ local season = client:Season(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | `string` | No |  |
-| `episode_order` | `number` | No |  |
+| `endDate` | `string` | No |  |
+| `episodeOrder` | `number` | No |  |
 | `id` | `number` | No |  |
 | `image` | `table` | No |  |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 | `name` | `string` | No |  |
 | `network` | `table` | No |  |
 | `number` | `number` | No |  |
-| `premiere_date` | `string` | No |  |
+| `premiereDate` | `string` | No |  |
 | `summary` | `string` | No |  |
 | `url` | `string` | No |  |
-| `web_channel` | `table` | No |  |
+| `webChannel` | `table` | No |  |
 
 ### Operations
 
@@ -1087,18 +1088,18 @@ local show = client:Show(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | `number` | No |  |
-| `dvd_country` | `table` | No |  |
+| `averageRuntime` | `number` | No |  |
+| `dvdCountry` | `table` | No |  |
 | `ended` | `string` | No |  |
-| `external` | `table` | No |  |
-| `genre` | `table` | No |  |
+| `externals` | `table` | No |  |
+| `genres` | `table` | No |  |
 | `id` | `number` | No |  |
 | `image` | `table` | No |  |
 | `language` | `string` | No |  |
-| `link` | `table` | No |  |
+| `links` | `table` | No |  |
 | `name` | `string` | No |  |
 | `network` | `table` | No |  |
-| `official_site` | `string` | No |  |
+| `officialSite` | `string` | No |  |
 | `premiered` | `string` | No |  |
 | `rating` | `table` | No |  |
 | `runtime` | `number` | No |  |
@@ -1110,7 +1111,7 @@ local show = client:Show(nil)
 | `type` | `string` | No |  |
 | `updated` | `number` | No |  |
 | `url` | `string` | No |  |
-| `web_channel` | `table` | No |  |
+| `webChannel` | `table` | No |  |
 | `weight` | `number` | No |  |
 
 ### Operations

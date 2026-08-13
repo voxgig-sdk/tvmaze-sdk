@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-akas, err := client.Aka(nil).List(nil, nil)
+images, err := client.Image(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = akas
+_ = images
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-aka, err := client.Aka(nil).List(
+image, err := client.Image(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(aka) // the returned mock data
+fmt.Println(image) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -291,8 +291,9 @@ API path: `/shows/{id}/akas`
 | Field | Description |
 | --- | --- |
 | `"id"` |  |
-| `"link"` |  |
+| `"links"` |  |
 | `"name"` |  |
+| `"self"` |  |
 | `"url"` |  |
 
 Operations: List, Load.
@@ -316,7 +317,7 @@ API path: `/shows/{id}/cast`
 
 | Field | Description |
 | --- | --- |
-| `"link"` |  |
+| `"links"` |  |
 
 Operations: List.
 
@@ -350,7 +351,7 @@ API path: `/shows/{id}/crew`
 
 | Field | Description |
 | --- | --- |
-| `"link"` |  |
+| `"links"` |  |
 | `"type"` |  |
 
 Operations: List.
@@ -377,7 +378,7 @@ API path: `/episodes/{id}/guestcrew`
 | `"airtime"` |  |
 | `"id"` |  |
 | `"image"` |  |
-| `"link"` |  |
+| `"links"` |  |
 | `"name"` |  |
 | `"number"` |  |
 | `"rating"` |  |
@@ -395,7 +396,7 @@ API path: `/shows/{id}/episodesbydate`
 
 | Field | Description |
 | --- | --- |
-| `"link"` |  |
+| `"links"` |  |
 
 Operations: List.
 
@@ -407,7 +408,7 @@ API path: `/people/{id}/guestcastcredits`
 | --- | --- |
 | `"id"` |  |
 | `"main"` |  |
-| `"resolution"` |  |
+| `"resolutions"` |  |
 | `"type"` |  |
 
 Operations: List.
@@ -424,7 +425,7 @@ API path: `/shows/{id}/images`
 | `"gender"` |  |
 | `"id"` |  |
 | `"image"` |  |
-| `"link"` |  |
+| `"links"` |  |
 | `"name"` |  |
 | `"person"` |  |
 | `"score"` |  |
@@ -444,7 +445,7 @@ API path: `/people`
 | `"airtime"` |  |
 | `"id"` |  |
 | `"image"` |  |
-| `"link"` |  |
+| `"links"` |  |
 | `"name"` |  |
 | `"number"` |  |
 | `"rating"` |  |
@@ -468,7 +469,7 @@ API path: `/schedule`
 | `"airtime"` |  |
 | `"id"` |  |
 | `"image"` |  |
-| `"link"` |  |
+| `"links"` |  |
 | `"name"` |  |
 | `"number"` |  |
 | `"rating"` |  |
@@ -496,18 +497,18 @@ API path: `/lookup/shows`
 
 | Field | Description |
 | --- | --- |
-| `"end_date"` |  |
-| `"episode_order"` |  |
+| `"endDate"` |  |
+| `"episodeOrder"` |  |
 | `"id"` |  |
 | `"image"` |  |
-| `"link"` |  |
+| `"links"` |  |
 | `"name"` |  |
 | `"network"` |  |
 | `"number"` |  |
-| `"premiere_date"` |  |
+| `"premiereDate"` |  |
 | `"summary"` |  |
 | `"url"` |  |
-| `"web_channel"` |  |
+| `"webChannel"` |  |
 
 Operations: List.
 
@@ -517,18 +518,18 @@ API path: `/shows/{id}/seasons`
 
 | Field | Description |
 | --- | --- |
-| `"average_runtime"` |  |
-| `"dvd_country"` |  |
+| `"averageRuntime"` |  |
+| `"dvdCountry"` |  |
 | `"ended"` |  |
-| `"external"` |  |
-| `"genre"` |  |
+| `"externals"` |  |
+| `"genres"` |  |
 | `"id"` |  |
 | `"image"` |  |
 | `"language"` |  |
-| `"link"` |  |
+| `"links"` |  |
 | `"name"` |  |
 | `"network"` |  |
-| `"official_site"` |  |
+| `"officialSite"` |  |
 | `"premiered"` |  |
 | `"rating"` |  |
 | `"runtime"` |  |
@@ -540,7 +541,7 @@ API path: `/shows/{id}/seasons`
 | `"type"` |  |
 | `"updated"` |  |
 | `"url"` |  |
-| `"web_channel"` |  |
+| `"webChannel"` |  |
 | `"weight"` |  |
 
 Operations: List, Load.
@@ -605,8 +606,9 @@ Create an instance: `alternateList := client.AlternateList(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `int` |  |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 | `name` | `string` |  |
+| `self` | `map[string]any` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -674,7 +676,7 @@ Create an instance: `castCredit := client.CastCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 
 #### Example: List
 
@@ -759,7 +761,7 @@ Create an instance: `crewCredit := client.CrewCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -821,7 +823,7 @@ Create an instance: `episode := client.Episode(nil)`
 | `airtime` | `string` |  |
 | `id` | `int` |  |
 | `image` | `map[string]any` |  |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 | `name` | `string` |  |
 | `number` | `int` |  |
 | `rating` | `map[string]any` |  |
@@ -866,7 +868,7 @@ Create an instance: `guestCastCredit := client.GuestCastCredit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 
 #### Example: List
 
@@ -895,7 +897,7 @@ Create an instance: `image := client.Image(nil)`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `main` | `bool` |  |
-| `resolution` | `map[string]any` |  |
+| `resolutions` | `map[string]any` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -930,7 +932,7 @@ Create an instance: `person := client.Person(nil)`
 | `gender` | `string` |  |
 | `id` | `int` |  |
 | `image` | `map[string]any` |  |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 | `name` | `string` |  |
 | `person` | `map[string]any` |  |
 | `score` | `float64` |  |
@@ -977,7 +979,7 @@ Create an instance: `schedule := client.Schedule(nil)`
 | `airtime` | `string` |  |
 | `id` | `int` |  |
 | `image` | `map[string]any` |  |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 | `name` | `string` |  |
 | `number` | `int` |  |
 | `rating` | `map[string]any` |  |
@@ -1018,7 +1020,7 @@ Create an instance: `scheduledEpisode := client.ScheduledEpisode(nil)`
 | `airtime` | `string` |  |
 | `id` | `int` |  |
 | `image` | `map[string]any` |  |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 | `name` | `string` |  |
 | `number` | `int` |  |
 | `rating` | `map[string]any` |  |
@@ -1075,18 +1077,18 @@ Create an instance: `season := client.Season(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `end_date` | `string` |  |
-| `episode_order` | `int` |  |
+| `endDate` | `string` |  |
+| `episodeOrder` | `int` |  |
 | `id` | `int` |  |
 | `image` | `map[string]any` |  |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 | `name` | `string` |  |
 | `network` | `map[string]any` |  |
 | `number` | `int` |  |
-| `premiere_date` | `string` |  |
+| `premiereDate` | `string` |  |
 | `summary` | `string` |  |
 | `url` | `string` |  |
-| `web_channel` | `map[string]any` |  |
+| `webChannel` | `map[string]any` |  |
 
 #### Example: List
 
@@ -1114,18 +1116,18 @@ Create an instance: `show := client.Show(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `average_runtime` | `int` |  |
-| `dvd_country` | `map[string]any` |  |
+| `averageRuntime` | `int` |  |
+| `dvdCountry` | `map[string]any` |  |
 | `ended` | `string` |  |
-| `external` | `map[string]any` |  |
-| `genre` | `[]any` |  |
+| `externals` | `map[string]any` |  |
+| `genres` | `[]any` |  |
 | `id` | `int` |  |
 | `image` | `map[string]any` |  |
 | `language` | `string` |  |
-| `link` | `map[string]any` |  |
+| `links` | `map[string]any` |  |
 | `name` | `string` |  |
 | `network` | `map[string]any` |  |
-| `official_site` | `string` |  |
+| `officialSite` | `string` |  |
 | `premiered` | `string` |  |
 | `rating` | `map[string]any` |  |
 | `runtime` | `int` |  |
@@ -1137,7 +1139,7 @@ Create an instance: `show := client.Show(nil)`
 | `type` | `string` |  |
 | `updated` | `int` |  |
 | `url` | `string` |  |
-| `web_channel` | `map[string]any` |  |
+| `webChannel` | `map[string]any` |  |
 | `weight` | `int` |  |
 
 #### Example: Load
@@ -1255,11 +1257,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-aka := client.Aka(nil)
-aka.List(nil, nil)
+image := client.Image(nil)
+image.List(nil, nil)
 
-// aka.Data() now returns the aka data from the last list
-// aka.Match() returns the last match criteria
+// image.Data() now returns the image data from the last list
+// image.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

@@ -64,7 +64,7 @@ describe('ImageEntity', async () => {
     const image_ref01_match: any = {}
     image_ref01_match['show_id'] = setup.idmap['show01']
 
-    const image_ref01_list = await image_ref01_ent.list(image_ref01_match)
+    const image_ref01_list = (await image_ref01_ent.list(image_ref01_match)).map((e: any) => e.data())
 
 
   })

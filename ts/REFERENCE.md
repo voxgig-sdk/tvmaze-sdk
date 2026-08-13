@@ -330,7 +330,7 @@ const aka = client.Aka()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Aka().list()
+const results = await client.Aka().list({ show_id: 1 })
 ```
 
 ### Common Methods
@@ -372,8 +372,9 @@ const alternate_list = client.AlternateList()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
+| `self` | `Record<string, any>` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -383,7 +384,7 @@ const alternate_list = client.AlternateList()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.AlternateList().list()
+const results = await client.AlternateList().list({ show_id: 1 })
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -444,7 +445,7 @@ const cast = client.Cast()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Cast().list()
+const results = await client.Cast().list({ show_id: 1 })
 ```
 
 ### Common Methods
@@ -485,7 +486,7 @@ const cast_credit = client.CastCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -494,7 +495,7 @@ const cast_credit = client.CastCredit()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CastCredit().list()
+const results = await client.CastCredit().list({ person_id: 1 })
 ```
 
 ### Common Methods
@@ -547,7 +548,7 @@ const cast_member = client.CastMember()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CastMember().list()
+const results = await client.CastMember().list({ episode_id: 1 })
 ```
 
 ### Common Methods
@@ -598,7 +599,7 @@ const crew = client.Crew()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Crew().list()
+const results = await client.Crew().list({ show_id: 1 })
 ```
 
 ### Common Methods
@@ -639,7 +640,7 @@ const crew_credit = client.CrewCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -649,7 +650,7 @@ const crew_credit = client.CrewCredit()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CrewCredit().list()
+const results = await client.CrewCredit().list({ person_id: 1 })
 ```
 
 ### Common Methods
@@ -700,7 +701,7 @@ const crew_member = client.CrewMember()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CrewMember().list()
+const results = await client.CrewMember().list({ episode_id: 1 })
 ```
 
 ### Common Methods
@@ -746,7 +747,7 @@ const episode = client.Episode()
 | `airtime` | `string` | No |  |
 | `id` | `number` | No |  |
 | `image` | `Record<string, any>` | No |  |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `number` | `number` | No |  |
 | `rating` | `Record<string, any>` | No |  |
@@ -812,7 +813,7 @@ const guest_cast_credit = client.GuestCastCredit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -821,7 +822,7 @@ const guest_cast_credit = client.GuestCastCredit()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.GuestCastCredit().list()
+const results = await client.GuestCastCredit().list({ person_id: 1 })
 ```
 
 ### Common Methods
@@ -864,7 +865,7 @@ const image = client.Image()
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
 | `main` | `boolean` | No |  |
-| `resolution` | `Record<string, any>` | No |  |
+| `resolutions` | `Record<string, any>` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -874,7 +875,7 @@ const image = client.Image()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Image().list()
+const results = await client.Image().list({ show_id: 1 })
 ```
 
 ### Common Methods
@@ -921,7 +922,7 @@ const person = client.Person()
 | `gender` | `string` | No |  |
 | `id` | `number` | No |  |
 | `image` | `Record<string, any>` | No |  |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `person` | `Record<string, any>` | No |  |
 | `score` | `number` | No |  |
@@ -989,7 +990,7 @@ const schedule = client.Schedule()
 | `airtime` | `string` | No |  |
 | `id` | `number` | No |  |
 | `image` | `Record<string, any>` | No |  |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `number` | `number` | No |  |
 | `rating` | `Record<string, any>` | No |  |
@@ -1053,7 +1054,7 @@ const scheduled_episode = client.ScheduledEpisode()
 | `airtime` | `string` | No |  |
 | `id` | `number` | No |  |
 | `image` | `Record<string, any>` | No |  |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `number` | `number` | No |  |
 | `rating` | `Record<string, any>` | No |  |
@@ -1156,18 +1157,18 @@ const season = client.Season()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | `string` | No |  |
-| `episode_order` | `number` | No |  |
+| `endDate` | `string` | No |  |
+| `episodeOrder` | `number` | No |  |
 | `id` | `number` | No |  |
 | `image` | `Record<string, any>` | No |  |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `network` | `Record<string, any>` | No |  |
 | `number` | `number` | No |  |
-| `premiere_date` | `string` | No |  |
+| `premiereDate` | `string` | No |  |
 | `summary` | `string` | No |  |
 | `url` | `string` | No |  |
-| `web_channel` | `Record<string, any>` | No |  |
+| `webChannel` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -1176,7 +1177,7 @@ const season = client.Season()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Season().list()
+const results = await client.Season().list({ show_id: 1 })
 ```
 
 ### Common Methods
@@ -1217,18 +1218,18 @@ const show = client.Show()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `average_runtime` | `number` | No |  |
-| `dvd_country` | `Record<string, any>` | No |  |
+| `averageRuntime` | `number` | No |  |
+| `dvdCountry` | `Record<string, any>` | No |  |
 | `ended` | `string` | No |  |
-| `external` | `Record<string, any>` | No |  |
-| `genre` | `any[]` | No |  |
+| `externals` | `Record<string, any>` | No |  |
+| `genres` | `any[]` | No |  |
 | `id` | `number` | No |  |
 | `image` | `Record<string, any>` | No |  |
 | `language` | `string` | No |  |
-| `link` | `Record<string, any>` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `network` | `Record<string, any>` | No |  |
-| `official_site` | `string` | No |  |
+| `officialSite` | `string` | No |  |
 | `premiered` | `string` | No |  |
 | `rating` | `Record<string, any>` | No |  |
 | `runtime` | `number` | No |  |
@@ -1240,7 +1241,7 @@ const show = client.Show()
 | `type` | `string` | No |  |
 | `updated` | `number` | No |  |
 | `url` | `string` | No |  |
-| `web_channel` | `Record<string, any>` | No |  |
+| `webChannel` | `Record<string, any>` | No |  |
 | `weight` | `number` | No |  |
 
 ### Operations
@@ -1293,6 +1294,27 @@ Return a copy of the entity options.
 
 ```ts
 const update = client.Update()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `person` | `/updates/people` | `client.Update().load({ $action: 'person', ... })` |
+| `show` | `/updates/shows` | `client.Update().load({ $action: 'show', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Update record — check the API definition for its shape.
+
+```ts
+const result = await client.Update().load({
+  $action: 'person',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations

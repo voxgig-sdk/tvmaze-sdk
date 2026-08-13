@@ -15,8 +15,9 @@
 
 ---@class AlternateList
 ---@field id? number
----@field link? table
+---@field links? table
 ---@field name? string
+---@field self? table
 ---@field url? string
 
 ---@class AlternateListLoadMatch
@@ -35,7 +36,7 @@
 ---@field show_id number
 
 ---@class CastCredit
----@field link? table
+---@field links? table
 
 ---@class CastCreditListMatch
 ---@field person_id number
@@ -57,7 +58,7 @@
 ---@field show_id number
 
 ---@class CrewCredit
----@field link? table
+---@field links? table
 ---@field type? string
 
 ---@class CrewCreditListMatch
@@ -76,7 +77,7 @@
 ---@field airtime? string
 ---@field id? number
 ---@field image? table
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field number? number
 ---@field rating? table
@@ -95,7 +96,7 @@
 ---@field season_id? number
 
 ---@class GuestCastCredit
----@field link? table
+---@field links? table
 
 ---@class GuestCastCreditListMatch
 ---@field person_id number
@@ -103,7 +104,7 @@
 ---@class Image
 ---@field id? number
 ---@field main? boolean
----@field resolution? table
+---@field resolutions? table
 ---@field type? string
 
 ---@class ImageListMatch
@@ -116,7 +117,7 @@
 ---@field gender? string
 ---@field id? number
 ---@field image? table
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field person? table
 ---@field score? number
@@ -133,7 +134,7 @@
 ---@field gender? string
 ---@field id? number
 ---@field image? table
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field person? table
 ---@field score? number
@@ -146,7 +147,7 @@
 ---@field airtime? string
 ---@field id? number
 ---@field image? table
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field number? number
 ---@field rating? table
@@ -163,7 +164,7 @@
 ---@field airtime? string
 ---@field id? number
 ---@field image? table
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field number? number
 ---@field rating? table
@@ -180,7 +181,7 @@
 ---@field airtime? string
 ---@field id? number
 ---@field image? table
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field number? number
 ---@field rating? table
@@ -197,7 +198,7 @@
 ---@field airtime? string
 ---@field id? number
 ---@field image? table
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field number? number
 ---@field rating? table
@@ -213,35 +214,35 @@
 ---@class SearchLoadMatch
 
 ---@class Season
----@field end_date? string
----@field episode_order? number
+---@field endDate? string
+---@field episodeOrder? number
 ---@field id? number
 ---@field image? table
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field network? table
 ---@field number? number
----@field premiere_date? string
+---@field premiereDate? string
 ---@field summary? string
 ---@field url? string
----@field web_channel? table
+---@field webChannel? table
 
 ---@class SeasonListMatch
 ---@field show_id number
 
 ---@class Show
----@field average_runtime? number
----@field dvd_country? table
+---@field averageRuntime? number
+---@field dvdCountry? table
 ---@field ended? string
----@field external? table
----@field genre? table
+---@field externals? table
+---@field genres? table
 ---@field id? number
 ---@field image? table
 ---@field language? string
----@field link? table
+---@field links? table
 ---@field name? string
 ---@field network? table
----@field official_site? string
+---@field officialSite? string
 ---@field premiered? string
 ---@field rating? table
 ---@field runtime? number
@@ -253,7 +254,7 @@
 ---@field type? string
 ---@field updated? number
 ---@field url? string
----@field web_channel? table
+---@field webChannel? table
 ---@field weight? number
 
 ---@class ShowLoadMatch

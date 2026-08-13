@@ -16,7 +16,7 @@ main: kit: entity: image: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "resolution"
+      name: "resolutions"
       req: false
       type: "`$OBJECT`"
     }
