@@ -150,15 +150,13 @@ class Episode
 /** Request payload for Episode#load. */
 class EpisodeLoadMatch
 {
-    public ?int $show_id = null;
-    public ?int $id = null;
+    public int $id;
 }
 
 /** Request payload for Episode#list. */
 class EpisodeListMatch
 {
-    public ?int $show_id = null;
-    public ?int $season_id = null;
+    public int $show_id;
 }
 
 /** GuestCastCredit entity data model. */
@@ -380,7 +378,31 @@ class ShowLoadMatch
 /** Request payload for Show#list. */
 class ShowListMatch
 {
-    public ?int $alternatelist_id = null;
+    public ?int $averageRuntime = null;
+    public ?array $dvdCountry = null;
+    public ?string $ended = null;
+    public ?array $externals = null;
+    public ?array $genres = null;
+    public ?int $id = null;
+    public ?array $image = null;
+    public ?string $language = null;
+    public ?array $links = null;
+    public ?string $name = null;
+    public ?array $network = null;
+    public ?string $officialSite = null;
+    public ?string $premiered = null;
+    public ?array $rating = null;
+    public ?int $runtime = null;
+    public ?array $schedule = null;
+    public ?float $score = null;
+    public ?array $show = null;
+    public ?string $status = null;
+    public ?string $summary = null;
+    public ?string $type = null;
+    public ?int $updated = null;
+    public ?string $url = null;
+    public ?array $webChannel = null;
+    public ?int $weight = null;
 }
 
 /** Update entity data model. */

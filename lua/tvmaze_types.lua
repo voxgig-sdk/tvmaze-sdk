@@ -88,12 +88,10 @@
 ---@field url? string
 
 ---@class EpisodeLoadMatch
----@field show_id? number
----@field id? number
+---@field id number
 
 ---@class EpisodeListMatch
----@field show_id? number
----@field season_id? number
+---@field show_id number
 
 ---@class GuestCastCredit
 ---@field links? table
@@ -261,7 +259,31 @@
 ---@field id number
 
 ---@class ShowListMatch
----@field alternatelist_id? number
+---@field averageRuntime? number
+---@field dvdCountry? table
+---@field ended? string
+---@field externals? table
+---@field genres? table
+---@field id? number
+---@field image? table
+---@field language? string
+---@field links? table
+---@field name? string
+---@field network? table
+---@field officialSite? string
+---@field premiered? string
+---@field rating? table
+---@field runtime? number
+---@field schedule? table
+---@field score? number
+---@field show? table
+---@field status? string
+---@field summary? string
+---@field type? string
+---@field updated? number
+---@field url? string
+---@field webChannel? table
+---@field weight? number
 
 ---@class Update
 

@@ -764,7 +764,7 @@ const episode = client.Episode()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Episode().list()
+const results = await client.Episode().list({ show_id: 1 })
 ```
 
 #### `load(match: object, ctrl?: object)`

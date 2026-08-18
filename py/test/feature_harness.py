@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from tvmaze_sdk.config import make_config
+from tvmaze_sdk.config import shared_config
 from tvmaze_sdk.features import _make_feature
 from tvmaze_sdk.core.control import TvmazeControl
 from tvmaze_sdk.core.error import TvmazeError
@@ -24,7 +24,7 @@ from tvmaze_sdk.core.spec import TvmazeSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

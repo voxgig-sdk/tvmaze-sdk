@@ -131,14 +131,12 @@ type Episode struct {
 
 // EpisodeLoadMatch is the typed request payload for Episode.LoadTyped.
 type EpisodeLoadMatch struct {
-	ShowId *int `json:"show_id,omitempty"`
-	Id *int `json:"id,omitempty"`
+	Id int `json:"id"`
 }
 
 // EpisodeListMatch is the typed request payload for Episode.ListTyped.
 type EpisodeListMatch struct {
-	ShowId *int `json:"show_id,omitempty"`
-	SeasonId *int `json:"season_id,omitempty"`
+	ShowId int `json:"show_id"`
 }
 
 // GuestCastCredit is the typed data model for the guest_cast_credit entity.
@@ -342,7 +340,31 @@ type ShowLoadMatch struct {
 
 // ShowListMatch is the typed request payload for Show.ListTyped.
 type ShowListMatch struct {
-	AlternatelistId *int `json:"alternatelist_id,omitempty"`
+	AverageRuntime *int `json:"averageRuntime,omitempty"`
+	DvdCountry *map[string]any `json:"dvdCountry,omitempty"`
+	Ended *string `json:"ended,omitempty"`
+	Externals *map[string]any `json:"externals,omitempty"`
+	Genres *[]any `json:"genres,omitempty"`
+	Id *int `json:"id,omitempty"`
+	Image *map[string]any `json:"image,omitempty"`
+	Language *string `json:"language,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Network *map[string]any `json:"network,omitempty"`
+	OfficialSite *string `json:"officialSite,omitempty"`
+	Premiered *string `json:"premiered,omitempty"`
+	Rating *map[string]any `json:"rating,omitempty"`
+	Runtime *int `json:"runtime,omitempty"`
+	Schedule *map[string]any `json:"schedule,omitempty"`
+	Score *float64 `json:"score,omitempty"`
+	Show *map[string]any `json:"show,omitempty"`
+	Status *string `json:"status,omitempty"`
+	Summary *string `json:"summary,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Updated *int `json:"updated,omitempty"`
+	Url *string `json:"url,omitempty"`
+	WebChannel *map[string]any `json:"webChannel,omitempty"`
+	Weight *int `json:"weight,omitempty"`
 }
 
 // Update is the typed data model for the update entity.

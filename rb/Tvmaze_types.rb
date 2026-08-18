@@ -280,13 +280,9 @@ Episode = Struct.new(
 
 # Request payload for Episode#load.
 #
-# @!attribute [rw] show_id
-#   @return [Integer, nil]
-#
 # @!attribute [rw] id
-#   @return [Integer, nil]
+#   @return [Integer]
 EpisodeLoadMatch = Struct.new(
-  :show_id,
   :id,
   keyword_init: true
 )
@@ -294,13 +290,9 @@ EpisodeLoadMatch = Struct.new(
 # Request payload for Episode#list.
 #
 # @!attribute [rw] show_id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] season_id
-#   @return [Integer, nil]
+#   @return [Integer]
 EpisodeListMatch = Struct.new(
   :show_id,
-  :season_id,
   keyword_init: true
 )
 
@@ -913,10 +905,106 @@ ShowLoadMatch = Struct.new(
 
 # Request payload for Show#list.
 #
-# @!attribute [rw] alternatelist_id
+# @!attribute [rw] averageRuntime
+#   @return [Integer, nil]
+#
+# @!attribute [rw] dvdCountry
+#   @return [Hash, nil]
+#
+# @!attribute [rw] ended
+#   @return [String, nil]
+#
+# @!attribute [rw] externals
+#   @return [Hash, nil]
+#
+# @!attribute [rw] genres
+#   @return [Array, nil]
+#
+# @!attribute [rw] id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] image
+#   @return [Hash, nil]
+#
+# @!attribute [rw] language
+#   @return [String, nil]
+#
+# @!attribute [rw] links
+#   @return [Hash, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] network
+#   @return [Hash, nil]
+#
+# @!attribute [rw] officialSite
+#   @return [String, nil]
+#
+# @!attribute [rw] premiered
+#   @return [String, nil]
+#
+# @!attribute [rw] rating
+#   @return [Hash, nil]
+#
+# @!attribute [rw] runtime
+#   @return [Integer, nil]
+#
+# @!attribute [rw] schedule
+#   @return [Hash, nil]
+#
+# @!attribute [rw] score
+#   @return [Float, nil]
+#
+# @!attribute [rw] show
+#   @return [Hash, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
+#
+# @!attribute [rw] summary
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
+#
+# @!attribute [rw] updated
+#   @return [Integer, nil]
+#
+# @!attribute [rw] url
+#   @return [String, nil]
+#
+# @!attribute [rw] webChannel
+#   @return [Hash, nil]
+#
+# @!attribute [rw] weight
 #   @return [Integer, nil]
 ShowListMatch = Struct.new(
-  :alternatelist_id,
+  :averageRuntime,
+  :dvdCountry,
+  :ended,
+  :externals,
+  :genres,
+  :id,
+  :image,
+  :language,
+  :links,
+  :name,
+  :network,
+  :officialSite,
+  :premiered,
+  :rating,
+  :runtime,
+  :schedule,
+  :score,
+  :show,
+  :status,
+  :summary,
+  :type,
+  :updated,
+  :url,
+  :webChannel,
+  :weight,
   keyword_init: true
 )
 

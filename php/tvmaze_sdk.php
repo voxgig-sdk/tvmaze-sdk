@@ -40,7 +40,7 @@ class TvmazeSDK
         $utility = new TvmazeUtility();
         $this->_utility = $utility;
 
-        $config = TvmazeConfig::make_config();
+        $config = TvmazeConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

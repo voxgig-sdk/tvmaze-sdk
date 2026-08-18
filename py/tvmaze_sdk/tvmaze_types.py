@@ -115,14 +115,12 @@ class Episode(TypedDict, total=False):
     url: str
 
 
-class EpisodeLoadMatch(TypedDict, total=False):
-    show_id: int
+class EpisodeLoadMatch(TypedDict):
     id: int
 
 
-class EpisodeListMatch(TypedDict, total=False):
+class EpisodeListMatch(TypedDict):
     show_id: int
-    season_id: int
 
 
 class GuestCastCredit(TypedDict, total=False):
@@ -310,7 +308,31 @@ class ShowLoadMatch(TypedDict):
 
 
 class ShowListMatch(TypedDict, total=False):
-    alternatelist_id: int
+    averageRuntime: int
+    dvdCountry: dict
+    ended: str
+    externals: dict
+    genres: list
+    id: int
+    image: dict
+    language: str
+    links: dict
+    name: str
+    network: dict
+    officialSite: str
+    premiered: str
+    rating: dict
+    runtime: int
+    schedule: dict
+    score: float
+    show: dict
+    status: str
+    summary: str
+    type: str
+    updated: int
+    url: str
+    webChannel: dict
+    weight: int
 
 
 class Update(TypedDict):

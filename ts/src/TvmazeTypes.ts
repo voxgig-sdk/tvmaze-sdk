@@ -105,13 +105,11 @@ export interface Episode {
 }
 
 export interface EpisodeLoadMatch {
-  show_id?: number
-  id?: number
+  id: number
 }
 
 export interface EpisodeListMatch {
-  show_id?: number
-  season_id?: number
+  show_id: number
 }
 
 export interface GuestCastCredit {
@@ -297,7 +295,31 @@ export interface ShowLoadMatch {
 }
 
 export interface ShowListMatch {
-  alternatelist_id?: number
+  averageRuntime?: number
+  dvdCountry?: Record<string, any>
+  ended?: string
+  externals?: Record<string, any>
+  genres?: any[]
+  id?: number
+  image?: Record<string, any>
+  language?: string
+  links?: Record<string, any>
+  name?: string
+  network?: Record<string, any>
+  officialSite?: string
+  premiered?: string
+  rating?: Record<string, any>
+  runtime?: number
+  schedule?: Record<string, any>
+  score?: number
+  show?: Record<string, any>
+  status?: string
+  summary?: string
+  type?: string
+  updated?: number
+  url?: string
+  webChannel?: Record<string, any>
+  weight?: number
 }
 
 export interface Update {

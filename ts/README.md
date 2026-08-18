@@ -833,7 +833,7 @@ const episode = await client.Episode().load({ id: 1 })
 #### Example: List
 
 ```ts
-const episodes = await client.Episode().list()
+const episodes = await client.Episode().list({ show_id: 1 })
 ```
 
 

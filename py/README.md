@@ -788,7 +788,7 @@ episode = client.Episode().load({"id": 1})
 #### Example: List
 
 ```python
-episodes = client.Episode().list()
+episodes = client.Episode().list({"show_id": 1})
 ```
 
 

@@ -28,7 +28,7 @@ class TvmazeSDK
     utility = TvmazeUtility.new
     @_utility = utility
 
-    config = TvmazeConfig.make_config
+    config = TvmazeConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
