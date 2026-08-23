@@ -161,7 +161,7 @@ $aka = $client->Aka();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `country` | `array` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Alternate name |
 
 ### Operations
 
@@ -213,11 +213,11 @@ $alternate_list = $client->AlternateList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `int` | No |  |
+| `id` | `int` | No | Unique alternate list identifier |
 | `links` | `array` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Name of alternate list (e.g., DVD Order) |
 | `self` | `array` | No |  |
-| `url` | `string` | No |  |
+| `url` | `string` | No | TVmaze URL for the alternate list |
 
 ### Operations
 
@@ -279,8 +279,8 @@ $cast = $client->Cast();
 | --- | --- | --- | --- |
 | `character` | `array` | No |  |
 | `person` | `array` | No |  |
-| `self` | `bool` | No |  |
-| `voice` | `bool` | No |  |
+| `self` | `bool` | No | Whether person plays themselves |
+| `voice` | `bool` | No | Whether this is a voice role |
 
 ### Operations
 
@@ -386,8 +386,8 @@ $cast_member = $client->CastMember();
 | --- | --- | --- | --- |
 | `character` | `array` | No |  |
 | `person` | `array` | No |  |
-| `self` | `bool` | No |  |
-| `voice` | `bool` | No |  |
+| `self` | `bool` | No | Whether person plays themselves |
+| `voice` | `bool` | No | Whether this is a voice role |
 
 ### Operations
 
@@ -440,7 +440,7 @@ $crew = $client->Crew();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `person` | `array` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type (e.g., Executive Producer) |
 
 ### Operations
 
@@ -493,7 +493,7 @@ $crew_credit = $client->CrewCredit();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `links` | `array` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type |
 
 ### Operations
 
@@ -546,7 +546,7 @@ $crew_member = $client->CrewMember();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `person` | `array` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type (e.g., Executive Producer) |
 
 ### Operations
 
@@ -598,20 +598,20 @@ $episode = $client->Episode();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `int` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `int` | No | Unique episode identifier |
 | `image` | `array` | No |  |
 | `links` | `array` | No |  |
-| `name` | `string` | No |  |
-| `number` | `int` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `int` | No | Episode number in season |
 | `rating` | `array` | No |  |
-| `runtime` | `int` | No |  |
-| `season` | `int` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `runtime` | `int` | No | Runtime in minutes |
+| `season` | `int` | No | Season number |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -723,10 +723,10 @@ $image = $client->Image();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `int` | No |  |
-| `main` | `bool` | No |  |
+| `id` | `int` | No | Unique image identifier |
+| `main` | `bool` | No | Whether this is the main image |
 | `resolutions` | `array` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Image type |
 
 ### Operations
 
@@ -778,18 +778,18 @@ $person = $client->Person();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `birthday` | `string` | No |  |
+| `birthday` | `string` | No | Birth date |
 | `country` | `array` | No |  |
-| `deathday` | `string` | No |  |
-| `gender` | `string` | No |  |
-| `id` | `int` | No |  |
+| `deathday` | `string` | No | Death date |
+| `gender` | `string` | No | Gender |
+| `id` | `int` | No | Unique person identifier |
 | `image` | `array` | No |  |
 | `links` | `array` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Person name |
 | `person` | `array` | No |  |
-| `score` | `float` | No |  |
-| `updated` | `int` | No |  |
-| `url` | `string` | No |  |
+| `score` | `float` | No | Search relevancy score |
+| `updated` | `int` | No | Unix timestamp of last update |
+| `url` | `string` | No | TVmaze URL for the person |
 
 ### Operations
 
@@ -849,21 +849,21 @@ $schedule = $client->Schedule();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `int` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `int` | No | Unique episode identifier |
 | `image` | `array` | No |  |
 | `links` | `array` | No |  |
-| `name` | `string` | No |  |
-| `number` | `int` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `int` | No | Episode number in season |
 | `rating` | `array` | No |  |
-| `runtime` | `int` | No |  |
-| `season` | `int` | No |  |
+| `runtime` | `int` | No | Runtime in minutes |
+| `season` | `int` | No | Season number |
 | `show` | `array` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -915,21 +915,21 @@ $scheduled_episode = $client->ScheduledEpisode();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `int` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `int` | No | Unique episode identifier |
 | `image` | `array` | No |  |
 | `links` | `array` | No |  |
-| `name` | `string` | No |  |
-| `number` | `int` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `int` | No | Episode number in season |
 | `rating` | `array` | No |  |
-| `runtime` | `int` | No |  |
-| `season` | `int` | No |  |
+| `runtime` | `int` | No | Runtime in minutes |
+| `season` | `int` | No | Season number |
 | `show` | `array` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -1027,17 +1027,17 @@ $season = $client->Season();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `endDate` | `string` | No |  |
-| `episodeOrder` | `int` | No |  |
-| `id` | `int` | No |  |
+| `endDate` | `string` | No | End date |
+| `episodeOrder` | `int` | No | Number of episodes |
+| `id` | `int` | No | Unique season identifier |
 | `image` | `array` | No |  |
 | `links` | `array` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Season name |
 | `network` | `array` | No |  |
-| `number` | `int` | No |  |
-| `premiereDate` | `string` | No |  |
-| `summary` | `string` | No |  |
-| `url` | `string` | No |  |
+| `number` | `int` | No | Season number |
+| `premiereDate` | `string` | No | Premiere date |
+| `summary` | `string` | No | HTML summary |
+| `url` | `string` | No | TVmaze URL for the season |
 | `webChannel` | `array` | No |  |
 
 ### Operations
@@ -1090,31 +1090,31 @@ $show = $client->Show();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `averageRuntime` | `int` | No |  |
+| `averageRuntime` | `int` | No | Average runtime in minutes |
 | `dvdCountry` | `array` | No |  |
-| `ended` | `string` | No |  |
+| `ended` | `string` | No | End date |
 | `externals` | `array` | No |  |
-| `genres` | `array` | No |  |
-| `id` | `int` | No |  |
+| `genres` | `array` | No | List of genres |
+| `id` | `int` | No | Unique show identifier |
 | `image` | `array` | No |  |
-| `language` | `string` | No |  |
+| `language` | `string` | No | Original language |
 | `links` | `array` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Show name |
 | `network` | `array` | No |  |
-| `officialSite` | `string` | No |  |
-| `premiered` | `string` | No |  |
+| `officialSite` | `string` | No | Official website URL |
+| `premiered` | `string` | No | Premiere date |
 | `rating` | `array` | No |  |
-| `runtime` | `int` | No |  |
+| `runtime` | `int` | No | Runtime in minutes |
 | `schedule` | `array` | No |  |
-| `score` | `float` | No |  |
+| `score` | `float` | No | Search relevancy score |
 | `show` | `array` | No |  |
-| `status` | `string` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `updated` | `int` | No |  |
-| `url` | `string` | No |  |
+| `status` | `string` | No | Current status (e.g., Running, Ended) |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Show type (e.g., Scripted, Reality) |
+| `updated` | `int` | No | Unix timestamp of last update |
+| `url` | `string` | No | TVmaze URL for the show |
 | `webChannel` | `array` | No |  |
-| `weight` | `int` | No |  |
+| `weight` | `int` | No | Show weight/importance |
 
 ### Operations
 

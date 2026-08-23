@@ -321,7 +321,7 @@ const aka = client.Aka()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `country` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Alternate name |
 
 ### Operations
 
@@ -371,11 +371,11 @@ const alternate_list = client.AlternateList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `number` | No |  |
+| `id` | `number` | No | Unique alternate list identifier |
 | `links` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Name of alternate list (e.g., DVD Order) |
 | `self` | `Record<string, any>` | No |  |
-| `url` | `string` | No |  |
+| `url` | `string` | No | TVmaze URL for the alternate list |
 
 ### Operations
 
@@ -435,8 +435,8 @@ const cast = client.Cast()
 | --- | --- | --- | --- |
 | `character` | `Record<string, any>` | No |  |
 | `person` | `Record<string, any>` | No |  |
-| `self` | `boolean` | No |  |
-| `voice` | `boolean` | No |  |
+| `self` | `boolean` | No | Whether person plays themselves |
+| `voice` | `boolean` | No | Whether this is a voice role |
 
 ### Operations
 
@@ -538,8 +538,8 @@ const cast_member = client.CastMember()
 | --- | --- | --- | --- |
 | `character` | `Record<string, any>` | No |  |
 | `person` | `Record<string, any>` | No |  |
-| `self` | `boolean` | No |  |
-| `voice` | `boolean` | No |  |
+| `self` | `boolean` | No | Whether person plays themselves |
+| `voice` | `boolean` | No | Whether this is a voice role |
 
 ### Operations
 
@@ -590,7 +590,7 @@ const crew = client.Crew()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `person` | `Record<string, any>` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type (e.g., Executive Producer) |
 
 ### Operations
 
@@ -641,7 +641,7 @@ const crew_credit = client.CrewCredit()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `links` | `Record<string, any>` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type |
 
 ### Operations
 
@@ -692,7 +692,7 @@ const crew_member = client.CrewMember()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `person` | `Record<string, any>` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type (e.g., Executive Producer) |
 
 ### Operations
 
@@ -742,20 +742,20 @@ const episode = client.Episode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `number` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `number` | No | Unique episode identifier |
 | `image` | `Record<string, any>` | No |  |
 | `links` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
-| `number` | `number` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `number` | No | Episode number in season |
 | `rating` | `Record<string, any>` | No |  |
-| `runtime` | `number` | No |  |
-| `season` | `number` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `runtime` | `number` | No | Runtime in minutes |
+| `season` | `number` | No | Season number |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -863,10 +863,10 @@ const image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `number` | No |  |
-| `main` | `boolean` | No |  |
+| `id` | `number` | No | Unique image identifier |
+| `main` | `boolean` | No | Whether this is the main image |
 | `resolutions` | `Record<string, any>` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Image type |
 
 ### Operations
 
@@ -916,18 +916,18 @@ const person = client.Person()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `birthday` | `string` | No |  |
+| `birthday` | `string` | No | Birth date |
 | `country` | `Record<string, any>` | No |  |
-| `deathday` | `string` | No |  |
-| `gender` | `string` | No |  |
-| `id` | `number` | No |  |
+| `deathday` | `string` | No | Death date |
+| `gender` | `string` | No | Gender |
+| `id` | `number` | No | Unique person identifier |
 | `image` | `Record<string, any>` | No |  |
 | `links` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Person name |
 | `person` | `Record<string, any>` | No |  |
-| `score` | `number` | No |  |
-| `updated` | `number` | No |  |
-| `url` | `string` | No |  |
+| `score` | `number` | No | Search relevancy score |
+| `updated` | `number` | No | Unix timestamp of last update |
+| `url` | `string` | No | TVmaze URL for the person |
 
 ### Operations
 
@@ -985,21 +985,21 @@ const schedule = client.Schedule()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `number` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `number` | No | Unique episode identifier |
 | `image` | `Record<string, any>` | No |  |
 | `links` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
-| `number` | `number` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `number` | No | Episode number in season |
 | `rating` | `Record<string, any>` | No |  |
-| `runtime` | `number` | No |  |
-| `season` | `number` | No |  |
+| `runtime` | `number` | No | Runtime in minutes |
+| `season` | `number` | No | Season number |
 | `show` | `Record<string, any>` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -1049,21 +1049,21 @@ const scheduled_episode = client.ScheduledEpisode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `number` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `number` | No | Unique episode identifier |
 | `image` | `Record<string, any>` | No |  |
 | `links` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
-| `number` | `number` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `number` | No | Episode number in season |
 | `rating` | `Record<string, any>` | No |  |
-| `runtime` | `number` | No |  |
-| `season` | `number` | No |  |
+| `runtime` | `number` | No | Runtime in minutes |
+| `season` | `number` | No | Season number |
 | `show` | `Record<string, any>` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -1157,17 +1157,17 @@ const season = client.Season()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `endDate` | `string` | No |  |
-| `episodeOrder` | `number` | No |  |
-| `id` | `number` | No |  |
+| `endDate` | `string` | No | End date |
+| `episodeOrder` | `number` | No | Number of episodes |
+| `id` | `number` | No | Unique season identifier |
 | `image` | `Record<string, any>` | No |  |
 | `links` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Season name |
 | `network` | `Record<string, any>` | No |  |
-| `number` | `number` | No |  |
-| `premiereDate` | `string` | No |  |
-| `summary` | `string` | No |  |
-| `url` | `string` | No |  |
+| `number` | `number` | No | Season number |
+| `premiereDate` | `string` | No | Premiere date |
+| `summary` | `string` | No | HTML summary |
+| `url` | `string` | No | TVmaze URL for the season |
 | `webChannel` | `Record<string, any>` | No |  |
 
 ### Operations
@@ -1218,31 +1218,31 @@ const show = client.Show()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `averageRuntime` | `number` | No |  |
+| `averageRuntime` | `number` | No | Average runtime in minutes |
 | `dvdCountry` | `Record<string, any>` | No |  |
-| `ended` | `string` | No |  |
+| `ended` | `string` | No | End date |
 | `externals` | `Record<string, any>` | No |  |
-| `genres` | `any[]` | No |  |
-| `id` | `number` | No |  |
+| `genres` | `any[]` | No | List of genres |
+| `id` | `number` | No | Unique show identifier |
 | `image` | `Record<string, any>` | No |  |
-| `language` | `string` | No |  |
+| `language` | `string` | No | Original language |
 | `links` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Show name |
 | `network` | `Record<string, any>` | No |  |
-| `officialSite` | `string` | No |  |
-| `premiered` | `string` | No |  |
+| `officialSite` | `string` | No | Official website URL |
+| `premiered` | `string` | No | Premiere date |
 | `rating` | `Record<string, any>` | No |  |
-| `runtime` | `number` | No |  |
+| `runtime` | `number` | No | Runtime in minutes |
 | `schedule` | `Record<string, any>` | No |  |
-| `score` | `number` | No |  |
+| `score` | `number` | No | Search relevancy score |
 | `show` | `Record<string, any>` | No |  |
-| `status` | `string` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `updated` | `number` | No |  |
-| `url` | `string` | No |  |
+| `status` | `string` | No | Current status (e.g., Running, Ended) |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Show type (e.g., Scripted, Reality) |
+| `updated` | `number` | No | Unix timestamp of last update |
+| `url` | `string` | No | TVmaze URL for the show |
 | `webChannel` | `Record<string, any>` | No |  |
-| `weight` | `number` | No |  |
+| `weight` | `number` | No | Show weight/importance |
 
 ### Operations
 

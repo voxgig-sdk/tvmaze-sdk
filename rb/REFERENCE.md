@@ -162,7 +162,7 @@ aka = client.Aka
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `country` | `Hash` | No |  |
-| `name` | `String` | No |  |
+| `name` | `String` | No | Alternate name |
 
 ### Operations
 
@@ -214,11 +214,11 @@ alternate_list = client.AlternateList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `Integer` | No |  |
+| `id` | `Integer` | No | Unique alternate list identifier |
 | `links` | `Hash` | No |  |
-| `name` | `String` | No |  |
+| `name` | `String` | No | Name of alternate list (e.g., DVD Order) |
 | `self` | `Hash` | No |  |
-| `url` | `String` | No |  |
+| `url` | `String` | No | TVmaze URL for the alternate list |
 
 ### Operations
 
@@ -280,8 +280,8 @@ cast = client.Cast
 | --- | --- | --- | --- |
 | `character` | `Hash` | No |  |
 | `person` | `Hash` | No |  |
-| `self` | `Boolean` | No |  |
-| `voice` | `Boolean` | No |  |
+| `self` | `Boolean` | No | Whether person plays themselves |
+| `voice` | `Boolean` | No | Whether this is a voice role |
 
 ### Operations
 
@@ -387,8 +387,8 @@ cast_member = client.CastMember
 | --- | --- | --- | --- |
 | `character` | `Hash` | No |  |
 | `person` | `Hash` | No |  |
-| `self` | `Boolean` | No |  |
-| `voice` | `Boolean` | No |  |
+| `self` | `Boolean` | No | Whether person plays themselves |
+| `voice` | `Boolean` | No | Whether this is a voice role |
 
 ### Operations
 
@@ -441,7 +441,7 @@ crew = client.Crew
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `person` | `Hash` | No |  |
-| `type` | `String` | No |  |
+| `type` | `String` | No | Crew type (e.g., Executive Producer) |
 
 ### Operations
 
@@ -494,7 +494,7 @@ crew_credit = client.CrewCredit
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `links` | `Hash` | No |  |
-| `type` | `String` | No |  |
+| `type` | `String` | No | Crew type |
 
 ### Operations
 
@@ -547,7 +547,7 @@ crew_member = client.CrewMember
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `person` | `Hash` | No |  |
-| `type` | `String` | No |  |
+| `type` | `String` | No | Crew type (e.g., Executive Producer) |
 
 ### Operations
 
@@ -599,20 +599,20 @@ episode = client.Episode
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `String` | No |  |
-| `airstamp` | `String` | No |  |
-| `airtime` | `String` | No |  |
-| `id` | `Integer` | No |  |
+| `airdate` | `String` | No | Air date |
+| `airstamp` | `String` | No | Air timestamp |
+| `airtime` | `String` | No | Air time |
+| `id` | `Integer` | No | Unique episode identifier |
 | `image` | `Hash` | No |  |
 | `links` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `number` | `Integer` | No |  |
+| `name` | `String` | No | Episode name |
+| `number` | `Integer` | No | Episode number in season |
 | `rating` | `Hash` | No |  |
-| `runtime` | `Integer` | No |  |
-| `season` | `Integer` | No |  |
-| `summary` | `String` | No |  |
-| `type` | `String` | No |  |
-| `url` | `String` | No |  |
+| `runtime` | `Integer` | No | Runtime in minutes |
+| `season` | `Integer` | No | Season number |
+| `summary` | `String` | No | HTML summary |
+| `type` | `String` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `String` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -724,10 +724,10 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `Integer` | No |  |
-| `main` | `Boolean` | No |  |
+| `id` | `Integer` | No | Unique image identifier |
+| `main` | `Boolean` | No | Whether this is the main image |
 | `resolutions` | `Hash` | No |  |
-| `type` | `String` | No |  |
+| `type` | `String` | No | Image type |
 
 ### Operations
 
@@ -779,18 +779,18 @@ person = client.Person
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `birthday` | `String` | No |  |
+| `birthday` | `String` | No | Birth date |
 | `country` | `Hash` | No |  |
-| `deathday` | `String` | No |  |
-| `gender` | `String` | No |  |
-| `id` | `Integer` | No |  |
+| `deathday` | `String` | No | Death date |
+| `gender` | `String` | No | Gender |
+| `id` | `Integer` | No | Unique person identifier |
 | `image` | `Hash` | No |  |
 | `links` | `Hash` | No |  |
-| `name` | `String` | No |  |
+| `name` | `String` | No | Person name |
 | `person` | `Hash` | No |  |
-| `score` | `Float` | No |  |
-| `updated` | `Integer` | No |  |
-| `url` | `String` | No |  |
+| `score` | `Float` | No | Search relevancy score |
+| `updated` | `Integer` | No | Unix timestamp of last update |
+| `url` | `String` | No | TVmaze URL for the person |
 
 ### Operations
 
@@ -850,21 +850,21 @@ schedule = client.Schedule
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `String` | No |  |
-| `airstamp` | `String` | No |  |
-| `airtime` | `String` | No |  |
-| `id` | `Integer` | No |  |
+| `airdate` | `String` | No | Air date |
+| `airstamp` | `String` | No | Air timestamp |
+| `airtime` | `String` | No | Air time |
+| `id` | `Integer` | No | Unique episode identifier |
 | `image` | `Hash` | No |  |
 | `links` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `number` | `Integer` | No |  |
+| `name` | `String` | No | Episode name |
+| `number` | `Integer` | No | Episode number in season |
 | `rating` | `Hash` | No |  |
-| `runtime` | `Integer` | No |  |
-| `season` | `Integer` | No |  |
+| `runtime` | `Integer` | No | Runtime in minutes |
+| `season` | `Integer` | No | Season number |
 | `show` | `Hash` | No |  |
-| `summary` | `String` | No |  |
-| `type` | `String` | No |  |
-| `url` | `String` | No |  |
+| `summary` | `String` | No | HTML summary |
+| `type` | `String` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `String` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -916,21 +916,21 @@ scheduled_episode = client.ScheduledEpisode
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `String` | No |  |
-| `airstamp` | `String` | No |  |
-| `airtime` | `String` | No |  |
-| `id` | `Integer` | No |  |
+| `airdate` | `String` | No | Air date |
+| `airstamp` | `String` | No | Air timestamp |
+| `airtime` | `String` | No | Air time |
+| `id` | `Integer` | No | Unique episode identifier |
 | `image` | `Hash` | No |  |
 | `links` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `number` | `Integer` | No |  |
+| `name` | `String` | No | Episode name |
+| `number` | `Integer` | No | Episode number in season |
 | `rating` | `Hash` | No |  |
-| `runtime` | `Integer` | No |  |
-| `season` | `Integer` | No |  |
+| `runtime` | `Integer` | No | Runtime in minutes |
+| `season` | `Integer` | No | Season number |
 | `show` | `Hash` | No |  |
-| `summary` | `String` | No |  |
-| `type` | `String` | No |  |
-| `url` | `String` | No |  |
+| `summary` | `String` | No | HTML summary |
+| `type` | `String` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `String` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -1028,17 +1028,17 @@ season = client.Season
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `endDate` | `String` | No |  |
-| `episodeOrder` | `Integer` | No |  |
-| `id` | `Integer` | No |  |
+| `endDate` | `String` | No | End date |
+| `episodeOrder` | `Integer` | No | Number of episodes |
+| `id` | `Integer` | No | Unique season identifier |
 | `image` | `Hash` | No |  |
 | `links` | `Hash` | No |  |
-| `name` | `String` | No |  |
+| `name` | `String` | No | Season name |
 | `network` | `Hash` | No |  |
-| `number` | `Integer` | No |  |
-| `premiereDate` | `String` | No |  |
-| `summary` | `String` | No |  |
-| `url` | `String` | No |  |
+| `number` | `Integer` | No | Season number |
+| `premiereDate` | `String` | No | Premiere date |
+| `summary` | `String` | No | HTML summary |
+| `url` | `String` | No | TVmaze URL for the season |
 | `webChannel` | `Hash` | No |  |
 
 ### Operations
@@ -1091,31 +1091,31 @@ show = client.Show
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `averageRuntime` | `Integer` | No |  |
+| `averageRuntime` | `Integer` | No | Average runtime in minutes |
 | `dvdCountry` | `Hash` | No |  |
-| `ended` | `String` | No |  |
+| `ended` | `String` | No | End date |
 | `externals` | `Hash` | No |  |
-| `genres` | `Array` | No |  |
-| `id` | `Integer` | No |  |
+| `genres` | `Array` | No | List of genres |
+| `id` | `Integer` | No | Unique show identifier |
 | `image` | `Hash` | No |  |
-| `language` | `String` | No |  |
+| `language` | `String` | No | Original language |
 | `links` | `Hash` | No |  |
-| `name` | `String` | No |  |
+| `name` | `String` | No | Show name |
 | `network` | `Hash` | No |  |
-| `officialSite` | `String` | No |  |
-| `premiered` | `String` | No |  |
+| `officialSite` | `String` | No | Official website URL |
+| `premiered` | `String` | No | Premiere date |
 | `rating` | `Hash` | No |  |
-| `runtime` | `Integer` | No |  |
+| `runtime` | `Integer` | No | Runtime in minutes |
 | `schedule` | `Hash` | No |  |
-| `score` | `Float` | No |  |
+| `score` | `Float` | No | Search relevancy score |
 | `show` | `Hash` | No |  |
-| `status` | `String` | No |  |
-| `summary` | `String` | No |  |
-| `type` | `String` | No |  |
-| `updated` | `Integer` | No |  |
-| `url` | `String` | No |  |
+| `status` | `String` | No | Current status (e.g., Running, Ended) |
+| `summary` | `String` | No | HTML summary |
+| `type` | `String` | No | Show type (e.g., Scripted, Reality) |
+| `updated` | `Integer` | No | Unix timestamp of last update |
+| `url` | `String` | No | TVmaze URL for the show |
 | `webChannel` | `Hash` | No |  |
-| `weight` | `Integer` | No |  |
+| `weight` | `Integer` | No | Show weight/importance |
 
 ### Operations
 

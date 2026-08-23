@@ -42,6 +42,7 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Alternate name",
               "type": "`$STRING`"
             }
           ],
@@ -109,6 +110,7 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique alternate list identifier",
               "type": "`$INTEGER`"
             },
             {
@@ -121,6 +123,7 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Name of alternate list (e.g., DVD Order)",
               "type": "`$STRING`"
             },
             {
@@ -133,6 +136,7 @@
               "active": true,
               "name": "url",
               "req": false,
+              "short": "TVmaze URL for the alternate list",
               "type": "`$STRING`"
             }
           ],
@@ -264,12 +268,14 @@
               "active": true,
               "name": "self",
               "req": false,
+              "short": "Whether person plays themselves",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "voice",
               "req": false,
+              "short": "Whether this is a voice role",
               "type": "`$BOOLEAN`"
             }
           ],
@@ -427,12 +433,14 @@
               "active": true,
               "name": "self",
               "req": false,
+              "short": "Whether person plays themselves",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "voice",
               "req": false,
+              "short": "Whether this is a voice role",
               "type": "`$BOOLEAN`"
             }
           ],
@@ -506,6 +514,7 @@
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Crew type (e.g., Executive Producer)",
               "type": "`$STRING`"
             }
           ],
@@ -579,6 +588,7 @@
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Crew type",
               "type": "`$STRING`"
             }
           ],
@@ -663,6 +673,7 @@
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Crew type (e.g., Executive Producer)",
               "type": "`$STRING`"
             }
           ],
@@ -730,24 +741,28 @@
               "active": true,
               "name": "airdate",
               "req": false,
+              "short": "Air date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "airstamp",
               "req": false,
+              "short": "Air timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "airtime",
               "req": false,
+              "short": "Air time",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique episode identifier",
               "type": "`$INTEGER`"
             },
             {
@@ -766,12 +781,14 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Episode name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "number",
               "req": false,
+              "short": "Episode number in season",
               "type": "`$INTEGER`"
             },
             {
@@ -784,30 +801,35 @@
               "active": true,
               "name": "runtime",
               "req": false,
+              "short": "Runtime in minutes",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "season",
               "req": false,
+              "short": "Season number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "summary",
               "req": false,
+              "short": "HTML summary",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Episode type (e.g., regular, significant_special)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "TVmaze URL for the episode",
               "type": "`$STRING`"
             }
           ],
@@ -1172,12 +1194,14 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique image identifier",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "main",
               "req": false,
+              "short": "Whether this is the main image",
               "type": "`$BOOLEAN`"
             },
             {
@@ -1190,6 +1214,7 @@
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Image type",
               "type": "`$STRING`"
             }
           ],
@@ -1261,6 +1286,7 @@
               "active": true,
               "name": "birthday",
               "req": false,
+              "short": "Birth date",
               "type": "`$STRING`"
             },
             {
@@ -1273,18 +1299,21 @@
               "active": true,
               "name": "deathday",
               "req": false,
+              "short": "Death date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "gender",
               "req": false,
+              "short": "Gender",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique person identifier",
               "type": "`$INTEGER`"
             },
             {
@@ -1303,6 +1332,7 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Person name",
               "type": "`$STRING`"
             },
             {
@@ -1315,18 +1345,21 @@
               "active": true,
               "name": "score",
               "req": false,
+              "short": "Search relevancy score",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "updated",
               "req": false,
+              "short": "Unix timestamp of last update",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "TVmaze URL for the person",
               "type": "`$STRING`"
             }
           ],
@@ -1467,24 +1500,28 @@
               "active": true,
               "name": "airdate",
               "req": false,
+              "short": "Air date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "airstamp",
               "req": false,
+              "short": "Air timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "airtime",
               "req": false,
+              "short": "Air time",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique episode identifier",
               "type": "`$INTEGER`"
             },
             {
@@ -1503,12 +1540,14 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Episode name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "number",
               "req": false,
+              "short": "Episode number in season",
               "type": "`$INTEGER`"
             },
             {
@@ -1521,12 +1560,14 @@
               "active": true,
               "name": "runtime",
               "req": false,
+              "short": "Runtime in minutes",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "season",
               "req": false,
+              "short": "Season number",
               "type": "`$INTEGER`"
             },
             {
@@ -1539,18 +1580,21 @@
               "active": true,
               "name": "summary",
               "req": false,
+              "short": "HTML summary",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Episode type (e.g., regular, significant_special)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "TVmaze URL for the episode",
               "type": "`$STRING`"
             }
           ],
@@ -1621,24 +1665,28 @@
               "active": true,
               "name": "airdate",
               "req": false,
+              "short": "Air date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "airstamp",
               "req": false,
+              "short": "Air timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "airtime",
               "req": false,
+              "short": "Air time",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique episode identifier",
               "type": "`$INTEGER`"
             },
             {
@@ -1657,12 +1705,14 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Episode name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "number",
               "req": false,
+              "short": "Episode number in season",
               "type": "`$INTEGER`"
             },
             {
@@ -1675,12 +1725,14 @@
               "active": true,
               "name": "runtime",
               "req": false,
+              "short": "Runtime in minutes",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "season",
               "req": false,
+              "short": "Season number",
               "type": "`$INTEGER`"
             },
             {
@@ -1693,18 +1745,21 @@
               "active": true,
               "name": "summary",
               "req": false,
+              "short": "HTML summary",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Episode type (e.g., regular, significant_special)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "TVmaze URL for the episode",
               "type": "`$STRING`"
             }
           ],
@@ -1859,18 +1914,21 @@
               "active": true,
               "name": "endDate",
               "req": false,
+              "short": "End date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "episodeOrder",
               "req": false,
+              "short": "Number of episodes",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique season identifier",
               "type": "`$INTEGER`"
             },
             {
@@ -1889,6 +1947,7 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Season name",
               "type": "`$STRING`"
             },
             {
@@ -1901,24 +1960,28 @@
               "active": true,
               "name": "number",
               "req": false,
+              "short": "Season number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "premiereDate",
               "req": false,
+              "short": "Premiere date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "summary",
               "req": false,
+              "short": "HTML summary",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "TVmaze URL for the season",
               "type": "`$STRING`"
             },
             {
@@ -1996,6 +2059,7 @@
               "active": true,
               "name": "averageRuntime",
               "req": false,
+              "short": "Average runtime in minutes",
               "type": "`$INTEGER`"
             },
             {
@@ -2008,6 +2072,7 @@
               "active": true,
               "name": "ended",
               "req": false,
+              "short": "End date",
               "type": "`$STRING`"
             },
             {
@@ -2020,12 +2085,14 @@
               "active": true,
               "name": "genres",
               "req": false,
+              "short": "List of genres",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique show identifier",
               "type": "`$INTEGER`"
             },
             {
@@ -2038,6 +2105,7 @@
               "active": true,
               "name": "language",
               "req": false,
+              "short": "Original language",
               "type": "`$STRING`"
             },
             {
@@ -2050,6 +2118,7 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Show name",
               "type": "`$STRING`"
             },
             {
@@ -2062,12 +2131,14 @@
               "active": true,
               "name": "officialSite",
               "req": false,
+              "short": "Official website URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "premiered",
               "req": false,
+              "short": "Premiere date",
               "type": "`$STRING`"
             },
             {
@@ -2080,6 +2151,7 @@
               "active": true,
               "name": "runtime",
               "req": false,
+              "short": "Runtime in minutes",
               "type": "`$INTEGER`"
             },
             {
@@ -2092,6 +2164,7 @@
               "active": true,
               "name": "score",
               "req": false,
+              "short": "Search relevancy score",
               "type": "`$NUMBER`"
             },
             {
@@ -2104,30 +2177,35 @@
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Current status (e.g., Running, Ended)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "summary",
               "req": false,
+              "short": "HTML summary",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Show type (e.g., Scripted, Reality)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "updated",
               "req": false,
+              "short": "Unix timestamp of last update",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "TVmaze URL for the show",
               "type": "`$STRING`"
             },
             {
@@ -2140,6 +2218,7 @@
               "active": true,
               "name": "weight",
               "req": false,
+              "short": "Show weight/importance",
               "type": "`$INTEGER`"
             }
           ],

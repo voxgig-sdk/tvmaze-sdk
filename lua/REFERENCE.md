@@ -159,7 +159,7 @@ local aka = client:Aka(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `country` | `table` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Alternate name |
 
 ### Operations
 
@@ -211,11 +211,11 @@ local alternate_list = client:AlternateList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `number` | No |  |
+| `id` | `number` | No | Unique alternate list identifier |
 | `links` | `table` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Name of alternate list (e.g., DVD Order) |
 | `self` | `table` | No |  |
-| `url` | `string` | No |  |
+| `url` | `string` | No | TVmaze URL for the alternate list |
 
 ### Operations
 
@@ -277,8 +277,8 @@ local cast = client:Cast(nil)
 | --- | --- | --- | --- |
 | `character` | `table` | No |  |
 | `person` | `table` | No |  |
-| `self` | `boolean` | No |  |
-| `voice` | `boolean` | No |  |
+| `self` | `boolean` | No | Whether person plays themselves |
+| `voice` | `boolean` | No | Whether this is a voice role |
 
 ### Operations
 
@@ -384,8 +384,8 @@ local cast_member = client:CastMember(nil)
 | --- | --- | --- | --- |
 | `character` | `table` | No |  |
 | `person` | `table` | No |  |
-| `self` | `boolean` | No |  |
-| `voice` | `boolean` | No |  |
+| `self` | `boolean` | No | Whether person plays themselves |
+| `voice` | `boolean` | No | Whether this is a voice role |
 
 ### Operations
 
@@ -438,7 +438,7 @@ local crew = client:Crew(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `person` | `table` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type (e.g., Executive Producer) |
 
 ### Operations
 
@@ -491,7 +491,7 @@ local crew_credit = client:CrewCredit(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `links` | `table` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type |
 
 ### Operations
 
@@ -544,7 +544,7 @@ local crew_member = client:CrewMember(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `person` | `table` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Crew type (e.g., Executive Producer) |
 
 ### Operations
 
@@ -596,20 +596,20 @@ local episode = client:Episode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `number` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `number` | No | Unique episode identifier |
 | `image` | `table` | No |  |
 | `links` | `table` | No |  |
-| `name` | `string` | No |  |
-| `number` | `number` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `number` | No | Episode number in season |
 | `rating` | `table` | No |  |
-| `runtime` | `number` | No |  |
-| `season` | `number` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `runtime` | `number` | No | Runtime in minutes |
+| `season` | `number` | No | Season number |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -721,10 +721,10 @@ local image = client:Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `number` | No |  |
-| `main` | `boolean` | No |  |
+| `id` | `number` | No | Unique image identifier |
+| `main` | `boolean` | No | Whether this is the main image |
 | `resolutions` | `table` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Image type |
 
 ### Operations
 
@@ -776,18 +776,18 @@ local person = client:Person(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `birthday` | `string` | No |  |
+| `birthday` | `string` | No | Birth date |
 | `country` | `table` | No |  |
-| `deathday` | `string` | No |  |
-| `gender` | `string` | No |  |
-| `id` | `number` | No |  |
+| `deathday` | `string` | No | Death date |
+| `gender` | `string` | No | Gender |
+| `id` | `number` | No | Unique person identifier |
 | `image` | `table` | No |  |
 | `links` | `table` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Person name |
 | `person` | `table` | No |  |
-| `score` | `number` | No |  |
-| `updated` | `number` | No |  |
-| `url` | `string` | No |  |
+| `score` | `number` | No | Search relevancy score |
+| `updated` | `number` | No | Unix timestamp of last update |
+| `url` | `string` | No | TVmaze URL for the person |
 
 ### Operations
 
@@ -847,21 +847,21 @@ local schedule = client:Schedule(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `number` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `number` | No | Unique episode identifier |
 | `image` | `table` | No |  |
 | `links` | `table` | No |  |
-| `name` | `string` | No |  |
-| `number` | `number` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `number` | No | Episode number in season |
 | `rating` | `table` | No |  |
-| `runtime` | `number` | No |  |
-| `season` | `number` | No |  |
+| `runtime` | `number` | No | Runtime in minutes |
+| `season` | `number` | No | Season number |
 | `show` | `table` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -913,21 +913,21 @@ local scheduled_episode = client:ScheduledEpisode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airdate` | `string` | No |  |
-| `airstamp` | `string` | No |  |
-| `airtime` | `string` | No |  |
-| `id` | `number` | No |  |
+| `airdate` | `string` | No | Air date |
+| `airstamp` | `string` | No | Air timestamp |
+| `airtime` | `string` | No | Air time |
+| `id` | `number` | No | Unique episode identifier |
 | `image` | `table` | No |  |
 | `links` | `table` | No |  |
-| `name` | `string` | No |  |
-| `number` | `number` | No |  |
+| `name` | `string` | No | Episode name |
+| `number` | `number` | No | Episode number in season |
 | `rating` | `table` | No |  |
-| `runtime` | `number` | No |  |
-| `season` | `number` | No |  |
+| `runtime` | `number` | No | Runtime in minutes |
+| `season` | `number` | No | Season number |
 | `show` | `table` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | No | TVmaze URL for the episode |
 
 ### Operations
 
@@ -1025,17 +1025,17 @@ local season = client:Season(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `endDate` | `string` | No |  |
-| `episodeOrder` | `number` | No |  |
-| `id` | `number` | No |  |
+| `endDate` | `string` | No | End date |
+| `episodeOrder` | `number` | No | Number of episodes |
+| `id` | `number` | No | Unique season identifier |
 | `image` | `table` | No |  |
 | `links` | `table` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Season name |
 | `network` | `table` | No |  |
-| `number` | `number` | No |  |
-| `premiereDate` | `string` | No |  |
-| `summary` | `string` | No |  |
-| `url` | `string` | No |  |
+| `number` | `number` | No | Season number |
+| `premiereDate` | `string` | No | Premiere date |
+| `summary` | `string` | No | HTML summary |
+| `url` | `string` | No | TVmaze URL for the season |
 | `webChannel` | `table` | No |  |
 
 ### Operations
@@ -1088,31 +1088,31 @@ local show = client:Show(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `averageRuntime` | `number` | No |  |
+| `averageRuntime` | `number` | No | Average runtime in minutes |
 | `dvdCountry` | `table` | No |  |
-| `ended` | `string` | No |  |
+| `ended` | `string` | No | End date |
 | `externals` | `table` | No |  |
-| `genres` | `table` | No |  |
-| `id` | `number` | No |  |
+| `genres` | `table` | No | List of genres |
+| `id` | `number` | No | Unique show identifier |
 | `image` | `table` | No |  |
-| `language` | `string` | No |  |
+| `language` | `string` | No | Original language |
 | `links` | `table` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | Show name |
 | `network` | `table` | No |  |
-| `officialSite` | `string` | No |  |
-| `premiered` | `string` | No |  |
+| `officialSite` | `string` | No | Official website URL |
+| `premiered` | `string` | No | Premiere date |
 | `rating` | `table` | No |  |
-| `runtime` | `number` | No |  |
+| `runtime` | `number` | No | Runtime in minutes |
 | `schedule` | `table` | No |  |
-| `score` | `number` | No |  |
+| `score` | `number` | No | Search relevancy score |
 | `show` | `table` | No |  |
-| `status` | `string` | No |  |
-| `summary` | `string` | No |  |
-| `type` | `string` | No |  |
-| `updated` | `number` | No |  |
-| `url` | `string` | No |  |
+| `status` | `string` | No | Current status (e.g., Running, Ended) |
+| `summary` | `string` | No | HTML summary |
+| `type` | `string` | No | Show type (e.g., Scripted, Reality) |
+| `updated` | `number` | No | Unix timestamp of last update |
+| `url` | `string` | No | TVmaze URL for the show |
 | `webChannel` | `table` | No |  |
-| `weight` | `number` | No |  |
+| `weight` | `number` | No | Show weight/importance |
 
 ### Operations
 

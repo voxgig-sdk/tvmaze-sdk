@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Tvmaze",
+			"slug": "tvmaze",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -54,6 +57,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Alternate name",
 						"type": "`$STRING`",
 					},
 				},
@@ -113,6 +117,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "Unique alternate list identifier",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -121,6 +126,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Name of alternate list (e.g., DVD Order)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -129,6 +135,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "url",
+						"short": "TVmaze URL for the alternate list",
 						"type": "`$STRING`",
 					},
 				},
@@ -240,10 +247,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "self",
+						"short": "Whether person plays themselves",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "voice",
+						"short": "Whether this is a voice role",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -379,10 +388,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "self",
+						"short": "Whether person plays themselves",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "voice",
+						"short": "Whether this is a voice role",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -446,6 +457,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Crew type (e.g., Executive Producer)",
 						"type": "`$STRING`",
 					},
 				},
@@ -509,6 +521,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Crew type",
 						"type": "`$STRING`",
 					},
 				},
@@ -581,6 +594,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Crew type (e.g., Executive Producer)",
 						"type": "`$STRING`",
 					},
 				},
@@ -640,18 +654,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "airdate",
+						"short": "Air date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "airstamp",
+						"short": "Air timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "airtime",
+						"short": "Air time",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique episode identifier",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -664,10 +682,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Episode name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "number",
+						"short": "Episode number in season",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -676,22 +696,27 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "runtime",
+						"short": "Runtime in minutes",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "season",
+						"short": "Season number",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "summary",
+						"short": "HTML summary",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Episode type (e.g., regular, significant_special)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "TVmaze URL for the episode",
 						"type": "`$STRING`",
 					},
 				},
@@ -1017,10 +1042,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "Unique image identifier",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "main",
+						"short": "Whether this is the main image",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
@@ -1029,6 +1056,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Image type",
 						"type": "`$STRING`",
 					},
 				},
@@ -1088,6 +1116,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "birthday",
+						"short": "Birth date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1096,14 +1125,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "deathday",
+						"short": "Death date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "gender",
+						"short": "Gender",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique person identifier",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1116,6 +1148,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Person name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1124,14 +1157,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "score",
+						"short": "Search relevancy score",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "updated",
+						"short": "Unix timestamp of last update",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "TVmaze URL for the person",
 						"type": "`$STRING`",
 					},
 				},
@@ -1253,18 +1289,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "airdate",
+						"short": "Air date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "airstamp",
+						"short": "Air timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "airtime",
+						"short": "Air time",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique episode identifier",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1277,10 +1317,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Episode name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "number",
+						"short": "Episode number in season",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1289,10 +1331,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "runtime",
+						"short": "Runtime in minutes",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "season",
+						"short": "Season number",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1301,14 +1345,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "summary",
+						"short": "HTML summary",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Episode type (e.g., regular, significant_special)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "TVmaze URL for the episode",
 						"type": "`$STRING`",
 					},
 				},
@@ -1364,18 +1411,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "airdate",
+						"short": "Air date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "airstamp",
+						"short": "Air timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "airtime",
+						"short": "Air time",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique episode identifier",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1388,10 +1439,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Episode name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "number",
+						"short": "Episode number in season",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1400,10 +1453,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "runtime",
+						"short": "Runtime in minutes",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "season",
+						"short": "Season number",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1412,14 +1467,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "summary",
+						"short": "HTML summary",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Episode type (e.g., regular, significant_special)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "TVmaze URL for the episode",
 						"type": "`$STRING`",
 					},
 				},
@@ -1547,14 +1605,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "endDate",
+						"short": "End date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "episodeOrder",
+						"short": "Number of episodes",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique season identifier",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1567,6 +1628,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Season name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1575,18 +1637,22 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "number",
+						"short": "Season number",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "premiereDate",
+						"short": "Premiere date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "summary",
+						"short": "HTML summary",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "TVmaze URL for the season",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1650,6 +1716,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "averageRuntime",
+						"short": "Average runtime in minutes",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1658,6 +1725,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "ended",
+						"short": "End date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1666,10 +1734,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "genres",
+						"short": "List of genres",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique show identifier",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1678,6 +1748,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "language",
+						"short": "Original language",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1686,6 +1757,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Show name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1694,10 +1766,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "officialSite",
+						"short": "Official website URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "premiered",
+						"short": "Premiere date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1706,6 +1780,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "runtime",
+						"short": "Runtime in minutes",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1714,6 +1789,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "score",
+						"short": "Search relevancy score",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -1722,22 +1798,27 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "status",
+						"short": "Current status (e.g., Running, Ended)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "summary",
+						"short": "HTML summary",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Show type (e.g., Scripted, Reality)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updated",
+						"short": "Unix timestamp of last update",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "TVmaze URL for the show",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1746,6 +1827,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "weight",
+						"short": "Show weight/importance",
 						"type": "`$INTEGER`",
 					},
 				},

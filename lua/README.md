@@ -251,7 +251,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `country` |  |
-| `name` |  |
+| `name` | Alternate name |
 
 Operations: List.
 
@@ -261,11 +261,11 @@ API path: `/shows/{id}/akas`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
+| `id` | Unique alternate list identifier |
 | `links` |  |
-| `name` |  |
+| `name` | Name of alternate list (e.g., DVD Order) |
 | `self` |  |
-| `url` |  |
+| `url` | TVmaze URL for the alternate list |
 
 Operations: List, Load.
 
@@ -277,8 +277,8 @@ API path: `/shows/{id}/alternatelists`
 | --- | --- |
 | `character` |  |
 | `person` |  |
-| `self` |  |
-| `voice` |  |
+| `self` | Whether person plays themselves |
+| `voice` | Whether this is a voice role |
 
 Operations: List.
 
@@ -300,8 +300,8 @@ API path: `/people/{id}/castcredits`
 | --- | --- |
 | `character` |  |
 | `person` |  |
-| `self` |  |
-| `voice` |  |
+| `self` | Whether person plays themselves |
+| `voice` | Whether this is a voice role |
 
 Operations: List.
 
@@ -312,7 +312,7 @@ API path: `/episodes/{id}/guestcast`
 | Field | Description |
 | --- | --- |
 | `person` |  |
-| `type` |  |
+| `type` | Crew type (e.g., Executive Producer) |
 
 Operations: List.
 
@@ -323,7 +323,7 @@ API path: `/shows/{id}/crew`
 | Field | Description |
 | --- | --- |
 | `links` |  |
-| `type` |  |
+| `type` | Crew type |
 
 Operations: List.
 
@@ -334,7 +334,7 @@ API path: `/people/{id}/crewcredits`
 | Field | Description |
 | --- | --- |
 | `person` |  |
-| `type` |  |
+| `type` | Crew type (e.g., Executive Producer) |
 
 Operations: List.
 
@@ -344,20 +344,20 @@ API path: `/episodes/{id}/guestcrew`
 
 | Field | Description |
 | --- | --- |
-| `airdate` |  |
-| `airstamp` |  |
-| `airtime` |  |
-| `id` |  |
+| `airdate` | Air date |
+| `airstamp` | Air timestamp |
+| `airtime` | Air time |
+| `id` | Unique episode identifier |
 | `image` |  |
 | `links` |  |
-| `name` |  |
-| `number` |  |
+| `name` | Episode name |
+| `number` | Episode number in season |
 | `rating` |  |
-| `runtime` |  |
-| `season` |  |
-| `summary` |  |
-| `type` |  |
-| `url` |  |
+| `runtime` | Runtime in minutes |
+| `season` | Season number |
+| `summary` | HTML summary |
+| `type` | Episode type (e.g., regular, significant_special) |
+| `url` | TVmaze URL for the episode |
 
 Operations: List, Load.
 
@@ -377,10 +377,10 @@ API path: `/people/{id}/guestcastcredits`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `main` |  |
+| `id` | Unique image identifier |
+| `main` | Whether this is the main image |
 | `resolutions` |  |
-| `type` |  |
+| `type` | Image type |
 
 Operations: List.
 
@@ -390,18 +390,18 @@ API path: `/shows/{id}/images`
 
 | Field | Description |
 | --- | --- |
-| `birthday` |  |
+| `birthday` | Birth date |
 | `country` |  |
-| `deathday` |  |
-| `gender` |  |
-| `id` |  |
+| `deathday` | Death date |
+| `gender` | Gender |
+| `id` | Unique person identifier |
 | `image` |  |
 | `links` |  |
-| `name` |  |
+| `name` | Person name |
 | `person` |  |
-| `score` |  |
-| `updated` |  |
-| `url` |  |
+| `score` | Search relevancy score |
+| `updated` | Unix timestamp of last update |
+| `url` | TVmaze URL for the person |
 
 Operations: List, Load.
 
@@ -411,21 +411,21 @@ API path: `/people`
 
 | Field | Description |
 | --- | --- |
-| `airdate` |  |
-| `airstamp` |  |
-| `airtime` |  |
-| `id` |  |
+| `airdate` | Air date |
+| `airstamp` | Air timestamp |
+| `airtime` | Air time |
+| `id` | Unique episode identifier |
 | `image` |  |
 | `links` |  |
-| `name` |  |
-| `number` |  |
+| `name` | Episode name |
+| `number` | Episode number in season |
 | `rating` |  |
-| `runtime` |  |
-| `season` |  |
+| `runtime` | Runtime in minutes |
+| `season` | Season number |
 | `show` |  |
-| `summary` |  |
-| `type` |  |
-| `url` |  |
+| `summary` | HTML summary |
+| `type` | Episode type (e.g., regular, significant_special) |
+| `url` | TVmaze URL for the episode |
 
 Operations: List.
 
@@ -435,21 +435,21 @@ API path: `/schedule`
 
 | Field | Description |
 | --- | --- |
-| `airdate` |  |
-| `airstamp` |  |
-| `airtime` |  |
-| `id` |  |
+| `airdate` | Air date |
+| `airstamp` | Air timestamp |
+| `airtime` | Air time |
+| `id` | Unique episode identifier |
 | `image` |  |
 | `links` |  |
-| `name` |  |
-| `number` |  |
+| `name` | Episode name |
+| `number` | Episode number in season |
 | `rating` |  |
-| `runtime` |  |
-| `season` |  |
+| `runtime` | Runtime in minutes |
+| `season` | Season number |
 | `show` |  |
-| `summary` |  |
-| `type` |  |
-| `url` |  |
+| `summary` | HTML summary |
+| `type` | Episode type (e.g., regular, significant_special) |
+| `url` | TVmaze URL for the episode |
 
 Operations: List.
 
@@ -468,17 +468,17 @@ API path: `/lookup/shows`
 
 | Field | Description |
 | --- | --- |
-| `endDate` |  |
-| `episodeOrder` |  |
-| `id` |  |
+| `endDate` | End date |
+| `episodeOrder` | Number of episodes |
+| `id` | Unique season identifier |
 | `image` |  |
 | `links` |  |
-| `name` |  |
+| `name` | Season name |
 | `network` |  |
-| `number` |  |
-| `premiereDate` |  |
-| `summary` |  |
-| `url` |  |
+| `number` | Season number |
+| `premiereDate` | Premiere date |
+| `summary` | HTML summary |
+| `url` | TVmaze URL for the season |
 | `webChannel` |  |
 
 Operations: List.
@@ -489,31 +489,31 @@ API path: `/shows/{id}/seasons`
 
 | Field | Description |
 | --- | --- |
-| `averageRuntime` |  |
+| `averageRuntime` | Average runtime in minutes |
 | `dvdCountry` |  |
-| `ended` |  |
+| `ended` | End date |
 | `externals` |  |
-| `genres` |  |
-| `id` |  |
+| `genres` | List of genres |
+| `id` | Unique show identifier |
 | `image` |  |
-| `language` |  |
+| `language` | Original language |
 | `links` |  |
-| `name` |  |
+| `name` | Show name |
 | `network` |  |
-| `officialSite` |  |
-| `premiered` |  |
+| `officialSite` | Official website URL |
+| `premiered` | Premiere date |
 | `rating` |  |
-| `runtime` |  |
+| `runtime` | Runtime in minutes |
 | `schedule` |  |
-| `score` |  |
+| `score` | Search relevancy score |
 | `show` |  |
-| `status` |  |
-| `summary` |  |
-| `type` |  |
-| `updated` |  |
-| `url` |  |
+| `status` | Current status (e.g., Running, Ended) |
+| `summary` | HTML summary |
+| `type` | Show type (e.g., Scripted, Reality) |
+| `updated` | Unix timestamp of last update |
+| `url` | TVmaze URL for the show |
 | `webChannel` |  |
-| `weight` |  |
+| `weight` | Show weight/importance |
 
 Operations: List, Load.
 
@@ -548,7 +548,7 @@ Create an instance: `local aka = client:Aka(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `country` | `table` |  |
-| `name` | `string` |  |
+| `name` | `string` | Alternate name |
 
 #### Example: List
 
@@ -572,11 +572,11 @@ Create an instance: `local alternate_list = client:AlternateList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
+| `id` | `number` | Unique alternate list identifier |
 | `links` | `table` |  |
-| `name` | `string` |  |
+| `name` | `string` | Name of alternate list (e.g., DVD Order) |
 | `self` | `table` |  |
-| `url` | `string` |  |
+| `url` | `string` | TVmaze URL for the alternate list |
 
 #### Example: Load
 
@@ -607,8 +607,8 @@ Create an instance: `local cast = client:Cast(nil)`
 | --- | --- | --- |
 | `character` | `table` |  |
 | `person` | `table` |  |
-| `self` | `boolean` |  |
-| `voice` | `boolean` |  |
+| `self` | `boolean` | Whether person plays themselves |
+| `voice` | `boolean` | Whether this is a voice role |
 
 #### Example: List
 
@@ -656,8 +656,8 @@ Create an instance: `local cast_member = client:CastMember(nil)`
 | --- | --- | --- |
 | `character` | `table` |  |
 | `person` | `table` |  |
-| `self` | `boolean` |  |
-| `voice` | `boolean` |  |
+| `self` | `boolean` | Whether person plays themselves |
+| `voice` | `boolean` | Whether this is a voice role |
 
 #### Example: List
 
@@ -681,7 +681,7 @@ Create an instance: `local crew = client:Crew(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `person` | `table` |  |
-| `type` | `string` |  |
+| `type` | `string` | Crew type (e.g., Executive Producer) |
 
 #### Example: List
 
@@ -705,7 +705,7 @@ Create an instance: `local crew_credit = client:CrewCredit(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `links` | `table` |  |
-| `type` | `string` |  |
+| `type` | `string` | Crew type |
 
 #### Example: List
 
@@ -729,7 +729,7 @@ Create an instance: `local crew_member = client:CrewMember(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `person` | `table` |  |
-| `type` | `string` |  |
+| `type` | `string` | Crew type (e.g., Executive Producer) |
 
 #### Example: List
 
@@ -753,20 +753,20 @@ Create an instance: `local episode = client:Episode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | `string` |  |
-| `airstamp` | `string` |  |
-| `airtime` | `string` |  |
-| `id` | `number` |  |
+| `airdate` | `string` | Air date |
+| `airstamp` | `string` | Air timestamp |
+| `airtime` | `string` | Air time |
+| `id` | `number` | Unique episode identifier |
 | `image` | `table` |  |
 | `links` | `table` |  |
-| `name` | `string` |  |
-| `number` | `number` |  |
+| `name` | `string` | Episode name |
+| `number` | `number` | Episode number in season |
 | `rating` | `table` |  |
-| `runtime` | `number` |  |
-| `season` | `number` |  |
-| `summary` | `string` |  |
-| `type` | `string` |  |
-| `url` | `string` |  |
+| `runtime` | `number` | Runtime in minutes |
+| `season` | `number` | Season number |
+| `summary` | `string` | HTML summary |
+| `type` | `string` | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | TVmaze URL for the episode |
 
 #### Example: Load
 
@@ -818,10 +818,10 @@ Create an instance: `local image = client:Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
-| `main` | `boolean` |  |
+| `id` | `number` | Unique image identifier |
+| `main` | `boolean` | Whether this is the main image |
 | `resolutions` | `table` |  |
-| `type` | `string` |  |
+| `type` | `string` | Image type |
 
 #### Example: List
 
@@ -845,18 +845,18 @@ Create an instance: `local person = client:Person(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `birthday` | `string` |  |
+| `birthday` | `string` | Birth date |
 | `country` | `table` |  |
-| `deathday` | `string` |  |
-| `gender` | `string` |  |
-| `id` | `number` |  |
+| `deathday` | `string` | Death date |
+| `gender` | `string` | Gender |
+| `id` | `number` | Unique person identifier |
 | `image` | `table` |  |
 | `links` | `table` |  |
-| `name` | `string` |  |
+| `name` | `string` | Person name |
 | `person` | `table` |  |
-| `score` | `number` |  |
-| `updated` | `number` |  |
-| `url` | `string` |  |
+| `score` | `number` | Search relevancy score |
+| `updated` | `number` | Unix timestamp of last update |
+| `url` | `string` | TVmaze URL for the person |
 
 #### Example: Load
 
@@ -885,21 +885,21 @@ Create an instance: `local schedule = client:Schedule(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | `string` |  |
-| `airstamp` | `string` |  |
-| `airtime` | `string` |  |
-| `id` | `number` |  |
+| `airdate` | `string` | Air date |
+| `airstamp` | `string` | Air timestamp |
+| `airtime` | `string` | Air time |
+| `id` | `number` | Unique episode identifier |
 | `image` | `table` |  |
 | `links` | `table` |  |
-| `name` | `string` |  |
-| `number` | `number` |  |
+| `name` | `string` | Episode name |
+| `number` | `number` | Episode number in season |
 | `rating` | `table` |  |
-| `runtime` | `number` |  |
-| `season` | `number` |  |
+| `runtime` | `number` | Runtime in minutes |
+| `season` | `number` | Season number |
 | `show` | `table` |  |
-| `summary` | `string` |  |
-| `type` | `string` |  |
-| `url` | `string` |  |
+| `summary` | `string` | HTML summary |
+| `type` | `string` | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | TVmaze URL for the episode |
 
 #### Example: List
 
@@ -922,21 +922,21 @@ Create an instance: `local scheduled_episode = client:ScheduledEpisode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airdate` | `string` |  |
-| `airstamp` | `string` |  |
-| `airtime` | `string` |  |
-| `id` | `number` |  |
+| `airdate` | `string` | Air date |
+| `airstamp` | `string` | Air timestamp |
+| `airtime` | `string` | Air time |
+| `id` | `number` | Unique episode identifier |
 | `image` | `table` |  |
 | `links` | `table` |  |
-| `name` | `string` |  |
-| `number` | `number` |  |
+| `name` | `string` | Episode name |
+| `number` | `number` | Episode number in season |
 | `rating` | `table` |  |
-| `runtime` | `number` |  |
-| `season` | `number` |  |
+| `runtime` | `number` | Runtime in minutes |
+| `season` | `number` | Season number |
 | `show` | `table` |  |
-| `summary` | `string` |  |
-| `type` | `string` |  |
-| `url` | `string` |  |
+| `summary` | `string` | HTML summary |
+| `type` | `string` | Episode type (e.g., regular, significant_special) |
+| `url` | `string` | TVmaze URL for the episode |
 
 #### Example: List
 
@@ -976,17 +976,17 @@ Create an instance: `local season = client:Season(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `endDate` | `string` |  |
-| `episodeOrder` | `number` |  |
-| `id` | `number` |  |
+| `endDate` | `string` | End date |
+| `episodeOrder` | `number` | Number of episodes |
+| `id` | `number` | Unique season identifier |
 | `image` | `table` |  |
 | `links` | `table` |  |
-| `name` | `string` |  |
+| `name` | `string` | Season name |
 | `network` | `table` |  |
-| `number` | `number` |  |
-| `premiereDate` | `string` |  |
-| `summary` | `string` |  |
-| `url` | `string` |  |
+| `number` | `number` | Season number |
+| `premiereDate` | `string` | Premiere date |
+| `summary` | `string` | HTML summary |
+| `url` | `string` | TVmaze URL for the season |
 | `webChannel` | `table` |  |
 
 #### Example: List
@@ -1011,31 +1011,31 @@ Create an instance: `local show = client:Show(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `averageRuntime` | `number` |  |
+| `averageRuntime` | `number` | Average runtime in minutes |
 | `dvdCountry` | `table` |  |
-| `ended` | `string` |  |
+| `ended` | `string` | End date |
 | `externals` | `table` |  |
-| `genres` | `table` |  |
-| `id` | `number` |  |
+| `genres` | `table` | List of genres |
+| `id` | `number` | Unique show identifier |
 | `image` | `table` |  |
-| `language` | `string` |  |
+| `language` | `string` | Original language |
 | `links` | `table` |  |
-| `name` | `string` |  |
+| `name` | `string` | Show name |
 | `network` | `table` |  |
-| `officialSite` | `string` |  |
-| `premiered` | `string` |  |
+| `officialSite` | `string` | Official website URL |
+| `premiered` | `string` | Premiere date |
 | `rating` | `table` |  |
-| `runtime` | `number` |  |
+| `runtime` | `number` | Runtime in minutes |
 | `schedule` | `table` |  |
-| `score` | `number` |  |
+| `score` | `number` | Search relevancy score |
 | `show` | `table` |  |
-| `status` | `string` |  |
-| `summary` | `string` |  |
-| `type` | `string` |  |
-| `updated` | `number` |  |
-| `url` | `string` |  |
+| `status` | `string` | Current status (e.g., Running, Ended) |
+| `summary` | `string` | HTML summary |
+| `type` | `string` | Show type (e.g., Scripted, Reality) |
+| `updated` | `number` | Unix timestamp of last update |
+| `url` | `string` | TVmaze URL for the show |
 | `webChannel` | `table` |  |
-| `weight` | `number` |  |
+| `weight` | `number` | Show weight/importance |
 
 #### Example: Load
 

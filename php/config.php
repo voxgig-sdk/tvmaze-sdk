@@ -33,6 +33,9 @@ class TvmazeConfig
         return [
             "main" => [
                 "name" => "Tvmaze",
+                "slug" => "tvmaze",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -76,6 +79,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'name',
+              'short' => 'Alternate name',
               'type' => '`$STRING`',
             ],
           ],
@@ -135,6 +139,7 @@ class TvmazeConfig
           'fields' => [
             [
               'name' => 'id',
+              'short' => 'Unique alternate list identifier',
               'type' => '`$INTEGER`',
             ],
             [
@@ -143,6 +148,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'name',
+              'short' => 'Name of alternate list (e.g., DVD Order)',
               'type' => '`$STRING`',
             ],
             [
@@ -151,6 +157,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'url',
+              'short' => 'TVmaze URL for the alternate list',
               'type' => '`$STRING`',
             ],
           ],
@@ -262,10 +269,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'self',
+              'short' => 'Whether person plays themselves',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'voice',
+              'short' => 'Whether this is a voice role',
               'type' => '`$BOOLEAN`',
             ],
           ],
@@ -401,10 +410,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'self',
+              'short' => 'Whether person plays themselves',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'voice',
+              'short' => 'Whether this is a voice role',
               'type' => '`$BOOLEAN`',
             ],
           ],
@@ -468,6 +479,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'type',
+              'short' => 'Crew type (e.g., Executive Producer)',
               'type' => '`$STRING`',
             ],
           ],
@@ -531,6 +543,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'type',
+              'short' => 'Crew type',
               'type' => '`$STRING`',
             ],
           ],
@@ -603,6 +616,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'type',
+              'short' => 'Crew type (e.g., Executive Producer)',
               'type' => '`$STRING`',
             ],
           ],
@@ -662,18 +676,22 @@ class TvmazeConfig
           'fields' => [
             [
               'name' => 'airdate',
+              'short' => 'Air date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'airstamp',
+              'short' => 'Air timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'airtime',
+              'short' => 'Air time',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique episode identifier',
               'type' => '`$INTEGER`',
             ],
             [
@@ -686,10 +704,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'name',
+              'short' => 'Episode name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'number',
+              'short' => 'Episode number in season',
               'type' => '`$INTEGER`',
             ],
             [
@@ -698,22 +718,27 @@ class TvmazeConfig
             ],
             [
               'name' => 'runtime',
+              'short' => 'Runtime in minutes',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'season',
+              'short' => 'Season number',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'summary',
+              'short' => 'HTML summary',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'Episode type (e.g., regular, significant_special)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'url',
+              'short' => 'TVmaze URL for the episode',
               'type' => '`$STRING`',
             ],
           ],
@@ -1039,10 +1064,12 @@ class TvmazeConfig
           'fields' => [
             [
               'name' => 'id',
+              'short' => 'Unique image identifier',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'main',
+              'short' => 'Whether this is the main image',
               'type' => '`$BOOLEAN`',
             ],
             [
@@ -1051,6 +1078,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'type',
+              'short' => 'Image type',
               'type' => '`$STRING`',
             ],
           ],
@@ -1110,6 +1138,7 @@ class TvmazeConfig
           'fields' => [
             [
               'name' => 'birthday',
+              'short' => 'Birth date',
               'type' => '`$STRING`',
             ],
             [
@@ -1118,14 +1147,17 @@ class TvmazeConfig
             ],
             [
               'name' => 'deathday',
+              'short' => 'Death date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'gender',
+              'short' => 'Gender',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique person identifier',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1138,6 +1170,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'name',
+              'short' => 'Person name',
               'type' => '`$STRING`',
             ],
             [
@@ -1146,14 +1179,17 @@ class TvmazeConfig
             ],
             [
               'name' => 'score',
+              'short' => 'Search relevancy score',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'updated',
+              'short' => 'Unix timestamp of last update',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'url',
+              'short' => 'TVmaze URL for the person',
               'type' => '`$STRING`',
             ],
           ],
@@ -1275,18 +1311,22 @@ class TvmazeConfig
           'fields' => [
             [
               'name' => 'airdate',
+              'short' => 'Air date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'airstamp',
+              'short' => 'Air timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'airtime',
+              'short' => 'Air time',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique episode identifier',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1299,10 +1339,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'name',
+              'short' => 'Episode name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'number',
+              'short' => 'Episode number in season',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1311,10 +1353,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'runtime',
+              'short' => 'Runtime in minutes',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'season',
+              'short' => 'Season number',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1323,14 +1367,17 @@ class TvmazeConfig
             ],
             [
               'name' => 'summary',
+              'short' => 'HTML summary',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'Episode type (e.g., regular, significant_special)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'url',
+              'short' => 'TVmaze URL for the episode',
               'type' => '`$STRING`',
             ],
           ],
@@ -1386,18 +1433,22 @@ class TvmazeConfig
           'fields' => [
             [
               'name' => 'airdate',
+              'short' => 'Air date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'airstamp',
+              'short' => 'Air timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'airtime',
+              'short' => 'Air time',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique episode identifier',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1410,10 +1461,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'name',
+              'short' => 'Episode name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'number',
+              'short' => 'Episode number in season',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1422,10 +1475,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'runtime',
+              'short' => 'Runtime in minutes',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'season',
+              'short' => 'Season number',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1434,14 +1489,17 @@ class TvmazeConfig
             ],
             [
               'name' => 'summary',
+              'short' => 'HTML summary',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'Episode type (e.g., regular, significant_special)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'url',
+              'short' => 'TVmaze URL for the episode',
               'type' => '`$STRING`',
             ],
           ],
@@ -1569,14 +1627,17 @@ class TvmazeConfig
           'fields' => [
             [
               'name' => 'endDate',
+              'short' => 'End date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'episodeOrder',
+              'short' => 'Number of episodes',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique season identifier',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1589,6 +1650,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'name',
+              'short' => 'Season name',
               'type' => '`$STRING`',
             ],
             [
@@ -1597,18 +1659,22 @@ class TvmazeConfig
             ],
             [
               'name' => 'number',
+              'short' => 'Season number',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'premiereDate',
+              'short' => 'Premiere date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'summary',
+              'short' => 'HTML summary',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'url',
+              'short' => 'TVmaze URL for the season',
               'type' => '`$STRING`',
             ],
             [
@@ -1672,6 +1738,7 @@ class TvmazeConfig
           'fields' => [
             [
               'name' => 'averageRuntime',
+              'short' => 'Average runtime in minutes',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1680,6 +1747,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'ended',
+              'short' => 'End date',
               'type' => '`$STRING`',
             ],
             [
@@ -1688,10 +1756,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'genres',
+              'short' => 'List of genres',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique show identifier',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1700,6 +1770,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'language',
+              'short' => 'Original language',
               'type' => '`$STRING`',
             ],
             [
@@ -1708,6 +1779,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'name',
+              'short' => 'Show name',
               'type' => '`$STRING`',
             ],
             [
@@ -1716,10 +1788,12 @@ class TvmazeConfig
             ],
             [
               'name' => 'officialSite',
+              'short' => 'Official website URL',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'premiered',
+              'short' => 'Premiere date',
               'type' => '`$STRING`',
             ],
             [
@@ -1728,6 +1802,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'runtime',
+              'short' => 'Runtime in minutes',
               'type' => '`$INTEGER`',
             ],
             [
@@ -1736,6 +1811,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'score',
+              'short' => 'Search relevancy score',
               'type' => '`$NUMBER`',
             ],
             [
@@ -1744,22 +1820,27 @@ class TvmazeConfig
             ],
             [
               'name' => 'status',
+              'short' => 'Current status (e.g., Running, Ended)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'summary',
+              'short' => 'HTML summary',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'Show type (e.g., Scripted, Reality)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'updated',
+              'short' => 'Unix timestamp of last update',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'url',
+              'short' => 'TVmaze URL for the show',
               'type' => '`$STRING`',
             ],
             [
@@ -1768,6 +1849,7 @@ class TvmazeConfig
             ],
             [
               'name' => 'weight',
+              'short' => 'Show weight/importance',
               'type' => '`$INTEGER`',
             ],
           ],

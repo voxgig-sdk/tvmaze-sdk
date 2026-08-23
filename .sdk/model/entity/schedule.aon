@@ -1,0 +1,148 @@
+# Entity: schedule
+
+main: kit: entity: schedule: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "airdate"
+      req: false
+      short: "Air date"
+      type: "`$STRING`"
+    }
+    {
+      name: "airstamp"
+      req: false
+      short: "Air timestamp"
+      type: "`$STRING`"
+    }
+    {
+      name: "airtime"
+      req: false
+      short: "Air time"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique episode identifier"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "image"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "links"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Episode name"
+      type: "`$STRING`"
+    }
+    {
+      name: "number"
+      req: false
+      short: "Episode number in season"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "rating"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "runtime"
+      req: false
+      short: "Runtime in minutes"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "season"
+      req: false
+      short: "Season number"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "show"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "summary"
+      req: false
+      short: "HTML summary"
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Episode type (e.g., regular, significant_special)"
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      short: "TVmaze URL for the episode"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "schedule"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "US"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/schedule"
+          parts: [
+            "schedule"
+          ]
+          select: {
+            exist: [
+              "country"
+              "date"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
