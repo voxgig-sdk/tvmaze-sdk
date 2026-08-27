@@ -28,6 +28,7 @@ module TvmazeConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {

@@ -42,6 +42,7 @@ class TvmazeConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
