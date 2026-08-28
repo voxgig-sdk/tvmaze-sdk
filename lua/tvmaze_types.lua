@@ -22,6 +22,7 @@
 
 ---@class AlternateListLoadMatch
 ---@field id number
+---@field embed? string
 
 ---@class AlternateListListMatch
 ---@field show_id number
@@ -40,6 +41,7 @@
 
 ---@class CastCreditListMatch
 ---@field person_id number
+---@field embed? string
 
 ---@class CastMember
 ---@field character? table
@@ -63,6 +65,7 @@
 
 ---@class CrewCreditListMatch
 ---@field person_id number
+---@field embed? string
 
 ---@class CrewMember
 ---@field person? table
@@ -89,15 +92,18 @@
 
 ---@class EpisodeLoadMatch
 ---@field id number
+---@field embed? string
 
 ---@class EpisodeListMatch
 ---@field show_id number
+---@field date string
 
 ---@class GuestCastCredit
 ---@field links? table
 
 ---@class GuestCastCreditListMatch
 ---@field person_id number
+---@field embed? string
 
 ---@class Image
 ---@field id? number
@@ -124,20 +130,10 @@
 
 ---@class PersonLoadMatch
 ---@field id number
+---@field embed? string
 
 ---@class PersonListMatch
----@field birthday? string
----@field country? table
----@field deathday? string
----@field gender? string
----@field id? number
----@field image? table
----@field links? table
----@field name? string
----@field person? table
----@field score? number
----@field updated? number
----@field url? string
+---@field page? number
 
 ---@class Schedule
 ---@field airdate? string
@@ -157,21 +153,8 @@
 ---@field url? string
 
 ---@class ScheduleListMatch
----@field airdate? string
----@field airstamp? string
----@field airtime? string
----@field id? number
----@field image? table
----@field links? table
----@field name? string
----@field number? number
----@field rating? table
----@field runtime? number
----@field season? number
----@field show? table
----@field summary? string
----@field type? string
----@field url? string
+---@field country? string
+---@field date? string
 
 ---@class ScheduledEpisode
 ---@field airdate? string
@@ -191,25 +174,15 @@
 ---@field url? string
 
 ---@class ScheduledEpisodeListMatch
----@field airdate? string
----@field airstamp? string
----@field airtime? string
----@field id? number
----@field image? table
----@field links? table
----@field name? string
----@field number? number
----@field rating? table
----@field runtime? number
----@field season? number
----@field show? table
----@field summary? string
----@field type? string
----@field url? string
+---@field country? string
+---@field date? string
 
 ---@class Search
 
 ---@class SearchLoadMatch
+---@field imdb? string
+---@field thetvdb? string
+---@field tvrage? string
 
 ---@class Season
 ---@field endDate? string
@@ -257,37 +230,15 @@
 
 ---@class ShowLoadMatch
 ---@field id number
+---@field embed? string
 
 ---@class ShowListMatch
----@field averageRuntime? number
----@field dvdCountry? table
----@field ended? string
----@field externals? table
----@field genres? table
----@field id? number
----@field image? table
----@field language? string
----@field links? table
----@field name? string
----@field network? table
----@field officialSite? string
----@field premiered? string
----@field rating? table
----@field runtime? number
----@field schedule? table
----@field score? number
----@field show? table
----@field status? string
----@field summary? string
----@field type? string
----@field updated? number
----@field url? string
----@field webChannel? table
----@field weight? number
+---@field page? number
 
 ---@class Update
 
 ---@class UpdateLoadMatch
+---@field since? string
 
 local M = {}
 

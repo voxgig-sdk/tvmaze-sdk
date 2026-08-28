@@ -33,8 +33,12 @@ class AlternateList(TypedDict, total=False):
     url: str
 
 
-class AlternateListLoadMatch(TypedDict):
+class AlternateListLoadMatchRequired(TypedDict):
     id: int
+
+
+class AlternateListLoadMatch(AlternateListLoadMatchRequired, total=False):
+    embed: str
 
 
 class AlternateListListMatch(TypedDict):
@@ -56,8 +60,12 @@ class CastCredit(TypedDict, total=False):
     links: dict
 
 
-class CastCreditListMatch(TypedDict):
+class CastCreditListMatchRequired(TypedDict):
     person_id: int
+
+
+class CastCreditListMatch(CastCreditListMatchRequired, total=False):
+    embed: str
 
 
 class CastMember(TypedDict, total=False):
@@ -85,8 +93,12 @@ class CrewCredit(TypedDict, total=False):
     type: str
 
 
-class CrewCreditListMatch(TypedDict):
+class CrewCreditListMatchRequired(TypedDict):
     person_id: int
+
+
+class CrewCreditListMatch(CrewCreditListMatchRequired, total=False):
+    embed: str
 
 
 class CrewMember(TypedDict, total=False):
@@ -115,20 +127,29 @@ class Episode(TypedDict, total=False):
     url: str
 
 
-class EpisodeLoadMatch(TypedDict):
+class EpisodeLoadMatchRequired(TypedDict):
     id: int
+
+
+class EpisodeLoadMatch(EpisodeLoadMatchRequired, total=False):
+    embed: str
 
 
 class EpisodeListMatch(TypedDict):
     show_id: int
+    date: str
 
 
 class GuestCastCredit(TypedDict, total=False):
     links: dict
 
 
-class GuestCastCreditListMatch(TypedDict):
+class GuestCastCreditListMatchRequired(TypedDict):
     person_id: int
+
+
+class GuestCastCreditListMatch(GuestCastCreditListMatchRequired, total=False):
+    embed: str
 
 
 class Image(TypedDict, total=False):
@@ -157,23 +178,16 @@ class Person(TypedDict, total=False):
     url: str
 
 
-class PersonLoadMatch(TypedDict):
+class PersonLoadMatchRequired(TypedDict):
     id: int
+
+
+class PersonLoadMatch(PersonLoadMatchRequired, total=False):
+    embed: str
 
 
 class PersonListMatch(TypedDict, total=False):
-    birthday: str
-    country: dict
-    deathday: str
-    gender: str
-    id: int
-    image: dict
-    links: dict
-    name: str
-    person: dict
-    score: float
-    updated: int
-    url: str
+    page: int
 
 
 class Schedule(TypedDict, total=False):
@@ -195,21 +209,8 @@ class Schedule(TypedDict, total=False):
 
 
 class ScheduleListMatch(TypedDict, total=False):
-    airdate: str
-    airstamp: str
-    airtime: str
-    id: int
-    image: dict
-    links: dict
-    name: str
-    number: int
-    rating: dict
-    runtime: int
-    season: int
-    show: dict
-    summary: str
-    type: str
-    url: str
+    country: str
+    date: str
 
 
 class ScheduledEpisode(TypedDict, total=False):
@@ -231,29 +232,18 @@ class ScheduledEpisode(TypedDict, total=False):
 
 
 class ScheduledEpisodeListMatch(TypedDict, total=False):
-    airdate: str
-    airstamp: str
-    airtime: str
-    id: int
-    image: dict
-    links: dict
-    name: str
-    number: int
-    rating: dict
-    runtime: int
-    season: int
-    show: dict
-    summary: str
-    type: str
-    url: str
+    country: str
+    date: str
 
 
 class Search(TypedDict):
     pass
 
 
-class SearchLoadMatch(TypedDict):
-    pass
+class SearchLoadMatch(TypedDict, total=False):
+    imdb: str
+    thetvdb: str
+    tvrage: str
 
 
 class Season(TypedDict, total=False):
@@ -303,41 +293,21 @@ class Show(TypedDict, total=False):
     weight: int
 
 
-class ShowLoadMatch(TypedDict):
+class ShowLoadMatchRequired(TypedDict):
     id: int
+
+
+class ShowLoadMatch(ShowLoadMatchRequired, total=False):
+    embed: str
 
 
 class ShowListMatch(TypedDict, total=False):
-    averageRuntime: int
-    dvdCountry: dict
-    ended: str
-    externals: dict
-    genres: list
-    id: int
-    image: dict
-    language: str
-    links: dict
-    name: str
-    network: dict
-    officialSite: str
-    premiered: str
-    rating: dict
-    runtime: int
-    schedule: dict
-    score: float
-    show: dict
-    status: str
-    summary: str
-    type: str
-    updated: int
-    url: str
-    webChannel: dict
-    weight: int
+    page: int
 
 
 class Update(TypedDict):
     pass
 
 
-class UpdateLoadMatch(TypedDict):
-    pass
+class UpdateLoadMatch(TypedDict, total=False):
+    since: str

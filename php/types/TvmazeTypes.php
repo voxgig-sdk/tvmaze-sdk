@@ -39,6 +39,7 @@ class AlternateList
 class AlternateListLoadMatch
 {
     public int $id;
+    public ?string $embed = null;
 }
 
 /** Request payload for AlternateList#list. */
@@ -72,6 +73,7 @@ class CastCredit
 class CastCreditListMatch
 {
     public int $person_id;
+    public ?string $embed = null;
 }
 
 /** CastMember entity data model. */
@@ -113,6 +115,7 @@ class CrewCredit
 class CrewCreditListMatch
 {
     public int $person_id;
+    public ?string $embed = null;
 }
 
 /** CrewMember entity data model. */
@@ -151,12 +154,14 @@ class Episode
 class EpisodeLoadMatch
 {
     public int $id;
+    public ?string $embed = null;
 }
 
 /** Request payload for Episode#list. */
 class EpisodeListMatch
 {
     public int $show_id;
+    public string $date;
 }
 
 /** GuestCastCredit entity data model. */
@@ -169,6 +174,7 @@ class GuestCastCredit
 class GuestCastCreditListMatch
 {
     public int $person_id;
+    public ?string $embed = null;
 }
 
 /** Image entity data model. */
@@ -207,23 +213,13 @@ class Person
 class PersonLoadMatch
 {
     public int $id;
+    public ?string $embed = null;
 }
 
 /** Request payload for Person#list. */
 class PersonListMatch
 {
-    public ?string $birthday = null;
-    public ?array $country = null;
-    public ?string $deathday = null;
-    public ?string $gender = null;
-    public ?int $id = null;
-    public ?array $image = null;
-    public ?array $links = null;
-    public ?string $name = null;
-    public ?array $person = null;
-    public ?float $score = null;
-    public ?int $updated = null;
-    public ?string $url = null;
+    public ?int $page = null;
 }
 
 /** Schedule entity data model. */
@@ -249,21 +245,8 @@ class Schedule
 /** Request payload for Schedule#list. */
 class ScheduleListMatch
 {
-    public ?string $airdate = null;
-    public ?string $airstamp = null;
-    public ?string $airtime = null;
-    public ?int $id = null;
-    public ?array $image = null;
-    public ?array $links = null;
-    public ?string $name = null;
-    public ?int $number = null;
-    public ?array $rating = null;
-    public ?int $runtime = null;
-    public ?int $season = null;
-    public ?array $show = null;
-    public ?string $summary = null;
-    public ?string $type = null;
-    public ?string $url = null;
+    public ?string $country = null;
+    public ?string $date = null;
 }
 
 /** ScheduledEpisode entity data model. */
@@ -289,21 +272,8 @@ class ScheduledEpisode
 /** Request payload for ScheduledEpisode#list. */
 class ScheduledEpisodeListMatch
 {
-    public ?string $airdate = null;
-    public ?string $airstamp = null;
-    public ?string $airtime = null;
-    public ?int $id = null;
-    public ?array $image = null;
-    public ?array $links = null;
-    public ?string $name = null;
-    public ?int $number = null;
-    public ?array $rating = null;
-    public ?int $runtime = null;
-    public ?int $season = null;
-    public ?array $show = null;
-    public ?string $summary = null;
-    public ?string $type = null;
-    public ?string $url = null;
+    public ?string $country = null;
+    public ?string $date = null;
 }
 
 /** Search entity data model. */
@@ -314,6 +284,9 @@ class Search
 /** Request payload for Search#load. */
 class SearchLoadMatch
 {
+    public ?string $imdb = null;
+    public ?string $thetvdb = null;
+    public ?string $tvrage = null;
 }
 
 /** Season entity data model. */
@@ -373,36 +346,13 @@ class Show
 class ShowLoadMatch
 {
     public int $id;
+    public ?string $embed = null;
 }
 
 /** Request payload for Show#list. */
 class ShowListMatch
 {
-    public ?int $averageRuntime = null;
-    public ?array $dvdCountry = null;
-    public ?string $ended = null;
-    public ?array $externals = null;
-    public ?array $genres = null;
-    public ?int $id = null;
-    public ?array $image = null;
-    public ?string $language = null;
-    public ?array $links = null;
-    public ?string $name = null;
-    public ?array $network = null;
-    public ?string $officialSite = null;
-    public ?string $premiered = null;
-    public ?array $rating = null;
-    public ?int $runtime = null;
-    public ?array $schedule = null;
-    public ?float $score = null;
-    public ?array $show = null;
-    public ?string $status = null;
-    public ?string $summary = null;
-    public ?string $type = null;
-    public ?int $updated = null;
-    public ?string $url = null;
-    public ?array $webChannel = null;
-    public ?int $weight = null;
+    public ?int $page = null;
 }
 
 /** Update entity data model. */
@@ -413,5 +363,6 @@ class Update
 /** Request payload for Update#load. */
 class UpdateLoadMatch
 {
+    public ?string $since = null;
 }
 

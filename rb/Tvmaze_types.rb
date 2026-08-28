@@ -59,8 +59,12 @@ AlternateList = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] embed
+#   @return [String, nil]
 AlternateListLoadMatch = Struct.new(
   :id,
+  :embed,
   keyword_init: true
 )
 
@@ -116,8 +120,12 @@ CastCredit = Struct.new(
 #
 # @!attribute [rw] person_id
 #   @return [Integer]
+#
+# @!attribute [rw] embed
+#   @return [String, nil]
 CastCreditListMatch = Struct.new(
   :person_id,
+  :embed,
   keyword_init: true
 )
 
@@ -190,8 +198,12 @@ CrewCredit = Struct.new(
 #
 # @!attribute [rw] person_id
 #   @return [Integer]
+#
+# @!attribute [rw] embed
+#   @return [String, nil]
 CrewCreditListMatch = Struct.new(
   :person_id,
+  :embed,
   keyword_init: true
 )
 
@@ -282,8 +294,12 @@ Episode = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] embed
+#   @return [String, nil]
 EpisodeLoadMatch = Struct.new(
   :id,
+  :embed,
   keyword_init: true
 )
 
@@ -291,8 +307,12 @@ EpisodeLoadMatch = Struct.new(
 #
 # @!attribute [rw] show_id
 #   @return [Integer]
+#
+# @!attribute [rw] date
+#   @return [String]
 EpisodeListMatch = Struct.new(
   :show_id,
+  :date,
   keyword_init: true
 )
 
@@ -309,8 +329,12 @@ GuestCastCredit = Struct.new(
 #
 # @!attribute [rw] person_id
 #   @return [Integer]
+#
+# @!attribute [rw] embed
+#   @return [String, nil]
 GuestCastCreditListMatch = Struct.new(
   :person_id,
+  :embed,
   keyword_init: true
 )
 
@@ -401,61 +425,21 @@ Person = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] embed
+#   @return [String, nil]
 PersonLoadMatch = Struct.new(
   :id,
+  :embed,
   keyword_init: true
 )
 
 # Request payload for Person#list.
 #
-# @!attribute [rw] birthday
-#   @return [String, nil]
-#
-# @!attribute [rw] country
-#   @return [Hash, nil]
-#
-# @!attribute [rw] deathday
-#   @return [String, nil]
-#
-# @!attribute [rw] gender
-#   @return [String, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] page
 #   @return [Integer, nil]
-#
-# @!attribute [rw] image
-#   @return [Hash, nil]
-#
-# @!attribute [rw] links
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] person
-#   @return [Hash, nil]
-#
-# @!attribute [rw] score
-#   @return [Float, nil]
-#
-# @!attribute [rw] updated
-#   @return [Integer, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
 PersonListMatch = Struct.new(
-  :birthday,
-  :country,
-  :deathday,
-  :gender,
-  :id,
-  :image,
-  :links,
-  :name,
-  :person,
-  :score,
-  :updated,
-  :url,
+  :page,
   keyword_init: true
 )
 
@@ -526,66 +510,14 @@ Schedule = Struct.new(
 
 # Request payload for Schedule#list.
 #
-# @!attribute [rw] airdate
+# @!attribute [rw] country
 #   @return [String, nil]
 #
-# @!attribute [rw] airstamp
-#   @return [String, nil]
-#
-# @!attribute [rw] airtime
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] image
-#   @return [Hash, nil]
-#
-# @!attribute [rw] links
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] number
-#   @return [Integer, nil]
-#
-# @!attribute [rw] rating
-#   @return [Hash, nil]
-#
-# @!attribute [rw] runtime
-#   @return [Integer, nil]
-#
-# @!attribute [rw] season
-#   @return [Integer, nil]
-#
-# @!attribute [rw] show
-#   @return [Hash, nil]
-#
-# @!attribute [rw] summary
-#   @return [String, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
-#
-# @!attribute [rw] url
+# @!attribute [rw] date
 #   @return [String, nil]
 ScheduleListMatch = Struct.new(
-  :airdate,
-  :airstamp,
-  :airtime,
-  :id,
-  :image,
-  :links,
-  :name,
-  :number,
-  :rating,
-  :runtime,
-  :season,
-  :show,
-  :summary,
-  :type,
-  :url,
+  :country,
+  :date,
   keyword_init: true
 )
 
@@ -656,66 +588,14 @@ ScheduledEpisode = Struct.new(
 
 # Request payload for ScheduledEpisode#list.
 #
-# @!attribute [rw] airdate
+# @!attribute [rw] country
 #   @return [String, nil]
 #
-# @!attribute [rw] airstamp
-#   @return [String, nil]
-#
-# @!attribute [rw] airtime
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] image
-#   @return [Hash, nil]
-#
-# @!attribute [rw] links
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] number
-#   @return [Integer, nil]
-#
-# @!attribute [rw] rating
-#   @return [Hash, nil]
-#
-# @!attribute [rw] runtime
-#   @return [Integer, nil]
-#
-# @!attribute [rw] season
-#   @return [Integer, nil]
-#
-# @!attribute [rw] show
-#   @return [Hash, nil]
-#
-# @!attribute [rw] summary
-#   @return [String, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
-#
-# @!attribute [rw] url
+# @!attribute [rw] date
 #   @return [String, nil]
 ScheduledEpisodeListMatch = Struct.new(
-  :airdate,
-  :airstamp,
-  :airtime,
-  :id,
-  :image,
-  :links,
-  :name,
-  :number,
-  :rating,
-  :runtime,
-  :season,
-  :show,
-  :summary,
-  :type,
-  :url,
+  :country,
+  :date,
   keyword_init: true
 )
 
@@ -724,8 +604,21 @@ class Search
 end
 
 # Request payload for Search#load.
-class SearchLoadMatch
-end
+#
+# @!attribute [rw] imdb
+#   @return [String, nil]
+#
+# @!attribute [rw] thetvdb
+#   @return [String, nil]
+#
+# @!attribute [rw] tvrage
+#   @return [String, nil]
+SearchLoadMatch = Struct.new(
+  :imdb,
+  :thetvdb,
+  :tvrage,
+  keyword_init: true
+)
 
 # Season entity data model.
 #
@@ -898,113 +791,21 @@ Show = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] embed
+#   @return [String, nil]
 ShowLoadMatch = Struct.new(
   :id,
+  :embed,
   keyword_init: true
 )
 
 # Request payload for Show#list.
 #
-# @!attribute [rw] averageRuntime
-#   @return [Integer, nil]
-#
-# @!attribute [rw] dvdCountry
-#   @return [Hash, nil]
-#
-# @!attribute [rw] ended
-#   @return [String, nil]
-#
-# @!attribute [rw] externals
-#   @return [Hash, nil]
-#
-# @!attribute [rw] genres
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] image
-#   @return [Hash, nil]
-#
-# @!attribute [rw] language
-#   @return [String, nil]
-#
-# @!attribute [rw] links
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] network
-#   @return [Hash, nil]
-#
-# @!attribute [rw] officialSite
-#   @return [String, nil]
-#
-# @!attribute [rw] premiered
-#   @return [String, nil]
-#
-# @!attribute [rw] rating
-#   @return [Hash, nil]
-#
-# @!attribute [rw] runtime
-#   @return [Integer, nil]
-#
-# @!attribute [rw] schedule
-#   @return [Hash, nil]
-#
-# @!attribute [rw] score
-#   @return [Float, nil]
-#
-# @!attribute [rw] show
-#   @return [Hash, nil]
-#
-# @!attribute [rw] status
-#   @return [String, nil]
-#
-# @!attribute [rw] summary
-#   @return [String, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
-#
-# @!attribute [rw] updated
-#   @return [Integer, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
-#
-# @!attribute [rw] webChannel
-#   @return [Hash, nil]
-#
-# @!attribute [rw] weight
+# @!attribute [rw] page
 #   @return [Integer, nil]
 ShowListMatch = Struct.new(
-  :averageRuntime,
-  :dvdCountry,
-  :ended,
-  :externals,
-  :genres,
-  :id,
-  :image,
-  :language,
-  :links,
-  :name,
-  :network,
-  :officialSite,
-  :premiered,
-  :rating,
-  :runtime,
-  :schedule,
-  :score,
-  :show,
-  :status,
-  :summary,
-  :type,
-  :updated,
-  :url,
-  :webChannel,
-  :weight,
+  :page,
   keyword_init: true
 )
 
@@ -1013,6 +814,11 @@ class Update
 end
 
 # Request payload for Update#load.
-class UpdateLoadMatch
-end
+#
+# @!attribute [rw] since
+#   @return [String, nil]
+UpdateLoadMatch = Struct.new(
+  :since,
+  keyword_init: true
+)
 

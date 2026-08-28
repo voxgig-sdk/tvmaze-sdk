@@ -35,6 +35,7 @@ type AlternateList struct {
 // AlternateListLoadMatch is the typed request payload for AlternateList.LoadTyped.
 type AlternateListLoadMatch struct {
 	Id int `json:"id"`
+	Embed *string `json:"embed,omitempty"`
 }
 
 // AlternateListListMatch is the typed request payload for AlternateList.ListTyped.
@@ -63,6 +64,7 @@ type CastCredit struct {
 // CastCreditListMatch is the typed request payload for CastCredit.ListTyped.
 type CastCreditListMatch struct {
 	PersonId int `json:"person_id"`
+	Embed *string `json:"embed,omitempty"`
 }
 
 // CastMember is the typed data model for the cast_member entity.
@@ -98,6 +100,7 @@ type CrewCredit struct {
 // CrewCreditListMatch is the typed request payload for CrewCredit.ListTyped.
 type CrewCreditListMatch struct {
 	PersonId int `json:"person_id"`
+	Embed *string `json:"embed,omitempty"`
 }
 
 // CrewMember is the typed data model for the crew_member entity.
@@ -132,11 +135,13 @@ type Episode struct {
 // EpisodeLoadMatch is the typed request payload for Episode.LoadTyped.
 type EpisodeLoadMatch struct {
 	Id int `json:"id"`
+	Embed *string `json:"embed,omitempty"`
 }
 
 // EpisodeListMatch is the typed request payload for Episode.ListTyped.
 type EpisodeListMatch struct {
 	ShowId int `json:"show_id"`
+	Date string `json:"date"`
 }
 
 // GuestCastCredit is the typed data model for the guest_cast_credit entity.
@@ -147,6 +152,7 @@ type GuestCastCredit struct {
 // GuestCastCreditListMatch is the typed request payload for GuestCastCredit.ListTyped.
 type GuestCastCreditListMatch struct {
 	PersonId int `json:"person_id"`
+	Embed *string `json:"embed,omitempty"`
 }
 
 // Image is the typed data model for the image entity.
@@ -181,22 +187,12 @@ type Person struct {
 // PersonLoadMatch is the typed request payload for Person.LoadTyped.
 type PersonLoadMatch struct {
 	Id int `json:"id"`
+	Embed *string `json:"embed,omitempty"`
 }
 
 // PersonListMatch is the typed request payload for Person.ListTyped.
 type PersonListMatch struct {
-	Birthday *string `json:"birthday,omitempty"`
-	Country *map[string]any `json:"country,omitempty"`
-	Deathday *string `json:"deathday,omitempty"`
-	Gender *string `json:"gender,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Image *map[string]any `json:"image,omitempty"`
-	Links *map[string]any `json:"links,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Person *map[string]any `json:"person,omitempty"`
-	Score *float64 `json:"score,omitempty"`
-	Updated *int `json:"updated,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // Schedule is the typed data model for the schedule entity.
@@ -220,21 +216,8 @@ type Schedule struct {
 
 // ScheduleListMatch is the typed request payload for Schedule.ListTyped.
 type ScheduleListMatch struct {
-	Airdate *string `json:"airdate,omitempty"`
-	Airstamp *string `json:"airstamp,omitempty"`
-	Airtime *string `json:"airtime,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Image *map[string]any `json:"image,omitempty"`
-	Links *map[string]any `json:"links,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Number *int `json:"number,omitempty"`
-	Rating *map[string]any `json:"rating,omitempty"`
-	Runtime *int `json:"runtime,omitempty"`
-	Season *int `json:"season,omitempty"`
-	Show *map[string]any `json:"show,omitempty"`
-	Summary *string `json:"summary,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Country *string `json:"country,omitempty"`
+	Date *string `json:"date,omitempty"`
 }
 
 // ScheduledEpisode is the typed data model for the scheduled_episode entity.
@@ -258,21 +241,8 @@ type ScheduledEpisode struct {
 
 // ScheduledEpisodeListMatch is the typed request payload for ScheduledEpisode.ListTyped.
 type ScheduledEpisodeListMatch struct {
-	Airdate *string `json:"airdate,omitempty"`
-	Airstamp *string `json:"airstamp,omitempty"`
-	Airtime *string `json:"airtime,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Image *map[string]any `json:"image,omitempty"`
-	Links *map[string]any `json:"links,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Number *int `json:"number,omitempty"`
-	Rating *map[string]any `json:"rating,omitempty"`
-	Runtime *int `json:"runtime,omitempty"`
-	Season *int `json:"season,omitempty"`
-	Show *map[string]any `json:"show,omitempty"`
-	Summary *string `json:"summary,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Country *string `json:"country,omitempty"`
+	Date *string `json:"date,omitempty"`
 }
 
 // Search is the typed data model for the search entity.
@@ -281,6 +251,9 @@ type Search struct {
 
 // SearchLoadMatch is the typed request payload for Search.LoadTyped.
 type SearchLoadMatch struct {
+	Imdb *string `json:"imdb,omitempty"`
+	Thetvdb *string `json:"thetvdb,omitempty"`
+	Tvrage *string `json:"tvrage,omitempty"`
 }
 
 // Season is the typed data model for the season entity.
@@ -336,35 +309,12 @@ type Show struct {
 // ShowLoadMatch is the typed request payload for Show.LoadTyped.
 type ShowLoadMatch struct {
 	Id int `json:"id"`
+	Embed *string `json:"embed,omitempty"`
 }
 
 // ShowListMatch is the typed request payload for Show.ListTyped.
 type ShowListMatch struct {
-	AverageRuntime *int `json:"averageRuntime,omitempty"`
-	DvdCountry *map[string]any `json:"dvdCountry,omitempty"`
-	Ended *string `json:"ended,omitempty"`
-	Externals *map[string]any `json:"externals,omitempty"`
-	Genres *[]any `json:"genres,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Image *map[string]any `json:"image,omitempty"`
-	Language *string `json:"language,omitempty"`
-	Links *map[string]any `json:"links,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Network *map[string]any `json:"network,omitempty"`
-	OfficialSite *string `json:"officialSite,omitempty"`
-	Premiered *string `json:"premiered,omitempty"`
-	Rating *map[string]any `json:"rating,omitempty"`
-	Runtime *int `json:"runtime,omitempty"`
-	Schedule *map[string]any `json:"schedule,omitempty"`
-	Score *float64 `json:"score,omitempty"`
-	Show *map[string]any `json:"show,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Summary *string `json:"summary,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Updated *int `json:"updated,omitempty"`
-	Url *string `json:"url,omitempty"`
-	WebChannel *map[string]any `json:"webChannel,omitempty"`
-	Weight *int `json:"weight,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // Update is the typed data model for the update entity.
@@ -373,6 +323,7 @@ type Update struct {
 
 // UpdateLoadMatch is the typed request payload for Update.LoadTyped.
 type UpdateLoadMatch struct {
+	Since *string `json:"since,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

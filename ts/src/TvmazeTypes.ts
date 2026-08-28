@@ -24,6 +24,7 @@ export interface AlternateList {
 
 export interface AlternateListLoadMatch {
   id: number
+  embed?: string
 }
 
 export interface AlternateListListMatch {
@@ -47,6 +48,7 @@ export interface CastCredit {
 
 export interface CastCreditListMatch {
   person_id: number
+  embed?: string
 }
 
 export interface CastMember {
@@ -76,6 +78,7 @@ export interface CrewCredit {
 
 export interface CrewCreditListMatch {
   person_id: number
+  embed?: string
 }
 
 export interface CrewMember {
@@ -106,10 +109,12 @@ export interface Episode {
 
 export interface EpisodeLoadMatch {
   id: number
+  embed?: string
 }
 
 export interface EpisodeListMatch {
   show_id: number
+  date: string
 }
 
 export interface GuestCastCredit {
@@ -118,6 +123,7 @@ export interface GuestCastCredit {
 
 export interface GuestCastCreditListMatch {
   person_id: number
+  embed?: string
 }
 
 export interface Image {
@@ -148,21 +154,11 @@ export interface Person {
 
 export interface PersonLoadMatch {
   id: number
+  embed?: string
 }
 
 export interface PersonListMatch {
-  birthday?: string
-  country?: Record<string, any>
-  deathday?: string
-  gender?: string
-  id?: number
-  image?: Record<string, any>
-  links?: Record<string, any>
-  name?: string
-  person?: Record<string, any>
-  score?: number
-  updated?: number
-  url?: string
+  page?: number
 }
 
 export interface Schedule {
@@ -184,21 +180,8 @@ export interface Schedule {
 }
 
 export interface ScheduleListMatch {
-  airdate?: string
-  airstamp?: string
-  airtime?: string
-  id?: number
-  image?: Record<string, any>
-  links?: Record<string, any>
-  name?: string
-  number?: number
-  rating?: Record<string, any>
-  runtime?: number
-  season?: number
-  show?: Record<string, any>
-  summary?: string
-  type?: string
-  url?: string
+  country?: string
+  date?: string
 }
 
 export interface ScheduledEpisode {
@@ -220,27 +203,17 @@ export interface ScheduledEpisode {
 }
 
 export interface ScheduledEpisodeListMatch {
-  airdate?: string
-  airstamp?: string
-  airtime?: string
-  id?: number
-  image?: Record<string, any>
-  links?: Record<string, any>
-  name?: string
-  number?: number
-  rating?: Record<string, any>
-  runtime?: number
-  season?: number
-  show?: Record<string, any>
-  summary?: string
-  type?: string
-  url?: string
+  country?: string
+  date?: string
 }
 
 export interface Search {
 }
 
 export interface SearchLoadMatch {
+  imdb?: string
+  thetvdb?: string
+  tvrage?: string
 }
 
 export interface Season {
@@ -292,40 +265,18 @@ export interface Show {
 
 export interface ShowLoadMatch {
   id: number
+  embed?: string
 }
 
 export interface ShowListMatch {
-  averageRuntime?: number
-  dvdCountry?: Record<string, any>
-  ended?: string
-  externals?: Record<string, any>
-  genres?: any[]
-  id?: number
-  image?: Record<string, any>
-  language?: string
-  links?: Record<string, any>
-  name?: string
-  network?: Record<string, any>
-  officialSite?: string
-  premiered?: string
-  rating?: Record<string, any>
-  runtime?: number
-  schedule?: Record<string, any>
-  score?: number
-  show?: Record<string, any>
-  status?: string
-  summary?: string
-  type?: string
-  updated?: number
-  url?: string
-  webChannel?: Record<string, any>
-  weight?: number
+  page?: number
 }
 
 export interface Update {
 }
 
 export interface UpdateLoadMatch {
+  since?: string
 
   // Selects a custom action instead of the plain load:
   //   'person' | 'show'
