@@ -17,6 +17,7 @@ main: kit: entity: show: {
       type: "`$OBJECT`"
     }
     {
+      format: "date"
       name: "ended"
       req: false
       short: "End date"
@@ -73,6 +74,7 @@ main: kit: entity: show: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "premiered"
       req: false
       short: "Premiere date"
@@ -181,16 +183,22 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/alternatelists/{id}/alternateepisodes"
-          parts: [
-            "alternatelists"
-            "{alternatelist_id}"
-            "alternateepisodes"
-          ]
           rename: {
             param: {
               id: "alternatelist_id"
             }
           }
+          segments: [
+            {
+              lit: "alternatelists"
+            }
+            {
+              var: "alternatelist_id"
+            }
+            {
+              lit: "alternateepisodes"
+            }
+          ]
           select: {
             exist: [
               "alternatelist_id"
@@ -223,9 +231,13 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/singlesearch/shows"
-          parts: [
-            "singlesearch"
-            "shows"
+          segments: [
+            {
+              lit: "singlesearch"
+            }
+            {
+              lit: "shows"
+            }
           ]
           select: {
             exist: [
@@ -253,8 +265,10 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/shows"
-          parts: [
-            "shows"
+          segments: [
+            {
+              lit: "shows"
+            }
           ]
           select: {
             exist: [
@@ -280,9 +294,13 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/search/shows"
-          parts: [
-            "search"
-            "shows"
+          segments: [
+            {
+              lit: "search"
+            }
+            {
+              lit: "shows"
+            }
           ]
           select: {
             exist: [
@@ -322,9 +340,13 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/shows/{id}"
-          parts: [
-            "shows"
-            "{id}"
+          segments: [
+            {
+              lit: "shows"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

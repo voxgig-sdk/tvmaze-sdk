@@ -46,16 +46,22 @@ main: kit: entity: crew_credit: {
           }
           method: "GET"
           orig: "/people/{id}/crewcredits"
-          parts: [
-            "people"
-            "{person_id}"
-            "crewcredits"
-          ]
           rename: {
             param: {
               id: "person_id"
             }
           }
+          segments: [
+            {
+              lit: "people"
+            }
+            {
+              var: "person_id"
+            }
+            {
+              lit: "crewcredits"
+            }
+          ]
           select: {
             exist: [
               "embed"

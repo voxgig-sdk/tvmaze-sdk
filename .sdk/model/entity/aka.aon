@@ -37,16 +37,22 @@ main: kit: entity: aka: {
           }
           method: "GET"
           orig: "/shows/{id}/akas"
-          parts: [
-            "shows"
-            "{show_id}"
-            "akas"
-          ]
           rename: {
             param: {
               id: "show_id"
             }
           }
+          segments: [
+            {
+              lit: "shows"
+            }
+            {
+              var: "show_id"
+            }
+            {
+              lit: "akas"
+            }
+          ]
           select: {
             exist: [
               "show_id"

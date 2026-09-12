@@ -6,6 +6,7 @@ main: kit: entity: person: {
 
   fields: [
     {
+      format: "date"
       name: "birthday"
       req: false
       short: "Birth date"
@@ -17,6 +18,7 @@ main: kit: entity: person: {
       type: "`$OBJECT`"
     }
     {
+      format: "date"
       name: "deathday"
       req: false
       short: "Death date"
@@ -100,8 +102,10 @@ main: kit: entity: person: {
           }
           method: "GET"
           orig: "/people"
-          parts: [
-            "people"
+          segments: [
+            {
+              lit: "people"
+            }
           ]
           select: {
             exist: [
@@ -127,9 +131,13 @@ main: kit: entity: person: {
           }
           method: "GET"
           orig: "/search/people"
-          parts: [
-            "search"
-            "people"
+          segments: [
+            {
+              lit: "search"
+            }
+            {
+              lit: "people"
+            }
           ]
           select: {
             exist: [
@@ -169,9 +177,13 @@ main: kit: entity: person: {
           }
           method: "GET"
           orig: "/people/{id}"
-          parts: [
-            "people"
-            "{id}"
+          segments: [
+            {
+              lit: "people"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

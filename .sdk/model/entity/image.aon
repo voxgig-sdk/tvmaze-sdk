@@ -54,16 +54,22 @@ main: kit: entity: image: {
           }
           method: "GET"
           orig: "/shows/{id}/images"
-          parts: [
-            "shows"
-            "{show_id}"
-            "images"
-          ]
           rename: {
             param: {
               id: "show_id"
             }
           }
+          segments: [
+            {
+              lit: "shows"
+            }
+            {
+              var: "show_id"
+            }
+            {
+              lit: "images"
+            }
+          ]
           select: {
             exist: [
               "show_id"

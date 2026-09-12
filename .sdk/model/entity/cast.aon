@@ -48,16 +48,22 @@ main: kit: entity: cast: {
           }
           method: "GET"
           orig: "/shows/{id}/cast"
-          parts: [
-            "shows"
-            "{show_id}"
-            "cast"
-          ]
           rename: {
             param: {
               id: "show_id"
             }
           }
+          segments: [
+            {
+              lit: "shows"
+            }
+            {
+              var: "show_id"
+            }
+            {
+              lit: "cast"
+            }
+          ]
           select: {
             exist: [
               "show_id"

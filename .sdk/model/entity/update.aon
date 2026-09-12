@@ -23,9 +23,13 @@ main: kit: entity: update: {
           }
           method: "GET"
           orig: "/updates/people"
-          parts: [
-            "updates"
-            "people"
+          segments: [
+            {
+              lit: "updates"
+            }
+            {
+              lit: "people"
+            }
           ]
           select: {
             "$action": "person"
@@ -52,9 +56,13 @@ main: kit: entity: update: {
           }
           method: "GET"
           orig: "/updates/shows"
-          parts: [
-            "updates"
-            "shows"
+          segments: [
+            {
+              lit: "updates"
+            }
+            {
+              lit: "shows"
+            }
           ]
           select: {
             "$action": "show"

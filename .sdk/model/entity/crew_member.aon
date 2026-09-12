@@ -37,16 +37,22 @@ main: kit: entity: crew_member: {
           }
           method: "GET"
           orig: "/episodes/{id}/guestcrew"
-          parts: [
-            "episodes"
-            "{episode_id}"
-            "guestcrew"
-          ]
           rename: {
             param: {
               id: "episode_id"
             }
           }
+          segments: [
+            {
+              lit: "episodes"
+            }
+            {
+              var: "episode_id"
+            }
+            {
+              lit: "guestcrew"
+            }
+          ]
           select: {
             exist: [
               "episode_id"

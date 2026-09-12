@@ -59,16 +59,22 @@ main: kit: entity: alternate_list: {
           }
           method: "GET"
           orig: "/shows/{id}/alternatelists"
-          parts: [
-            "shows"
-            "{show_id}"
-            "alternatelists"
-          ]
           rename: {
             param: {
               id: "show_id"
             }
           }
+          segments: [
+            {
+              lit: "shows"
+            }
+            {
+              var: "show_id"
+            }
+            {
+              lit: "alternatelists"
+            }
+          ]
           select: {
             exist: [
               "show_id"
@@ -107,9 +113,13 @@ main: kit: entity: alternate_list: {
           }
           method: "GET"
           orig: "/alternatelists/{id}"
-          parts: [
-            "alternatelists"
-            "{id}"
+          segments: [
+            {
+              lit: "alternatelists"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

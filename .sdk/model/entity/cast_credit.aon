@@ -40,16 +40,22 @@ main: kit: entity: cast_credit: {
           }
           method: "GET"
           orig: "/people/{id}/castcredits"
-          parts: [
-            "people"
-            "{person_id}"
-            "castcredits"
-          ]
           rename: {
             param: {
               id: "person_id"
             }
           }
+          segments: [
+            {
+              lit: "people"
+            }
+            {
+              var: "person_id"
+            }
+            {
+              lit: "castcredits"
+            }
+          ]
           select: {
             exist: [
               "embed"

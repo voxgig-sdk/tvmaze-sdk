@@ -105,14 +105,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/akas',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'akas',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'akas',
                     ],
                   ],
                   'select' => [
@@ -123,6 +129,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'akas',
                   ],
                 ],
               ],
@@ -162,6 +173,10 @@ class TvmazeConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'alternate_list',
           'op' => [
             'list' => [
@@ -183,14 +198,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/alternatelists',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'alternatelists',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'alternatelists',
                     ],
                   ],
                   'select' => [
@@ -201,6 +222,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'alternatelists',
                   ],
                 ],
               ],
@@ -232,9 +258,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/alternatelists/{id}',
-                  'parts' => [
-                    'alternatelists',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'alternatelists',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -245,6 +275,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body._links`',
+                  ],
+                  'parts' => [
+                    'alternatelists',
+                    '{id}',
                   ],
                 ],
               ],
@@ -300,14 +334,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/cast',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'cast',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'cast',
                     ],
                   ],
                   'select' => [
@@ -318,6 +358,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'cast',
                   ],
                 ],
               ],
@@ -367,14 +412,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/people/{id}/castcredits',
-                  'parts' => [
-                    'people',
-                    '{person_id}',
-                    'castcredits',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'person_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'people',
+                    ],
+                    [
+                      'var' => 'person_id',
+                    ],
+                    [
+                      'lit' => 'castcredits',
                     ],
                   ],
                   'select' => [
@@ -386,6 +437,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'people',
+                    '{person_id}',
+                    'castcredits',
                   ],
                 ],
               ],
@@ -441,14 +497,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/episodes/{id}/guestcast',
-                  'parts' => [
-                    'episodes',
-                    '{episode_id}',
-                    'guestcast',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'episode_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'episodes',
+                    ],
+                    [
+                      'var' => 'episode_id',
+                    ],
+                    [
+                      'lit' => 'guestcast',
                     ],
                   ],
                   'select' => [
@@ -459,6 +521,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'episodes',
+                    '{episode_id}',
+                    'guestcast',
                   ],
                 ],
               ],
@@ -505,14 +572,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/crew',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'crew',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'crew',
                     ],
                   ],
                   'select' => [
@@ -523,6 +596,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'crew',
                   ],
                 ],
               ],
@@ -577,14 +655,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/people/{id}/crewcredits',
-                  'parts' => [
-                    'people',
-                    '{person_id}',
-                    'crewcredits',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'person_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'people',
+                    ],
+                    [
+                      'var' => 'person_id',
+                    ],
+                    [
+                      'lit' => 'crewcredits',
                     ],
                   ],
                   'select' => [
@@ -596,6 +680,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'people',
+                    '{person_id}',
+                    'crewcredits',
                   ],
                 ],
               ],
@@ -642,14 +731,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/episodes/{id}/guestcrew',
-                  'parts' => [
-                    'episodes',
-                    '{episode_id}',
-                    'guestcrew',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'episode_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'episodes',
+                    ],
+                    [
+                      'var' => 'episode_id',
+                    ],
+                    [
+                      'lit' => 'guestcrew',
                     ],
                   ],
                   'select' => [
@@ -660,6 +755,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'episodes',
+                    '{episode_id}',
+                    'guestcrew',
                   ],
                 ],
               ],
@@ -676,11 +776,13 @@ class TvmazeConfig
         'episode' => [
           'fields' => [
             [
+              'format' => 'date',
               'name' => 'airdate',
               'short' => 'Air date',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'airstamp',
               'short' => 'Air timestamp',
               'type' => '`$STRING`',
@@ -743,6 +845,10 @@ class TvmazeConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'episode',
           'op' => [
             'list' => [
@@ -773,14 +879,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/episodesbydate',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'episodesbydate',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'episodesbydate',
                     ],
                   ],
                   'select' => [
@@ -792,6 +904,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'episodesbydate',
                   ],
                 ],
                 [
@@ -817,14 +934,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/seasons/{id}/episodes',
-                  'parts' => [
-                    'seasons',
-                    '{season_id}',
-                    'episodes',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'season_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'seasons',
+                    ],
+                    [
+                      'var' => 'season_id',
+                    ],
+                    [
+                      'lit' => 'episodes',
                     ],
                   ],
                   'select' => [
@@ -836,6 +959,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'seasons',
+                    '{season_id}',
+                    'episodes',
                   ],
                 ],
                 [
@@ -861,14 +989,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/episodes',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'episodes',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'episodes',
                     ],
                   ],
                   'select' => [
@@ -880,6 +1014,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'episodes',
                   ],
                 ],
               ],
@@ -919,14 +1058,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/episodebynumber',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'episodebynumber',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'episodebynumber',
                     ],
                   ],
                   'select' => [
@@ -939,6 +1084,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'episodebynumber',
                   ],
                 ],
                 [
@@ -964,9 +1114,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/episodes/{id}',
-                  'parts' => [
-                    'episodes',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'episodes',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -977,6 +1131,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'episodes',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1029,14 +1187,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/people/{id}/guestcastcredits',
-                  'parts' => [
-                    'people',
-                    '{person_id}',
-                    'guestcastcredits',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'person_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'people',
+                    ],
+                    [
+                      'var' => 'person_id',
+                    ],
+                    [
+                      'lit' => 'guestcastcredits',
                     ],
                   ],
                   'select' => [
@@ -1048,6 +1212,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'people',
+                    '{person_id}',
+                    'guestcastcredits',
                   ],
                 ],
               ],
@@ -1083,6 +1252,10 @@ class TvmazeConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'image',
           'op' => [
             'list' => [
@@ -1104,14 +1277,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/images',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'images',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'images',
                     ],
                   ],
                   'select' => [
@@ -1122,6 +1301,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'images',
                   ],
                 ],
               ],
@@ -1138,6 +1322,7 @@ class TvmazeConfig
         'person' => [
           'fields' => [
             [
+              'format' => 'date',
               'name' => 'birthday',
               'short' => 'Birth date',
               'type' => '`$STRING`',
@@ -1147,6 +1332,7 @@ class TvmazeConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'date',
               'name' => 'deathday',
               'short' => 'Death date',
               'type' => '`$STRING`',
@@ -1194,6 +1380,10 @@ class TvmazeConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'person',
           'op' => [
             'list' => [
@@ -1215,8 +1405,10 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/people',
-                  'parts' => [
-                    'people',
+                  'segments' => [
+                    [
+                      'lit' => 'people',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1226,6 +1418,9 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'people',
                   ],
                 ],
                 [
@@ -1243,9 +1438,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search/people',
-                  'parts' => [
-                    'search',
-                    'people',
+                  'segments' => [
+                    [
+                      'lit' => 'search',
+                    ],
+                    [
+                      'lit' => 'people',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1255,6 +1454,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'search',
+                    'people',
                   ],
                 ],
               ],
@@ -1286,9 +1489,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/people/{id}',
-                  'parts' => [
-                    'people',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'people',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1299,6 +1506,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'people',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1311,11 +1522,13 @@ class TvmazeConfig
         'schedule' => [
           'fields' => [
             [
+              'format' => 'date',
               'name' => 'airdate',
               'short' => 'Air date',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'airstamp',
               'short' => 'Air timestamp',
               'type' => '`$STRING`',
@@ -1381,6 +1594,10 @@ class TvmazeConfig
               'short' => 'TVmaze URL for the episode',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'schedule',
           'op' => [
@@ -1409,8 +1626,10 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/schedule',
-                  'parts' => [
-                    'schedule',
+                  'segments' => [
+                    [
+                      'lit' => 'schedule',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1421,6 +1640,9 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'schedule',
                   ],
                 ],
               ],
@@ -1433,11 +1655,13 @@ class TvmazeConfig
         'scheduled_episode' => [
           'fields' => [
             [
+              'format' => 'date',
               'name' => 'airdate',
               'short' => 'Air date',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'airstamp',
               'short' => 'Air timestamp',
               'type' => '`$STRING`',
@@ -1504,6 +1728,10 @@ class TvmazeConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'scheduled_episode',
           'op' => [
             'list' => [
@@ -1530,9 +1758,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/schedule/web',
-                  'parts' => [
-                    'schedule',
-                    'web',
+                  'segments' => [
+                    [
+                      'lit' => 'schedule',
+                    ],
+                    [
+                      'lit' => 'web',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1544,20 +1776,32 @@ class TvmazeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'schedule',
+                    'web',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/schedule/full',
-                  'parts' => [
-                    'schedule',
-                    'full',
+                  'segments' => [
+                    [
+                      'lit' => 'schedule',
+                    ],
+                    [
+                      'lit' => 'full',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'schedule',
+                    'full',
                   ],
                 ],
               ],
@@ -1601,9 +1845,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lookup/shows',
-                  'parts' => [
-                    'lookup',
-                    'shows',
+                  'segments' => [
+                    [
+                      'lit' => 'lookup',
+                    ],
+                    [
+                      'lit' => 'shows',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1616,6 +1864,10 @@ class TvmazeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'lookup',
+                    'shows',
+                  ],
                 ],
               ],
             ],
@@ -1627,6 +1879,7 @@ class TvmazeConfig
         'season' => [
           'fields' => [
             [
+              'format' => 'date',
               'name' => 'endDate',
               'short' => 'End date',
               'type' => '`$STRING`',
@@ -1664,6 +1917,7 @@ class TvmazeConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'date',
               'name' => 'premiereDate',
               'short' => 'Premiere date',
               'type' => '`$STRING`',
@@ -1682,6 +1936,10 @@ class TvmazeConfig
               'name' => 'webChannel',
               'type' => '`$OBJECT`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'season',
           'op' => [
@@ -1704,14 +1962,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}/seasons',
-                  'parts' => [
-                    'shows',
-                    '{show_id}',
-                    'seasons',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'show_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'show_id',
+                    ],
+                    [
+                      'lit' => 'seasons',
                     ],
                   ],
                   'select' => [
@@ -1722,6 +1986,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{show_id}',
+                    'seasons',
                   ],
                 ],
               ],
@@ -1747,6 +2016,7 @@ class TvmazeConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'date',
               'name' => 'ended',
               'short' => 'End date',
               'type' => '`$STRING`',
@@ -1793,6 +2063,7 @@ class TvmazeConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'premiered',
               'short' => 'Premiere date',
               'type' => '`$STRING`',
@@ -1854,6 +2125,10 @@ class TvmazeConfig
               'type' => '`$INTEGER`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'show',
           'op' => [
             'list' => [
@@ -1883,14 +2158,20 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/alternatelists/{id}/alternateepisodes',
-                  'parts' => [
-                    'alternatelists',
-                    '{alternatelist_id}',
-                    'alternateepisodes',
-                  ],
                   'rename' => [
                     'param' => [
                       'id' => 'alternatelist_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'alternatelists',
+                    ],
+                    [
+                      'var' => 'alternatelist_id',
+                    ],
+                    [
+                      'lit' => 'alternateepisodes',
                     ],
                   ],
                   'select' => [
@@ -1902,6 +2183,11 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'alternatelists',
+                    '{alternatelist_id}',
+                    'alternateepisodes',
                   ],
                 ],
                 [
@@ -1925,9 +2211,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/singlesearch/shows',
-                  'parts' => [
-                    'singlesearch',
-                    'shows',
+                  'segments' => [
+                    [
+                      'lit' => 'singlesearch',
+                    ],
+                    [
+                      'lit' => 'shows',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1938,6 +2228,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'singlesearch',
+                    'shows',
                   ],
                 ],
                 [
@@ -1955,8 +2249,10 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows',
-                  'parts' => [
-                    'shows',
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1966,6 +2262,9 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
                   ],
                 ],
                 [
@@ -1983,9 +2282,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search/shows',
-                  'parts' => [
-                    'search',
-                    'shows',
+                  'segments' => [
+                    [
+                      'lit' => 'search',
+                    ],
+                    [
+                      'lit' => 'shows',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1995,6 +2298,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'search',
+                    'shows',
                   ],
                 ],
               ],
@@ -2026,9 +2333,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}',
-                  'parts' => [
-                    'shows',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -2039,6 +2350,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{id}',
                   ],
                 ],
               ],
@@ -2074,9 +2389,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/updates/people',
-                  'parts' => [
-                    'updates',
-                    'people',
+                  'segments' => [
+                    [
+                      'lit' => 'updates',
+                    ],
+                    [
+                      'lit' => 'people',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'person',
@@ -2087,6 +2406,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'updates',
+                    'people',
                   ],
                 ],
                 [
@@ -2103,9 +2426,13 @@ class TvmazeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/updates/shows',
-                  'parts' => [
-                    'updates',
-                    'shows',
+                  'segments' => [
+                    [
+                      'lit' => 'updates',
+                    ],
+                    [
+                      'lit' => 'shows',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'show',
@@ -2116,6 +2443,10 @@ class TvmazeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'updates',
+                    'shows',
                   ],
                 ],
               ],

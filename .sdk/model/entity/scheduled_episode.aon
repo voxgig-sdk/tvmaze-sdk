@@ -6,12 +6,14 @@ main: kit: entity: scheduled_episode: {
 
   fields: [
     {
+      format: "date"
       name: "airdate"
       req: false
       short: "Air date"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "airstamp"
       req: false
       short: "Air timestamp"
@@ -124,9 +126,13 @@ main: kit: entity: scheduled_episode: {
           }
           method: "GET"
           orig: "/schedule/web"
-          parts: [
-            "schedule"
-            "web"
+          segments: [
+            {
+              lit: "schedule"
+            }
+            {
+              lit: "web"
+            }
           ]
           select: {
             exist: [
@@ -142,9 +148,13 @@ main: kit: entity: scheduled_episode: {
         {
           method: "GET"
           orig: "/schedule/full"
-          parts: [
-            "schedule"
-            "full"
+          segments: [
+            {
+              lit: "schedule"
+            }
+            {
+              lit: "full"
+            }
           ]
           transform: {
             req: "`reqdata`"

@@ -1,0 +1,236 @@
+export interface Aka {
+    country?: Record<string, any>;
+    name?: string;
+}
+export interface AkaListMatch {
+    show_id: number;
+}
+export interface AlternateList {
+    id?: number;
+    links?: Record<string, any>;
+    name?: string;
+    self?: Record<string, any>;
+    url?: string;
+}
+export interface AlternateListLoadMatch {
+    id: number;
+    embed?: string;
+}
+export interface AlternateListListMatch {
+    show_id: number;
+}
+export interface Cast {
+    character?: Record<string, any>;
+    person?: Record<string, any>;
+    self?: boolean;
+    voice?: boolean;
+}
+export interface CastListMatch {
+    show_id: number;
+}
+export interface CastCredit {
+    links?: Record<string, any>;
+}
+export interface CastCreditListMatch {
+    person_id: number;
+    embed?: string;
+}
+export interface CastMember {
+    character?: Record<string, any>;
+    person?: Record<string, any>;
+    self?: boolean;
+    voice?: boolean;
+}
+export interface CastMemberListMatch {
+    episode_id: number;
+}
+export interface Crew {
+    person?: Record<string, any>;
+    type?: string;
+}
+export interface CrewListMatch {
+    show_id: number;
+}
+export interface CrewCredit {
+    links?: Record<string, any>;
+    type?: string;
+}
+export interface CrewCreditListMatch {
+    person_id: number;
+    embed?: string;
+}
+export interface CrewMember {
+    person?: Record<string, any>;
+    type?: string;
+}
+export interface CrewMemberListMatch {
+    episode_id: number;
+}
+export interface Episode {
+    airdate?: string;
+    airstamp?: string;
+    airtime?: string;
+    id?: number;
+    image?: Record<string, any>;
+    links?: Record<string, any>;
+    name?: string;
+    number?: number;
+    rating?: Record<string, any>;
+    runtime?: number;
+    season?: number;
+    summary?: string;
+    type?: string;
+    url?: string;
+}
+export interface EpisodeLoadMatch {
+    id: number;
+    embed?: string;
+}
+export interface EpisodeListMatch {
+    show_id: number;
+    date: string;
+}
+export interface GuestCastCredit {
+    links?: Record<string, any>;
+}
+export interface GuestCastCreditListMatch {
+    person_id: number;
+    embed?: string;
+}
+export interface Image {
+    id?: number;
+    main?: boolean;
+    resolutions?: Record<string, any>;
+    type?: string;
+}
+export interface ImageListMatch {
+    show_id: number;
+}
+export interface Person {
+    birthday?: string;
+    country?: Record<string, any>;
+    deathday?: string;
+    gender?: string;
+    id?: number;
+    image?: Record<string, any>;
+    links?: Record<string, any>;
+    name?: string;
+    person?: Record<string, any>;
+    score?: number;
+    updated?: number;
+    url?: string;
+}
+export interface PersonLoadMatch {
+    id: number;
+    embed?: string;
+}
+export interface PersonListMatch {
+    page?: number;
+}
+export interface Schedule {
+    airdate?: string;
+    airstamp?: string;
+    airtime?: string;
+    id?: number;
+    image?: Record<string, any>;
+    links?: Record<string, any>;
+    name?: string;
+    number?: number;
+    rating?: Record<string, any>;
+    runtime?: number;
+    season?: number;
+    show?: Record<string, any>;
+    summary?: string;
+    type?: string;
+    url?: string;
+}
+export interface ScheduleListMatch {
+    country?: string;
+    date?: string;
+}
+export interface ScheduledEpisode {
+    airdate?: string;
+    airstamp?: string;
+    airtime?: string;
+    id?: number;
+    image?: Record<string, any>;
+    links?: Record<string, any>;
+    name?: string;
+    number?: number;
+    rating?: Record<string, any>;
+    runtime?: number;
+    season?: number;
+    show?: Record<string, any>;
+    summary?: string;
+    type?: string;
+    url?: string;
+}
+export interface ScheduledEpisodeListMatch {
+    country?: string;
+    date?: string;
+}
+export interface Search {
+}
+export interface SearchLoadMatch {
+    imdb?: string;
+    thetvdb?: string;
+    tvrage?: string;
+}
+export interface Season {
+    endDate?: string;
+    episodeOrder?: number;
+    id?: number;
+    image?: Record<string, any>;
+    links?: Record<string, any>;
+    name?: string;
+    network?: Record<string, any>;
+    number?: number;
+    premiereDate?: string;
+    summary?: string;
+    url?: string;
+    webChannel?: Record<string, any>;
+}
+export interface SeasonListMatch {
+    show_id: number;
+}
+export interface Show {
+    averageRuntime?: number;
+    dvdCountry?: Record<string, any>;
+    ended?: string;
+    externals?: Record<string, any>;
+    genres?: any[];
+    id?: number;
+    image?: Record<string, any>;
+    language?: string;
+    links?: Record<string, any>;
+    name?: string;
+    network?: Record<string, any>;
+    officialSite?: string;
+    premiered?: string;
+    rating?: Record<string, any>;
+    runtime?: number;
+    schedule?: Record<string, any>;
+    score?: number;
+    show?: Record<string, any>;
+    status?: string;
+    summary?: string;
+    type?: string;
+    updated?: number;
+    url?: string;
+    webChannel?: Record<string, any>;
+    weight?: number;
+}
+export interface ShowLoadMatch {
+    id: number;
+    embed?: string;
+}
+export interface ShowListMatch {
+    page?: number;
+}
+export interface Update {
+}
+export interface UpdateLoadMatch {
+    since?: string;
+    $action?: string;
+    [action: string]: any;
+}

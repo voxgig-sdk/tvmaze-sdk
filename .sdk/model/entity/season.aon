@@ -6,6 +6,7 @@ main: kit: entity: season: {
 
   fields: [
     {
+      format: "date"
       name: "endDate"
       req: false
       short: "End date"
@@ -51,6 +52,7 @@ main: kit: entity: season: {
       type: "`$INTEGER`"
     }
     {
+      format: "date"
       name: "premiereDate"
       req: false
       short: "Premiere date"
@@ -99,16 +101,22 @@ main: kit: entity: season: {
           }
           method: "GET"
           orig: "/shows/{id}/seasons"
-          parts: [
-            "shows"
-            "{show_id}"
-            "seasons"
-          ]
           rename: {
             param: {
               id: "show_id"
             }
           }
+          segments: [
+            {
+              lit: "shows"
+            }
+            {
+              var: "show_id"
+            }
+            {
+              lit: "seasons"
+            }
+          ]
           select: {
             exist: [
               "show_id"

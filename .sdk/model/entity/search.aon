@@ -37,9 +37,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/lookup/shows"
-          parts: [
-            "lookup"
-            "shows"
+          segments: [
+            {
+              lit: "lookup"
+            }
+            {
+              lit: "shows"
+            }
           ]
           select: {
             exist: [

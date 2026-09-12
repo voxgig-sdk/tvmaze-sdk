@@ -1,6 +1,14 @@
 # Tvmaze SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -100,16 +108,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/akas",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "akas",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "akas",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "show_id",
@@ -119,6 +133,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "akas",
+                ],
               },
             ],
           },
@@ -157,6 +176,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "alternate_list",
         "op": {
           "list": {
@@ -178,16 +201,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/alternatelists",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "alternatelists",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "alternatelists",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "show_id",
@@ -197,6 +226,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "alternatelists",
+                ],
               },
             ],
           },
@@ -227,9 +261,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/alternatelists/{id}",
-                "parts": [
-                  "alternatelists",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "alternatelists",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -241,6 +279,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body._links`",
                 },
+                "parts": [
+                  "alternatelists",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -295,16 +337,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/cast",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "cast",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "cast",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "show_id",
@@ -314,6 +362,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "cast",
+                ],
               },
             ],
           },
@@ -362,16 +415,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/people/{id}/castcredits",
-                "parts": [
-                  "people",
-                  "{person_id}",
-                  "castcredits",
-                ],
                 "rename": {
                   "param": {
                     "id": "person_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "people",
+                  },
+                  {
+                    "var": "person_id",
+                  },
+                  {
+                    "lit": "castcredits",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "embed",
@@ -382,6 +441,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "people",
+                  "{person_id}",
+                  "castcredits",
+                ],
               },
             ],
           },
@@ -436,16 +500,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/episodes/{id}/guestcast",
-                "parts": [
-                  "episodes",
-                  "{episode_id}",
-                  "guestcast",
-                ],
                 "rename": {
                   "param": {
                     "id": "episode_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "episodes",
+                  },
+                  {
+                    "var": "episode_id",
+                  },
+                  {
+                    "lit": "guestcast",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "episode_id",
@@ -455,6 +525,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "episodes",
+                  "{episode_id}",
+                  "guestcast",
+                ],
               },
             ],
           },
@@ -500,16 +575,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/crew",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "crew",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "crew",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "show_id",
@@ -519,6 +600,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "crew",
+                ],
               },
             ],
           },
@@ -572,16 +658,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/people/{id}/crewcredits",
-                "parts": [
-                  "people",
-                  "{person_id}",
-                  "crewcredits",
-                ],
                 "rename": {
                   "param": {
                     "id": "person_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "people",
+                  },
+                  {
+                    "var": "person_id",
+                  },
+                  {
+                    "lit": "crewcredits",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "embed",
@@ -592,6 +684,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "people",
+                  "{person_id}",
+                  "crewcredits",
+                ],
               },
             ],
           },
@@ -637,16 +734,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/episodes/{id}/guestcrew",
-                "parts": [
-                  "episodes",
-                  "{episode_id}",
-                  "guestcrew",
-                ],
                 "rename": {
                   "param": {
                     "id": "episode_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "episodes",
+                  },
+                  {
+                    "var": "episode_id",
+                  },
+                  {
+                    "lit": "guestcrew",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "episode_id",
@@ -656,6 +759,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "episodes",
+                  "{episode_id}",
+                  "guestcrew",
+                ],
               },
             ],
           },
@@ -671,11 +779,13 @@ def make_config():
       "episode": {
         "fields": [
           {
+            "format": "date",
             "name": "airdate",
             "short": "Air date",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "airstamp",
             "short": "Air timestamp",
             "type": "`$STRING`",
@@ -738,6 +848,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "episode",
         "op": {
           "list": {
@@ -768,16 +882,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/episodesbydate",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "episodesbydate",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "episodesbydate",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "date",
@@ -788,6 +908,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "episodesbydate",
+                ],
               },
               {
                 "args": {
@@ -812,16 +937,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/seasons/{id}/episodes",
-                "parts": [
-                  "seasons",
-                  "{season_id}",
-                  "episodes",
-                ],
                 "rename": {
                   "param": {
                     "id": "season_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "seasons",
+                  },
+                  {
+                    "var": "season_id",
+                  },
+                  {
+                    "lit": "episodes",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "embed",
@@ -832,6 +963,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "seasons",
+                  "{season_id}",
+                  "episodes",
+                ],
               },
               {
                 "args": {
@@ -856,16 +992,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/episodes",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "episodes",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "episodes",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "show_id",
@@ -876,6 +1018,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "episodes",
+                ],
               },
             ],
           },
@@ -914,16 +1061,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/episodebynumber",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "episodebynumber",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "episodebynumber",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "number",
@@ -935,6 +1088,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "episodebynumber",
+                ],
               },
               {
                 "args": {
@@ -959,9 +1117,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/episodes/{id}",
-                "parts": [
-                  "episodes",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "episodes",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -973,6 +1135,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "episodes",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -1024,16 +1190,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/people/{id}/guestcastcredits",
-                "parts": [
-                  "people",
-                  "{person_id}",
-                  "guestcastcredits",
-                ],
                 "rename": {
                   "param": {
                     "id": "person_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "people",
+                  },
+                  {
+                    "var": "person_id",
+                  },
+                  {
+                    "lit": "guestcastcredits",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "embed",
@@ -1044,6 +1216,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "people",
+                  "{person_id}",
+                  "guestcastcredits",
+                ],
               },
             ],
           },
@@ -1078,6 +1255,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "image",
         "op": {
           "list": {
@@ -1099,16 +1280,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/images",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "images",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "images",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "show_id",
@@ -1118,6 +1305,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "images",
+                ],
               },
             ],
           },
@@ -1133,6 +1325,7 @@ def make_config():
       "person": {
         "fields": [
           {
+            "format": "date",
             "name": "birthday",
             "short": "Birth date",
             "type": "`$STRING`",
@@ -1142,6 +1335,7 @@ def make_config():
             "type": "`$OBJECT`",
           },
           {
+            "format": "date",
             "name": "deathday",
             "short": "Death date",
             "type": "`$STRING`",
@@ -1189,6 +1383,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "person",
         "op": {
           "list": {
@@ -1210,8 +1408,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/people",
-                "parts": [
-                  "people",
+                "segments": [
+                  {
+                    "lit": "people",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1222,6 +1422,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "people",
+                ],
               },
               {
                 "args": {
@@ -1238,9 +1441,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search/people",
-                "parts": [
-                  "search",
-                  "people",
+                "segments": [
+                  {
+                    "lit": "search",
+                  },
+                  {
+                    "lit": "people",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1251,6 +1458,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "search",
+                  "people",
+                ],
               },
             ],
           },
@@ -1281,9 +1492,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/people/{id}",
-                "parts": [
-                  "people",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "people",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1295,6 +1510,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "people",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -1306,11 +1525,13 @@ def make_config():
       "schedule": {
         "fields": [
           {
+            "format": "date",
             "name": "airdate",
             "short": "Air date",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "airstamp",
             "short": "Air timestamp",
             "type": "`$STRING`",
@@ -1377,6 +1598,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "schedule",
         "op": {
           "list": {
@@ -1404,8 +1629,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/schedule",
-                "parts": [
-                  "schedule",
+                "segments": [
+                  {
+                    "lit": "schedule",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1417,6 +1644,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "schedule",
+                ],
               },
             ],
           },
@@ -1428,11 +1658,13 @@ def make_config():
       "scheduled_episode": {
         "fields": [
           {
+            "format": "date",
             "name": "airdate",
             "short": "Air date",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "airstamp",
             "short": "Air timestamp",
             "type": "`$STRING`",
@@ -1499,6 +1731,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "scheduled_episode",
         "op": {
           "list": {
@@ -1525,9 +1761,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/schedule/web",
-                "parts": [
-                  "schedule",
-                  "web",
+                "segments": [
+                  {
+                    "lit": "schedule",
+                  },
+                  {
+                    "lit": "web",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1539,21 +1779,33 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "schedule",
+                  "web",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/schedule/full",
-                "parts": [
-                  "schedule",
-                  "full",
+                "segments": [
+                  {
+                    "lit": "schedule",
+                  },
+                  {
+                    "lit": "full",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "schedule",
+                  "full",
+                ],
               },
             ],
           },
@@ -1596,9 +1848,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lookup/shows",
-                "parts": [
-                  "lookup",
-                  "shows",
+                "segments": [
+                  {
+                    "lit": "lookup",
+                  },
+                  {
+                    "lit": "shows",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1611,6 +1867,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "lookup",
+                  "shows",
+                ],
               },
             ],
           },
@@ -1622,6 +1882,7 @@ def make_config():
       "season": {
         "fields": [
           {
+            "format": "date",
             "name": "endDate",
             "short": "End date",
             "type": "`$STRING`",
@@ -1659,6 +1920,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date",
             "name": "premiereDate",
             "short": "Premiere date",
             "type": "`$STRING`",
@@ -1678,6 +1940,10 @@ def make_config():
             "type": "`$OBJECT`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "season",
         "op": {
           "list": {
@@ -1699,16 +1965,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}/seasons",
-                "parts": [
-                  "shows",
-                  "{show_id}",
-                  "seasons",
-                ],
                 "rename": {
                   "param": {
                     "id": "show_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "show_id",
+                  },
+                  {
+                    "lit": "seasons",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "show_id",
@@ -1718,6 +1990,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{show_id}",
+                  "seasons",
+                ],
               },
             ],
           },
@@ -1742,6 +2019,7 @@ def make_config():
             "type": "`$OBJECT`",
           },
           {
+            "format": "date",
             "name": "ended",
             "short": "End date",
             "type": "`$STRING`",
@@ -1788,6 +2066,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date",
             "name": "premiered",
             "short": "Premiere date",
             "type": "`$STRING`",
@@ -1849,6 +2128,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "show",
         "op": {
           "list": {
@@ -1878,16 +2161,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/alternatelists/{id}/alternateepisodes",
-                "parts": [
-                  "alternatelists",
-                  "{alternatelist_id}",
-                  "alternateepisodes",
-                ],
                 "rename": {
                   "param": {
                     "id": "alternatelist_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "alternatelists",
+                  },
+                  {
+                    "var": "alternatelist_id",
+                  },
+                  {
+                    "lit": "alternateepisodes",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "alternatelist_id",
@@ -1898,6 +2187,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "alternatelists",
+                  "{alternatelist_id}",
+                  "alternateepisodes",
+                ],
               },
               {
                 "args": {
@@ -1920,9 +2214,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/singlesearch/shows",
-                "parts": [
-                  "singlesearch",
-                  "shows",
+                "segments": [
+                  {
+                    "lit": "singlesearch",
+                  },
+                  {
+                    "lit": "shows",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1934,6 +2232,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "singlesearch",
+                  "shows",
+                ],
               },
               {
                 "args": {
@@ -1950,8 +2252,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows",
-                "parts": [
-                  "shows",
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1962,6 +2266,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                ],
               },
               {
                 "args": {
@@ -1978,9 +2285,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search/shows",
-                "parts": [
-                  "search",
-                  "shows",
+                "segments": [
+                  {
+                    "lit": "search",
+                  },
+                  {
+                    "lit": "shows",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1991,6 +2302,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "search",
+                  "shows",
+                ],
               },
             ],
           },
@@ -2021,9 +2336,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}",
-                "parts": [
-                  "shows",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -2035,6 +2354,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -2069,9 +2392,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/updates/people",
-                "parts": [
-                  "updates",
-                  "people",
+                "segments": [
+                  {
+                    "lit": "updates",
+                  },
+                  {
+                    "lit": "people",
+                  },
                 ],
                 "select": {
                   "$action": "person",
@@ -2083,6 +2410,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "updates",
+                  "people",
+                ],
               },
               {
                 "args": {
@@ -2098,9 +2429,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/updates/shows",
-                "parts": [
-                  "updates",
-                  "shows",
+                "segments": [
+                  {
+                    "lit": "updates",
+                  },
+                  {
+                    "lit": "shows",
+                  },
                 ],
                 "select": {
                   "$action": "show",
@@ -2112,6 +2447,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "updates",
+                  "shows",
+                ],
               },
             ],
           },
