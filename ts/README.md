@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TvmazeSDK } from '@voxgig-sdk/tvmaze'
+import { TvmazeSDK } from '@voxgig-sdk/tvmaze-sdk'
 
 const client = new TvmazeSDK()
 ```
@@ -1205,7 +1205,7 @@ tvmaze/
 Import the SDK from the package root:
 
 ```ts
-import { TvmazeSDK } from '@voxgig-sdk/tvmaze'
+import { TvmazeSDK } from '@voxgig-sdk/tvmaze-sdk'
 ```
 
 ### Entity state

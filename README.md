@@ -105,7 +105,7 @@ local results, err = client:Image():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/tvmaze` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tvmaze-sdk/releases) |
+| TypeScript | `@voxgig-sdk/tvmaze-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tvmaze-sdk/releases) |
 | Python | `voxgig-sdk-tvmaze` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tvmaze-sdk/releases) |
 | PHP | `voxgig-sdk/tvmaze` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tvmaze-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/tvmaze-sdk/go` | `go get github.com/voxgig-sdk/tvmaze-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Image():list()
 ### TypeScript
 
 ```ts
-import { TvmazeSDK } from '@voxgig-sdk/tvmaze'
+import { TvmazeSDK } from '@voxgig-sdk/tvmaze-sdk'
 
 const client = new TvmazeSDK()
 
